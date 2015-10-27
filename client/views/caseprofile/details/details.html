@@ -1,0 +1,114 @@
+<template name="CaseprofileDetails">
+	<div class="page-container container">
+		<div class="row">
+			<div class="col-md-12" id="content">
+				<div class="row" id="title_row">
+					<div class="col-md-12">
+						<div id="page_menu" class="pull-right">
+						</div>
+					</div>
+				</div>
+				{{> CaseprofileDetailsDetailsForm}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" id="menu">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" id="subcontent">
+				{{> yield region='CaseprofileDetailsSubcontent'}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="CaseprofileDetailsDetailsForm">
+	<div id="caseprofile-details-details-form" class="">
+		<h2 id="component-title">
+			<a href="#" id="form-back-button" class="btn btn-default" title="back">
+				<span class="fa fa-chevron-left">
+				</span>
+			</a>
+			Case Profile #{{caesProfile_details.caseId}}
+		</h2>
+		<form role="form" class="form-horizontal">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}		
+		
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+			<div class="form-group  field-case-id">
+				<label for="caseId" class="col-sm-3 control-label">
+					Case Profile Id
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.caseId}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-client-name">
+				<label for="clientName" class="col-sm-3 control-label">
+					Client Name
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.clientName}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-representing">
+				<label for="representing" class="col-sm-3 control-label">
+					Representing
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.representing}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-case-type">
+				<label for="caseType" class="col-sm-3 control-label">
+					Caes Type/Nature
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.caseType}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-filing-date">
+				<label for="filingDate" class="col-sm-3 control-label">
+					Filing Daate
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{formatDate caseprofile_details.filingDate 'MM-DD-YYYY'}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-notes">
+				<label for="notes" class="col-sm-3 control-label">
+					Notes / Remarks
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.notes}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="submit-div col-sm-9 col-sm-offset-3">
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+

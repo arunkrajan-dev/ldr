@@ -1,0 +1,141 @@
+<template name="CaseprofileEdit">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> CaseprofileEditEditForm}}
+	</div>
+</template>
+
+<template name="CaseprofileEditEditForm">
+	<div id="caseprofile-edit-edit-form" class="">
+		<h2 id="component-title">
+			Edit Case Profile
+		</h2>
+		<form role="form">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}		
+		
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+			<div class="form-group  field-case-id">
+				<label for="caseId">
+					Case Profile Id
+				</label>
+				<div class="input-div">
+					<input type="text" name="caseId" value="{{caseprofile_details.caseId}}" class="form-control" autofocus="autofocus" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-client-name">
+				<label for="clientName">
+					Client Name
+				</label>
+				<div class="input-div">
+					<input type="text" name="clientName" value="{{caseprofile_details.clientName}}" class="form-control" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-representing">
+				<label for="representing">
+					Representing
+				</label>
+				<div class="input-div">
+					<div class="radio">
+						<label>
+							<input type="radio" value="D" name="representing" {{itemIsChecked caseprofile_details.representing "D"}}>
+							defendant
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" value="P" name="representing" {{itemIsChecked caseprofile_details.representing "P"}}>
+							Petioner
+						</label>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-case-type">
+				<label for="caseType">
+					Caes Type/Nature
+				</label>
+				<div class="input-div">
+					<select class="form-control" name="caseType" required="required">
+						<option value="t1" {{optionIsSelected caseprofile_details.caseType "t1"}}>
+							Type1
+						</option>
+						<option value="t2" {{optionIsSelected caseprofile_details.caseType "t2"}}>
+							Type2
+						</option>
+					</select>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-filing-date">
+				<label for="filingDate">
+					Filing Daate
+				</label>
+				<div class="input-div">
+					<div class="input-group date">
+						<input type="text" name="filingDate" value="{{formatDate caseprofile_details.filingDate 'MM-DD-YYYY'}}" class="form-control" required="required" data-type="date" data-format="MM-DD-YYYY">
+						<span class="input-group-addon">
+							<i class="fa fa-calendar">
+							</i>
+						</span>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-notes">
+				<label for="notes">
+					Notes / Remarks
+				</label>
+				<div class="input-div">
+					<textarea class="form-control" name="notes">{{caseprofile_details.notes}}</textarea>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit">
+						<span class="fa fa-check">
+						</span>
+						Save
+					</button>
+					<a href="#" id="form-cancel-button" class="btn btn-default">
+						Cancel
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+
