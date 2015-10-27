@@ -1,0 +1,554 @@
+{
+  "application": {
+    "title": "Example application",
+    "theme": "bootswatch-paper",
+    "collections": [
+      {
+        "name": "caseprofile",
+        "fields": [
+          {
+            "name": "caseId",
+            "title": "Case Profile Id",
+            "default": "{{nextCaseId}}",
+            "required": true,
+            "exportable": true
+          },
+          {
+            "name": "clientName",
+            "title": "Client Name",
+            "required": true,
+            "exportable": true
+          },
+          {
+            "name": "representing",
+            "title": "Representing",
+            "input": "radio",
+            "input_items": [
+              {
+                "value": "D",
+                "title": "defendant"
+              },
+              {
+                "value": "P",
+                "title": "Petioner"
+              }
+            ],
+            "required": true,
+            "exportable": true
+          },
+          {
+            "name": "caseType",
+            "title": "Caes Type/Nature",
+            "input": "select",
+            "input_items": [
+              {
+                "value": "t1",
+                "title": "Type1"
+              },
+              {
+                "value": "t2",
+                "title": "Type2"
+              }
+            ],
+            "required": true,
+            "exportable": true
+          },
+          {
+            "name": "filingDate",
+            "title": "Filing Daate",
+            "type": "date",
+            "format": "MM-DD-YYYY",
+            "input": "datepicker",
+            "default": "today",
+            "required": true,
+            "exportable": true
+          },
+          {
+            "name": "notes",
+            "title": "Notes / Remarks",
+            "input": "textarea",
+            "required": true,
+            "exportable": true
+          }
+        ],
+        "owner_field": "ownerId",
+        "roles_allowed_to_read": [
+          "owner"
+        ],
+        "roles_allowed_to_update": [
+          "owner"
+        ],
+        "roles_allowed_to_delete": [
+          "owner"
+        ],
+        "before_insert_code": "if(!doc.totalAmount) doc.totalAmount = 0;"
+      },
+      {
+        "name": "hearings",
+        "fields": [
+          {
+            "name": "businessDate",
+            "title": "Busienss Date",
+            "type": "date",
+            "format": "MM-DD-YYYY",
+            "input": "datepicker",
+            "default": "today",
+            "required": true,
+            "exportable": true
+          },
+          {
+            "name": "nextDate",
+            "title": "Next Hearing Date",
+            "type": "date",
+            "format": "MM-DD-YYYY",
+            "input": "datepicker",
+            "default": "today",
+            "required": true,
+            "exportable": true
+          },
+          {
+            "name": "description",
+            "title": "Description",
+            "required": true,
+            "exportable": true
+          }
+        ],
+        "owner_field": "ownerId",
+        "roles_allowed_to_read": [
+          "owner"
+        ],
+        "roles_allowed_to_update": [
+          "owner"
+        ],
+        "roles_allowed_to_delete": [
+          "owner"
+        ]
+      }
+    ],
+    "queries": [
+      {
+        "name": "caseprofile_list",
+        "collection": "caseprofile",
+        "filter": {},
+        "options": {
+          "sort": [
+            [
+              "caseId",
+              "desc"
+            ]
+          ]
+        }
+      },
+      {
+        "name": "caseprofile_empty",
+        "collection": "caseprofile",
+        "filter": {
+          "_id": null
+        },
+        "options": {},
+        "find_one": true,
+        "related_queries": [
+          {
+            "name": "caseprofile_list"
+          }
+        ]
+      },
+      {
+        "name": "caseprofile_details",
+        "collection": "caseprofile",
+        "filter": {
+          "_id": ":caseId"
+        },
+        "find_one": true
+      },
+      {
+        "name": "hearings",
+        "collection": "hearings",
+        "filter": {
+          "caseId": ":caseId"
+        }
+      },
+      {
+        "name": "hearings_empty",
+        "collection": "hearings",
+        "filter": {
+          "_id": null
+        },
+        "find_one": true
+      },
+      {
+        "name": "hearing",
+        "collection": "hearings",
+        "filter": {
+          "_id": ":hearingId"
+        },
+        "find_one": true
+      },
+      {
+        "name": "current_user_data",
+        "collection": "users",
+        "filter": {
+          "_id": "Meteor.userId()"
+        },
+        "find_one": true
+      }
+    ],
+    "public_zone": {
+      "pages": [
+        {
+          "name": "home_public",
+          "title": "",
+          "components": [
+            {
+              "name": "home_jumbotron",
+              "title": "Example application",
+              "type": "jumbotron",
+              "text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It shows how to work with DataViews, Forms with dates and lookup fields, master-detail relations etc.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-invoices\" target=\"_blank\">here</a>.",
+              "button_title": "Continue &raquo;",
+              "button_route": "login"
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "template": "login"
+        },
+        {
+          "name": "register",
+          "template": "register"
+        },
+        {
+          "name": "forgot_password",
+          "template": "forgot_password"
+        },
+        {
+          "name": "reset_password",
+          "template": "reset_password",
+          "route_params": [
+            "resetPasswordToken"
+          ]
+        }
+      ],
+      "components": [
+        {
+          "name": "left_menu",
+          "type": "menu",
+          "class": "nav navbar-nav",
+          "dest_selector": "#menu",
+          "items": [
+            {
+              "title": "Home",
+              "route": "home_public"
+            }
+          ]
+        },
+        {
+          "name": "right_menu",
+          "type": "menu",
+          "class": "nav navbar-nav navbar-right",
+          "dest_selector": "#menu",
+          "items": [
+            {
+              "title": "Register",
+              "route": "register"
+            },
+            {
+              "title": "Login",
+              "route": "login"
+            }
+          ]
+        }
+      ]
+    },
+    "private_zone": {
+      "pages": [
+        {
+          "name": "caseprofile",
+          "components": [
+            {
+              "name": "view",
+              "type": "data_view",
+              "title": "Case Profile",
+              "text_if_empty": "No Case Profile :(",
+              "query_name": "caseprofile_list",
+              "insert_route": "caseprofile.insert",
+              "edit_route": "caseprofile.edit",
+              "edit_route_params": [
+                {
+                  "name": "caseId",
+                  "value": "this._id"
+                }
+              ],
+              "details_route": "caseprofile.details",
+              "details_route_params": [
+                {
+                  "name": "caseId",
+                  "value": "this._id"
+                }
+              ]
+            }
+          ],
+          "pages": [
+            {
+              "name": "insert",
+              "components": [
+                {
+                  "name": "insert_form",
+                  "type": "form",
+                  "mode": "insert",
+                  "title": "New Case Profile",
+                  "query_name": "caseprofile_empty",
+                  "helpers_code": "'nextCaseId': function() { var max = 0; var caseIds = caseprofile.find({}, { fields: { caseId: 1 }}).fetch(); _.each(caseIds, function(doc) { var intNum = parseInt(doc.caseId); if(!isNaN(intNum) && intNum > max) max = intNum; }); return max + 1; }",
+                    "submit_route": "caseprofile.details",
+                  "submit_route_params": [
+                    {
+                      "name": "caseId",
+                      "value": "newId"
+                    }
+                  ],
+                  "cancel_route": "caseprofile"
+                }
+              ]
+            },
+            {
+              "name": "details",
+              "template": "page_subcontent_tabnav",
+              "route_params": [
+                "caseId"
+              ],
+              "components": [
+                {
+                  "name": "details_form",
+                  "type": "form",
+                  "mode": "read_only",
+                  "title": "Case Profile #{{caesProfile_details.caseId}}",
+                  "layout": "horizontal",
+                  "query_name": "caseprofile_details",
+                  "back_route": "caseprofile"
+                }
+              ],
+              "force_yield_subpages": true,
+              "pages": [
+                {
+                  "name": "hearings",
+                  "components": [
+                    {
+                      "name": "view",
+                      "type": "data_view",
+                      "text_if_empty": "No items",
+                      "query_name": "hearings",
+                      "insert_button_title": "Add Hearing",
+                      "insert_route": "caseprofile.details.insert",
+                      "insert_route_params": [
+                        {
+                          "name": "caseId",
+                          "value": "this.params.caseId"
+                        }
+                      ],
+                      "edit_route": "caseprofile.details.edit",
+                      "edit_route_params": [
+                        {
+                          "name": "caseId",
+                          "value": "UI._parentData(1).params.caseId"
+                        },
+                        {
+                          "name": "caseId",
+                          "value": "this._id"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "insert",
+                  "components": [
+                    {
+                      "name": "insert_form",
+                      "type": "form",
+                      "mode": "insert",
+                      "title": "Add Hearing",
+                      "query_name": "hearings_empty",
+                      "hidden_fields": [
+                        {
+                          "name": "caseId",
+                          "value": "this.params.caseId"
+                        }
+                      ],
+                      "submit_route": "caseprofile.details",
+                      "submit_route_params": [
+                        {
+                          "name": "caseId",
+                          "value": "this.params.caseId"
+                        }
+                      ],
+                      "cancel_route": "caseprofile.details",
+                      "cancel_route_params": [
+                        {
+                          "name": "caseId",
+                          "value": "this.params.caseId"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "edit",
+                  "route_params": [
+                    "hearingId"
+                  ],
+                  "components": [
+                    {
+                      "name": "edit_form",
+                      "type": "form",
+                      "mode": "update",
+                      "title": "Edit Hearing",
+                      "query_name": "hearing",
+                      "submit_route": "caseprofile.details",
+                      "submit_route_params": [
+                        {
+                          "name": "caseId",
+                          "value": "this.params.caseId"
+                        }
+                      ],
+                      "cancel_route": "caseprofile.details",
+                      "cancel_route_params": [
+                        {
+                          "name": "caseId",
+                          "value": "this.params.caseId"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "edit",
+              "route_params": [
+                "caseId"
+              ],
+              "components": [
+                {
+                  "name": "edit_form",
+                  "type": "form",
+                  "mode": "update",
+                  "title": "Edit Case Profile",
+                  "submit_route": "caseprofile",
+                  "cancel_route": "caseprofile",
+                  "query_name": "caseprofile_details"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "user_settings",
+          "pages": [
+            {
+              "name": "profile",
+              "components": [
+                {
+                  "name": "edit_form",
+                  "type": "form",
+                  "mode": "update",
+                  "title": "Edit your profile",
+                  "submit_route": "user_settings.profile",
+                  "query_name": "current_user_data",
+                  "fields": [
+                    {
+                      "name": "profile.name",
+                      "title": "Name",
+                      "required": true
+                    },
+                    {
+                      "name": "profile.email",
+                      "title": "E-mail",
+                      "type": "email",
+                      "required": true
+                    },
+                    {
+                      "name": "profile.facebook",
+                      "title": "Facebook URL"
+                    },
+                    {
+                      "name": "profile.google",
+                      "title": "Google+ URL"
+                    },
+                    {
+                      "name": "profile.twitter",
+                      "title": "Twitter ID"
+                    },
+                    {
+                      "name": "profile.website",
+                      "title": "Website URL"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "change_pass",
+              "template": "change_pass"
+            }
+          ],
+          "components": [
+            {
+              "name": "side_menu",
+              "type": "menu",
+              "class": "nav nav-stacked nav-pills",
+              "items": [
+                {
+                  "title": "Profile",
+                  "route": "user_settings.profile"
+                },
+                {
+                  "title": "Change password",
+                  "route": "user_settings.change_pass"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "logout",
+          "template": "logout"
+        }
+      ],
+      "components": [
+        {
+          "name": "left_menu",
+          "type": "menu",
+          "class": "nav navbar-nav",
+          "dest_selector": "#menu",
+          "items": [
+            {
+              "title": "Case Profile",
+              "route": "caseprofile"
+            }
+          ]
+        },
+        {
+          "name": "right_menu",
+          "type": "menu",
+          "class": "nav navbar-nav navbar-right",
+          "dest_selector": "#menu",
+          "items": [
+            {
+              "title": "{{userEmail}}",
+              "items": [
+                {
+                  "title": "Settings",
+                  "route": "user_settings"
+                },
+                {
+                  "title": "Logout",
+                  "route": "logout"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
