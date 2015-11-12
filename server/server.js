@@ -179,7 +179,7 @@ Meteor.methods({
 });
 
 Accounts.onCreateUser(function (options, user) {
-	user.roles = [];
+	user.roles = ["admin"];
 
 	if(options.profile) {
 		user.profile = options.profile;

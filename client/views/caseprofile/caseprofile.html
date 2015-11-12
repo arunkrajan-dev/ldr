@@ -99,7 +99,25 @@
 					Case Profile Id
 				</th>
 				<th class="th-sortable" data-sort="clientName">
-					Client Name
+					Client Name and Address
+				</th>
+				<th class="th-sortable" data-sort="phone">
+					Phone Number
+				</th>
+				<th class="th-sortable" data-sort="email">
+					Email
+				</th>
+				<th class="th-sortable" data-sort="dob">
+					date of Birth
+				</th>
+				<th class="th-sortable" data-sort="age">
+					age
+				</th>
+				<th class="th-sortable" data-sort="fatherName">
+					Father Name
+				</th>
+				<th class="th-sortable" data-sort="clientNotes">
+					Other Client Detail
 				</th>
 				<th class="th-sortable" data-sort="representing">
 					Representing
@@ -107,11 +125,23 @@
 				<th class="th-sortable" data-sort="caseType">
 					Caes Type/Nature
 				</th>
+				<th class="th-sortable" data-sort="court">
+					filing Court
+				</th>
 				<th class="th-sortable" data-sort="filingDate">
-					Filing Daate
+					Filing Date
 				</th>
 				<th class="th-sortable" data-sort="notes">
-					Notes / Remarks
+					Other case related Notes / Details
+				</th>
+				<th class="th-sortable" data-sort="opName">
+					Opposite party Name and Contact
+				</th>
+				<th class="th-sortable" data-sort="opAdvocate">
+					Opposite party Advocate Name and Contact
+				</th>
+				<th class="th-sortable" data-sort="opNotes">
+					Other details about Opposite party
 				</th>
 				<th>
 					&nbsp;
@@ -136,16 +166,46 @@
 			{{clientName}}
 		</td>
 		<td>
+			{{phone}}
+		</td>
+		<td>
+			{{email}}
+		</td>
+		<td>
+			{{formatDate dob 'DD-MMM-YYYY'}}
+		</td>
+		<td>
+			{{age}}
+		</td>
+		<td>
+			{{fatherName}}
+		</td>
+		<td>
+			{{clientNotes}}
+		</td>
+		<td>
 			{{representing}}
 		</td>
 		<td>
 			{{caseType}}
 		</td>
 		<td>
-			{{formatDate filingDate 'MM-DD-YYYY'}}
+			{{court}}
+		</td>
+		<td>
+			{{formatDate filingDate 'DD-MMM-YYYY'}}
 		</td>
 		<td>
 			{{notes}}
+		</td>
+		<td>
+			{{opName}}
+		</td>
+		<td>
+			{{opAdvocate}}
+		</td>
+		<td>
+			{{opNotes}}
 		</td>
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">

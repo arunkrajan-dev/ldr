@@ -2,6 +2,9 @@
   "application": {
     "title": "Example application",
     "theme": "bootswatch-paper",
+    "roles": [ "admin", "user", "viewer" ],
+		"default_role": "admin",
+		"send_verification_email": false,
     "collections": [
       {
         "name": "caseprofile",
@@ -15,8 +18,52 @@
           },
           {
             "name": "clientName",
-            "title": "Client Name",
+            "title": "Client Name and Address",
             "required": true,
+            "exportable": true
+          },
+          {
+            "name": "phone",
+            "title": "Phone Number",
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "email",
+            "title": "Email",
+            "type": "email",
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "dob",
+            "title": "date of Birth",
+            "type": "date",
+            "format": "DD-MMM-YYYY",
+            "input": "datepicker",
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "age",
+            "title": "age",
+            "type": "integer",
+            "min": "0",
+            "max":"150",
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "fatherName",
+            "title": "Father Name",
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "clientNotes",
+            "title": "Other Client Detail",
+            "input": "textarea",
+            "required": false,
             "exportable": true
           },
           {
@@ -30,7 +77,7 @@
               },
               {
                 "value": "P",
-                "title": "Petioner"
+                "title": "Petitioner"
               }
             ],
             "required": true,
@@ -50,14 +97,31 @@
                 "title": "Type2"
               }
             ],
-            "required": true,
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "court",
+            "title": "filing Court",
+            "input": "select",
+            "input_items": [
+              {
+                "value": "t1",
+                "title": "Type1"
+              },
+              {
+                "value": "t2",
+                "title": "Type2"
+              }
+            ],
+            "required": false,
             "exportable": true
           },
           {
             "name": "filingDate",
-            "title": "Filing Daate",
+            "title": "Filing Date",
             "type": "date",
-            "format": "MM-DD-YYYY",
+            "format": "DD-MMM-YYYY",
             "input": "datepicker",
             "default": "today",
             "required": true,
@@ -65,21 +129,42 @@
           },
           {
             "name": "notes",
-            "title": "Notes / Remarks",
+            "title": "Other case related Notes / Details",
             "input": "textarea",
-            "required": true,
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "opName",
+            "title": "Opposite party Name and Contact",
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "opAdvocate",
+            "title": " Opposite party Advocate Name and Contact",
+            "required": false,
+            "exportable": true
+          },
+          {
+            "name": "opNotes",
+            "title": " Other details about Opposite party",
+            "required": false,
             "exportable": true
           }
         ],
         "owner_field": "ownerId",
+        "roles_allowed_to_insert":[
+          "owner", "admin", "user"
+        ],
         "roles_allowed_to_read": [
-          "owner"
+          "owner", "admin", "viewer"
         ],
         "roles_allowed_to_update": [
-          "owner"
+          "owner", "admin"
         ],
         "roles_allowed_to_delete": [
-          "owner"
+          "owner", "admin"
         ],
         "before_insert_code": "if(!doc.totalAmount) doc.totalAmount = 0;"
       },
@@ -90,7 +175,7 @@
             "name": "businessDate",
             "title": "Busienss Date",
             "type": "date",
-            "format": "MM-DD-YYYY",
+            "format": "DD-MMM-YYYY",
             "input": "datepicker",
             "default": "today",
             "required": true,
@@ -100,7 +185,7 @@
             "name": "nextDate",
             "title": "Next Hearing Date",
             "type": "date",
-            "format": "MM-DD-YYYY",
+            "format": "DD-MMM-YYYY",
             "input": "datepicker",
             "default": "today",
             "required": true,
@@ -114,14 +199,17 @@
           }
         ],
         "owner_field": "ownerId",
+        "roles_allowed_to_insert":[
+          "owner", "admin", "user"
+        ],
         "roles_allowed_to_read": [
-          "owner"
+          "owner", "admin", "viewer"
         ],
         "roles_allowed_to_update": [
-          "owner"
+          "owner", "admin"
         ],
         "roles_allowed_to_delete": [
-          "owner"
+          "owner", "admin"
         ]
       }
     ],
@@ -191,7 +279,24 @@
           "_id": "Meteor.userId()"
         },
         "find_one": true
-      }
+      },
+      {
+				"name": "admin_users",
+				"collection": "users",
+				"filter": {}
+			},
+			{
+				"name": "admin_user",
+				"collection": "users",
+				"filter": { "_id": ":userId" },
+				"find_one": true
+			},
+			{
+				"name": "users_null",
+				"collection": "users",
+				"filter": { "_id": null },
+				"find_one": true
+			}
     ],
     "public_zone": {
       "pages": [
@@ -203,7 +308,7 @@
               "name": "home_jumbotron",
               "title": "Example application",
               "type": "jumbotron",
-              "text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It shows how to work with DataViews, Forms with dates and lookup fields, master-detail relations etc.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-invoices\" target=\"_blank\">here</a>.",
+              "text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application.</b><br />It shows how to work with DataViews, Forms with dates and lookup fields, master-detail relations etc.",
               "button_title": "Continue &raquo;",
               "button_route": "login"
             }
@@ -509,6 +614,130 @@
             }
           ]
         },
+        {
+					"name": "admin",
+					"roles": ["admin"],
+					"pages": [
+						{
+							"name": "users",
+							"components": [
+								{
+									"name": "view",
+									"type": "data_view",
+									"title": "Users",
+									"text_if_empty": "No users yet",
+									"query_name": "admin_users",
+									"query_params": [],
+
+									"fields": [
+										{ "name": "profile.name", "title": "Name"},
+										{ "name": "profile.email", "title": "E-mail" },
+										{ "name": "roles", "title": "Role" }
+									],
+
+									"insert_route": "admin.users.insert",
+
+									"edit_route": "admin.users.edit",
+									"edit_route_params": [
+										{ "name": "userId", "value": "this._id" }
+									],
+
+									"details_route": "admin.users.details",
+									"details_route_params": [
+										{ "name": "userId", "value": "this._id" }
+									]
+								}
+							],
+							"pages": [
+								{
+									"name": "details",
+									"route_params": ["userId"],
+									"components": [
+										{
+											"name": "details_form",
+											"type": "form",
+											"mode": "read_only",
+											"title": "User details",
+											"query_name": "admin_user",
+											"query_params": [],
+											"fields": [
+												{ "name": "profile.name", "title": "Name"},
+												{ "name": "profile.email", "title": "E-mail", "type": "email" },
+												{ "name": "roles", "title": "Role" }
+											],
+											"close_route": "admin.users",
+											"back_route": "admin.users"
+										}
+									]
+								},
+								{
+									"name": "insert",
+									"components": [
+										{
+											"name": "insert_form",
+											"type": "form",
+											"mode": "insert",
+											"title": "Add new user",
+											"submit_route": "admin.users",
+											"cancel_route": "admin.users",
+											"query_name": "users_null",
+											"query_params": [],
+											"fields": [
+												{ "name": "profile.name", "title": "Name", "required": true },
+												{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
+												{ "name": "password", "title": "Password", "input": "password", "required": true }
+											]
+										}
+									]
+								},
+								{
+									"name": "edit",
+									"route_params": ["userId"],
+									"components": [
+										{
+											"name": "edit_form",
+											"type": "form",
+											"mode": "update",
+											"title": "Edit user",
+											"submit_route": "admin.users",
+											"cancel_route": "admin.users",
+											"query_name": "admin_user",
+											"query_params": [],
+											"fields": [
+												{ "name": "profile.name", "title": "Name", "required": true },
+												{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
+												{
+													"name": "roles",
+													"type": "array",
+													"title": "Role",
+													"input": "radio",
+													"input_items": [
+														{ "value": "user", "title": "User" },
+														{ "value": "viewer", "title": "Viewer" },
+														{ "value": "admin", "title": "Admin" },
+														{ "value": "blocked", "title": "Blocked" }
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+
+					],
+
+					"components": [
+						{
+							"name": "side_menu",
+							"type": "menu",
+							"class": "nav nav-stacked nav-pills",
+							"items": [
+								{ "title": "Users", "route": "admin.users" }
+							]
+						}
+					]
+				},
         {
           "name": "logout",
           "template": "logout"

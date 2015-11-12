@@ -56,11 +56,71 @@
 			</div>
 			<div class="form-group  field-client-name">
 				<label for="clientName" class="col-sm-3 control-label">
-					Client Name
+					Client Name and Address
 				</label>
 				<div class="input-div col-sm-9">
 					<p class="form-control-static">
 						{{caseprofile_details.clientName}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-phone">
+				<label for="phone" class="col-sm-3 control-label">
+					Phone Number
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.phone}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-email">
+				<label for="email" class="col-sm-3 control-label">
+					Email
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.email}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-dob">
+				<label for="dob" class="col-sm-3 control-label">
+					date of Birth
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{formatDate caseprofile_details.dob 'DD-MMM-YYYY'}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-age">
+				<label for="age" class="col-sm-3 control-label">
+					age
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.age}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-father-name">
+				<label for="fatherName" class="col-sm-3 control-label">
+					Father Name
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.fatherName}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-client-notes">
+				<label for="clientNotes" class="col-sm-3 control-label">
+					Other Client Detail
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.clientNotes}}
 					</p>
 				</div>
 			</div>
@@ -84,23 +144,63 @@
 					</p>
 				</div>
 			</div>
-			<div class="form-group  field-filing-date">
-				<label for="filingDate" class="col-sm-3 control-label">
-					Filing Daate
+			<div class="form-group  field-court">
+				<label for="court" class="col-sm-3 control-label">
+					filing Court
 				</label>
 				<div class="input-div col-sm-9">
 					<p class="form-control-static">
-						{{formatDate caseprofile_details.filingDate 'MM-DD-YYYY'}}
+						{{caseprofile_details.court}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-filing-date">
+				<label for="filingDate" class="col-sm-3 control-label">
+					Filing Date
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{formatDate caseprofile_details.filingDate 'DD-MMM-YYYY'}}
 					</p>
 				</div>
 			</div>
 			<div class="form-group  field-notes">
 				<label for="notes" class="col-sm-3 control-label">
-					Notes / Remarks
+					Other case related Notes / Details
 				</label>
 				<div class="input-div col-sm-9">
 					<p class="form-control-static">
 						{{caseprofile_details.notes}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-op-name">
+				<label for="opName" class="col-sm-3 control-label">
+					Opposite party Name and Contact
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.opName}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-op-advocate">
+				<label for="opAdvocate" class="col-sm-3 control-label">
+					Opposite party Advocate Name and Contact
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.opAdvocate}}
+					</p>
+				</div>
+			</div>
+			<div class="form-group  field-op-notes">
+				<label for="opNotes" class="col-sm-3 control-label">
+					Other details about Opposite party
+				</label>
+				<div class="input-div col-sm-9">
+					<p class="form-control-static">
+						{{caseprofile_details.opNotes}}
 					</p>
 				</div>
 			</div>

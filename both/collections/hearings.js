@@ -1,13 +1,13 @@
 this.Hearings = new Mongo.Collection("hearings");
 
 this.Hearings.userCanInsert = function(userId, doc) {
-	return true;
+	return Users.isInRoles(userId, ["admin","user"]);
 }
 
 this.Hearings.userCanUpdate = function(userId, doc) {
-	return userId && doc.ownerId == userId;
+	return userId && (doc.ownerId == userId || Users.isInRoles(userId, ["admin"]));
 }
 
 this.Hearings.userCanRemove = function(userId, doc) {
-	return userId && doc.ownerId == userId;
+	return userId && (doc.ownerId == userId || Users.isInRoles(userId, ["admin"]));
 }

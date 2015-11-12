@@ -1,4 +1,4 @@
-<template name="CaseprofileDetailsInsert">
+<template name="AdminUsersInsert">
 	<div class="page-container container" id="content">
 		<div class="row" id="title_row">
 			<div class="col-md-12">
@@ -6,14 +6,14 @@
 				</div>
 			</div>
 		</div>
-		{{> CaseprofileDetailsInsertInsertForm}}
+		{{> AdminUsersInsertInsertForm}}
 	</div>
 </template>
 
-<template name="CaseprofileDetailsInsertInsertForm">
-	<div id="caseprofile-details-insert-insert-form" class="">
+<template name="AdminUsersInsertInsertForm">
+	<div id="admin-users-insert-insert-form" class="">
 		<h2 id="component-title">
-			Add Hearing
+			Add new user
 		</h2>
 		<form role="form">
 			{{#if errorMessage}}
@@ -27,48 +27,36 @@
 				{{infoMessage}}
 			</div>
 			{{/if}}
-			<div class="form-group  field-business-date">
-				<label for="businessDate">
-					Busienss Date
+			<div class="form-group  field-profile-name">
+				<label for="profile.name">
+					Name
 				</label>
 				<div class="input-div">
-					<div class="input-group date">
-						<input type="text" name="businessDate" value="{{formatDate 'today' 'DD-MMM-YYYY'}}" class="form-control" autofocus="autofocus" required="required" data-type="date" data-format="DD-MMM-YYYY">
-						<span class="input-group-addon">
-							<i class="fa fa-calendar">
-							</i>
-						</span>
-					</div>
+					<input type="text" name="profile.name" value="" class="form-control" autofocus="autofocus" required="required">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-next-date">
-				<label for="nextDate">
-					Next Hearing Date
+			<div class="form-group  field-profile-email">
+				<label for="profile.email">
+					E-mail
 				</label>
 				<div class="input-div">
-					<div class="input-group date">
-						<input type="text" name="nextDate" value="{{formatDate 'today' 'DD-MMM-YYYY'}}" class="form-control" required="required" data-type="date" data-format="DD-MMM-YYYY">
-						<span class="input-group-addon">
-							<i class="fa fa-calendar">
-							</i>
-						</span>
-					</div>
+					<input type="text" name="profile.email" value="" class="form-control" required="required" data-type="email">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-description">
-				<label for="description">
-					Description
+			<div class="form-group  field-password">
+				<label for="password">
+					Password
 				</label>
 				<div class="input-div">
-					<input type="text" name="description" value="" class="form-control" required="required">
+					<input type="password" name="password" value="" class="form-control">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">

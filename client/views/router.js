@@ -25,6 +25,11 @@ var privateRoutes = [
 	"user_settings",
 	"user_settings.profile",
 	"user_settings.change_pass",
+	"admin",
+	"admin.users",
+	"admin.users.details",
+	"admin.users.insert",
+	"admin.users.edit",
 	"logout"
 ];
 
@@ -33,7 +38,11 @@ var freeRoutes = [
 ];
 
 var roleMap = [
-	
+	{ route: "admin",	roles: ["admin"] },
+	{ route: "admin.users",	roles: ["admin"] },
+	{ route: "admin.users.details",	roles: ["admin"] },
+	{ route: "admin.users.insert",	roles: ["admin"] },
+	{ route: "admin.users.edit",	roles: ["admin"] }
 ];
 
 this.firstGrantedRoute = function(preferredRoute) {
@@ -194,5 +203,10 @@ Router.map(function () {
 	this.route("user_settings", {path: "/user_settings", controller: "UserSettingsController"});
 	this.route("user_settings.profile", {path: "/user_settings/profile", controller: "UserSettingsProfileController"});
 	this.route("user_settings.change_pass", {path: "/user_settings/change_pass", controller: "UserSettingsChangePassController"});
+	this.route("admin", {path: "/admin", controller: "AdminController"});
+	this.route("admin.users", {path: "/admin/users", controller: "AdminUsersController"});
+	this.route("admin.users.details", {path: "/admin/users/details/:userId", controller: "AdminUsersDetailsController"});
+	this.route("admin.users.insert", {path: "/admin/users/insert", controller: "AdminUsersInsertController"});
+	this.route("admin.users.edit", {path: "/admin/users/edit/:userId", controller: "AdminUsersEditController"});
 	this.route("logout", {path: "/logout", controller: "LogoutController"});
 });

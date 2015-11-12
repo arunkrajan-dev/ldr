@@ -1,25 +1,25 @@
 var pageSession = new ReactiveDict();
 
-Template.Caseprofile.rendered = function() {
+Template.AdminUsers.rendered = function() {
 	
 };
 
-Template.Caseprofile.events({
+Template.AdminUsers.events({
 	
 });
 
-Template.Caseprofile.helpers({
+Template.AdminUsers.helpers({
 	
 });
 
-var CaseprofileViewItems = function(cursor) {
+var AdminUsersViewItems = function(cursor) {
 	if(!cursor) {
 		return [];
 	}
 
-	var searchString = pageSession.get("CaseprofileViewSearchString");
-	var sortBy = pageSession.get("CaseprofileViewSortBy");
-	var sortAscending = pageSession.get("CaseprofileViewSortAscending");
+	var searchString = pageSession.get("AdminUsersViewSearchString");
+	var sortBy = pageSession.get("AdminUsersViewSortBy");
+	var sortAscending = pageSession.get("AdminUsersViewSortAscending");
 	if(typeof(sortAscending) == "undefined") sortAscending = true;
 
 	var raw = cursor.fetch();
@@ -31,7 +31,7 @@ var CaseprofileViewItems = function(cursor) {
 	} else {
 		searchString = searchString.replace(".", "\\.");
 		var regEx = new RegExp(searchString, "i");
-		var searchFields = ["caseId", "clientName", "phone", "email", "dob", "age", "fatherName", "clientNotes", "representing", "caseType", "court", "filingDate", "notes", "opName", "opAdvocate", "opNotes"];
+		var searchFields = ["profile.name", "profile.email", "roles"];
 		filtered = _.filter(raw, function(item) {
 			var match = false;
 			_.each(searchFields, function(field) {
@@ -59,9 +59,9 @@ var CaseprofileViewItems = function(cursor) {
 	return filtered;
 };
 
-var CaseprofileViewExport = function(cursor, fileType) {
-	var data = CaseprofileViewItems(cursor);
-	var exportFields = ["caseId", "clientName", "phone", "email", "dob", "age", "fatherName", "clientNotes", "representing", "caseType", "court", "filingDate", "notes", "opName", "opAdvocate", "opNotes"];
+var AdminUsersViewExport = function(cursor, fileType) {
+	var data = AdminUsersViewItems(cursor);
+	var exportFields = [];
 
 	var str = convertArrayOfObjects(data, exportFields, fileType);
 
@@ -71,12 +71,12 @@ var CaseprofileViewExport = function(cursor, fileType) {
 }
 
 
-Template.CaseprofileView.rendered = function() {
-	pageSession.set("CaseprofileViewStyle", "table");
+Template.AdminUsersView.rendered = function() {
+	pageSession.set("AdminUsersViewStyle", "table");
 	
 };
 
-Template.CaseprofileView.events({
+Template.AdminUsersView.events({
 	"submit #dataview-controls": function(e, t) {
 		return false;
 	},
@@ -89,7 +89,7 @@ Template.CaseprofileView.events({
 			if(searchInput) {
 				searchInput.focus();
 				var searchString = searchInput.val();
-				pageSession.set("CaseprofileViewSearchString", searchString);
+				pageSession.set("AdminUsersViewSearchString", searchString);
 			}
 
 		}
@@ -105,7 +105,7 @@ Template.CaseprofileView.events({
 				var searchInput = form.find("#dataview-search-input");
 				if(searchInput) {
 					var searchString = searchInput.val();
-					pageSession.set("CaseprofileViewSearchString", searchString);
+					pageSession.set("AdminUsersViewSearchString", searchString);
 				}
 
 			}
@@ -120,7 +120,7 @@ Template.CaseprofileView.events({
 				var searchInput = form.find("#dataview-search-input");
 				if(searchInput) {
 					searchInput.val("");
-					pageSession.set("CaseprofileViewSearchString", "");
+					pageSession.set("AdminUsersViewSearchString", "");
 				}
 
 			}
@@ -132,99 +132,97 @@ Template.CaseprofileView.events({
 
 	"click #dataview-insert-button": function(e, t) {
 		e.preventDefault();
-		Router.go("caseprofile.insert", {});
+		Router.go("admin.users.insert", {});
 	},
 
 	"click #dataview-export-default": function(e, t) {
 		e.preventDefault();
-		CaseprofileViewExport(this.caseprofile_list, "csv");
+		AdminUsersViewExport(this.admin_users, "csv");
 	},
 
 	"click #dataview-export-csv": function(e, t) {
 		e.preventDefault();
-		CaseprofileViewExport(this.caseprofile_list, "csv");
+		AdminUsersViewExport(this.admin_users, "csv");
 	},
 
 	"click #dataview-export-tsv": function(e, t) {
 		e.preventDefault();
-		CaseprofileViewExport(this.caseprofile_list, "tsv");
+		AdminUsersViewExport(this.admin_users, "tsv");
 	},
 
 	"click #dataview-export-json": function(e, t) {
 		e.preventDefault();
-		CaseprofileViewExport(this.caseprofile_list, "json");
+		AdminUsersViewExport(this.admin_users, "json");
 	}
 
 	
 });
 
-Template.CaseprofileView.helpers({
+Template.AdminUsersView.helpers({
 
-	"insertButtonClass": function() {
-		return Caseprofile.userCanInsert(Meteor.userId(), {}) ? "" : "hidden";
-	},
+	
 
 	"isEmpty": function() {
-		return !this.caseprofile_list || this.caseprofile_list.count() == 0;
+		return !this.admin_users || this.admin_users.count() == 0;
 	},
 	"isNotEmpty": function() {
-		return this.caseprofile_list && this.caseprofile_list.count() > 0;
+		return this.admin_users && this.admin_users.count() > 0;
 	},
 	"isNotFound": function() {
-		return this.caseprofile_list && pageSession.get("CaseprofileViewSearchString") && CaseprofileViewItems(this.caseprofile_list).length == 0;
+		return this.admin_users && pageSession.get("AdminUsersViewSearchString") && AdminUsersViewItems(this.admin_users).length == 0;
 	},
 	"searchString": function() {
-		return pageSession.get("CaseprofileViewSearchString");
+		return pageSession.get("AdminUsersViewSearchString");
 	},
 	"viewAsTable": function() {
-		return pageSession.get("CaseprofileViewStyle") == "table";
+		return pageSession.get("AdminUsersViewStyle") == "table";
 	},
 	"viewAsList": function() {
-		return pageSession.get("CaseprofileViewStyle") == "list";
+		return pageSession.get("AdminUsersViewStyle") == "list";
 	},
 	"viewAsGallery": function() {
-		return pageSession.get("CaseprofileViewStyle") == "gallery";
+		return pageSession.get("AdminUsersViewStyle") == "gallery";
 	}
 
 	
 });
 
 
-Template.CaseprofileViewTable.rendered = function() {
+Template.AdminUsersViewTable.rendered = function() {
 	
 };
 
-Template.CaseprofileViewTable.events({
+Template.AdminUsersViewTable.events({
 	"click .th-sortable": function(e, t) {
 		e.preventDefault();
-		var oldSortBy = pageSession.get("CaseprofileViewSortBy");
+		var oldSortBy = pageSession.get("AdminUsersViewSortBy");
 		var newSortBy = $(e.target).attr("data-sort");
 
-		pageSession.set("CaseprofileViewSortBy", newSortBy);
+		pageSession.set("AdminUsersViewSortBy", newSortBy);
 		if(oldSortBy == newSortBy) {
-			var sortAscending = pageSession.get("CaseprofileViewSortAscending") || false;
-			pageSession.set("CaseprofileViewSortAscending", !sortAscending);
+			var sortAscending = pageSession.get("AdminUsersViewSortAscending") || false;
+			pageSession.set("AdminUsersViewSortAscending", !sortAscending);
 		} else {
-			pageSession.set("CaseprofileViewSortAscending", true);
+			pageSession.set("AdminUsersViewSortAscending", true);
 		}
 	}
 });
 
-Template.CaseprofileViewTable.helpers({
+Template.AdminUsersViewTable.helpers({
 	"tableItems": function() {
-		return CaseprofileViewItems(this.caseprofile_list);
+		return AdminUsersViewItems(this.admin_users);
 	}
 });
 
 
-Template.CaseprofileViewTableItems.rendered = function() {
+Template.AdminUsersViewTableItems.rendered = function() {
 	
 };
 
-Template.CaseprofileViewTableItems.events({
+Template.AdminUsersViewTableItems.events({
 	"click td": function(e, t) {
 		e.preventDefault();
-		Router.go("caseprofile.details", {caseId: this._id});
+		Router.go("admin.users.details", {userId: this._id});
 		return false;
 	},
 
@@ -239,7 +237,7 @@ Template.CaseprofileViewTableItems.events({
 		var values = {};
 		values[fieldName] = !this[fieldName];
 
-		Caseprofile.update({ _id: this._id }, { $set: values });
+		Users.update({ _id: this._id }, { $set: values });
 
 		return false;
 	},
@@ -256,7 +254,7 @@ Template.CaseprofileViewTableItems.events({
 					label: "Yes",
 					className: "btn-success",
 					callback: function() {
-						Caseprofile.remove({ _id: me._id });
+						Users.remove({ _id: me._id });
 					}
 				},
 				danger: {
@@ -269,18 +267,18 @@ Template.CaseprofileViewTableItems.events({
 	},
 	"click #edit-button": function(e, t) {
 		e.preventDefault();
-		Router.go("caseprofile.edit", {caseId: this._id});
+		Router.go("admin.users.edit", {userId: this._id});
 		return false;
 	}
 });
 
-Template.CaseprofileViewTableItems.helpers({
+Template.AdminUsersViewTableItems.helpers({
 	"checked": function(value) { return value ? "checked" : "" }, 
 	"editButtonClass": function() {
-		return Caseprofile.userCanUpdate(Meteor.userId(), this) ? "" : "hidden";
+		return Users.isAdmin(Meteor.userId()) ? "" : "hidden";
 	},
 
 	"deleteButtonClass": function() {
-		return Caseprofile.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
+		return Users.isAdmin(Meteor.userId()) ? "" : "hidden";
 	}
 });
