@@ -1,0 +1,26 @@
+<template name="sendMailModalT">
+  <div class="modal fade" id="sendMailModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Send Mail To </h4>
+		  <input type="text" id="mailTo" />
+        </div>
+
+        <div class="modal-body">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" />
+		  <label for="msg">Message</label>
+          <input type="textarea" id="msg" />
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="send">Send</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>
