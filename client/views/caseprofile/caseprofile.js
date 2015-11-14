@@ -224,6 +224,9 @@ Template.CaseprofileViewTableItems.rendered = function() {
 Template.CaseprofileViewTableItems.events({
 	"click td": function(e, t) {
 		e.preventDefault();
+		Session.set('selectedClientName', this.clientName);
+		Session.set('selectedEmail', this.email);
+		Session.set('selectedCaseId', this.caseId);
 		Router.go("caseprofile.details", {caseId: this._id});
 		return false;
 	},
@@ -270,6 +273,15 @@ Template.CaseprofileViewTableItems.events({
 	"click #edit-button": function(e, t) {
 		e.preventDefault();
 		Router.go("caseprofile.edit", {caseId: this._id});
+		return false;
+	},
+	"click #sendMail-button": function(e, t) {
+		e.preventDefault();
+		Session.set('selectedClientName', this.clientName);
+		Session.set('selectedEmail', this.email);
+		Session.set('selectedCaseId', this.caseId);
+		console.log("Mail Clicked");
+		$('#sendMailModal').modal('show');
 		return false;
 	}
 });

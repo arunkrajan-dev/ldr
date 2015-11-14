@@ -271,6 +271,11 @@ Template.CaseprofileDetailsHearingsViewTableItems.events({
 		e.preventDefault();
 		Router.go("caseprofile.details.edit", {caseId: UI._parentData(1).params.caseId, caseId: this._id});
 		return false;
+	},
+	"click #sendMail-button": function(e, t) {
+		e.preventDefault();
+		$('#sendMailModal').modal('show');
+		return false;
 	}
 });
 
