@@ -271,6 +271,15 @@ Template.CaseprofileViewTableItems.events({
 		e.preventDefault();
 		Router.go("caseprofile.edit", {caseId: this._id});
 		return false;
+	},
+	"click #sendMail-button": function(e, t) {
+		e.preventDefault();
+		Session.set('selectedClientName',"Name");
+		Session.set('selectedEmail',"Email");
+		Session.set('selectedCaseId',"CaseId");
+		console.log("Mail Clicked");
+		$('#sendMailModal').modal('show');
+		return false;
 	}
 });
 
