@@ -2,7 +2,7 @@ this.App = {};
 this.Helpers = {};
 
 Meteor.startup(function() {
-	
+	//Meteor.absoluteUrl.defaultOptions.rootUrl = "https://mtr4-arunsugan.c9users.io/";
 });
 
 App.logout = function() {

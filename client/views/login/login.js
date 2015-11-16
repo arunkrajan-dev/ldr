@@ -55,7 +55,8 @@ Template.Login.events({
 
 		var button = $(e.currentTarget);
 		button.button("loading");
-
+		
+		console.log("Login with Google JS");
 		Meteor.loginWithGoogle(
 			{
 				requestPermissions: ["email"]

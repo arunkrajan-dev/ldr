@@ -1,0 +1,12 @@
+{
+	     "oauth": {
+	         "google": {
+	             "clientId": "94388180277-ckhpi71qnafa8figoq88l119bvi3j8rk.apps.googleusercontent.com",
+	             "secret": "q31aZJvg8W_qHzo4Ts2VIjka"
+	         },
+	         "github": {
+	             "clientId": "yourClientId",
+	             "secret": "yourSecret"
+	         }
+	     }
+}
