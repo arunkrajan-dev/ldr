@@ -59,7 +59,7 @@ Template.Login.events({
 		console.log("Login with Google JS");
 		Meteor.loginWithGoogle(
 			{
-				requestPermissions: ["email"]
+				requestPermissions: ["email", "https://www.googleapis.com/auth/calendar"]
 			},
 			function(err) {
 				button.button("reset");

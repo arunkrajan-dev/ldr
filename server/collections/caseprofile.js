@@ -35,12 +35,12 @@ Caseprofile.before.remove(function(userId, doc) {
 	
 });
 
-Caseprofile.after.insert(function(userId, doc) {
-	
-});
+Caseprofile.after.insert(function(userId, doc) {});
 
 Caseprofile.after.update(function(userId, doc, fieldNames, modifier, options) {
-	
+    console.log(doc" + doc.filingDate + "after" + moment(doc.filingDate).format("YYYY-MM-DDTHH:mm:ssZ"));
+    if(insertCalEvent("Case: " + doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
+        console.log("Event Added to google calendar");
 });
 
 Caseprofile.after.remove(function(userId, doc) {
