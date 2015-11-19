@@ -3,6 +3,7 @@ var verifyEmail = false;
 Accounts.config({ sendVerificationEmail: verifyEmail });
 
 Meteor.startup(function() {
+	
 	// read environment variables from Meteor.settings
 	if(Meteor.settings && Meteor.settings.env && _.isObject(Meteor.settings.env)) {
 		for(var variableName in Meteor.settings.env) {
@@ -180,13 +181,28 @@ Meteor.methods({
 
 Accounts.onCreateUser(function (options, user) {
 	user.roles = ["admin"];
-
-	if(options.profile) {
-		user.profile = options.profile;
-	}
-
 	
-	return user;
+	//Allow admin to create new user
+	if(Users.isInRoles(Meteor.userId(), ["admin"])) return user;
+	
+	//If user is created through service, merge it to already 
+	//created account for the user by admin
+    if (user.services) {
+			var email = user.services["google"].email;
+			
+            if (!email)
+                throw new Meteor.Error(403, "Email not found");
+ 			
+ 			var existingUser = Meteor.users.findOne({'emails.address': email});
+ 			
+            // see if any existing user has this email address, otherwise create new
+            if (!existingUser)
+            	throw new Meteor.Error(403, "Please request admin to add your mail in user list");
+ 
+            // Remove existing user and create new account
+            Meteor.users.remove({_id: existingUser._id}); // remove existing record
+            return existingUser;                          // record is re-inserted
+    }
 });
 
 Accounts.validateLoginAttempt(function(info) {
