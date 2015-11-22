@@ -1,8 +1,8 @@
 {
 	     "oauth": {
 	         "google": {
-	             "clientId": "94388180277-ckhpi71qnafa8figoq88l119bvi3j8rk.apps.googleusercontent.com",
-	             "secret": "q31aZJvg8W_qHzo4Ts2VIjka"
+	             "clientId": "198717858206-30etvnptb3f8fqdqgb34fo7hceqqieuc.apps.googleusercontent.com",
+	             "secret": "MPTPdFWyU4QmWEKyv9azX36b"
 	         },
 	         "github": {
 	             "clientId": "yourClientId",

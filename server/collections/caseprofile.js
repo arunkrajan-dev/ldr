@@ -35,14 +35,20 @@ Caseprofile.before.remove(function(userId, doc) {
 	
 });
 
-Caseprofile.after.insert(function(userId, doc) {});
+Caseprofile.after.insert(function(userId, doc) {
+	console.log("After insert case profile: " + JSON.stringify(doc, null, 4));
+//	if(insertCalEvent("CASE1234", doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
+        console.log("Event Added to google calendar");
+});
 
 Caseprofile.after.update(function(userId, doc, fieldNames, modifier, options) {
-    console.log(doc" + doc.filingDate + "after" + moment(doc.filingDate).format("YYYY-MM-DDTHH:mm:ssZ"));
-    if(insertCalEvent("Case: " + doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
+    console.log("After update case profile: " + JSON.stringify(doc, null, 4));
+//    if(updateCalEvent("CASE1234", doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
         console.log("Event Added to google calendar");
 });
 
 Caseprofile.after.remove(function(userId, doc) {
-	
+	console.log("After remove case profile: " + JSON.stringify(doc, null, 4));
+//	if(removeCalEvent("CASE1234"))
+        console.log("Event removed from google calendar");
 });

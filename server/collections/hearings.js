@@ -35,13 +35,27 @@ Hearings.before.remove(function(userId, doc) {
 });
 
 Hearings.after.insert(function(userId, doc) {
+	console.log("After insert Hearing: " + JSON.stringify(doc, null, 4));
+	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
+	console.log("Case Detail: " + JSON.stringify(cs, null, 4));
 	
+//	if(insertCalEvent("hearing1238", cs.caseId + " | Hearing", "Client Name" + cs.clientName + "Previous Bussiness Notes:" + doc.description, cs.court, doc.nextDate))
+        console.log("Event Added to google calendar");
 });
 
 Hearings.after.update(function(userId, doc, fieldNames, modifier, options) {
+	console.log("After update Hearing: " + JSON.stringify(doc, null, 4));
+	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
+	console.log("Case Detail: " + JSON.stringify(cs, null, 4));
 	
+//	if(insertCalEvent("hearing1238", cs.caseId + " | Hearing", "Client Name" + cs.clientName + "Previous Bussiness Notes:" + doc.description, cs.court, doc.nextDate))
+        console.log("Event Added to google calendar");
+
 });
 
 Hearings.after.remove(function(userId, doc) {
-	
+	console.log("After remove Hearing: " + JSON.stringify(doc, null, 4));
+//	if(removeCalEvent("hearing1238"))
+        console.log("Event removed from google calendar");
+
 });
