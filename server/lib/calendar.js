@@ -26,7 +26,7 @@ this.insertCalEvent = function (id, s, d, l, sd, ed) {
 this.updateCalEvent = function (id, s, d, l, sd, ed) {
     var url = "https://www.googleapis.com/calendar/v3/calendars/primary/events/" + id.toLowerCase();
     console.log("google calender update event " + url);
-    Meteor.http.post(url, {
+    Meteor.http.put(url, {
         'headers' : { 
           'Authorization': "Bearer " + Meteor.user().services.google.accessToken,
           'Content-Type': 'application/json' 
@@ -37,10 +37,10 @@ this.updateCalEvent = function (id, s, d, l, sd, ed) {
           "description": d,
           "location": l,
           "start": {
-            "dateTime": moment(sd).format("YYYY-MM-DDTHH:mm:ssZ"),
+            "dateTime": moment(sd).format("YYYY-MM-DD"),
           },
           "end": {
-            "dateTime": moment(sd).format("YYYY-MM-DDTHH:mm:ssZ"),
+            "dateTime": moment(sd).format("YYYY-MM-DD"),
           },
         }
       });
@@ -50,12 +50,10 @@ this.updateCalEvent = function (id, s, d, l, sd, ed) {
 this.removeCalEvent = function (id) {
     var url = "https://www.googleapis.com/calendar/v3/calendars/primary/events/" + id.toLowerCase();
     console.log("google calender remove event " + url);
-    Meteor.http.post(url, {
+    Meteor.http.del(url, {
         'headers' : { 
           'Authorization': "Bearer " + Meteor.user().services.google.accessToken,
           'Content-Type': 'application/json' 
-        },
-        'data': {
         }
       });
     return true;

@@ -17,6 +17,7 @@ Caseprofile.before.insert(function(userId, doc) {
 	doc.createdBy = userId;
 	doc.modifiedAt = doc.createdAt;
 	doc.modifiedBy = doc.createdBy;
+	doc.calendarId = Random.hexString(25);
 
 	
 	if(!doc.ownerId) doc.ownerId = userId;
@@ -37,18 +38,18 @@ Caseprofile.before.remove(function(userId, doc) {
 
 Caseprofile.after.insert(function(userId, doc) {
 	console.log("After insert case profile: " + JSON.stringify(doc, null, 4));
-//	if(insertCalEvent("CASE1234", doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
+	if(insertCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
         console.log("Event Added to google calendar");
 });
 
 Caseprofile.after.update(function(userId, doc, fieldNames, modifier, options) {
     console.log("After update case profile: " + JSON.stringify(doc, null, 4));
-//    if(updateCalEvent("CASE1234", doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
+    if(updateCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
         console.log("Event Added to google calendar");
 });
 
 Caseprofile.after.remove(function(userId, doc) {
 	console.log("After remove case profile: " + JSON.stringify(doc, null, 4));
-//	if(removeCalEvent("CASE1234"))
+	if(removeCalEvent(doc.calendarId))
         console.log("Event removed from google calendar");
 });

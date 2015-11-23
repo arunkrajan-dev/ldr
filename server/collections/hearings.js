@@ -17,6 +17,7 @@ Hearings.before.insert(function(userId, doc) {
 	doc.createdBy = userId;
 	doc.modifiedAt = doc.createdAt;
 	doc.modifiedBy = doc.createdBy;
+	doc.calendarId = Random.hexString(25);
 
 	
 	if(!doc.ownerId) doc.ownerId = userId;
@@ -39,7 +40,7 @@ Hearings.after.insert(function(userId, doc) {
 	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
 	console.log("Case Detail: " + JSON.stringify(cs, null, 4));
 	
-//	if(insertCalEvent("hearing1238", cs.caseId + " | Hearing", "Client Name" + cs.clientName + "Previous Bussiness Notes:" + doc.description, cs.court, doc.nextDate))
+	if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client Name" + cs.clientName + "Previous Bussiness Notes:" + doc.description, cs.court, doc.nextDate))
         console.log("Event Added to google calendar");
 });
 
@@ -48,14 +49,14 @@ Hearings.after.update(function(userId, doc, fieldNames, modifier, options) {
 	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
 	console.log("Case Detail: " + JSON.stringify(cs, null, 4));
 	
-//	if(insertCalEvent("hearing1238", cs.caseId + " | Hearing", "Client Name" + cs.clientName + "Previous Bussiness Notes:" + doc.description, cs.court, doc.nextDate))
+	if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client Name" + cs.clientName + "Previous Bussiness Notes:" + doc.description, cs.court, doc.nextDate))
         console.log("Event Added to google calendar");
 
 });
 
 Hearings.after.remove(function(userId, doc) {
 	console.log("After remove Hearing: " + JSON.stringify(doc, null, 4));
-//	if(removeCalEvent("hearing1238"))
+	if(removeCalEvent(doc.calendarId))
         console.log("Event removed from google calendar");
 
 });
