@@ -38,18 +38,18 @@ Caseprofile.before.remove(function(userId, doc) {
 
 Caseprofile.after.insert(function(userId, doc) {
 	console.log("After insert case profile: " + JSON.stringify(doc, null, 4));
-	if(insertCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
+	if(insertCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))
         console.log("Event Added to google calendar");
 });
 
 Caseprofile.after.update(function(userId, doc, fieldNames, modifier, options) {
     console.log("After update case profile: " + JSON.stringify(doc, null, 4));
-    if(updateCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client Name" + doc.clientName, doc.court, doc.filingDate))
-        console.log("Event Added to google calendar");
+    if(updateCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))
+        console.log("Event updated in google calendar");
 });
 
 Caseprofile.after.remove(function(userId, doc) {
-	console.log("After remove case profile: " + JSON.stringify(doc, null, 4));
+	//console.log("After remove case profile: " + JSON.stringify(doc, null, 4));
 	if(removeCalEvent(doc.calendarId))
         console.log("Event removed from google calendar");
 });
