@@ -171,21 +171,22 @@
   	<div class="pull-right">
          <span class="label label-default"><i class="fa fa-calendar">&nbsp;</i> File: {{formatDate filingDate 'DD-MMM-YYYY'}}</span>
     </div>
-    <div class="panel-heading" role="tab" id={{caseId}}>
+    <div class="panel-heading" role="tab" id={{_id}}>
       <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{_id}}" aria-expanded="true" aria-controls="collapseOne{{caseId}}">
           Client: {{getClientName clientName}}
         </a>
       </h4>
      
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby=removethistext{{caseId}}>
+    <div id="collapseOne{{_id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby={{_id}}>
       <div class="panel-body">
       <ul class="list-group">
   		<li class="list-group-item">
     		<span class="badge">{{representing}}</span>
     		<i class="fa fa-user">&nbsp;</i> <span>{{clientName}}</span><br/>
-    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span>
+    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
+    		<i class="fa fa-email">&nbsp;</i><span><a href="mailto:{{email}}?subject=testing123">{{email}}</a></span>
   		</li>
   		<li class="list-group-item">
     		<span class="badge">{{caseType}}</span>
