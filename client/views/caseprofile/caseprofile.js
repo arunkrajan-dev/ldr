@@ -294,5 +294,113 @@ Template.CaseprofileViewTableItems.helpers({
 
 	"deleteButtonClass": function() {
 		return Caseprofile.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
+	},
+	"stringSplit": function(str, options) {
+    if(str){
+      var ret = "";
+      
+      var tempArr = str.trim().split(options.hash["delimiter"]);
+
+      for(var i=0; i < tempArr.length; i++)
+      {
+        ret = ret + options.fn(tempArr[i]);
+      }
+
+      return ret;
+    }
+  }
+});
+
+Template.panelView.events({
+	"click .panel-body": function(e, t) {
+		e.preventDefault();
+		Session.set('selectedClientName', this.clientName);
+		Session.set('selectedEmail', this.email);
+		Session.set('selectedCaseId', this.caseId);
+		Router.go("caseprofile.details", {caseId: this._id});
+		return false;
+	},
+
+	"click .inline-checkbox": function(e, t) {
+		e.preventDefault();
+
+		if(!this || !this._id) return false;
+
+		var fieldName = $(e.currentTarget).attr("data-field");
+		if(!fieldName) return false;
+
+		var values = {};
+		values[fieldName] = !this[fieldName];
+
+		Caseprofile.update({ _id: this._id }, { $set: values });
+
+		return false;
+	},
+
+	"click #delete-button": function(e, t) {
+		e.preventDefault();
+		var me = this;
+		bootbox.dialog({
+			message: "Delete? Are you sure?",
+			title: "Delete",
+			animate: false,
+			buttons: {
+				success: {
+					label: "Yes",
+					className: "btn-success",
+					callback: function() {
+						Caseprofile.remove({ _id: me._id });
+					}
+				},
+				danger: {
+					label: "No",
+					className: "btn-default"
+				}
+			}
+		});
+		return false;
+	},
+	"click #edit-button": function(e, t) {
+		e.preventDefault();
+		Router.go("caseprofile.edit", {caseId: this._id});
+		return false;
+	},
+	"click #sendMail-button": function(e, t) {
+		e.preventDefault();
+		Session.set('selectedClientName', this.clientName);
+		Session.set('selectedEmail', this.email);
+		Session.set('selectedCaseId', this.caseId);
+		console.log("Mail Clicked");
+		$('#sendMailModal').modal('show');
+		return false;
 	}
+});
+
+Template.panelView.helpers({
+	"checked": function(value) { return value ? "checked" : "" }, 
+	"editButtonClass": function() {
+		return Caseprofile.userCanUpdate(Meteor.userId(), this) ? "" : "hidden";
+	},
+
+	"deleteButtonClass": function() {
+		return Caseprofile.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
+	},
+	"stringSplit": function(str, options) {
+    if(str){
+      var ret = "";
+      
+      var tempArr = str.trim().split(options.hash["delimiter"]);
+
+      for(var i=0; i < tempArr.length; i++)
+      {
+        ret = ret + options.fn(tempArr[i]);
+      }
+
+      return ret;
+    }
+  },
+  "getClientName":function(value){
+        var name2 = value.split(",");
+        return name2[0];
+    },
 });
