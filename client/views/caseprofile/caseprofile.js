@@ -312,7 +312,7 @@ Template.CaseprofileViewTableItems.helpers({
 });
 
 Template.panelView.events({
-	"click .panel-body": function(e, t) {
+	"click .panel-footer": function(e, t) {
 		e.preventDefault();
 		Session.set('selectedClientName', this.clientName);
 		Session.set('selectedEmail', this.email);

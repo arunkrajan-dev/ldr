@@ -121,5 +121,9 @@ Template.CaseprofileInsertInsertForm.helpers({
 	"errorMessage": function() {
 		return pageSession.get("caseprofileInsertInsertFormErrorMessage");
 	}, 
-	'nextCaseId': function() { var max = 0; var caseIds = caseprofile.find({}, { fields: { caseId: 1 }}).fetch(); _.each(caseIds, function(doc) { var intNum = parseInt(doc.caseId); if(!isNaN(intNum) && intNum > max) max = intNum; }); return max + 1; }
+	'nextCaseId': function() { var max = 0; var caseIds = caseprofile.find({}, { fields: { caseId: 1 }}).fetch(); _.each(caseIds, function(doc) { var intNum = parseInt(doc.caseId); if(!isNaN(intNum) && intNum > max) max = intNum; }); return max + 1; },
+	'court': function() {
+		console.log("Court db insert" + JSON.stringify(Court.find().fetch(), null, 4));
+		return Court.find().fetch().map(function(it){ return it.name; });	
+	}
 });

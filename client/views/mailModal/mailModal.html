@@ -1,4 +1,6 @@
 <template name="sendMailModalT">
+{{#with getHearing}}
+{{#with getCaseDetail}}
 <div class="modal fade" id="sendMailModal" tabindex="-1" role="dialog" aria-labelledby="sendMailModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -10,15 +12,24 @@
         <form>
           <div class="form-group">
             <label for="to" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="to" value="{{getEmail}}">
+            <input type="text" class="form-control" id="to" value="{{email}}">
           </div>
           <div class="form-group">
             <label for="sub" class="control-label">Subject:</label>
-            <textarea class="form-control" id="sub" value="{{getCaseId}}"></textarea>
+            <textarea class="form-control" id="sub" value="Next Hearing/Trial for {{caseId}} is on {{../nexDate}}"></textarea>
           </div>
           <div class="form-group">
             <label for="msg" class="control-label">Message:</label>
-            <textarea class="form-control" id="msg" value="Dear {{getClientName}},"></textarea>
+            <textarea class="form-control" id="msg" rows=10>
+Dear {{getClientName clientName}}, 
+Your case has been set for hearing/trial on {{../nextDate}} in the court {{court}}.
+This is a hearing for the purpose of case {{caseId}}. 
+Your case is before Judge _______ in courtroom __________. Courtroom is located on ___________ . 
+I will meet you ____________ at ______ o'clock the day of the trial. 
+Please be present for this. If you have any questions, please feel free to call. 
+Sincerely,
+{{getUserName}}
+</textarea>
           </div>
         </form>
       </div>
@@ -29,4 +40,6 @@
     </div>
   </div>
 </div>
+{{/with}}
+{{/with}}
 </template>

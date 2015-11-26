@@ -274,6 +274,9 @@ Template.CaseprofileDetailsHearingsViewTableItems.events({
 	},
 	"click #sendMail-button": function(e, t) {
 		e.preventDefault();
+		Session.set("caseProfileId", UI._parentData(1).params.caseId);
+		Session.set("hearingId", this._id);
+		console.log("hearing sendmail is clicked " + this._id);
 		$('#sendMailModal').modal('show');
 		return false;
 	}

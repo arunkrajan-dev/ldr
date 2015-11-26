@@ -173,22 +173,12 @@
 			</div>
 			<div class="form-group  field-court">
 				<label for="court">
-					filing Court
+					filing Court modified
 				</label>
-				<div class="input-div">
-					<select class="form-control" name="court">
-						<option value="t1" selected>
-							Type1
-						</option>
-						<option value="t2">
-							Type2
-						</option>
-					</select>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
+				<input class="form-control typeahead" name="court" type="text"
+       					placeholder="Court"
+       					autocomplete="off" spellcheck="off"
+       					data-source="{{court}}"/>
 			</div>
 			<div class="form-group  field-filing-date">
 				<label for="filingDate">
