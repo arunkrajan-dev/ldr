@@ -1,6 +1,4 @@
 <template name="sendMailModalT">
-{{#with getHearing}}
-{{#with getCaseDetail}}
 <div class="modal fade" id="sendMailModal" tabindex="-1" role="dialog" aria-labelledby="sendMailModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -9,18 +7,20 @@
         <h4 class="modal-title" id="sendMailModalLabel">Send Mail</h4>
       </div>
       <div class="modal-body">
+        {{#with getHearing}}
+        {{#with getCaseDetail}}
         <form>
           <div class="form-group">
             <label for="to" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="to" value="{{email}}">
+            <input type="text" class="form-control" id="to" name="to" value="{{email}}">
           </div>
           <div class="form-group">
             <label for="sub" class="control-label">Subject:</label>
-            <textarea class="form-control" id="sub" value="Next Hearing/Trial for {{caseId}} is on {{../nexDate}}"></textarea>
+            <textarea class="form-control" id="sub" name="sub" value="Next Hearing/Trial for {{caseId}} is on {{../nextDate}}"></textarea>
           </div>
           <div class="form-group">
             <label for="msg" class="control-label">Message:</label>
-            <textarea class="form-control" id="msg" rows=10>
+            <textarea class="form-control" id="msg" name="msg" rows=10>
 Dear {{getClientName clientName}}, 
 Your case has been set for hearing/trial on {{../nextDate}} in the court {{court}}.
 This is a hearing for the purpose of case {{caseId}}. 
@@ -32,14 +32,14 @@ Sincerely,
 </textarea>
           </div>
         </form>
+        {{/with}}
+        {{/with}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-primary" id="sendMail" name="sendMail">Send message</button>
       </div>
     </div>
   </div>
 </div>
-{{/with}}
-{{/with}}
 </template>

@@ -47,7 +47,7 @@ Hearings.after.update(function(userId, doc, fieldNames, modifier, options) {
 	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
 	console.log("Case Detail: " + JSON.stringify(cs, null, 4));
 	
-	if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description, cs.court, doc.nextDate))
+	if(updateCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description, cs.court, doc.nextDate))
         console.log("Event Added to google calendar");
 });
 

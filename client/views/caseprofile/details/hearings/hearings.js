@@ -269,7 +269,7 @@ Template.CaseprofileDetailsHearingsViewTableItems.events({
 	},
 	"click #edit-button": function(e, t) {
 		e.preventDefault();
-		Router.go("caseprofile.details.edit", {caseId: UI._parentData(1).params.caseId, caseId: this._id});
+		Router.go("caseprofile.details.edit", {caseId: UI._parentData(1).params.caseId, hearingId: this._id});
 		return false;
 	},
 	"click #sendMail-button": function(e, t) {

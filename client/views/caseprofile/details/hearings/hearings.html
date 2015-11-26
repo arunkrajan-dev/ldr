@@ -121,13 +121,13 @@
 <template name="CaseprofileDetailsHearingsViewTableItems">
 	<tr id="dataview-table-items-row">
 		<td>
-			{{formatDate businessDate 'DD-MMM-YYYY'}}
+			{{formatDate businessDate 'DD-MM-YYYY'}}
 		</td>
 		<td>
-			{{formatDate nextDate 'DD-MMM-YYYY'}}
+			{{formatDate nextDate 'DD-MM-YYYY'}}
 		</td>
 		<td>
-			{{_id}} - {{description}}
+		    {{description}}
 		</td>
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">

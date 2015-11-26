@@ -81,7 +81,7 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="dob" value="{{formatDate caseprofile_details.dob 'DD-MMM-YYYY'}}" class="form-control" data-type="date" data-format="DD-MM-YYYY">
+						<input type="text" name="dob" value="{{formatDate caseprofile_details.dob 'DD-MM-YYYY'}}" class="form-control" data-type="date" data-format="DD-MM-YYYY">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
@@ -156,39 +156,13 @@
 				<label for="caseType">
 					Caes Type/Nature
 				</label>
-				<div class="input-div">
-					<select class="form-control" name="caseType">
-						<option value="t1" {{optionIsSelected caseprofile_details.caseType "t1"}}>
-							Type1
-						</option>
-						<option value="t2" {{optionIsSelected caseprofile_details.caseType "t2"}}>
-							Type2
-						</option>
-					</select>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
+				<input type="text" name="caseType" value="{{caseprofile_details.caseType}}" class="form-control">
 			</div>
 			<div class="form-group  field-court">
 				<label for="court">
 					filing Court
 				</label>
-				<div class="input-div">
-					<select class="form-control" name="court">
-						<option value="t1" {{optionIsSelected caseprofile_details.court "t1"}}>
-							Type1
-						</option>
-						<option value="t2" {{optionIsSelected caseprofile_details.court "t2"}}>
-							Type2
-						</option>
-					</select>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
+				<input type="text" name="court" value="{{caseprofile_details.court}}" class="form-control">
 			</div>
 			<div class="form-group  field-filing-date">
 				<label for="filingDate">

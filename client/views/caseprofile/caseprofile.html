@@ -12,9 +12,6 @@
 
 <template name="CaseprofileView">
 	<div id="caseprofile-view" class="">
-		<h2 id="component-title">
-			Case Profile
-		</h2>
 		<form id="dataview-controls" class="form-inline">
 			<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
 				<button type="submit" id="dataview-insert-button" class="btn btn-success">
@@ -112,7 +109,7 @@
 			{{email}}
 		</td>
 		<td>
-			{{formatDate dob 'DD-MMM-YYYY'}}
+			{{formatDate dob 'DD-MM-YYYY'}}
 		</td>
 		<td>
 			{{age}}
@@ -133,7 +130,7 @@
 			{{court}}
 		</td>
 		<td>
-			{{formatDate filingDate 'DD-MMM-YYYY'}}
+			{{formatDate filingDate 'DD-MM-YYYY'}}
 		</td>
 		<td>
 			{{notes}}
@@ -169,12 +166,12 @@
 <template name="panelView">
   <div class="panel panel-default">
   	<div class="pull-right">
-         <span class="label label-default"><i class="fa fa-calendar">&nbsp;</i> File: {{formatDate filingDate 'DD-MMM-YYYY'}}</span>
+         <span class="label label-default"><i class="fa fa-calendar">&nbsp;</i> File: {{formatDate filingDate 'DD-MM-YYYY'}}</span>
     </div>
     <div class="panel-heading" role="tab" id={{_id}}>
       <h4 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{_id}}" aria-expanded="true" aria-controls="collapseOne{{caseId}}">
-          Client: {{getClientName clientName}}
+          Client: {{getClientName clientName}}, Case: {{caseId}}
         </a>
       </h4>
      
@@ -186,11 +183,11 @@
     		<span class="badge">{{representing}}</span>
     		<i class="fa fa-user">&nbsp;</i> <span>{{clientName}}</span><br/>
     		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
-    		<i class="fa fa-email">&nbsp;</i><span><a href="mailto:{{email}}?subject=testing123">{{email}}</a></span>
+    		<i class="fa fa-email">&nbsp;</i><span><a href="mailto:{{email}}?subject= Regarding%20Case:%20{{caseId}}&body=Hi%20{{getClientName clientName}},%0A">{{email}}</a></span>
   		</li>
   		<li class="list-group-item">
     		<span class="badge">{{caseType}}</span>
-    		<i class="fa fa-map-marker">&nbsp;</i><span><a href="maps:{{court}}">{{court}}</a></span>
+    		<i class="fa fa-map-marker">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span>
   		</li>
 	  </ul>
 		{{notes}}      	
@@ -200,7 +197,7 @@
       	<div class="pull-right">
       		<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span>
       		<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
-      		<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail"></span>
+      		<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span>
       		<span id="print-button" class="fa fa-file-pdf-o {{printButtonClass}}" title="Print"></span>
       	</div>
       </div>
