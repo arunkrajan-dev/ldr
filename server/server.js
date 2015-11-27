@@ -180,7 +180,17 @@ Meteor.methods({
 });
 
 Accounts.onCreateUser(function (options, user) {
-	user.roles = ["admin"];
+	console.log("on create user " );	
+	if(!user.roles){
+		if(Meteor.users.find().count()) {
+			user.roles = ["user"];	
+		} else {
+			console.log("Creating new admin user");
+			user.roles = ["admin"];	
+			return user;
+		}
+	}
+	console.log("user role: " + user.roles);	
 	
 	//Allow admin to create new user
 	if(Users.isInRoles(Meteor.userId(), ["admin"])) return user;
@@ -201,7 +211,7 @@ Accounts.onCreateUser(function (options, user) {
  
             // Remove existing user and create new account
             Meteor.users.remove({_id: existingUser._id}); // remove existing record
-            return existingUser;                          // record is re-inserted
+            return user;                          // record is re-inserted
     }
 });
 

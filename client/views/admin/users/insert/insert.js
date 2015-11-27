@@ -86,7 +86,6 @@ Template.AdminUsersInsertInsertForm.events({
 			},
 			function(values) {
 				
-
 				Meteor.call("createUserAccount", values, function(e) { if(e) errorAction(e); else submitAction(); });
 			}
 		);
