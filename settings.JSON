@@ -1,8 +1,8 @@
 {
 	     "oauth": {
 	         "google": {
-	             "clientId": "198717858206-30etvnptb3f8fqdqgb34fo7hceqqieuc.apps.googleusercontent.com",
-	             "secret": "MPTPdFWyU4QmWEKyv9azX36b"
+	             "clientId": "Insert your client ID",
+	             "secret": "Insert your secret code"
 	         },
 	         "github": {
 	             "clientId": "yourClientId",
