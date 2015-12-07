@@ -174,7 +174,11 @@ Meteor.methods({
 
 	"sendMail": function(options) {
 		this.unblock();
-
+		
+	  //if (!Meteor.user())
+    	  //throw new Meteor.Error(403, "User not logged in");
+    	  
+		//console.log("Send mail clicked " + JSON.stringify(options, null, 4));
 		Email.send(options);
 	}
 });

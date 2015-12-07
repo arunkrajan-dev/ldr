@@ -33,25 +33,8 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="businessDate" value="{{formatDate hearing.businessDate 'DD-MM-YYYY'}}" class="form-control" autofocus="autofocus" required="required" data-type="date" data-format="DD-MM-YYYY">
-						<span class="input-group-addon">
-							<i class="fa fa-calendar">
-							</i>
-						</span>
-					</div>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
-			<div class="form-group  field-next-date">
-				<label for="nextDate">
-					Next Hearing Date
-				</label>
-				<div class="input-div">
-					<div class="input-group date">
-						<input type="text" name="nextDate" value="{{formatDate hearing.nextDate 'DD-MM-YYYY'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY">
+						<input type="text" name="businessDate" value="{{formatDate hearing.businessDate 'DD-MM-YYYY h:mm a'}}" 
+							class="form-control" autofocus="autofocus" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
@@ -69,6 +52,37 @@
 				</label>
 				<div class="input-div">
 					<input type="text" name="description" value="{{hearing.description}}" class="form-control" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-next-date">
+				<label for="nextDate">
+					Next Hearing Date
+				</label>
+				<div class="input-div">
+					<div class="input-group date">
+						<input type="text" name="nextDate" value="{{formatDate hearing.nextDate 'DD-MM-YYYY h:mm a'}}" 
+							class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
+						<span class="input-group-addon">
+							<i class="fa fa-calendar">
+							</i>
+						</span>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-purpose">
+				<label for="purpose">
+					Next Hearing Purpose
+				</label>
+				<div class="input-div">
+					<input type="text" name="purpose" value="{{hearing.purpose}}" class="form-control" required="required">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">

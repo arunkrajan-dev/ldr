@@ -93,10 +93,10 @@
 		<thead id="dataview-table-header">
 			<tr id="dataview-table-header-row">
 				<th class="th-sortable" data-sort="businessDate">
-					Busienss Date
+					Hearing Date
 				</th>
 				<th class="th-sortable" data-sort="nextDate">
-					Next Hearing Date
+					Next Hearing
 				</th>
 				<th class="th-sortable" data-sort="description">
 					Description
@@ -121,10 +121,10 @@
 <template name="CaseprofileDetailsHearingsViewTableItems">
 	<tr id="dataview-table-items-row">
 		<td>
-			{{formatDate businessDate 'DD-MM-YYYY'}}
+			{{formatDate businessDate 'DD-MM-YYYY h:mm a'}}
 		</td>
 		<td>
-			{{formatDate nextDate 'DD-MM-YYYY'}}
+			{{formatDate nextDate 'DD-MM-YYYY h:mm a'}} &nbsp; for &nbsp; {{purpose}}
 		</td>
 		<td>
 		    {{description}}

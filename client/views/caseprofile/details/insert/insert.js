@@ -17,25 +17,15 @@ Template.CaseprofileDetailsInsertInsertForm.rendered = function() {
 
 	pageSession.set("caseprofileDetailsInsertInsertFormInfoMessage", "");
 	pageSession.set("caseprofileDetailsInsertInsertFormErrorMessage", "");
-
+	
+//	$('#datetimepicker12').datetimepicker({
+ //               inline: true,
+//	});
 	$(".input-group.date").each(function() {
-		var format = $(this).find("input[type='text']").attr("data-format");
-
-		if(format) {
-			format = format.toLowerCase();
-		}
-		else {
-			format = "mm/dd/yyyy";
-		}
-
-		$(this).datepicker({
-			autoclose: true,
-			todayHighlight: true,
-			todayBtn: true,
-			forceParse: false,
-			keyboardNavigation: false,
-			format: format
-		});
+		$(this).find("input[type='text']").datetimepicker({
+			format: 'DD/MM/YYYY h:mm a',
+			sideBySide: true
+			});
 	});
 
 	$("input[type='file']").fileinput();

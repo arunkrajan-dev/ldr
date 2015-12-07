@@ -31,8 +31,10 @@ Template.sendMailModalT.helpers({
 Template.sendMailModalT.events({
 	"click #sendMail": function(e) {
 	    e.preventDefault();
+	    alert("Mail sent");
 	    //console.log("Send mail clicked " + JSON.stringify(e, null, 4));
 	    var opt = {
+	            from: 'arunsugan08@gmail.com',
                 to: $('#to').val(),
                  subject: $('#sub').val(),
                  text: $('#msg').val()
