@@ -19,7 +19,10 @@ Template.CaseprofileInsertInsertForm.rendered = function() {
 	pageSession.set("caseprofileInsertInsertFormErrorMessage", "");
 
 	$(".input-group.date").each(function() {
-		$(this).find("input[type='text']").datetimepicker();
+		$(this).find("input[type='text']").datetimepicker({
+			format: 'DD/MM/YYYY h:mm a',
+			sideBySide: true
+			});
 	});
 
 	$("input[type='file']").fileinput();

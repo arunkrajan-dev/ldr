@@ -78,7 +78,7 @@ Helpers.formatDate = function(date, dateFormat) {
 		return "";
 	}
 
-	var f = dateFormat || "MM/DD/YYYY";
+	var f = dateFormat || "dd/mm/yyyy";
 
 	if(_.isString(date)) {
 		if(date.toUpperCase() == "NOW") {

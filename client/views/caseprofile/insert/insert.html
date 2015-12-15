@@ -81,7 +81,7 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="dob" value="" class="form-control" data-type="date" data-format="DD-MM-YYYY">
+						<input type="text" name="dob" value="" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
@@ -98,7 +98,7 @@
 					age
 				</label>
 				<div class="input-div">
-					<input type="text" name="age" value="" class="form-control" data-type="integer" data-min="0" data-max="150">
+					<input type="text" name="age" value="0" class="form-control" data-type="integer" data-min="0" data-max="150">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -160,7 +160,7 @@
 			</div>
 			<div class="form-group  field-court">
 				<label for="court">
-					filing Court modified
+					filing modified
 				</label>
 				<input class="form-control" name="court" type="text"
        					placeholder="Ex: Chennai High Court">
@@ -171,7 +171,7 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="filingDate" value="{{formatDate 'today' 'DD-MM-YYYY'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY">
+						<input type="text" name="filingDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>

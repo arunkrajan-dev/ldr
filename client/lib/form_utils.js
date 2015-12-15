@@ -39,7 +39,7 @@ this.isValidIP = function(value) {
 this.timeToSeconds = function(timeStr, timeFormat) {
 	var t = timeStr || "12:00 am";
 	var tf = timeFormat || "h:mm a";
-	var m = moment.utc("01/01/1970 " + t, "MM/DD/YYYY " + tf);
+	var m = moment.utc("01/01/1970 " + t, "dd/mm/yyyy " + tf);
 	if(!m.isValid()) {
 		return null;
 	}

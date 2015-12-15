@@ -25,7 +25,7 @@ Template.CaseprofileDetailsDetailsForm.rendered = function() {
 			format = format.toLowerCase();
 		}
 		else {
-			format = "mm/dd/yyyy";
+			format = "dd/mm/yyyy";
 		}
 
 		$(this).datepicker({
