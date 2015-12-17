@@ -134,23 +134,28 @@
 					Representing
 				</label>
 				<div class="input-div">
-					<div class="radio">
-						<label>
-							<input type="radio" value="D" name="representing" checked>
-							defendant
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" value="P" name="representing">
-							Petitioner
-						</label>
-					</div>
+					<select name="representing">
+  						<option value="Petitioner">Petitioner</option> 
+  						<option value="Respondent" selected>Respondent</option>
+  						<option value="Plaintiff">Plaintiff</option>
+  						<option value="Defendant">Defendant</option>
+  						<option value="Complainant">Complainant</option>
+  						<option value="Accused">Accused</option>
+  						<option value="Appellant">Appellant</option>
+  						<option value="Opposite Party">Opposite Party</option>
+  						<option value="Third Party">Third Party</option>
+					</select>
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
 					</span>
 				</div>
+			</div>
+			<div class="form-group  field-case-number">
+				<label for="caseType">
+					Caes Number
+				</label>
+				<input type="text" name="caseNumber" value="" class="form-control">
 			</div>
 			<div class="form-group  field-case-type">
 				<label for="caseType">
@@ -160,7 +165,7 @@
 			</div>
 			<div class="form-group  field-court">
 				<label for="court">
-					filing modified
+					Court Name
 				</label>
 				<input class="form-control" name="court" type="text"
        					placeholder="Ex: Chennai High Court">

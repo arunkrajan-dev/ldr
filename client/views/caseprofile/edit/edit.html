@@ -134,18 +134,17 @@
 					Representing
 				</label>
 				<div class="input-div">
-					<div class="radio">
-						<label>
-							<input type="radio" value="D" name="representing" {{itemIsChecked caseprofile_details.representing "D"}}>
-							defendant
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" value="P" name="representing" {{itemIsChecked caseprofile_details.representing "P"}}>
-							Petitioner
-						</label>
-					</div>
+					<select name="representing">
+  						<option value="Petitioner" {{optionIsSelected caseprofile_details.representing "petitioner"}}>Petitioner</option> 
+  						<option value="Respondent" {{optionIsSelected caseprofile_details.representing "Respondent"}}>Respondent</option>
+  						<option value="Plaintiff" {{optionIsSelected caseprofile_details.representing "Plaintiff"}}>Plaintiff</option>
+  						<option value="Defendant" {{optionIsSelected caseprofile_details.representing "Defendant"}}>Defendant</option>
+  						<option value="Complainant" {{optionIsSelected caseprofile_details.representing "Complainant"}}>Complainant</option>
+  						<option value="Accused" {{optionIsSelected caseprofile_details.representing "Accused"}}>Accused</option>
+  						<option value="Appellant" {{optionIsSelected caseprofile_details.representing "Appellant"}}>Appellant</option>
+  						<option value="Opposite Party" {{optionIsSelected caseprofile_details.representing "Opposite Party"}}>Opposite Party</option>
+  						<option value="Third Party" {{optionIsSelected caseprofile_details.representing "Third Party"}}>Third Party</option>
+					</select>
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -157,6 +156,12 @@
 					Caes Type/Nature
 				</label>
 				<input type="text" name="caseType" value="{{caseprofile_details.caseType}}" class="form-control">
+			</div>
+			<div class="form-group  field-case-number">
+				<label for="caseType">
+					Caes Number
+				</label>
+				<input type="text" name="caseNumber" value="{{caseprofile_details.caseNumber}}" class="form-control">
 			</div>
 			<div class="form-group  field-court">
 				<label for="court">

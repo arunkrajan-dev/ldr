@@ -93,13 +93,13 @@
 		<thead id="dataview-table-header">
 			<tr id="dataview-table-header-row">
 				<th class="th-sortable" data-sort="businessDate">
-					Hearing Date
+					Last Hearing
 				</th>
 				<th class="th-sortable" data-sort="nextDate">
 					Next Hearing
 				</th>
 				<th class="th-sortable" data-sort="description">
-					Description
+					Purpose / Notes
 				</th>
 				<th>
 					&nbsp;
@@ -124,10 +124,10 @@
 			{{formatDate businessDate 'DD-MM-YYYY h:mm a'}}
 		</td>
 		<td>
-			{{formatDate nextDate 'DD-MM-YYYY h:mm a'}} &nbsp; for &nbsp; {{purpose}}
+			{{formatDate nextDate 'DD-MM-YYYY h:mm a'}} 
 		</td>
 		<td>
-		    {{description}}
+		    <b>Purpose:</b> &nbsp; {{purpose}} &nbsp; - &nbsp; <b>Last hearing Notes: &nbsp;</b> {{description}}
 		</td>
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
