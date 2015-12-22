@@ -1,0 +1,293 @@
+{
+    "_id": "2CtR38KTpYvxcc3Pz",
+    "caseId": "Chumma",
+    "clientName": "Chumma",
+    "phone": "",
+    "email": "",
+    "dob": null,
+    "age": 0,
+    "fatherName": "",
+    "clientNotes": "",
+    "representing": "D",
+    "caseType": "",
+    "court": "",
+    "filingDate": {
+        "$date": "2015-12-15T18:30:00.000Z"
+    },
+    "notes": "",
+    "opName": "",
+    "opAdvocate": "",
+    "opNotes": "",
+    "createdAt": {
+        "$date": "2015-12-16T12:02:39.273Z"
+    },
+    "createdBy": "Bh5yJAKtsX9h43qrG",
+    "modifiedAt": {
+        "$date": "2015-12-16T12:02:39.273Z"
+    },
+    "modifiedBy": "Bh5yJAKtsX9h43qrG",
+    "calendarId": "63ffa212a27337321426bfcfb",
+    "ownerId": "Bh5yJAKtsX9h43qrG",
+    "totalAmount": 0
+}
+{
+    "_id": "ZEeoEaMiubyRS5dMq",
+    "caseId": "Temple Case",
+    "clientName": "Sri Santhana Srinivasa Perumal Public Charitable Trust, 37, Vellalar Street, Mogappair, Chennai-37",
+    "phone": "90255 64532",
+    "email": "ejayyappan@yahoo.com",
+    "dob": {
+        "$date": "2015-12-15T18:30:00.000Z"
+    },
+    "age": 0,
+    "fatherName": "",
+    "clientNotes": "",
+    "representing": "P",
+    "caseType": "WP",
+    "court": "Writ Court, Chennai",
+    "filingDate": {
+        "$date": "2015-01-01T18:30:00.000Z"
+    },
+    "notes": "",
+    "opName": "The Commissioner, HR & CE, Chennai-34",
+    "opAdvocate": "Srikanth",
+    "opNotes": "",
+    "createdAt": {
+        "$date": "2015-12-16T15:45:35.636Z"
+    },
+    "createdBy": "i9k6QZmJuftyKi7tr",
+    "modifiedAt": {
+        "$date": "2015-12-17T07:00:45.839Z"
+    },
+    "modifiedBy": "i9k6QZmJuftyKi7tr",
+    "calendarId": "2cc683057ccdeb2d6937edfbd",
+    "ownerId": "i9k6QZmJuftyKi7tr",
+    "totalAmount": 0
+}
+{
+    "_id": "n2fHt57TPcHomcByw",
+    "caseId": "Kameshwara Rao",
+    "clientName": "Sri Sai Jyothi Calendars, Prop: P.Kameshwara Rao, D.S.D.K. Complex (II-Floor), No.16, Deveraja Mudali Street, Chennai-600 003",
+    "phone": "93805 26313, 90031 14883",
+    "email": "",
+    "dob": {
+        "$date": "1997-03-12T06:30:00.000Z"
+    },
+    "age": 19,
+    "fatherName": "(Late) P.Lakshminarasiah",
+    "clientNotes": "Client is presently residing at Rajahmundry",
+    "representing": "P",
+    "caseType": "138 NI Act, C.C.No. 2712/2010",
+    "court": "GT, Magistrate's Court, C.C.No. 2712/2010",
+    "filingDate": {
+        "$date": "2010-01-07T05:00:00.000Z"
+    },
+    "notes": "311 Cr.P.C., petition filed by Accused. For Counter and Inquiry",
+    "opName": "Ramesh, S/o. A.Pandu Ranga Rao, aged 46 years, Prop: Rathana Papers, Door No. 8-24-46, Rajahmundry Main Road, Rajahmundry. Andhra Pradesh",
+    "opAdvocate": "A.Ramasamy. ",
+    "opNotes": "",
+    "createdAt": {
+        "$date": "2015-12-17T06:07:18.795Z"
+    },
+    "createdBy": "i9k6QZmJuftyKi7tr",
+    "modifiedAt": {
+        "$date": "2015-12-17T07:01:39.868Z"
+    },
+    "modifiedBy": "i9k6QZmJuftyKi7tr",
+    "calendarId": "a1091a1b02c75d0fb764a2d66",
+    "ownerId": "i9k6QZmJuftyKi7tr",
+    "totalAmount": 0
+}
+{
+    "_id": "djTncWD7gFEMtisYi",
+    "caseId": "Jayaselvi Suit",
+    "clientName": "Mrs. Jayaselvi, W/o. (Late) B.Vadivel Murugan, No.54/D2, Gangai Amman Koil Street, Natesan Nagar, Virugambakka, Chennai-600 092.",
+    "phone": "90926 83040",
+    "email": "",
+    "dob": {
+        "$date": "1991-08-12T06:30:00.000Z"
+    },
+    "age": 0,
+    "fatherName": "W/o. (late) B.Vadivel Murugan",
+    "clientNotes": "",
+    "representing": "D",
+    "caseType": "Injunction Suit, O.S.No. 5125/2015",
+    "court": "VII Asst. Judge, City Civil Court, O.S.No. 5125/2015",
+    "filingDate": {
+        "$date": "2015-11-26T05:00:00.000Z"
+    },
+    "notes": "W.St. filed with Counter on 10-12-2015",
+    "opName": "M/s. R.S.Infotainment Pvt., Ltd., represented by Mr.Elred Kumar",
+    "opAdvocate": "M/s. B.Ramesh Babu & A.Venkatesh Kumar.",
+    "opNotes": "",
+    "createdAt": {
+        "$date": "2015-12-17T06:34:10.194Z"
+    },
+    "createdBy": "i9k6QZmJuftyKi7tr",
+    "modifiedAt": {
+        "$date": "2015-12-17T07:03:02.162Z"
+    },
+    "modifiedBy": "i9k6QZmJuftyKi7tr",
+    "calendarId": "51f48c3d831ea78543b9fff60",
+    "ownerId": "i9k6QZmJuftyKi7tr",
+    "totalAmount": 0
+}
+{
+    "_id": "aYh6hEZkBAyD9H9c7",
+    "caseId": "Erode Janaki Suit",
+    "clientName": "Mrs. P.Janaki, W/o. (Late) R.Palaniappan, KRS Illam, Door No.212/7, Chinnamuthu Main Street, Edayankattu Valasu, Erode-638 011.",
+    "phone": "85260 73624, (Hema) 96591 53992",
+    "email": "",
+    "dob": {
+        "$date": "2015-12-16T18:30:00.000Z"
+    },
+    "age": 70,
+    "fatherName": "W/o. (Late) R.Palaniappan",
+    "clientNotes": "",
+    "representing": "D",
+    "caseType": "Appeal Suit. A.S.No. 1212/2015",
+    "court": "High Court, Appellate Side",
+    "filingDate": {
+        "$date": "2015-09-21T06:30:00.000Z"
+    },
+    "notes": "",
+    "opName": "A.P.Subramaniam. Appellant in A.S.No. 1212/2015",
+    "opAdvocate": "V.Ayyadurai, No.25, Law Chambers, High Court, Madras.",
+    "opNotes": "",
+    "createdAt": {
+        "$date": "2015-12-17T06:55:36.160Z"
+    },
+    "createdBy": "i9k6QZmJuftyKi7tr",
+    "modifiedAt": {
+        "$date": "2015-12-17T07:01:04.074Z"
+    },
+    "modifiedBy": "i9k6QZmJuftyKi7tr",
+    "calendarId": "677463cc0dca12ae34c233d4f",
+    "ownerId": "i9k6QZmJuftyKi7tr",
+    "totalAmount": 0
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "_id": "nz4XTweZmdQPBN764",
+    "businessDate": {
+        "$date": "2015-12-15T18:30:00.000Z"
+    },
+    "description": "Summoned",
+    "nextDate": {
+        "$date": "2015-12-15T18:30:00.000Z"
+    },
+    "purpose": "Chumma",
+    "caseId": "2CtR38KTpYvxcc3Pz",
+    "createdAt": {
+        "$date": "2015-12-16T12:03:26.014Z"
+    },
+    "createdBy": "Bh5yJAKtsX9h43qrG",
+    "modifiedAt": {
+        "$date": "2015-12-16T12:03:26.014Z"
+    },
+    "modifiedBy": "Bh5yJAKtsX9h43qrG",
+    "calendarId": "726a17c79e726245a736c8a94",
+    "ownerId": "Bh5yJAKtsX9h43qrG"
+}
+{
+    "_id": "NKB8ojH5Dp62yySsy",
+    "businessDate": {
+        "$date": "2015-12-15T04:30:00.000Z"
+    },
+    "description": "Arguments",
+    "nextDate": {
+        "$date": "2015-12-17T04:30:00.000Z"
+    },
+    "purpose": "Reply Arguments",
+    "caseId": "ZEeoEaMiubyRS5dMq",
+    "createdAt": {
+        "$date": "2015-12-16T15:56:17.701Z"
+    },
+    "createdBy": "i9k6QZmJuftyKi7tr",
+    "modifiedAt": {
+        "$date": "2015-12-16T15:56:17.701Z"
+    },
+    "modifiedBy": "i9k6QZmJuftyKi7tr",
+    "calendarId": "0c9c2f9e4516627344ec388a7",
+    "ownerId": "i9k6QZmJuftyKi7tr"
+}
+{
+    "_id": "cqnifrTxGMMHydtYt",
+    "businessDate": {
+        "$date": "2015-12-15T05:30:00.000Z"
+    },
+    "description": "For Counter",
+    "nextDate": {
+        "$date": "2015-12-28T16:30:00.000Z"
+    },
+    "purpose": "Counter in 311 Petition",
+    "caseId": "n2fHt57TPcHomcByw",
+    "createdAt": {
+        "$date": "2015-12-17T06:09:02.069Z"
+    },
+    "createdBy": "i9k6QZmJuftyKi7tr",
+    "modifiedAt": {
+        "$date": "2015-12-17T06:09:02.069Z"
+    },
+    "modifiedBy": "i9k6QZmJuftyKi7tr",
+    "calendarId": "7682930336039329fe7aae695",
+    "ownerId": "i9k6QZmJuftyKi7tr"
+}
+{
+    "_id": "gqqPg2r55Gsn8HcLf",
+    "businessDate": {
+        "$date": "2015-12-10T05:31:00.000Z"
+    },
+    "description": "W.St., & Counter filed",
+    "nextDate": {
+        "$date": "2015-12-18T05:30:00.000Z"
+    },
+    "purpose": "Enquiry",
+    "caseId": "djTncWD7gFEMtisYi",
+    "createdAt": {
+        "$date": "2015-12-17T06:37:51.844Z"
+    },
+    "createdBy": "i9k6QZmJuftyKi7tr",
+    "modifiedAt": {
+        "$date": "2015-12-17T06:38:43.782Z"
+    },
+    "modifiedBy": "i9k6QZmJuftyKi7tr",
+    "calendarId": "6a7a94e4f18cd625c9b6de7d6",
+    "ownerId": "i9k6QZmJuftyKi7tr"
+}
+{
+    "_id": "xjCQuXgMr8eGeQxcA",
+    "businessDate": {
+        "$date": "2015-12-14T05:30:00.000Z"
+    },
+    "description": "Interim Stay granted up to 21-1-2016 by Justice. M.Sathyanarayanan & Juctice G.Chockalingam",
+    "nextDate": {
+        "$date": "2016-01-21T05:30:00.000Z"
+    },
+    "purpose": "For Counter and arguments",
+    "caseId": "aYh6hEZkBAyD9H9c7",
+    "createdAt": {
+        "$date": "2015-12-17T06:57:16.623Z"
+    },
+    "createdBy": "i9k6QZmJuftyKi7tr",
+    "modifiedAt": {
+        "$date": "2015-12-17T06:57:36.360Z"
+    },
+    "modifiedBy": "i9k6QZmJuftyKi7tr",
+    "calendarId": "964be97284b8b2050040043af",
+    "ownerId": "i9k6QZmJuftyKi7tr"
+}

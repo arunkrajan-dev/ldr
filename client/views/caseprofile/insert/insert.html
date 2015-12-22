@@ -27,6 +27,7 @@
 				{{infoMessage}}
 			</div>
 			{{/if}}
+
 			<div class="form-group  field-case-id">
 				<label for="caseId">
 					Case Profile Id
@@ -134,17 +135,10 @@
 					Representing
 				</label>
 				<div class="input-div">
-					<select name="representing">
-  						<option value="Petitioner">Petitioner</option> 
-  						<option value="Respondent" selected>Respondent</option>
-  						<option value="Plaintiff">Plaintiff</option>
-  						<option value="Defendant">Defendant</option>
-  						<option value="Complainant">Complainant</option>
-  						<option value="Accused">Accused</option>
-  						<option value="Appellant">Appellant</option>
-  						<option value="Opposite Party">Opposite Party</option>
-  						<option value="Third Party">Third Party</option>
-					</select>
+					<input class="form-control typeahead" name="representing" type="text"
+		       			placeholder="Ex: Petitioner"
+       					autocomplete="off" spellcheck="off"
+       					data-source="represent"/>
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -163,12 +157,17 @@
 				</label>
 				<input type="text" name="caseType" value="" class="form-control">
 			</div>
+	      
 			<div class="form-group  field-court">
 				<label for="court">
 					Court Name
 				</label>
-				<input class="form-control" name="court" type="text"
-       					placeholder="Ex: Chennai High Court">
+				<div class="input-div">
+        			<input class="form-control typeahead" name="court" type="text"
+		       			placeholder="Ex: Chennai High Court"
+       					autocomplete="off" spellcheck="off"
+       					data-source="nba"/>
+       			</div>
 			</div>
 			<div class="form-group  field-filing-date">
 				<label for="filingDate">
@@ -252,3 +251,6 @@
 	</div>
 </template>
 
+<template name="court">
+    <h4><i>{{court}}</i></h4>
+</template>

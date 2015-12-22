@@ -14,14 +14,13 @@ Template.CaseprofileInsert.helpers({
 
 Template.CaseprofileInsertInsertForm.rendered = function() {
 	
-
+	Meteor.typeahead.inject();
 	pageSession.set("caseprofileInsertInsertFormInfoMessage", "");
 	pageSession.set("caseprofileInsertInsertFormErrorMessage", "");
 
 	$(".input-group.date").each(function() {
 		$(this).find("input[type='text']").datetimepicker({
-			format: 'DD/MM/YYYY h:mm a',
-			sideBySide: true
+			format: 'DD/MM/YYYY',
 			});
 	});
 
@@ -102,6 +101,12 @@ Template.CaseprofileInsertInsertForm.events({
 });
 
 Template.CaseprofileInsertInsertForm.helpers({
+	nba: function() {
+    return Courts.find().fetch().map(function(it){ return it.name; });
+    },
+    represent: function() {
+    return Represent.find().fetch().map(function(it){ return it.type; });
+    },
 	"infoMessage": function() {
 		return pageSession.get("caseprofileInsertInsertFormInfoMessage");
 	},

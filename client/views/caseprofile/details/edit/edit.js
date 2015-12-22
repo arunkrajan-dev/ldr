@@ -21,7 +21,6 @@ Template.CaseprofileDetailsEditEditForm.rendered = function() {
 	$(".input-group.date").each(function() {
 		$(this).find("input[type='text']").datetimepicker({
 			format: 'DD/MM/YYYY h:mm a',
-			sideBySide: true
 			});
 	});
 
