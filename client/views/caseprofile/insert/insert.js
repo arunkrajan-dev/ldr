@@ -17,12 +17,13 @@ Template.CaseprofileInsertInsertForm.rendered = function() {
 	Meteor.typeahead.inject();
 	pageSession.set("caseprofileInsertInsertFormInfoMessage", "");
 	pageSession.set("caseprofileInsertInsertFormErrorMessage", "");
-
-	$(".input-group.date").each(function() {
-		$(this).find("input[type='text']").datetimepicker({
-			format: 'DD/MM/YYYY',
-			});
-	});
+	
+	initDateTimePickers();
+	// $(".input-group.date").each(function() {
+	// 	$(this).find("input[type='text']").datetimepicker({
+	// 		format: 'DD/MM/YYYY',
+	// 		});
+	// });
 
 	$("input[type='file']").fileinput();
 	$("select[data-role='tagsinput']").tagsinput();
@@ -95,9 +96,11 @@ Template.CaseprofileInsertInsertForm.events({
 		e.preventDefault();
 
 		/*BACK_REDIRECT*/
+	},
+	"keyup #dob": function(e, t) {
+		console.log("Input even triggered");
+		t.find("#age").value = "test";
 	}
-
-	
 });
 
 Template.CaseprofileInsertInsertForm.helpers({
@@ -115,3 +118,19 @@ Template.CaseprofileInsertInsertForm.helpers({
 	}, 
 	'nextCaseId': function() { var max = 0; var caseIds = caseprofile.find({}, { fields: { caseId: 1 }}).fetch(); _.each(caseIds, function(doc) { var intNum = parseInt(doc.caseId); if(!isNaN(intNum) && intNum > max) max = intNum; }); return max + 1; }
 });
+
+var initDateTimePickers = function() {
+	$(".input-group.date").each(function() {
+		$(this).find("input[type='text']").datetimepicker({
+			format: 'DD/MM/YYYY',
+			});
+	});
+	
+	//this.$('#picker-1, #picker-2').datetimepicker();
+    
+    $("#dob").on("dp.change", function (e) {
+        console.log(e.date);
+        var years = moment().diff(e.date, 'years');
+        $('#age').val(years);
+    });
+};
