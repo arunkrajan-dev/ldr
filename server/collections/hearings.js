@@ -34,8 +34,17 @@ Hearings.before.remove(function(userId, doc) {
 });
 
 Hearings.after.insert(function(userId, doc) {
+	//Add next Hearing Date
+	if(doc.nextDate.valueOf() >= doc.createdAt.valueOf()) {
+		Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
+		console.log("next hearing date is updated");
+	} else {
+		console.log("Nope, not greater date" + doc.nextDate);
+	}
+	
 	//console.log("After insert Hearing: " + JSON.stringify(doc, null, 4));
 	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
+	
 	console.log("Case Detail: " + JSON.stringify(cs, null, 4));
 	
 	if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
@@ -43,6 +52,14 @@ Hearings.after.insert(function(userId, doc) {
 });
 
 Hearings.after.update(function(userId, doc, fieldNames, modifier, options) {
+	
+	if(doc.nextDate.valueOf() >= doc.createdAt.valueOf()) {
+		Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
+		console.log("next hearing date is updated");
+	} else {
+		console.log("Nope, not greater date" + doc.nextDate);
+	}
+	
 	//console.log("After update Hearing: " + JSON.stringify(doc, null, 4));
 	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
 	console.log("Case Detail: " + JSON.stringify(cs, null, 4));

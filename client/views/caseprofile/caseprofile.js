@@ -402,5 +402,5 @@ Template.panelView.helpers({
   "getClientName":function(value){
         var name2 = value.split(",");
         return name2[0];
-    },
+    }
 });

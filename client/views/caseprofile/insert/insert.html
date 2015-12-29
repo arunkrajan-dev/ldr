@@ -12,10 +12,11 @@
 
 <template name="CaseprofileInsertInsertForm">
 	<div id="caseprofile-insert-insert-form" class="">
-		<h2 id="component-title">
-			New Case Profile
-		</h2>
-		<form role="form">
+
+		<form role="form" class="insert-form">
+			<h2 id="component-title" class="form-title">
+				New Case Profile
+			</h2>
 			{{#if errorMessage}}
 			<div class="alert alert-warning">
 				{{errorMessage}}
@@ -28,21 +29,10 @@
 			</div>
 			{{/if}}
 
-			<div class="form-group  field-case-id">
-				<label for="caseId">
-					Case Profile Id
-				</label>
-				<div class="input-div">
-					<input type="text" name="caseId" value="{{nextCaseId}}" class="form-control" autofocus="autofocus" required="required">
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
+
 			<div class="form-group  field-client-name">
 				<label for="clientName">
-					Client Name and Address
+					Client Name & Address
 				</label>
 				<div class="input-div">
 					<input type="text" name="clientName" value="" class="form-control" required="required">
@@ -52,139 +42,170 @@
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-phone">
-				<label for="phone">
-					Phone Number
-				</label>
-				<div class="input-div">
-					<input type="text" name="phone" value="" class="form-control">
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
-			<div class="form-group  field-email">
-				<label for="email">
-					Email
-				</label>
-				<div class="input-div">
-					<input type="text" name="email" value="" class="form-control" data-type="email">
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
-			<div class="form-group  field-dob">
-				<label for="dob">
-					date of Birth
-				</label>
-				<div class="input-div">
-					<div class="input-group date">
-						<input type="text" name="dob" id="dob" value="" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
-						<span class="input-group-addon">
-							<i class="fa fa-calendar">
-							</i>
+			<div class="row">
+				<div class="form-group  field-phone col-xs-12 col-sm-12 col-md-6">
+					<label for="phone">
+						Phone Number
+					</label>
+					<div class="input-div">
+						<input type="text" name="phone" value="" class="form-control">
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
 						</span>
 					</div>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
 				</div>
-			</div>
-			<div class="form-group  field-age">
-				<label for="age">
-					age
-				</label>
-				<div class="input-div">
-					<input type="text" name="age" id="age" value="0" class="form-control" data-type="integer" data-min="0" data-max="150">
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
-			<div class="form-group  field-father-name">
-				<label for="fatherName">
-					Father Name
-				</label>
-				<div class="input-div">
-					<input type="text" name="fatherName" value="" class="form-control">
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
-			<div class="form-group  field-client-notes">
-				<label for="clientNotes">
-					Other Client Detail
-				</label>
-				<div class="input-div">
-					<textarea class="form-control" name="clientNotes"></textarea>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
-			<div class="form-group  field-representing">
-				<label for="representing">
-					Representing
-				</label>
-				<div class="input-div">
-					<input class="form-control typeahead" name="representing" type="text"
-		       			placeholder="Ex: Petitioner"
-       					autocomplete="off" spellcheck="off"
-       					data-source="represent"/>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
-			<div class="form-group  field-case-number">
-				<label for="caseType">
-					Caes Number
-				</label>
-				<input type="text" name="caseNumber" value="" class="form-control">
-			</div>
-			<div class="form-group  field-case-type">
-				<label for="caseType">
-					Caes Type/Nature
-				</label>
-				<input type="text" name="caseType" value="" class="form-control">
-			</div>
-	      
-			<div class="form-group  field-court">
-				<label for="court">
-					Court Name
-				</label>
-				<div class="input-div">
-        			<input class="form-control typeahead" name="court" type="text"
-		       			placeholder="Ex: Chennai High Court"
-       					autocomplete="off" spellcheck="off"
-       					data-source="nba"/>
-       			</div>
-			</div>
-			<div class="form-group  field-filing-date">
-				<label for="filingDate">
-					Filing Date
-				</label>
-				<div class="input-div">
-					<div class="input-group date">
-						<input type="text" name="filingDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
-						<span class="input-group-addon">
-							<i class="fa fa-calendar">
-							</i>
+				<div class="form-group  field-email col-xs-12 col-sm-12 col-md-6">
+					<label for="email">
+						Email
+					</label>
+					<div class="input-div">
+						<input type="text" name="email" value="" class="form-control" data-type="email">
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
 						</span>
 					</div>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group  field-father-name col-xs-6 col-sm-6 col-md-6">
+					<label for="fatherName">
+						Father Name
+					</label>
+					<div class="input-div">
+						<input type="text" name="fatherName" value="" class="form-control">
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				<div class="form-group  field-dob col-xs-4 col-sm-4 col-md-4">
+					<label for="dob">
+						date of Birth
+					</label>
+					<div class="input-div">
+						<div class="input-group date">
+							<input type="text" name="dob" id="dob" value="" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar">
+								</i>
+							</span>
+						</div>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				<div class="form-group  field-age col-xs-2 col-sm-2 col-md-2">
+					<label for="age">
+						age
+					</label>
+					<div class="input-div">
+						<input type="text" name="age" id="age" value="0" class="form-control" data-type="integer" data-min="0" data-max="150">
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+			</div>
+			
+				<div class="form-group  field-client-notes">
+					<label for="clientNotes">
+						Other Client Detail
+					</label>
+					<div class="input-div">
+						<textarea class="form-control" name="clientNotes"></textarea>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+			
+
+			
+			<div class="row">
+				<div class="form-group  field-case-id col-xs-12 col-sm-12 col-md-6">
+					<label for="caseType">
+						Caes Identification Text
+					</label>
+					<div class="input-div">
+						<input placeholder="Case Identification Text.." type="text" name="caseId" value="{{nextCaseId}}" class="form-control" autofocus="autofocus" required="required">
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				
+				<div class="form-group  field-case-number col-xs-12 col-sm-12 col-md-3">
+					<label for="caseType">
+						Caes Number
+					</label>
+					<input type="text" name="caseNumber" value="" class="form-control">
+				</div>
+				<div class="form-group  field-case-type col-xs-12 col-sm-12 col-md-3">
+					<label for="caseType">
+						Caes Type/Nature
+					</label>
+					<input type="text" name="caseType" value="" class="form-control">
+				</div>
+	      	</div>
+	      	
+	      	<div class="row">
+	      		<div class="form-group  field-representing col-xs-12 col-sm-12 col-md-3">
+					<label for="representing">
+						Representing
+					</label>
+					<div class="input-div">
+						<input class="form-control typeahead" name="representing" type="text"
+			       			placeholder="Ex: Petitioner"
+	       					autocomplete="off" spellcheck="off"
+	       					data-source="represent"/>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				
+				<div class="form-group  field-filing-date col-xs-12 col-sm-12 col-md-3">
+					<label for="filingDate">
+						Filing Date
+					</label>
+					<div class="input-div">
+						<div class="input-group date">
+							<input type="text" name="filingDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar">
+								</i>
+							</span>
+						</div>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				
+				<div class="form-group  field-court col-xs-12 col-sm-12 col-md-6">
+					<label for="court">
+						Court Name
+					</label>
+					<div class="input-div">
+	        			<input class="form-control typeahead" name="court" type="text"
+			       			placeholder="Ex: Chennai High Court"
+	       					autocomplete="off" spellcheck="off"
+	       					data-source="nba"/>
+	       			</div>
+	       									<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
 				</div>
 			</div>
 			<div class="form-group  field-notes">
@@ -199,7 +220,8 @@
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-op-name">
+			<div class="row">
+			<div class="form-group  field-op-name col-xs-12 col-sm-12 col-md-6">
 				<label for="opName">
 					Opposite party Name and Contact
 				</label>
@@ -211,7 +233,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-op-advocate">
+			<div class="form-group  field-op-advocate col-xs-12 col-sm-12 col-md-6">
 				<label for="opAdvocate">
 					Opposite party Advocate Name and Contact
 				</label>
@@ -223,7 +245,8 @@
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-op-notes">
+			</div>
+			<div class="form-group  field-op-notes form-center">
 				<label for="opNotes">
 					Other details about Opposite party
 				</label>

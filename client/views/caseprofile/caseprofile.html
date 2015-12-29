@@ -187,7 +187,9 @@
   		</li>
   		<li class="list-group-item">
     		<span class="badge">{{caseType}}</span>
-    		<i class="fa fa-map-marker">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span>
+    		<i class="fa fa-calendar">&nbsp;</i> <span>Next Hearing is on {{formatDate nextHearingDate 'll'}} <i class="fa fa-rocket">&nbsp;</i> {{formatCalendarDate nextHearingDate}}</span><br/>
+    		<i class="fa fa-map-marker">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span><br/>
+    		
   		</li>
 	  </ul>
 		{{notes}}      	

@@ -93,6 +93,14 @@ Helpers.formatDate = function(date, dateFormat) {
 	return moment(date).format(f);
 };
 
+Helpers.formatCalendarDate = function(date) {
+	if(!date) {
+		return "";
+	}
+	fd = moment(date).format("MM-DD-YYYY h:mm a")
+	return moment(fd).fromNow();
+};
+
 Helpers.booleanToYesNo = function(b) {
 	return b ? "Yes" : "No";
 };
