@@ -12,10 +12,10 @@
 
 <template name="CaseprofileDetailsInsertInsertForm">
 	<div id="caseprofile-details-insert-insert-form" class="">
-		<h2 id="component-title">
+		<form role="form" class="insert-form">
+			<h2 id="component-title" class="form-title">
 			Add Hearing
-		</h2>
-		<form role="form" class="caseProfile-form" >
+			</h2>
 			{{#if errorMessage}}
 			<div class="alert alert-warning">
 				{{errorMessage}}
@@ -27,70 +27,69 @@
 				{{infoMessage}}
 			</div>
 			{{/if}}
-			<div class="form-group  field-business-date">
-				<label for="businessDate">
-					Hearing Date
-				</label>
-				<div class="row">
-            		<div class="col-md-8">
-                		<div id="datetimepicker12" class="form-control" name="businessDate2"></div>
-            		</div>
-            	</div>
-				<div class="input-div">
-					<div class="input-group date">
-						<input type="text" name="businessDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" 
-						class="form-control" autofocus="autofocus" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
-						<span class="input-group-addon">
-							<i class="fa fa-calendar">
-							</i>
+			<div class="row">
+				<div class="form-group  field-business-date col-xs-12 col-sm-12 col-md-3">
+					<label for="businessDate">
+						Hearing Date
+					</label>
+					<div class="input-div">
+						<div class="input-group date">
+							<input type="text" name="businessDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" 
+							class="form-control" autofocus="autofocus" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar">
+								</i>
+							</span>
+						</div>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
 						</span>
 					</div>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
 				</div>
-			</div>
-			<div class="form-group  field-description">
-				<label for="description">
-					Description
-				</label>
-				<div class="input-div">
-					<input type="text" name="description" value="" class="form-control" required="required">
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
-				</div>
-			</div>
-			<div class="form-group  field-next-date">
-				<label for="nextDate">
-					Next Hearing Date
-				</label>
-				<div class="input-div">
-					<div class="input-group date">
-						<input type="text" name="nextDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
-						<span class="input-group-addon">
-							<i class="fa fa-calendar">
-							</i>
+				<div class="form-group  field-description col-xs-12 col-sm-12 col-md-9">
+					<label for="description">
+						Description
+					</label>
+					<div class="input-div">
+						<input type="text" name="description" value="" class="form-control" required="required">
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
 						</span>
 					</div>
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
 				</div>
 			</div>
-			<div class="form-group  field-next-purpose">
-				<label for="description">
-					Next Hearing Purpose
-				</label>
-				<div class="input-div">
-					<input type="text" name="purpose" value="" class="form-control" required="required">
-					<span id="help-text" class="help-block">
-					</span>
-					<span id="error-text" class="help-block">
-					</span>
+			<div class="row">
+				<div class="form-group  field-next-date col-xs-12 col-sm-12 col-md-3">
+					<label for="nextDate">
+						Next Hearing Date
+					</label>
+					<div class="input-div">
+						<div class="input-group date">
+							<input type="text" name="nextDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar">
+								</i>
+							</span>
+						</div>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				<div class="form-group  field-next-purpose col-xs-12 col-sm-12 col-md-9">
+					<label for="description">
+						Next Hearing Purpose
+					</label>
+					<div class="input-div">
+						<input type="text" name="purpose" value="" class="form-control" required="required">
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
