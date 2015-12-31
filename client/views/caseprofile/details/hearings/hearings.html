@@ -89,58 +89,36 @@
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTable">
-	<table id="dataview-table" class="table table-striped">
-		<thead id="dataview-table-header">
-			<tr id="dataview-table-header-row">
-				<th class="th-sortable" data-sort="businessDate">
-					Last Hearing
-				</th>
-				<th class="th-sortable" data-sort="nextDate">
-					Next Hearing
-				</th>
-				<th class="th-sortable" data-sort="description">
-					Purpose / Notes
-				</th>
-				<th>
-					&nbsp;
-				</th>
-				<th>
-					&nbsp;
-				</th>
-				<th>
-					&nbsp;
-				</th>
-			</tr>
-		</thead>
-		<tbody id="dataview-table-items">
+			<section id="cd-timeline" class="cd-container">
 			{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}
-		</tbody>
-	</table>
+			</section>
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTableItems">
-	<tr id="dataview-table-items-row">
-		<td>
-			{{formatDate businessDate 'DD-MM-YYYY h:mm a'}}
-		</td>
-		<td>
-			{{formatDate nextDate 'DD-MM-YYYY h:mm a'}} 
-		</td>
-		<td>
-		    <b>Purpose:</b> &nbsp; {{purpose}} &nbsp; - &nbsp; <b>Last hearing Notes: &nbsp;</b> {{description}}
-		</td>
-		<td class="td-icon">
-			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
-			</span>
-		</td>
-		<td class="td-icon">
-			<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
-			</span>
-		</td>
-		<td class="td-icon">
-			<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail">
-			</span>
-		</td>
-	</tr>
+	
+						<div class="cd-timeline-block">
+							<div class="cd-timeline-img cd-picture">
+							</div> <!-- cd-timeline-img -->
+				
+							<div class="cd-timeline-content">
+								<p><i class="fa fa-check-square-o">&nbsp;</i>{{description}}</p>
+								<p><i class="fa fa-calendar">&nbsp;</i>Next Hearing is on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}} for {{purpose}} </p>
+								<span class="cd-date">{{formatDate businessDate 'DD-MM-YYYY h:mm a'}}</span>
+						<td class="td-icon">
+							<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+							</span>
+						</td>
+						<td class="td-icon">
+							<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
+							</span>
+						</td>
+						<td class="td-icon">
+							<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail">
+							</span>
+						</td>
+				
+							</div> <!-- cd-timeline-content -->
+						</div> <!-- cd-timeline-block -->
+				 
 </template>
 

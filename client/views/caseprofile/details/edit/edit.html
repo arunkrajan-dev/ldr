@@ -15,7 +15,7 @@
 		<h2 id="component-title">
 			Edit Hearing
 		</h2>
-		<form role="form">
+		<form role="form" class="insert-form">
 			{{#if errorMessage}}
 			<div class="alert alert-warning">
 				{{errorMessage}}
@@ -27,7 +27,8 @@
 				{{infoMessage}}
 			</div>
 			{{/if}}
-			<div class="form-group  field-business-date">
+			<div class="row">
+			<div class="form-group  field-business-date col-xs-12 col-sm-12 col-md-3">
 				<label for="businessDate">
 					Busienss Date
 				</label>
@@ -46,7 +47,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-description">
+			<div class="form-group  field-description col-xs-12 col-sm-12 col-md-9">
 				<label for="description">
 					Description
 				</label>
@@ -58,7 +59,9 @@
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-next-date">
+			</div>
+			<div class="row">
+			<div class="form-group  field-next-date col-xs-12 col-sm-12 col-md-3">
 				<label for="nextDate">
 					Next Hearing Date
 				</label>
@@ -77,7 +80,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="form-group  field-purpose">
+			<div class="form-group  field-purpose col-xs-12 col-sm-12 col-md-9">
 				<label for="purpose">
 					Next Hearing Purpose
 				</label>
@@ -88,6 +91,7 @@
 					<span id="error-text" class="help-block">
 					</span>
 				</div>
+			</div>
 			</div>
 			<div class="form-group">
 				<div class="submit-div">
