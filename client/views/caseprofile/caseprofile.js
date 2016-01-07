@@ -5,11 +5,15 @@ Template.Caseprofile.rendered = function() {
 };
 
 Template.Caseprofile.events({
-	
 });
 
-Template.Caseprofile.helpers({
-	
+Template.caseProfileFya.helpers({
+	"fyaItems": function() {
+		return (Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {}));
+	},
+	"lastUpdated": function() {
+		return Session.get('lastUpdated');
+	}
 });
 
 var CaseprofileViewItems = function(cursor) {

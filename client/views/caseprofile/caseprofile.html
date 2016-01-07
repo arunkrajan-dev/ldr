@@ -1,5 +1,7 @@
 <template name="Caseprofile">
-	{{> fyaHearingInsert}}
+	<div id="fyaHearingInsertDiv">
+		{{>caseProfileFya}}
+	</div>
 	<div class="page-container container" id="content">
 		<div class="row" id="title_row">
 			<div class="col-md-12">
@@ -9,6 +11,13 @@
 		</div>
 		{{> CaseprofileView}}
 	</div>
+</template>
+
+<template name="caseProfileFya">
+	Last updated: {{lastUpdated}}
+	{{#each fyaItems}}
+	{{>fyaDetailsInsert}}
+	{{/each}}
 </template>
 
 <template name="CaseprofileView">

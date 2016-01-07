@@ -1,8 +1,9 @@
-<template name="fyaHearingInsert">
-	<div id="caseprofile-details-insert-insert-form" class="page-container container">
+<template name="fyaDetailsInsert">
+	<div class="page-container container">
 		<form role="form" class="insert-form">
 			<div class="alert alert-warning">
-				Update pending for //case hearing on //date
+				Update pending for {{caseId}} hearing on {{nextHearingDate}}
+				{{setMaxDate nextHearingDate}}
 			</div>
 			{{#if errorMessage}}
 			<div class="alert alert-warning">
@@ -15,6 +16,10 @@
 				{{infoMessage}}
 			</div>
 			{{/if}}
+			<input type="hidden" id="lastDate" name="businessDate" value="{{formatDate nextHearingDate 'DD-MM-YYYY h:mm a'}}" 
+							class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a" hidden="hidden">
+			<input type="hidden" name="caseId" value="{{_id}}" class="form-control" autofocus="autofocus" required="required" hidden="hidden">
+			
 				<div class="form-group  field-description col-xs-12 col-sm-12 col-md-7">
 					<div class="input-div">
 						<label for="description">
@@ -33,7 +38,7 @@
 						Next Hearing Date
 						</label>
 						<div class="input-group date">
-							<input type="text" name="nextDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<input type="text" id="nextDate" name="nextDate" value="" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
 							<span class="input-group-addon">
 								<i class="fa fa-calendar">
 								</i>

@@ -21,12 +21,12 @@ Template.CaseprofileDetailsInsertInsertForm.rendered = function() {
 //	$('#datetimepicker12').datetimepicker({
  //               inline: true,
 //	});
-	$(".input-group.date").each(function() {
-		$(this).find("input[type='text']").datetimepicker({
-			format: 'DD/MM/YYYY h:mm a',
-			});
-	});
-
+	// $(".input-group.date").each(function() {
+	// 	$(this).find("input[type='text']").datetimepicker({
+	// 		format: 'DD/MM/YYYY h:mm a',
+	// 		});
+	// });
+	initDateTimePickers();
 	$("input[type='file']").fileinput();
 	$("select[data-role='tagsinput']").tagsinput();
 	$(".bootstrap-tagsinput").addClass("form-control");
@@ -109,6 +109,47 @@ Template.CaseprofileDetailsInsertInsertForm.helpers({
 	},
 	"errorMessage": function() {
 		return pageSession.get("caseprofileDetailsInsertInsertFormErrorMessage");
-	}
+	},
 	
+	"validNextDate": function(value) {
+		console.log("value " + value);
+		if (typeof value === 'undefined') {
+			console.log("Enabled");
+			return "";
+		} else {
+			console.log("Disabled");
+			return "disabled";
+		}
+	}
 });
+
+var initDateTimePickers = function() {
+	// $(".input-group.date").each(function() {
+	// 	$(this).find("input[type='text']").datetimepicker({
+	// 		format: 'DD/MM/YYYY',
+	// 		});
+	// });
+	
+	// //this.$('#picker-1, #picker-2').datetimepicker();
+    
+ //   $("#dob").on("dp.change", function (e) {
+ //       console.log(e.date);
+ //       var years = moment().diff(e.date, 'years');
+ //       $('#age').val(years);
+ //   });
+    
+    
+    $('#lastDate').datetimepicker({
+			format: 'DD/MM/YYYY h:mm a'
+			});
+    $('#nextDate').datetimepicker({
+    	format: 'DD/MM/YYYY h:mm a',
+        useCurrent: false //Important! See issue #1075
+    });
+    $("#lastDate").on("dp.change", function (e) {
+        $('#nextDate').data("DateTimePicker").minDate(e.date);
+    });
+    $("#nextDate").on("dp.change", function (e) {
+        $('#lastDate').data("DateTimePicker").maxDate(e.date);
+    });
+};

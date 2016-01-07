@@ -12,6 +12,7 @@ this.CaseprofileController = RouteController.extend({
 
 	action: function() {
 		if(this.isReady()) { this.render(); } else { this.render("loading"); }
+		//this.redirect('fya.detailsInsert');
 		/*ACTION_FUNCTION*/
 	},
 
@@ -34,7 +35,8 @@ this.CaseprofileController = RouteController.extend({
 
 		return {
 			params: this.params || {},
-			caseprofile_list: Caseprofile.find({}, {sort:[["caseId","desc"]]})
+			caseprofile_list: Caseprofile.find({}, {sort:[["caseId","desc"]]}),
+			fya_list: Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {})
 		};
 		/*DATA_FUNCTION*/
 	},
