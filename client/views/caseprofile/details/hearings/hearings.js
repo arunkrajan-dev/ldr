@@ -288,7 +288,15 @@ Template.CaseprofileDetailsHearingsViewTableItems.helpers({
 		return Hearings.userCanUpdate(Meteor.userId(), this) ? "" : "hidden";
 	},
 
-	"deleteButtonClass": function() {
-		return Hearings.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
+	"deleteButtonClass": function(d1, d2) {
+		var retVal = "";
+		console.log("Last hearing in delete", d1, d2);	
+		if(d1.getTime() == d2.getTime()) {
+			console.log("Equal");
+			return Hearings.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
+		} else {
+			console.log("Not ======== Equal");
+			return "hidden";
+		}
 	}
 });

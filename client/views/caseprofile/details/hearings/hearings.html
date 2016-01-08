@@ -95,7 +95,7 @@
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTableItems">
-	
+	{{caseprofile_details.caseId}}
 						<div class="cd-timeline-block">
 							<div class="cd-timeline-img cd-picture">
 							</div> <!-- cd-timeline-img -->
@@ -109,7 +109,7 @@
 							</span>
 						</td>
 						<td class="td-icon">
-							<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
+							<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}}" title="Delete">
 							</span>
 						</td>
 						<td class="td-icon">

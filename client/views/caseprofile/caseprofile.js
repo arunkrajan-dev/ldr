@@ -12,7 +12,8 @@ Template.caseProfileFya.helpers({
 		return (Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {}));
 	},
 	"lastUpdated": function() {
-		return Session.get('lastUpdated');
+		if(Session.get('lastUpdated') > "")
+			return "Last Updated : " + Session.get('lastUpdated');
 	}
 });
 

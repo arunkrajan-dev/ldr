@@ -10,6 +10,11 @@ Template.fyaDetailsInsert.rendered = function() {
 	// });
 	console.log("Render called");
 	initDateTimePickers();
+	 this.autorun(function(){
+	 	$('#nextDate').data("DateTimePicker").minDate($('#lastDate').val());
+	 	console.log("Last Date", $('#lastDate').val());
+        console.log("From autorun", Session.get('lastUpdated')); //--->Line1
+    });
 };
 
 Template.fyaDetailsInsert.events({
