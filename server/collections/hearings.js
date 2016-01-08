@@ -70,6 +70,7 @@ Hearings.after.update(function(userId, doc, fieldNames, modifier, options) {
 
 Hearings.after.remove(function(userId, doc) {
 	//console.log("After remove Hearing: " + JSON.stringify(doc, null, 4));
+	Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.businessDate}});
 	if(removeCalEvent(doc.calendarId))
         console.log("Event removed from google calendar");
 });

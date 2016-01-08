@@ -8,6 +8,7 @@ Template.fyaDetailsInsert.rendered = function() {
 	// 	format: 'DD/MM/YYYY h:mm a',
 	// 	});
 	// });
+	console.log("Render called");
 	initDateTimePickers();
 };
 
@@ -33,7 +34,7 @@ Template.fyaDetailsInsert.events({
 	//					pageSession.set("fyaHearingInsertFormInfoMessage", message);
 					}; break;
 				}
-				console.log("Rendering Template fyaHearingInsert");
+				//console.log("Rendering Template fyaHearingInsert");
 				Session.set('lastUpdated', new Date());
 				//Router.go("caseprofile", {});
 				//$('#fyaHearingInsertDiv').html(Blaze.render(Template.fyaHearingInsert));
@@ -74,7 +75,7 @@ Template.fyaDetailsInsert.helpers({
 	}, 
 	"setMaxDate": function(value){
 		console.log("MaxDate Set " + value);
-		$('#nextDate').data("DateTimePicker").minDate(value);
+		//$('#nextDate').data("DateTimePicker").minDate(value);
 	}
 });
 

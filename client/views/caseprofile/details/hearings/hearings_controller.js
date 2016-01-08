@@ -36,7 +36,7 @@ this.CaseprofileDetailsHearingsController = RouteController.extend({
 
 		return {
 			params: this.params || {},
-			hearings: Hearings.find({caseId:this.params.caseId}, {}),
+			hearings: Hearings.find({caseId:this.params.caseId}, {sort:[["nextDate","desc"]]}),
 			caseprofile_details: Caseprofile.findOne({_id:this.params.caseId}, {})
 		};
 		/*DATA_FUNCTION*/
