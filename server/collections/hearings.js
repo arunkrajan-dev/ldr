@@ -54,7 +54,7 @@ Hearings.after.insert(function(userId, doc) {
 Hearings.after.update(function(userId, doc, fieldNames, modifier, options) {
 	
 	//if(doc.nextDate.valueOf() >= doc.createdAt.valueOf()) {
-		Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
+		//Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
 	//	console.log("next hearing date is updated");
 	//} else {
 	//	console.log("Nope, not greater date" + doc.nextDate);
