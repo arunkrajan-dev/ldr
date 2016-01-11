@@ -107,8 +107,8 @@ Template.CaseprofileDetailsDetailsForm.events({
 	},
 	"click #form-back-button": function(e, t) {
 		e.preventDefault();
-
-		Router.go("caseprofile", {});
+		
+		Router.go("caseprofile", {});	
 	}
 
 	

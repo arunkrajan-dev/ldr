@@ -1,3 +1,10 @@
+Meteor.publish("hearings_list", function(caseId) {
+	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
+		return Hearings.find({}, {});
+	}
+	return Hearings.find({ownerId:this.userId}, {});
+});
+
 Meteor.publish("hearings", function(caseId) {
 	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
 		return Hearings.find({caseId:caseId}, {});

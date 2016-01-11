@@ -17,6 +17,7 @@ caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.1.0
+coffeescript@1.0.11
 copleykj:livestamp@1.1.7
 ddp@1.2.2
 ddp-client@1.2.1
@@ -33,6 +34,7 @@ es5-shim@4.1.14
 fastclick@1.0.7
 geojson-utils@1.0.4
 google@1.1.7
+hitchcott:app-dump@0.4.2
 hot-code-push@1.0.0
 html-tools@1.0.5
 htmljs@1.0.5
@@ -82,6 +84,7 @@ reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
+rzymek:fullcalendar@2.5.0
 sergeyt:typeahead@0.11.1_6
 service-configuration@1.0.5
 session@1.1.1
