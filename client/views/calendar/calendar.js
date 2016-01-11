@@ -18,7 +18,7 @@
                 eventsList.push({title: "File " + it.caseId, date: it.filingDate, color: str, textColor: '#000', url: "/caseprofile/details/"+it._id+"/hearings"});
                 eventsList = eventsList.concat(Hearings.find({caseId:it._id}).fetch().map(function(h){
                     return {
-                        title: this.purpose + "-" + it.caseId, 
+                        title: h.purpose + "-" + it.caseId, 
                         date: h.nextDate,
                         color: str,
                         textColor: '#000',
