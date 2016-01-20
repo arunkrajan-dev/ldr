@@ -97,8 +97,8 @@ Helpers.formatCalendarDate = function(date) {
 	if(!date) {
 		return "";
 	}
-	fd = moment(date).format("MM-DD-YYYY h:mm a")
-	return moment(fd).fromNow();
+	//fd = moment(date).format("MM-DD-YYYY h:mm a")
+	return moment(date).fromNow();
 };
 
 Helpers.booleanToYesNo = function(b) {
