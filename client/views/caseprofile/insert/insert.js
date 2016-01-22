@@ -110,6 +110,9 @@ Template.CaseprofileInsertInsertForm.helpers({
     represent: function() {
     return Represent.find().fetch().map(function(it){ return it.type; });
     },
+    relationship: function() {
+    return Relationship.find().fetch().map(function(it){return it.title});	
+    },
 	"infoMessage": function() {
 		return pageSession.get("caseprofileInsertInsertFormInfoMessage");
 	},
