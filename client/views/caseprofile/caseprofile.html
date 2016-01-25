@@ -100,7 +100,7 @@
 
 <template name="CaseprofileViewTable">
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-	{{#each tableItems}} {{> panelView}} {{/each}}
+	<div class="container-fluid"><div class="row">{{#each tableItems}} {{> panelView}} {{/each}}</div></div>
 	</div>
 </template>
 
@@ -174,7 +174,7 @@
 </template>
 
 <template name="panelView">
-  <div class="panel panel-default">
+  <div class="panel panel-default col-xs-12 col-sm-12 col-md-4">
   	<div class="pull-right">
          <span class="label label-default"><i class="fa fa-calendar">&nbsp;</i> File: {{formatDate filingDate 'DD-MM-YYYY'}}</span>
     </div>
