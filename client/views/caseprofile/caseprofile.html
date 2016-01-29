@@ -100,121 +100,56 @@
 
 <template name="CaseprofileViewTable">
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-	<div class="container-fluid"><div class="row">{{#each tableItems}} {{> panelView}} {{/each}}</div></div>
+		{{#each tableItems}} {{> panelView}} {{/each}}
 	</div>
 </template>
 
 <template name="CaseprofileViewTableItems">
-	<tr id="dataview-table-items-row">
-		<td>
-			{{caseId}}
-		</td>
-		<td>
-			{{clientName}}
-		</td>
-		<td>
-			{{phone}}
-		</td>
-		<td>
-			{{email}}
-		</td>
-		<td>
-			{{formatDate dob 'DD-MM-YYYY'}}
-		</td>
-		<td>
-			{{age}}
-		</td>
-		<td>
-			{{fatherName}}
-		</td>
-		<td>
-			{{clientNotes}}
-		</td>
-		<td>
-			{{representing}}
-		</td>
-		<td>
-			{{caseType}}
-		</td>
-		<td>
-			{{court}}
-		</td>
-		<td>
-			{{formatDate filingDate 'DD-MM-YYYY'}}
-		</td>
-		<td>
-			{{notes}}
-		</td>
-		<td>
-			{{opName}}
-		</td>
-		<td>
-			{{opAdvocate}}
-		</td>
-		<td>
-			{{opNotes}}
-		</td>
-		<td class="td-icon">
-			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
-			</span>
-		</td>
-		<td class="td-icon">
-			<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
-			</span>
-		</td>
-		<td class="td-icon">
-			<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail">
-			</span>
-		</td>
-		<td class="td-icon">
-			<span id="print-button" class="fa fa-file-pdf-o {{printButtonClass}}" title="Print">
-			</span>
-		</td>
-	</tr>
 </template>
 
 <template name="panelView">
-  <div class="panel panel-default col-xs-12 col-sm-12 col-md-4">
-  	<div class="pull-right">
-         <span class="label label-default"><i class="fa fa-calendar">&nbsp;</i> File: {{formatDate filingDate 'DD-MM-YYYY'}}</span>
+  <div class="panel panel-default">
+  	<div class="pull-right" style="font-size: 16px">
+         <i class="fa fa-calendar">&nbsp;</i> <abbr title="Next Hearing">NH</abbr> <span class="label label-warning"> {{formatDate nextHearingDate 'll'}}</span>
+         <i class="fa fa-rocket">&nbsp;</i> {{formatCalendarDate nextHearingDate}}
     </div>
+    
     <div class="panel-heading" role="tab" id={{_id}}>
       <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{_id}}" aria-expanded="true" aria-controls="collapseOne{{caseId}}">
-          Case: {{caseId}} - {{caseNumber}}
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{_id}}" aria-expanded="true" aria-controls="collapseOne{{_id}}">
+          <i class="fa fa-balance-scale"></i> {{caseId}} <small>{{caseNumber}}</small> <i class="fa fa-sort"></i>
         </a>
       </h4>
-     
     </div>
-    <div id="collapseOne{{_id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby={{_id}}>
+    
+    <div id="collapseOne{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby={{_id}}>
       <div class="panel-body">
-      <ul class="list-group">
-  		<li class="list-group-item">
-    		<span class="badge">{{representing}}</span>
-    		<i class="fa fa-user">&nbsp;</i> <span>{{clientName}}</span><br/>
-    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
-    		<i class="fa fa-email">&nbsp;</i><span><a href="mailto:{{email}}?subject= Regarding%20Case:%20{{caseId}}&body=Hi%20{{getClientName clientName}},%0A">{{email}}</a></span>
-  		</li>
-  		<li class="list-group-item">
-    		<span class="badge">{{caseType}}</span>
-    		<i class="fa fa-calendar">&nbsp;</i> <span>Next Hearing is on {{formatDate nextHearingDate 'll'}} <i class="fa fa-rocket">&nbsp;</i> {{formatCalendarDate nextHearingDate}}</span><br/>
-    		<i class="fa fa-map-marker">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span><br/>
-    		
-  		</li>
-	  </ul>
-	  {{notes}}
-	  <p class=" text-info text-center"> <small>--Last updated on {{formatCalendarDate modifiedAt}}</small></p> 
-		
+	      <ul class="list-group">
+	  		<li class="list-group-item">
+	    		<span class="badge">{{representing}}</span>
+	    		<i class="fa fa-user">&nbsp;</i> <span>{{clientName}}</span><br/>
+	    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
+	    		<i class="fa fa-email">&nbsp;</i><span><a href="mailto:{{email}}?subject= Regarding%20Case:%20{{caseId}}&body=Hi%20{{getClientName clientName}},%0A">{{email}}</a></span>
+	  		</li>
+	  		<li class="list-group-item">
+	    		<span class="badge">{{caseType}}</span>
+	    		<i class="fa fa-calendar">&nbsp;</i> <span>File: {{formatDate filingDate 'DD-MM-YYYY'}} </span><br/>
+	    		<i class="fa fa-university">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span><br/>
+	  		</li>
+		  </ul>
+		  {{notes}}
+		  <p class=" text-info text-center"> <small>--Last updated on {{formatCalendarDate modifiedAt}}</small></p> 
       </div>
-      <div class="panel-footer">
-      	show more...
-      	<div class="pull-right">
-      		<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span>
-      		<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
+    </div>
+    
+    <div class="panel-footer">
+     	<a href="#"><i class="fa fa-hand-o-right">&nbsp; Open</i></a>
+    	<div class="pull-right">
+      		<a href="#"><span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span></a>
+      		<a href="#"><span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span></a>
       		<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span>
       		<span id="print-button" class="fa fa-file-pdf-o {{printButtonClass}}" title="Print"></span>
       	</div>
-      </div>
     </div>
     
   </div>
