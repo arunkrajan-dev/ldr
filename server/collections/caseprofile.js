@@ -45,6 +45,10 @@ Caseprofile.after.insert(function(userId, doc) {
     if(!Represent.find({type: doc.representing}).count()) {
         Represent.insert({type: doc.representing});
     }
+    
+    if(!Relationship.find({type: doc.relationship}).count()) {
+        Relationship.insert({type: doc.relationship});
+    }
 	console.log("After insert case profile: " + JSON.stringify(doc, null, 4));
 	if(insertCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))
         console.log("Event Added to google calendar");
@@ -58,6 +62,10 @@ Caseprofile.after.update(function(userId, doc, fieldNames, modifier, options) {
     
     if(!Represent.find({type: doc.representing}).count()) {
         Represent.insert({type: doc.representing});
+    }
+    
+    if(!Relationship.find({type: doc.relationship}).count()) {
+        Relationship.insert({type: doc.relationship});
     }
     console.log("After update case profile: " + JSON.stringify(doc, null, 4));
     if(updateCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))

@@ -1,0 +1,1 @@
+this.Relationship = new Mongo.Collection("relationship");
