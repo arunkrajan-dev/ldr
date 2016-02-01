@@ -1,10 +1,15 @@
 var pageSession = new ReactiveDict();
 
-Template.Caseprofile.rendered = function() {
-	
+Template.panelView.rendered = function() {
+	// var heightTallest = Math.max.apply(null, $(".panel-body").map(function ()
+	// {
+	// 	return $(this).outerHeight();
+	// }).get());
+	// $('.panel-body').css({ height: heightTallest + 'px' });
 };
 
 Template.Caseprofile.events({
+	
 });
 
 Template.caseProfileFya.helpers({
@@ -102,6 +107,7 @@ Template.CaseprofileView.events({
 	},
 
 	"keydown #dataview-search-input": function(e, t) {
+		
 		if(e.which === 13)
 		{
 			e.preventDefault();
@@ -217,7 +223,17 @@ Template.CaseprofileViewTable.events({
 
 Template.CaseprofileViewTable.helpers({
 	"tableItems": function() {
-		return CaseprofileViewItems(this.caseprofile_list);
+		//console.log("Complete value ", JSON.stringify(Caseprofile.find({}, {sort:[["caseId","desc"]]}).fetch(), null, 4));
+		var all = CaseprofileViewItems(this.caseprofile_list);
+		var chunks = [];
+		var size =3;
+		while(all.length > size){
+			chunks.push({row: all.slice(0, size)});
+			all = all.slice(size);
+		}
+		chunks.push({row:all});
+		console.log("Case Profile List " + JSON.stringify(this.caseprofile_list.fetch(), null, 4));
+		return chunks;
 	}
 });
 

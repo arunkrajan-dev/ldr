@@ -87,7 +87,7 @@
 		</div>
 		{{else}}
 		<div id="dataview-data">
-			{{#if viewAsTable}} {{> CaseprofileViewTable}} {{/if}}
+			{{#if viewAsTable}}  {{> CaseprofileViewTable}} {{/if}}
 		</div>
 		{{/if}}	
 		{{else}}
@@ -100,7 +100,15 @@
 
 <template name="CaseprofileViewTable">
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-		{{#each tableItems}} {{> panelView}} {{/each}}
+		
+		{{#each tableItems}}
+		<div class="row">
+			{{#each row}} 
+				{{> panelView}} 
+			{{/each}}
+		</div>
+		{{/each}}
+		
 	</div>
 </template>
 
@@ -108,11 +116,8 @@
 </template>
 
 <template name="panelView">
+<div class="col-xs-12 col-sm-12 col-md-4">
   <div class="panel panel-default">
-  	<div class="pull-right" style="font-size: 16px">
-         <i class="fa fa-calendar">&nbsp;</i> <abbr title="Next Hearing">NH</abbr> <span class="label label-warning"> {{formatDate nextHearingDate 'll'}}</span>
-         <i class="fa fa-rocket">&nbsp;</i> {{formatCalendarDate nextHearingDate}}
-    </div>
     
     <div class="panel-heading" role="tab" id={{_id}}>
       <h4 class="panel-title">
@@ -122,8 +127,18 @@
       </h4>
     </div>
     
-    <div id="collapseOne{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby={{_id}}>
+    
       <div class="panel-body">
+		{{#if nextHearingDate}}
+         Next Hearing: <i class="fa fa-calendar">&nbsp;</i> {{formatDate nextHearingDate 'll'}}
+         <i class="fa fa-rocket">&nbsp;</i> {{formatCalendarDate nextHearingDate}}
+         {{/if}}
+         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{_id}}" 
+         aria-expanded="true" aria-controls="collapseOne{{_id}}">
+          <abbr title="More Quick Info">more</abbr> <i class="fa fa-sort"></i>
+        </a>
+        
+		<div id="collapseOne{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby={{_id}}>
 	      <ul class="list-group">
 	  		<li class="list-group-item">
 	    		<span class="badge">{{representing}}</span>
@@ -138,8 +153,8 @@
 	  		</li>
 		  </ul>
 		  {{notes}}
-		  <p class=" text-info text-center"> <small>--Last updated on {{formatCalendarDate modifiedAt}}</small></p> 
-      </div>
+		 </div>
+		 <p class=" text-info text-center"> <small>--Last updated on {{formatCalendarDate modifiedAt}}</small></p> 
     </div>
     
     <div class="panel-footer">
@@ -152,5 +167,6 @@
       	</div>
     </div>
     
+  </div>
   </div>
 </template>
