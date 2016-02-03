@@ -231,7 +231,7 @@
 		 </div>
     </div>
     <div class="panel-footer">
-    	<abbr Title="Click to Open Case Profile">Open</abbr>&nbsp;
+    	&nbsp;
     	<div class="pull-left">
 	    	{{#if nextHearingDate}}
 	    		<p class="text-muted">Next Hearing {{formatDate nextHearingDate 'll'}}</p>
@@ -240,6 +240,7 @@
 	    	{{/if}}
     	</div>
 	   <div class="pull-right">
+	   		<abbr Title="Click to Open Case Profile">Open</abbr>
 	    	<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span>
 	    	<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
 	    	<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span>
