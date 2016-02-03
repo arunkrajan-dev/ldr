@@ -11,6 +11,7 @@
 		{{> PublicLayout}}
 	{{/if}}
 	{{> sendMailModalT}}
+	{{>logModal}}
 </template>
 
 <template name="PublicLayout">
@@ -124,6 +125,13 @@
 			<a href="{{pathFor 'calendar'}}">
 				<span class="item-title">
 					Calendar
+				</span>
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'backup'}}">
+			<a href="{{pathFor 'backup'}}">
+				<span class="item-title">
+					Backup
 				</span>
 			</a>
 		</li>

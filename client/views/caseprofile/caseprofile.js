@@ -1,11 +1,11 @@
 var pageSession = new ReactiveDict();
 
 Template.panelView.rendered = function() {
-	// var heightTallest = Math.max.apply(null, $(".panel-body").map(function ()
-	// {
-	// 	return $(this).outerHeight();
-	// }).get());
-	// $('.panel-body').css({ height: heightTallest + 'px' });
+	var heightTallest = Math.max.apply(null, $(".panel-body").map(function ()
+	{
+		return $(this).outerHeight();
+	}).get());
+	$('.panel-body').css({ height: heightTallest + 'px' });
 };
 
 Template.Caseprofile.events({
@@ -393,6 +393,12 @@ Template.panelView.events({
 		Session.set('selectedCaseId', this.caseId);
 		console.log("Mail Clicked");
 		$('#sendMailModal').modal('show');
+		return false;
+	},
+	"click #show-log": function(e, t) {
+		e.preventDefault();
+		Session.set('selectedCaseId', this._id);
+		$('#logModal').modal('show');
 		return false;
 	}
 });

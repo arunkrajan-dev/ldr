@@ -30,7 +30,9 @@ var privateRoutes = [
 	"admin.users.details",
 	"admin.users.insert",
 	"admin.users.edit",
-	"logout"
+	"logout",
+	"calendar",
+	"backup"
 ];
 
 var freeRoutes = [
@@ -191,6 +193,7 @@ Router.map(function () {
 	this.route("home_public", {path: "/", controller: "HomePublicController"});
 	this.route("login", {path: "/login", controller: "LoginController"});
 	this.route("calendar", {path: "/calendar", controller: "CalendarController"});
+	this.route("backup", {path: "/backup", controller: "BackupController"});
 	this.route("register", {path: "/register", controller: "RegisterController"});
 	this.route("forgot_password", {path: "/forgot_password", controller: "ForgotPasswordController"});
 	this.route("reset_password", {path: "/reset_password/:resetPasswordToken", controller: "ResetPasswordController"});

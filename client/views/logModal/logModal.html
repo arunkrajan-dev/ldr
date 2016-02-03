@@ -1,0 +1,38 @@
+<template name="logModal">
+<div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="logModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="sendMailModalLabel">Log:</h4>
+      </div>
+      <div class="modal-body">
+        {{#with getCaseDetail}}
+          <blockquote>
+		  	    <p>{{notes}}</p>
+    		  </blockquote>
+        {{/with}}
+      </div>
+      <div class="modal-footer">
+        <form role="form" class="insert-form">
+          <div class="form-group">
+            <label for="notes">
+              Notes:
+            </label>
+            <div class="input-div">
+              <textarea class="form-control" id="notes" name="notes" value="" autofocus="autofocus">
+              </textarea>
+              <span id="help-text" class="help-block">
+					    </span>
+					    <span id="error-text" class="help-block">
+					    </span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success btn-block" id="save" name="save">Add</button>
+        </form>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</template>
