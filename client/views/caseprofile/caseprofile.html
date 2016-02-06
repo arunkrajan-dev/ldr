@@ -217,18 +217,19 @@
 	  		</li>
 		  </ul>
 		  
-		{{#if notes}}
-			<a id="show-log" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{_id}}" 
-	         aria-expanded="true" aria-controls="collapseOne{{_id}}">
-	          <abbr title="More Quick Info"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
+			<a class="show-log" href="#collapseOne{{_id}}">
+	          <abbr title="Log"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
 	        </a>
-        {{/if}}
-		  <div id="collapseOne{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby={{_id}}>
 		  <blockquote>
-		  	<p>{{notes}}</p>
-		  	<small>--Last updated on {{formatCalendarDate modifiedAt}}</small>
+		  	<div class="notes">
+		  	{{#if notes}}	
+		  		{{notes}}
+		  	{{else}}
+		  		-
+		  	{{/if}}
+		  	</div>
+		  	<small>-Last updated on {{formatCalendarDate modifiedAt}}</small>
 		  </blockquote>
-		 </div>
     </div>
     <div class="panel-footer">
     	&nbsp;

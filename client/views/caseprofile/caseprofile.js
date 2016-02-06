@@ -1,11 +1,11 @@
 var pageSession = new ReactiveDict();
 
 Template.panelView.rendered = function() {
-	var heightTallest = Math.max.apply(null, $(".panel-body").map(function ()
+	var heightTallest = Math.max.apply(null, $(".list-group").map(function ()
 	{
 		return $(this).outerHeight();
 	}).get());
-	$('.panel-body').css({ height: heightTallest + 'px' });
+	$('.list-group').css({ height: heightTallest + 'px' });
 };
 
 Template.Caseprofile.events({
@@ -232,7 +232,7 @@ Template.CaseprofileViewTable.helpers({
 			all = all.slice(size);
 		}
 		chunks.push({row:all});
-		console.log("Case Profile List " + JSON.stringify(this.caseprofile_list.fetch(), null, 4));
+		//console.log("Case Profile List " + JSON.stringify(this.caseprofile_list.fetch(), null, 4));
 		return chunks;
 	}
 });
@@ -395,10 +395,35 @@ Template.panelView.events({
 		$('#sendMailModal').modal('show');
 		return false;
 	},
-	"click #show-log": function(e, t) {
+	"click .show-log": function(e, t) {
 		e.preventDefault();
-		Session.set('selectedCaseId', this._id);
+		Session.set('selectedCaseId', this._id.toHexString());
+		Session.set('selectedcaseTitle', this.caseId);
+		console.log("selected Case ID session ", this._id.toHexString());
 		$('#logModal').modal('show');
+		return false;
+	},
+	"click .notes": function(e, t) {
+		e.preventDefault();
+		var me = this;
+		bootbox.dialog({
+			message: me.notes,
+			//title: "Delete",
+			animate: false
+			// buttons: {
+			// 	success: {
+			// 		label: "Yes",
+			// 		className: "btn-success",
+			// 		callback: function() {
+			// 			Caseprofile.remove({ _id: me._id });
+			// 		}
+			// 	},
+			// 	danger: {
+			// 		label: "No",
+			// 		className: "btn-default"
+			// 	}
+			// }
+		});
 		return false;
 	}
 });
