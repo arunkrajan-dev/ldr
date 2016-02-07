@@ -8,12 +8,12 @@ Template.fyaDetailsInsert.rendered = function() {
 	// 	format: 'DD/MM/YYYY h:mm a',
 	// 	});
 	// });
-	console.log("Render called");
+	//console.log("Render called");
 	initDateTimePickers();
 	 this.autorun(function(){
 	 	$('#nextDate').data("DateTimePicker").minDate($('#lastDate').val());
-	 	console.log("Last Date", $('#lastDate').val());
-        console.log("From autorun", Session.get('lastUpdated')); //--->Line1
+	 	//console.log("Last Date", $('#lastDate').val());
+        //console.log("From autorun", Session.get('lastUpdated')); //--->Line1
     });
 };
 
@@ -79,7 +79,7 @@ Template.fyaDetailsInsert.helpers({
 	//	return pageSession.get("fyaHearingInsertFormErrorMessage");
 	}, 
 	"setMaxDate": function(value){
-		console.log("MaxDate Set " + value);
+		//console.log("MaxDate Set " + value);
 		//$('#nextDate').data("DateTimePicker").minDate(value);
 	}
 });

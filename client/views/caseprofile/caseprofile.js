@@ -301,7 +301,7 @@ Template.CaseprofileViewTableItems.events({
 		Session.set('selectedClientName', this.clientName);
 		Session.set('selectedEmail', this.email);
 		Session.set('selectedCaseId', this.caseId);
-		console.log("Mail Clicked");
+		//console.log("Mail Clicked");
 		$('#sendMailModal').modal('show');
 		return false;
 	}
@@ -391,15 +391,15 @@ Template.panelView.events({
 		Session.set('selectedClientName', this.clientName);
 		Session.set('selectedEmail', this.email);
 		Session.set('selectedCaseId', this.caseId);
-		console.log("Mail Clicked");
+		//console.log("Mail Clicked");
 		$('#sendMailModal').modal('show');
 		return false;
 	},
 	"click .show-log": function(e, t) {
 		e.preventDefault();
-		Session.set('selectedCaseId', this._id.toHexString());
+		Session.set('selectedCaseId', this._id);
 		Session.set('selectedcaseTitle', this.caseId);
-		console.log("selected Case ID session ", this._id.toHexString());
+		//console.log("selected Case ID session ", this._id);
 		$('#logModal').modal('show');
 		return false;
 	},

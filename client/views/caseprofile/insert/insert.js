@@ -98,7 +98,7 @@ Template.CaseprofileInsertInsertForm.events({
 		/*BACK_REDIRECT*/
 	},
 	"keyup #dob": function(e, t) {
-		console.log("Input even triggered");
+		//console.log("Input even triggered");
 		t.find("#age").value = "test";
 	}
 });
@@ -132,7 +132,7 @@ var initDateTimePickers = function() {
 	//this.$('#picker-1, #picker-2').datetimepicker();
     
     $("#dob").on("dp.change", function (e) {
-        console.log(e.date);
+        //console.log(e.date);
         var years = moment().diff(e.date, 'years');
         $('#age').val(years);
     });

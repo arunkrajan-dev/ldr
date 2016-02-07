@@ -1,7 +1,7 @@
 
 this.insertCalEvent = function (id, s, d, l, sd, ed) {
     var url = "https://www.googleapis.com/calendar/v3/calendars/primary/events";
-    console.log("Giigke cakebder ubser event");
+    //console.log("Giigke cakebder ubser event");
     try {
     Meteor.http.post(url, {
         'headers' : { 

@@ -1,9 +1,9 @@
 Template.logModal.helpers({
     "getCaseDetail":function(){
         var idVal = Session.get("selectedCaseId");
-        console.log("Id Val returned from caseId Session: " + idVal);
+        //console.log("Id Val returned from caseId Session: " + idVal);
         var cs = Logs.find({caseId: idVal}).fetch();
-        console.log("Get Case Detail in Logs: " + JSON.stringify(cs, null, 4));
+        //console.log("Get Case Detail in Logs: " + JSON.stringify(cs, null, 4));
         return cs;
     },
     "getCaseTitle":function(){
@@ -30,7 +30,7 @@ Template.logModal.events({
 					}; break;
 				}
 				Session.set('lastUpdated', new Date());
-				alert("Saved");
+				//alert("Saved");
 			}
 		}
 
@@ -50,7 +50,7 @@ Template.logModal.events({
 			},
 			function(values) {
 			    values.caseId = Session.get("selectedCaseId");
-			    console.log("Before Insert Id Val returned from caseId Session: " + values.caseId);
+			    //console.log("Before Insert Id Val returned from caseId Session: " + values.caseId);
 				newId = Logs.insert(values, function(e) { if(e) errorAction(e); else submitAction(); });
 			}
 		);
