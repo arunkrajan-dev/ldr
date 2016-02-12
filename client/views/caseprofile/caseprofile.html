@@ -16,10 +16,21 @@
 </template>
 
 <template name="caseProfileFya">
-	{{lastUpdated}}
-	{{#each fyaItems}}
-	{{>fyaDetailsInsert}}
-	{{/each}}
+	{{#if fyaCount}}
+	<ul class="nav nav-pills">
+	  <li><a href="#" class="collapsed showhide text-warning" data-toggle="collapse" data-target="#intro"> 
+	  		Pending case update <span class="badge">{{fyaCount}}</span>
+	  	</a>
+	  </li>
+	</ul>
+	
+	<div id="intro" class="collapse"> 
+		{{#each fyaItems}}
+		{{>fyaDetailsInsert}}
+		{{/each}}
+		{{lastUpdated}}
+	</div>
+	{{/if}}
 </template>
 
 <template name="CaseprofileView">
@@ -128,9 +139,9 @@
 				<th class="th-sortable" data-sort="court">
 					Court
 				</th>
-				<!--<th class="th-sortable" data-sort="notes">-->
-				<!--	Other Case Notes / Details-->
-				<!--</th>-->
+				<th class="th-sortable" data-sort="modifiedAt">
+					Last Updated
+				</th>
 				<!--<th class="th-sortable" data-sort="opName">-->
 				<!--	Opposite party Name and Contact-->
 				<!--</th>-->

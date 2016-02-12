@@ -14,7 +14,10 @@ Template.Caseprofile.events({
 
 Template.caseProfileFya.helpers({
 	"fyaItems": function() {
-		return (Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {}));
+		return this.fya_list;//(Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {}));
+	},
+	"fyaCount": function() {
+		return this.fya_list.count();	
 	},
 	"lastUpdated": function() {
 		if(Session.get('lastUpdated') > "")
