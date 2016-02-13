@@ -181,7 +181,32 @@ Meteor.methods({
     	  
 		//console.log("Send mail clicked " + JSON.stringify(options, null, 4));
 		Email.send(options);
+	},
+	
+	"sendGmail": function(str) {
+		this.unblock();
+		    var url = "https://www.googleapis.com/gmail/v1/users/me/messages/send";
+		    
+		    var encodedMail = new Buffer(str).toString("base64").replace(/\+/g, '-').replace(/\//g, '_');
+        
+		    //console.log("Giigke cakebder ubser event");
+		    try {
+		    Meteor.http.post(url, {
+		        'headers' : { 
+		          	'Authorization': "Bearer " + Meteor.user().services.google.accessToken,
+		          	'Content-Type': 'application/json' 
+		        },
+		        'content': JSON.stringify({
+					"raw": encodedMail
+				})
+		      });
+		    } catch(e){
+		        console.log("Error in calendar insert: " + e);
+		    } finally {
+		      return true;  
+		    }
 	}
+	
 });
 
 Accounts.onCreateUser(function (options, user) {

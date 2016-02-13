@@ -39,7 +39,19 @@ Template.sendMailModalT.events({
                  subject: $('#sub').val(),
                  text: $('#msg').val()
          };
-         Meteor.call('sendMail', opt);
+         //Meteor.call('sendMail', opt);
+         
+        var str = "Content-Type: text/plain; charset=\"UTF-8\"\n" +
+            "MIME-Version: 1.0\n" +
+            "Content-Transfer-Encoding: 7bit\n" +
+            "to:"+  $('#to').val() +"\n" +
+            "from: "+ Meteor.user().profile.email +"\n" +
+            "subject: "+  $('#sub').val() +"\n\n" +
+
+         $('#msg').val();
+  
+         Meteor.call('sendGmail', str);
+         console.log("send gmail " + str);
     //console.log("Sendmail button is cliecked" + $('#msg').val());
         $('#sendMailModal').modal('hide');
         return false;
