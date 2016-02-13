@@ -30,8 +30,15 @@
 				<span class="fa fa-chevron-left">
 				</span>
 			</a>
-			Case Profile
+			{{caseprofile_details.caseId}}
 		</h2>
+			<ul class="nav nav-pills">
+	  			<li><a href="#" class="collapsed showhide text-info" data-toggle="collapse" data-target="#intro"> 
+	  				Complete case profile
+	  				</a>
+	  			</li>
+			</ul>
+		<div id="intro" class="collapse">
 		<br/>
 		<div class="panel panel-default">
 			<div class="panel-heading">{{caseprofile_details.clientName}}</div>
@@ -86,6 +93,7 @@
   				</div>
   				</div>
   				<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Notes: {{caseprofile_details.opNotes}}</div>
+  		</div>
   		</div>
 	</div>
 </template>
