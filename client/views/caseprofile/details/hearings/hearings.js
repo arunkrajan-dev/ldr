@@ -73,6 +73,7 @@ var CaseprofileDetailsHearingsViewExport = function(cursor, fileType) {
 
 Template.CaseprofileDetailsHearingsView.rendered = function() {
 	pageSession.set("CaseprofileDetailsHearingsViewStyle", "table");
+	pageSession.set("CaseprofileDetailsHearingsViewSortBy", "lastDate");
 	
 };
 

@@ -102,7 +102,8 @@
 				
 							<div class="cd-timeline-content">
 								<p><i class="fa fa-check-square-o">&nbsp;</i>{{description}}</p>
-								<p><i class="fa fa-calendar">&nbsp;</i>Next Hearing is on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}} for {{purpose}} </p>
+								<p><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}
+										{{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}} </p>
 								<span class="cd-date">(- On Hearing -) {{formatDate businessDate 'DD-MM-YYYY h:mm a'}}</span>
 						<td class="td-icon">
 							<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">

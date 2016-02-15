@@ -98,6 +98,26 @@ Template.CaseprofileDetailsInsertInsertForm.events({
 		e.preventDefault();
 
 		/*BACK_REDIRECT*/
+	},
+	"change #next-hearing-check": function(e, t) {
+		e.preventDefault();
+		if ($("#next-hearing-check").is(":checked")){
+			$("#nextDate").prop("required", "required");
+			$("#purpose").prop("required", "required");
+			$('#purpose').removeAttr('placeholder');
+			$('#nextDate').val($('#lastDate').val());
+		} else {
+			$('#purpose').removeAttr('required');
+			$('#purpose').prop("placeholder", "Update purpose if known - Optional")
+			$('#nextDate').removeAttr('required');
+			$('#nextDate').val('');
+		}
+  //         $("#next-hearing-div").hide();
+  //       } else {
+  //       	$("#next-hearing-div").unhide();
+  //       	alert("not checked");
+  //       }
+ 		$("#next-hearing-div").slideToggle("slow");
 	}
 
 	
