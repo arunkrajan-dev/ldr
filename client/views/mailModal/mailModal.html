@@ -1,6 +1,6 @@
 <template name="sendMailModalT">
 <div class="modal fade" id="sendMailModal" tabindex="-1" role="dialog" aria-labelledby="sendMailModalLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog mail-modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -28,12 +28,52 @@ Your case is before Judge _______ in courtroom __________. Courtroom is located 
 I will meet you ____________ at ______ o'clock the day of the trial. 
 Please be present for this. If you have any questions, please feel free to call. 
 Sincerely,
-{{getUserName}}
+{{currentUser.profile.name}}
 </textarea>
           </div>
         </form>
         {{/with}}
         {{/with}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="sendMail" name="sendMail">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template name="sendQuickMail">
+<div class="modal fade" id="sendQuickMailModal" tabindex="-1" role="dialog" aria-labelledby="sendQuickMailModalLabel">
+  <div class="modal-dialog mail-modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="sendQuickMailModalLabel">Send Mail</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          {{#with caseDetail}}
+          <div class="form-group">
+            <label for="to" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" id="to" name="to" value="{{email}}">
+          </div>
+          <div class="form-group">
+            <label for="sub" class="control-label">Subject:</label>
+            <textarea class="form-control" id="sub" name="sub" value="Next Hearing/Trial for "></textarea>
+          </div>
+          <div class="form-group">
+            <label for="msg" class="control-label">Message:</label>
+            <textarea class="form-control" id="msg" name="msg" rows=10>
+Dear {{getClientName clientName}}, 
+
+Sincerely,
+{{currentUser.profile.name}}          
+            </textarea>
+          </div>
+          {{/with}}
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

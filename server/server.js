@@ -189,8 +189,8 @@ Meteor.methods({
 		    
 		    var encodedMail = new Buffer(str).toString("base64").replace(/\+/g, '-').replace(/\//g, '_');
         
-		    //console.log("Giigke cakebder ubser event");
 		    try {
+		    console.log(" == Send Gmail Start == ", str, encodedMail);
 		    Meteor.http.post(url, {
 		        'headers' : { 
 		          	'Authorization': "Bearer " + Meteor.user().services.google.accessToken,
@@ -200,12 +200,78 @@ Meteor.methods({
 					"raw": encodedMail
 				})
 		      });
-		    } catch(e){
-		        console.log("Error in calendar insert: " + e);
+		    } catch(error){
+		    	console.log("Error in calendar insert: " + error);
+		    	console.log("Error code ", error.response, "status code", error.response.statusCode);
+		    	if (error && error.response && error.response.statusCode == 401) {
+		    		    Meteor.call('exchangeRefreshToken', function (error) {
+		    		    	console.log("Exchang call back - ", error);
+		    		    	if (error)
+		    		    		return error;
+		    		    	console.log("Call sendGmail after token refersh", str);
+		    		    	self.sendGmail(str);
+		    		    });
+		    	}
 		    } finally {
+		      console.log("Send gmail success");
 		      return true;  
 		    }
-	}
+	}, 
+	
+	exchangeRefreshToken: function() {
+    this.unblock();
+    console.log("Exchange Refresh token called");
+    user = Meteor.user();
+
+    var config = Accounts.loginServiceConfiguration.findOne({service: "google"});
+    if (! config) {
+      console.log("Google service not configured.");
+      throw new Meteor.Error(500, "Google service not configured.");
+    }
+
+    if (! user.services || ! user.services.google || ! user.services.google.refreshToken) {
+      console.log("Refresh token not found.");
+      throw new Meteor.Error(500, "Refresh token not found.");
+    }
+    
+    console.log("Exchange Refresh token - before Try");
+    try {
+      console.log("Inside try block");
+      var result = Meteor.http.call("POST",
+        "https://accounts.google.com/o/oauth2/token",
+        {
+          params: {
+            'client_id': config.clientId,
+            'client_secret': config.secret,
+            'refresh_token': user.services.google.refreshToken,
+            'grant_type': 'refresh_token'
+          }
+      });
+    } catch (e) {
+      var code = e.response ? e.response.statusCode : 500;
+      console.log('Unable to exchange google refresh token.', e);
+      throw new Meteor.Error(code, 'Unable to exchange google refresh token.', e.response)
+    }
+    console.log("Result ", result);
+    if (result.statusCode === 200) {
+      // console.log('success');
+      // console.log(EJSON.stringify(result.data));
+      console.log("Token refresh success, call meteor update");
+      console.log("User - Before : ", user, user._id);
+      Meteor.users.update(user._id, { 
+        '$set': { 
+          'services.google.accessToken': result.data.access_token,
+          'services.google.expiresAt': (+new Date) + (1000 * result.data.expires_in),
+        }
+      });
+	  console.log("User - After : ", user, user._id);
+	  
+      return result.data;
+    } else {
+      console.log('Unable to exchange google refresh token.');
+      throw new Meteor.Error(result.statusCode, 'Unable to exchange google refresh token.', result);
+    }
+  }
 	
 });
 

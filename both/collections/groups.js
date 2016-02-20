@@ -1,0 +1,1 @@
+this.Groups = new Mongo.Collection("Groups");
