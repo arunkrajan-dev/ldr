@@ -305,7 +305,7 @@ Template.CaseprofileViewTableItems.events({
 		Session.set('selectedEmail', this.email);
 		Session.set('selectedCaseId', this.caseId);
 		//console.log("Mail Clicked");
-		$('#sendMailModal').modal('show');
+		//$('#sendMailModal').modal('show');
 		return false;
 	}
 });
@@ -394,8 +394,48 @@ Template.panelView.events({
 		Session.set('selectedClientName', this.clientName);
 		Session.set('selectedEmail', this.email);
 		Session.set('selectedCaseId', this.caseId);
+		Session.set("caseProfile_Id", this._id);
 		//console.log("Mail Clicked");
-		$('#sendMailModal').modal('show');
+		$('#sendQuickMailModal').modal('show');
+		// bootbox.dialog({
+  //              title: "Send Mail",
+  //              message: '<div class="row">  ' +
+  //                  '<div class="col-md-12"> ' +
+  //                  '<form class="form-horizontal"> ' +
+  //                  '<div class="form-group"> ' +
+  //                  '<label class="col-md-4 control-label" for="to">To</label> ' +
+  //                  '<div class="col-md-4"> ' +
+  //                  '<input id="to" name="to" type="text" placeholder="Email Id" class="form-control input-md"> ' +
+  //                  '<span class="help-block">Here goes your email Id</span> </div> ' +
+  //                  '</div> ' +
+  //                  '</div> </div>' +
+  //                  '<div class="row">  ' +
+  //                  '<div class="col-md-12"> ' +
+  //                  '<form class="form-horizontal"> ' +
+  //                  '<div class="form-group"> ' +
+  //                  '<label class="col-md-4 control-label" for="msg">Message</label> ' +
+  //                  '<div class="col-md-4"> ' +
+  //                  '<textarea class="form-control" id="msg" name="msg" rows=10></textarea>' +
+  //                  '<span class="help-block">Here goes your email Id</span> </div> ' +
+  //                  '</div> ' +
+  //                  '</div> </div>' +
+  //                  '</form> </div>  </div>',
+                
+  //              buttons: {
+  //                  success: {
+  //                      label: "Save",
+  //                      className: "btn-success",
+  //                      callback: function () {
+  //                          var to = $('#to').val();
+  //                          console.log('your mail has been sent to ', to);
+  //                          //var answer = $("input[name='awesomeness']:checked").val()
+  //                          //Example.show("Hello " + name + ". You've chosen <b>" + answer + "</b>");
+  //                      }
+  //                  }
+  //              }
+  //          }
+  //      );
+        
 		return false;
 	},
 	"click .show-log": function(e, t) {

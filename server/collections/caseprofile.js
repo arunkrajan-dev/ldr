@@ -67,9 +67,9 @@ Caseprofile.after.update(function(userId, doc, fieldNames, modifier, options) {
     if(!Relationship.find({type: doc.relationship}).count()) {
         Relationship.insert({type: doc.relationship});
     }
-    console.log("After update case profile: " + JSON.stringify(doc, null, 4));
-    if(updateCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))
-        console.log("Event updated in google calendar");
+    // console.log("After update case profile: " + JSON.stringify(doc, null, 4));
+    // if(updateCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))
+    //     console.log("Event updated in google calendar");
 });
 
 Caseprofile.after.remove(function(userId, doc) {
