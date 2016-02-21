@@ -191,7 +191,7 @@ Meteor.methods({
 		    var encodedMail = new Buffer(str).toString("base64").replace(/\+/g, '-').replace(/\//g, '_');
         
 		    try {
-		    console.log(" == Send Gmail Start == ", str, encodedMail);
+		    //console.log(" == Send Gmail Start == ", str, encodedMail);
 		    Meteor.http.post(url, {
 		        'headers' : { 
 		          	'Authorization': "Bearer " + Meteor.user().services.google.accessToken,
