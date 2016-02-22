@@ -3,6 +3,37 @@ this.Helpers = {};
 
 Meteor.startup(function() {
 	//Meteor.absoluteUrl.defaultOptions.rootUrl = "https://mtr4-arunsugan.c9users.io/";
+		/* Back to Top */
+	if ( ($(window).height() + 100) < $(document).height() ) {
+	    $('#top-link-block').removeClass('hidden').affix({
+	        // how far to scroll down before link "slides" into view
+	        offset: {top:100}
+	    });
+	}
+	
+	console.log("Startup - scrolltop");
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 100) {
+			$('.scrollToTop').fadeIn();
+		} else {
+			$('.scrollToTop').fadeOut();
+		}
+	});
+	
+	//Click event to scroll to top
+	// $('.scrollToTop').click(function(){
+	// 	$('html, body').animate({scrollTop : 0},800);
+	// 	return false;
+	// });
+	
+	// $(window).scroll(function() {
+	// 	if ( $(window).scrollTop() > 350 ) {
+	// 		$("#top-link-block").show();
+	// 	}
+	// else{
+	// 	$("#top-link-block").hide();
+	// }
+	// });
 });
 
 App.logout = function() {
