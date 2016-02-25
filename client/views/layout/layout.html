@@ -13,6 +13,7 @@
 	{{> sendMailModalT}}
 	{{> sendQuickMail}}
 	{{>logModal}}
+	{{>apptModal}}
 	<a href="#" class="scrollToTop" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
 		<i class="fa fa-hand-o-up fa-2x"></i> <br/>Top
 	</a>
@@ -144,6 +145,11 @@
 
 <template name="PrivateLayoutRightMenu">
 	<ul id="menu-items" class="nav navbar-nav navbar-right">
+		<li id="menu-item-simple" class="{{menuItemClass 'appointment'}}">
+			<button type="button" class="btn btn-info" id="appointment-default">
+				Appointment
+			</button>
+		</li>
 		<li id="menu-item-dropdown" class="dropdown ">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<span class="item-title">

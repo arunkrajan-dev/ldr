@@ -1,0 +1,97 @@
+<template name="apptModal">
+<div class="modal fade" id="apptModal" tabindex="-1" role="dialog" aria-labelledby="apptModalLabel">
+  <div class="modal-dialog appt-modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="sendMailModalLabel">Appointment:</h4>
+          <form role="form" class="insert-form">
+    			{{#if errorMessage}}
+    			<div class="alert alert-warning">
+    				{{errorMessage}}
+    			</div>
+    			{{/if}}		
+    		
+    			{{#if infoMessage}}
+    			<div class="alert alert-success">
+    				{{infoMessage}}
+    			</div>
+    			{{/if}}
+    			
+    			<div class="row">
+    				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-3">
+    					<label for="apptDate">
+    						Date
+    					</label>
+    					<div class="input-div">
+    						<div class="input-group date">
+    							<input id="apptDate" type="text"  autofocus="autofocus" name="apptDate" value="" 
+    							  class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a" required="required">
+    							<span class="input-group-addon">
+    								<i class="fa fa-calendar">
+    								</i>
+    							</span>
+    						</div>
+    						<span id="help-text" class="help-block">
+    						</span>
+    						<span id="error-text" class="help-block">
+    						</span>
+    					</div>
+    				</div>
+    				<div class="form-group  field-description col-xs-12 col-sm-12 col-md-6">
+    					<label for="description">
+    						Description
+    					</label>
+    					<div class="input-div">
+    						<input type="text" name="description" value="" class="form-control" required="required">
+    						<span id="help-text" class="help-block">
+    						</span>
+    						<span id="error-text" class="help-block">
+    						</span>
+    					</div>
+    				</div>
+    				<div class="form-group  field-location col-xs-12 col-sm-12 col-md-2">
+    					<label for="location">
+    						Location
+    					</label>
+    					<div class="input-div">
+    						<input type="text" name="location" value="" class="form-control" required="required">
+    						<span id="help-text" class="help-block">
+    						</span>
+    						<span id="error-text" class="help-block">
+    						</span>
+    					</div>
+    				</div>
+    			</div>
+    			<button type="submit" class="btn btn-success btn-block" id="form-submit-button" name="save">Add</button>
+    		</form>
+      </div>
+
+      <div class="modal-body appt-modal-body">
+    		<div>
+          {{#each getApptDetail}}
+            <div class="row">
+      				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-2">
+      				  <i class="fa fa-calendar">&nbsp;</i>{{formatDate apptDate "DD-MMM-YYYY"}}
+      				</div>
+      				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-6">
+      				  <i class="fa  fa-check-square-o">&nbsp;</i>{{description}}
+      				</div>
+      				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-2">
+      				  <i class="fa fa-map-marker">&nbsp;</i>{{location}}
+      				</div>
+      				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-1">
+      				  <span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
+      				</div>
+    				</div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        Deside Later
+      </div>
+    </div>
+  </div>
+</div>
+</template>
