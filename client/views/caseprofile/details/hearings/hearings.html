@@ -69,6 +69,23 @@
 				{{/if}}			
 	{{/if}}
 			</div>
+	{{#if caseprofile_details.archived}}			
+			<div id="dataview-controls-restore" class="form-group">
+				<button type="button" id="dataview-restore-button" class="btn btn-primary">
+					<span class="fa fa-undo">
+					</span>
+					Restore from Archive
+				</button>
+			</div>
+	{{else}}
+			<div id="dataview-controls-archive" class="form-group">
+				<button type="button" id="dataview-archive-button" class="btn btn-primary">
+					<span class="fa fa-suitcase">
+					</span>
+					Move to Archive
+				</button>
+			</div>
+	{{/if}}
 		</form>
 		{{#if isNotEmpty}}	
 			{{#if isNotFound}}

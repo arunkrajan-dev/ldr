@@ -1,8 +1,15 @@
 Meteor.publish("caseprofile_list", function() {
 	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
-		return Caseprofile.find({}, {sort:[["caseId","desc"]]});
+		return Caseprofile.find({"archived":{"$exists": false}}, {sort:[["caseId","desc"]]});
 	}
-	return Caseprofile.find({ownerId:this.userId}, {sort:[["caseId","desc"]]});
+	return Caseprofile.find({ownerId:this.userId, "archived":{"$exists": false}}, {sort:[["caseId","desc"]]});
+});
+
+Meteor.publish("caseprofileA_list", function() {
+	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
+		return Caseprofile.find({"archived":"archived"}, {sort:[["caseId","desc"]]});
+	}
+	return Caseprofile.find({ownerId:this.userId, "archived":"archived"}, {sort:[["caseId","desc"]]});
 });
 
 Meteor.publish("caseprofile_empty", function() {

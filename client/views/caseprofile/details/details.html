@@ -30,7 +30,12 @@
 				<span class="fa fa-chevron-left">
 				</span>
 			</a>
-			{{caseprofile_details.caseId}}
+			{{caseprofile_details.caseId}} 
+			{{#if caseprofile_details.archived}}
+				<small>
+					[{{caseprofile_details.archived}} - {{caseprofile_details.archivedMsg}}]
+				</small>
+			{{/if}}
 		</h2>
 			<ul class="nav nav-pills">
 	  			<li><a href="#" class="collapsed showhide text-info" data-toggle="collapse" data-target="#intro"> 
