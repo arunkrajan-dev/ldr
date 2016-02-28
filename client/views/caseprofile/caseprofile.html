@@ -36,6 +36,8 @@
 <template name="CaseprofileView">
 	<div id="caseprofile-view" class="">
 		<form id="dataview-controls" class="form-inline">
+			{{#if archived}}
+			{{else}}
 			<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
 				<button type="submit" id="dataview-insert-button" class="btn btn-success">
 					<span class="fa fa-plus">
@@ -43,6 +45,7 @@
 					Add new
 				</button>
 			</div>
+			{{/if}}
 			<div id="dataview-controls-search">
 				{{#if isNotEmpty}}
 				<div id="dataview-controls-search-group" class="form-group">
