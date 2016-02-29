@@ -36,7 +36,7 @@ this.CaseprofileControllerA = RouteController.extend({
 
 		return {
 			params: this.params || {},
-			caseprofile_list: Caseprofile.find({}, {sort:[["caseId","desc"]]}),
+			caseprofile_list: Caseprofile.find({"archived":"archived"}, {sort:[["caseId","desc"]]}),
 			archived: 'yes'
 		};
 		/*DATA_FUNCTION*/

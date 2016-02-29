@@ -1,8 +1,6 @@
 
 <template name="todo">
   <div class="container">
-      <h1>Todo List ({{incompleteCount}})</h1>
-
       <label class="hide-completed">
         <input type="checkbox" checked="{{hideCompleted}}" />
         Hide Completed Tasks
@@ -17,7 +15,7 @@
     </form>
       {{/if}}
 
-    <ul>
+    <ul class="list-group">
       {{#each tasks}}
         {{> task}}
       {{/each}}
@@ -26,9 +24,9 @@
 </template>
 
 <template name="task">
-  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
-    <button class="delete">&times;</button>
+  <li class="{{#if checked}}checked active{{/if}} {{#if private}}private{{/if}} list-group-item">
+    <span id="delete-button" class="delete fa fa-trash-o" title="Delete"></span>
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
+    <span class="text"><strong>{{username}}</strong> {{text}}</span>
   </li>
 </template>

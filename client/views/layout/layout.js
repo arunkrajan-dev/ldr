@@ -49,7 +49,7 @@ Template.PublicLayoutLeftMenu.events({
 });
 
 Template.PublicLayoutLeftMenu.helpers({
-	
+
 });
 
 Template.PublicLayoutRightMenu.rendered = function() {
@@ -102,7 +102,18 @@ Template.PrivateLayoutLeftMenu.events({
 });
 
 Template.PrivateLayoutLeftMenu.helpers({
-	
+	incompleteCount: function () {
+      Meteor.subscribe("tasks_list");
+      return Tasks.find({checked: {$ne: true}}).count();
+    },
+	caseprofileCount: function () {
+      //Meteor.subscribe("caseprofile_list"); //todo move it to rendered
+      //return Caseprofile.find({}).count();
+    },
+	archivedCount: function () {
+	  //Meteor.subscribe("caseprofileA_list");
+      //return Caseprofile.find({"archived":"archived"}).count();
+    }    
 });
 
 Template.PrivateLayoutRightMenu.rendered = function() {
