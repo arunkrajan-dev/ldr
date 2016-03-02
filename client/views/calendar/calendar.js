@@ -2,7 +2,7 @@
     Template.calendar.helpers({
         options: function() {
             Session.set('prevPage', "calendar");
-            console.log("Options is invoked", JSON.stringify(Caseprofile.find().fetch().map(function(it){return {title:it.caseId, date: it.filingDate};}), null, 4));
+            //console.log("Options is invoked", JSON.stringify(Caseprofile.find().fetch().map(function(it){return {title:it.caseId, date: it.filingDate};}), null, 4));
             // console.log("Options is invoked", JSON.stringify(Hearings.find().fetch().map(function(it){
             //     return {
             //         title: Caseprofile.find({_id:it.caseId}).fetch().map(function(it){return it.caseId}), 
@@ -42,6 +42,12 @@
             //var eventsList = Caseprofile.find().fetch().map(function(it){return {title:it.caseId, date: it.filingDate};});
             return {
                 events: eventsList,
+                defaultView: 'basicWeek',
+                header: {
+                            left:   'month,basicWeek,basicDay',
+                            center: 'title',
+                            right: 'today prev,next'
+                        }
             }
         }
     });
