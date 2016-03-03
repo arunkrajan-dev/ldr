@@ -95,6 +95,7 @@
 				{{/if}}			
 	{{/if}}
 			</div>
+			<!--<a href="#" class="collapsed showhide text-warning" data-toggle="collapse" data-target=".min-view"> Full View </a>-->
 		</form>
 		{{#if isNotEmpty}}	
 			{{#if isNotFound}}
@@ -126,60 +127,7 @@
   		<li class="th-sortable"><a href="#court" data-toggle="tab" aria-expanded="false" data-sort="court">Court</a></li>
   		<li class="th-sortable"><a href="#modifiedAt" data-toggle="tab" aria-expanded="false" data-sort="modifiedAt">Last Updated</a></li>
   	</ul>
-	<!--<table id="dataview-table" class="table table-striped table-hover">-->
-	<!--	<thead id="dataview-table-header">-->
-	<!--		<tr id="dataview-table-header-row">-->
-	<!--			<th class="th-sortable" data-sort="caseId">-->
-	<!--				Title-->
-	<!--			</th>-->
-	<!--			<th class="th-sortable" data-sort="caseNumber">-->
-	<!--				Case Number-->
-	<!--			</th>-->
-	<!--			<th class="th-sortable" data-sort="clientName">-->
-	<!--				Name -->
-	<!--			</th>-->
-	<!--			<th class="th-sortable" data-sort="nextHearingDate">-->
-	<!--				Next Hearing Date-->
-	<!--			</th>-->
-	<!--			<th class="th-sortable" data-sort="filingDate">-->
-	<!--				Filing Date-->
-	<!--			</th>-->
-	<!--			<th class="th-sortable" data-sort="representing">-->
-	<!--				Representing-->
-	<!--			</th>-->
-	<!--			<th class="th-sortable" data-sort="caseType">-->
-	<!--				Type/Nature-->
-	<!--			</th>-->
-	<!--			<th class="th-sortable" data-sort="court">-->
-	<!--				Court-->
-	<!--			</th>-->
-	<!--			<th class="th-sortable" data-sort="modifiedAt">-->
-	<!--				Last Updated-->
-	<!--			</th>-->
-				<!--<th class="th-sortable" data-sort="opName">-->
-				<!--	Opposite party Name and Contact-->
-				<!--</th>-->
-				<!--<th class="th-sortable" data-sort="opAdvocate">-->
-				<!--	Opposite party Advocate Name and Contact-->
-				<!--</th>-->
-				<!--<th class="th-sortable" data-sort="opNotes">-->
-				<!--	Other details about Opposite party-->
-				<!--</th>-->
-				<!--<th>-->
-				<!--	&nbsp;-->
-				<!--</th>-->
-				<!--<th>-->
-				<!--	&nbsp;-->
-				<!--</th>-->
-				<!--<th>-->
-				<!--	&nbsp;-->
-				<!--</th>-->
-				<!--<th>-->
-				<!--	&nbsp;-->
-				<!--</th>-->
-	<!--		</tr>-->
-	<!--	</thead>-->
-	<!--</table>-->
+  	
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		
 		{{#each tableItems}}
@@ -201,11 +149,6 @@
   <div class="panel panel-warning">
     
     <div class="panel-heading" role="tab" id={{_id}}>
-      <!--<h4 class="panel-title">-->
-      <!--  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{_id}}" aria-expanded="true" aria-controls="collapseOne{{_id}}">-->
-      <!--    <i class="fa fa-balance-scale"></i> {{caseId}} <small>{{caseNumber}}</small> <i class="fa fa-sort"></i>-->
-      <!--  </a>-->
-      <!--</h4>-->
     </div>
     
     
@@ -221,13 +164,8 @@
 			-
 		{{/if}}
 		</p>
-		<!--<a href="#" class="btn btn-default btn-lg btn-block">Block level button</a>-->
-
-		<!--{{#if nextHearingDate}}-->
-  <!--       Next Hearing: <i class="fa fa-calendar">&nbsp;</i> {{formatDate nextHearingDate 'll'}}-->
-  <!--       <i class="fa fa-rocket">&nbsp;</i> {{formatCalendarDate nextHearingDate}}-->
-  <!--       {{/if}}-->
-
+		
+		<div class="min-view">
 	      <ul class="list-group">
 	  		<li class="list-group-item">
 	    		<span class="badge">{{representing}}</span>
@@ -242,7 +180,7 @@
 	  		</li>
 		  </ul>
 		  
-			<a class="show-log" href="#collapseOne{{_id}}">
+			<a class="show-log" href="#">
 	          <abbr title="Log"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
 	        </a>
 		  <blockquote>
@@ -255,6 +193,7 @@
 		  	</div>
 		  	<small>-Last updated on {{formatCalendarDate modifiedAt}}</small>
 		  </blockquote>
+		 </div> <!-- End Of Collapse -->
     </div>
     <div class="panel-footer">
     	&nbsp;
@@ -273,16 +212,6 @@
 	    	<span id="print-button" class="fa fa-file-pdf-o {{printButtonClass}}" title="Print"></span>
 		</div>
     </div>
-    
-    <!--<div class="panel-footer">-->
-    <!-- 	<a href="#"><i class="fa fa-hand-o-right">&nbsp; Open</i></a>-->
-    <!--	<div class="pull-right muted">-->
-    <!--  		<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span>-->
-    <!--  		<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>-->
-    <!--  		<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span>-->
-    <!--  		<span id="print-button" class="fa fa-file-pdf-o {{printButtonClass}}" title="Print"></span>-->
-    <!--  	</div>-->
-    <!--</div>-->
     
   </div>
   </div>

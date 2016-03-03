@@ -352,5 +352,60 @@ ul.tree-view ul.tree-view {
 }
 
 body{
- background-color:#a9ddf3;
+ background-color: #e9f0f5;
+ //background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+ padding-top: 40px;
+}
+
+.log-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.log-modal-dialog {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.appt-modal-dialog {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.appt-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.mail-modal-dialog {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.notes {
+    overflow:hidden;
+    white-space:nowrap;
+    -ms-text-overflow:ellipsis;
+    text-overflow:ellipsis;
+    -o-text-overflow: ellipsis;
+    display: block;
+    //width:150px;
+    //height:1.2em;
+}
+
+.showhide.collapsed:before
+{
+    content:'+ show' ;
+   // display:block;
+}
+
+.showhide:before
+{
+    content:'- hide' ;
+    // display:block;
+}
+
+.top-navbar-icon {
+	text-align: center;
+	padding: 10px;
 }

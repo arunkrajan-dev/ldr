@@ -168,8 +168,6 @@ Template.CaseprofileView.events({
 		e.preventDefault();
 		CaseprofileViewExport(this.caseprofile_list, "json");
 	}
-
-	
 });
 
 Template.CaseprofileView.helpers({

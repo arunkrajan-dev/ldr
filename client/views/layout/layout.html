@@ -36,7 +36,7 @@
 						</span>
 					</button>
 					<a class="navbar-brand" href="#">
-						Ldiary
+						<!--Ldiary-->
 					</a>
 				</div>
 				<div id="menu" class="collapse navbar-collapse">
@@ -97,7 +97,7 @@
 						</span>
 					</button>
 					<a class="navbar-brand" href="#">
-						Ldiary
+						<!--Ldiary-->
 					</a>
 				</div>
 				<div id="menu" class="collapse navbar-collapse">
@@ -120,40 +120,56 @@
 <template name="PrivateLayoutLeftMenu">
 	<ul id="menu-items" class="nav navbar-nav">
 		<li id="menu-item-simple" class="{{menuItemClass 'caseprofile'}}">
-			<a href="{{pathFor 'caseprofile'}}">
-				<span class="item-title">
-					Case Profile <span class="badge">{{caseprofileCount}}</span>
+			<div class="top-navbar-icon">
+			<a href="{{pathFor 'caseprofile'}}" style="color:#ff9800">
+				<span class="fa fa-list fa-fw fa-2x item-title">
 				</span>
+				<br/>
+				Case Profile <span class="badge">{{caseprofileCount}}</span>
 			</a>
+			</div>
 		</li>
 		<li id="menu-item-simple" class="{{menuItemClass 'calendar'}}">
-			<a href="{{pathFor 'calendar'}}">
-				<span class="item-title">
-					Calendar
+			<div class="top-navbar-icon">
+			<a href="{{pathFor 'calendar'}}" style="color:#4caf50">
+				<span class="fa fa-calendar fa-fw fa-2x item-title">
 				</span>
+				<br/>
+				Calendar
 			</a>
+			</div>
 		</li>
 		<li id="menu-item-simple" class="{{menuItemClass 'backup'}}">
-			<a href="{{pathFor 'backup'}}">
-				<span class="item-title">
-					Backup
+			<div class="top-navbar-icon">
+			<a href="{{pathFor 'backup'}}" style="color:#2196f3">
+				<span class="fa fa-hdd-o fa-fw fa-2x item-title">
 				</span>
+				<br/>
+				Backup
 			</a>
+			</div>
 		</li>
 		<li id="menu-item-simple" class="{{menuItemClass 'caseprofileA'}}">
-			<a href="{{pathFor 'caseprofileA'}}">
-				<span class="item-title">
-					Archived <span class="badge">{{archivedCount}}</span>
+			<div class="top-navbar-icon">
+			<a href="{{pathFor 'caseprofileA'}}" style="color:#b3b3b3">
+				<span class="fa fa-archive fa-fw fa-2x item-title">
 				</span>
+				<br/>
+				Archived <span class="badge">{{archivedCount}}</span>
 			</a>
+			</div>
 		</li>
 		<li id="menu-item-simple" class="{{menuItemClass 'todo'}}">
-			<a href="{{pathFor 'todo'}}">
-				<span class="item-title">
-					Tasks <span class="badge">{{incompleteCount}}</span>
+			<div class="top-navbar-icon">
+			<a href="{{pathFor 'todo'}}" style="color:#9c27b0">
+				<span class="fa fa-check-square-o fa-fw fa-2x item-title">
 				</span>
+				<br/>
+				Tasks ({{incompleteCount}}) 
+				<!--<span class="badge">{{incompleteCount}}</span>-->
 			</a>
-		</li>		
+			</div>
+		</li>
 	</ul>
 </template>
 
