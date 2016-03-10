@@ -179,10 +179,26 @@
 	    		<i class="fa fa-university">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span><br/>
 	  		</li>
 		  </ul>
-		  
-			<a class="show-log" href="#">
-	          <abbr title="Log"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
-	        </a>
+		  <div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6">
+				<a class="show-log" href="#">
+		          <abbr title="Log"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
+		        </a>
+	        </div>
+	        {{#if folderId}}
+	        <div class="col-xs-6 col-sm-6 col-md-6">
+		        <a class="show-gdrive" href="https://drive.google.com/drive/folders/{{folderId}}" target="_blank">
+		          <abbr title="Gdrive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Open</p></abbr>
+		          <!--<img src="https://developers.google.com/drive/images/drive_icon.png" class="img-responsive" width="20" height="20"> Open-->
+		        </a>
+	        </div>
+	        {{else}}
+	        	<a class="create-gdrive" href="#">
+		          <abbr title="Gdrive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Create</p></abbr>
+		          <!--<img src="https://developers.google.com/drive/images/drive_icon.png" class="img-responsive" width="40" height="40"> Create-->
+		        </a>
+	        {{/if}}
+	       </div>
 		  <blockquote>
 		  	<div class="notes">
 		  	{{#if notes}}	
