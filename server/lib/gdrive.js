@@ -57,7 +57,7 @@ Meteor.methods({
     		    		    	if (error)
     		    		    		return error;
     		    		    	console.log("[INFO] Calling createGdriveFolder after token refersh", title);
-    		    		    	createGdriveFolder(title);
+    		    		    	createGdriveFolder(title, caseId);
     		    		    });
     		    	}
         } finally {

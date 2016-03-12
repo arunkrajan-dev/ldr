@@ -60,7 +60,8 @@ Template.Login.events({
 		Meteor.loginWithGoogle(
 			{
 				requestPermissions: ["email", "https://www.googleapis.com/auth/calendar", 
-					"https://www.googleapis.com/auth/gmail.send", "https://mail.google.com/"],
+					"https://www.googleapis.com/auth/gmail.send", "https://mail.google.com/", 
+					"https://www.googleapis.com/auth/drive.file"],
 				requestOfflineToken: true
 			},
 			function(err) {
