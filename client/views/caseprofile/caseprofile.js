@@ -85,6 +85,7 @@ var CaseprofileViewExport = function(cursor, fileType) {
 
 
 Template.CaseprofileView.rendered = function() {
+	Meteor.typeahead.inject();
 	pageSession.set("CaseprofileViewStyle", "table");
 	
 };
@@ -106,7 +107,61 @@ Template.CaseprofileView.events({
 			}
 
 		}
+		searchInput.val('');
 		return false;
+	},
+
+	"click #dataview-courtfilter-button": function(e, t) {
+		e.preventDefault();
+		var form = $(e.currentTarget).parent();
+		if(form) {
+			var searchInput = form.find("#dataview-courtfilter-input");
+			if(searchInput) {
+				searchInput.focus();
+				var searchString = searchInput.val();
+				pageSession.set("CaseprofileViewSearchString", searchString);
+			}
+
+		}
+		searchInput.val('');
+		return false;
+	},
+
+	"keydown #dataview-courtfilter-input": function(e, t) {
+		
+		if(e.which === 13)
+		{
+			e.preventDefault();
+			var form = $(e.currentTarget).parent();
+			if(form) {
+				var searchInput = form.find("#dataview-courtfilter-input");
+				if(searchInput) {
+					var searchString = searchInput.val();
+					pageSession.set("CaseprofileViewSearchString", searchString);
+				}
+
+			}
+			searchInput.val('');
+			return false;
+		}
+
+		if(e.which === 27)
+		{
+			e.preventDefault();
+			var form = $(e.currentTarget).parent();
+			if(form) {
+				var searchInput = form.find("#dataview-courtfilter-input");
+				if(searchInput) {
+					searchInput.val("");
+					pageSession.set("CaseprofileViewSearchString", "");
+				}
+
+			}
+			searchInput.val('');
+			return false;
+		}
+
+		return true;
 	},
 
 	"keydown #dataview-search-input": function(e, t) {
@@ -123,6 +178,7 @@ Template.CaseprofileView.events({
 				}
 
 			}
+			searchInput.val('');
 			return false;
 		}
 
@@ -138,6 +194,7 @@ Template.CaseprofileView.events({
 				}
 
 			}
+			searchInput.val('');
 			return false;
 		}
 
@@ -196,7 +253,10 @@ Template.CaseprofileView.helpers({
 	},
 	"viewAsGallery": function() {
 		return pageSession.get("CaseprofileViewStyle") == "gallery";
-	}
+	},
+	nba: function() {
+    	return Courts.find().fetch().map(function(it){ return it.name; });
+    },
 
 	
 });

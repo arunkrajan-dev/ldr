@@ -52,13 +52,29 @@
 					<label class="sr-only" for="search">
 						Search
 					</label>
-					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
+					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search (Any)" name="search" value="" autofocus="autofocus">
 					<button type="button" id="dataview-search-button" class="btn btn-primary">
 						<span class="fa fa-search">
 						</span>
 					</button>
 				</div>
 				{{/if}}
+			</div>
+			( OR )
+			<div id="dateview-controls-courtfilter-group" class="form-group">
+					{{#if isNotEmpty}}
+					<label class="sr-only" for="court">
+						Filter By Court
+					</label>
+	        		<input class="form-control typeahead" name="court" type="text"
+			       		id="dataview-courtfilter-input" placeholder="Search (By Court)"
+	       				autocomplete="off" spellcheck="off"
+	       				data-source="nba"/>
+	       			<button type="button" id="dataview-courtfilter-button" class="btn btn-primary">
+						<span class="fa fa-search">
+						</span>
+					</button>
+					{{/if}}
 			</div>
 			<div id="dataview-controls-export" class="form-group">
 				{{#if isNotEmpty}}			
@@ -103,6 +119,11 @@
 			"{{searchString}}" not found.
 		</div>
 		{{else}}
+		{{#if searchString}}
+			<span class="help-block">
+				Result for "{{searchString}}"
+			</span>
+		{{/if}}
 		<div id="dataview-data">
 			{{#if viewAsTable}}  {{> CaseprofileViewTable}} {{/if}}
 		</div>
