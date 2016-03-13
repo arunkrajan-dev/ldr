@@ -465,36 +465,77 @@ Template.panelView.events({
 		$('#logModal').modal('show');
 		return false;
 	},
+	"click .notes": function(e, t) {
+		// e.preventDefault();
+		// Session.set('selectedCaseId', this._id);
+		// Session.set('selectedcaseTitle', this.caseId);
+		// //$('#caseprofileModal').modal('show');
+		// Modal.show('caseprofileModal', this);
+
+		// return false;
+		// Tring to use bootbox
+		var dob = "";
+		if(this.dob){
+			dob = moment(this.dob).format("DD-MM-YYYY");
+		}
+		var fdate = moment(this.filingDate).format("DD-MM-YYYY");
+		var html = `<div class="panel panel-default">
+  			<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Client Notes: ${this.clientNotes}</div>
+		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Case Notes: ${this.notes}</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">Opposite Party: ${this.opName}</div>
+			  	<div class="panel-body">
+  				<div class="row">
+  					<div class="col-xs-12 col-sm-12 col-md-12">
+						<i class="fa fa-user">&nbsp;</i> Advocate: ${this.opAdvocate}  						
+  					</div>
+  				</div>
+  				</div>
+  				<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Opposite Notes: ${this.opNotes}</div>
+  		</div>`;
+		var me = this;
+		bootbox.dialog({
+			size: 'large',
+			title: me.caseId,
+			message: html,
+			//className: 'bootbox-large'
+		})
+	},	
 	"click .create-gdrive": function(e, t) {
 	  	console.log("[INFO] CreateFolder is called to create folder ", this.caseId, this._id);	
 	  	Meteor.call("createGdriveFolder", "LDR " + this.caseId, this._id, function(error, r) {
 	    	console.log("[Result] ", r);	
     	});
 		return false;
-	},
-	"click .notes": function(e, t) {
-		e.preventDefault();
-		var me = this;
-		bootbox.dialog({
-			message: me.notes,
-			//title: "Delete",
-			animate: false
-			// buttons: {
-			// 	success: {
-			// 		label: "Yes",
-			// 		className: "btn-success",
-			// 		callback: function() {
-			// 			Caseprofile.remove({ _id: me._id });
-			// 		}
-			// 	},
-			// 	danger: {
-			// 		label: "No",
-			// 		className: "btn-default"
-			// 	}
-			// }
-		});
-		return false;
 	}
+	// "click .notes": function(e, t) {
+	// 	e.preventDefault();
+	// 	var me = this;
+	// 	bootbox.dialog({
+	// 		message: me.notes,
+	// 		//title: "Delete",
+	// 		animate: false
+	// 		// buttons: {
+	// 		// 	success: {
+	// 		// 		label: "Yes",
+	// 		// 		className: "btn-success",
+	// 		// 		callback: function() {
+	// 		// 			Caseprofile.remove({ _id: me._id });
+	// 		// 		}
+	// 		// 	},
+	// 		// 	danger: {
+	// 		// 		label: "No",
+	// 		// 		className: "btn-default"
+	// 		// 	}
+	// 		// }
+	// 	});
+	// 	return false;
+	// }
 });
 
 Template.panelView.helpers({

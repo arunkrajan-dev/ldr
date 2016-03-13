@@ -190,7 +190,10 @@
 	      <ul class="list-group">
 	  		<li class="list-group-item">
 	    		<span class="badge">{{representing}}</span>
-	    		<i class="fa fa-user">&nbsp;</i> <span>{{getClientName clientName}}</span><br/>
+	    		<h6><i class="fa fa-user">&nbsp;</i> {{getClientName clientName}} 
+	    			{{#if dob}} <small> [ DOB {{formatDate dob 'DD-MM-YY'}} (Age - {{age}}) ] </small> {{/if}}
+	    		</h6>
+	    		<h6> <small> {{relationship}} </small> {{fatherName}} </h6>
 	    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
 	    		<i class="fa fa-envelope-o">&nbsp;</i><span><a href="mailto:{{email}}?subject= Regarding%20Case:%20{{caseId}}&body=Hi%20{{getClientName clientName}},%0A">{{email}}</a></span>
 	  		</li>
@@ -201,6 +204,11 @@
 	  		</li>
 		  </ul>
 		  <div class="row">
+			<!--<div class="col-xs-6 col-sm-6 col-md-3">-->
+			<!--	<a class="show-caseprofile" href="#">-->
+		 <!--         <abbr title="Case Profile"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>-->
+		 <!--       </a>-->
+	  <!--      </div>-->
 			<div class="col-xs-6 col-sm-6 col-md-6">
 				<a class="show-log" href="#">
 		          <abbr title="Log"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
@@ -209,24 +217,22 @@
 	        {{#if folderId}}
 	        <div class="col-xs-6 col-sm-6 col-md-6">
 		        <a class="show-gdrive" href="https://drive.google.com/drive/folders/{{folderId}}" target="_blank">
-		          <abbr title="Gdrive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Open</p></abbr>
-		          <!--<img src="https://developers.google.com/drive/images/drive_icon.png" class="img-responsive" width="20" height="20"> Open-->
+		          <abbr title="Google drive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Open</p></abbr>
 		        </a>
 	        </div>
 	        {{else}}
 	        	<a class="create-gdrive" href="#">
-		          <abbr title="Gdrive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Create</p></abbr>
-		          <!--<img src="https://developers.google.com/drive/images/drive_icon.png" class="img-responsive" width="40" height="40"> Create-->
+		          <abbr title="Google drive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Create</p></abbr>
 		        </a>
 	        {{/if}}
 	       </div>
 		  <blockquote>
 		  	<div class="notes">
-		  	{{#if notes}}	
-		  		{{notes}}
-		  	{{else}}
-		  		-
-		  	{{/if}}
+		  	<a href="#">Other Details</a> 
+		  	<!--{{#if notes}}	-->
+		  	<!--	{{notes}}-->
+		  	<!--{{else}}-->
+		  	<!--{{/if}}-->
 		  	</div>
 		  	<small>-Last updated on {{formatCalendarDate modifiedAt}}</small>
 		  </blockquote>
@@ -242,7 +248,7 @@
 	    	{{/if}}
     	</div>
 	   <div class="pull-right">
-	   		<abbr Title="Click to Open Case Profile">Open</abbr>
+	   		<abbr Title="Click to Open Hearings">Hearing</abbr>
 	    	<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span>
 	    	<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
 	    	<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span>
