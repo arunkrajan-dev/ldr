@@ -190,9 +190,8 @@
 	      <ul class="list-group">
 	  		<li class="list-group-item">
 	    		<span class="badge">{{representing}}</span>
-	    		<h6><i class="fa fa-user">&nbsp;</i> {{getClientName clientName}} 
-	    			{{#if dob}} <small> [ DOB {{formatDate dob 'DD-MM-YY'}} (Age - {{age}}) ] </small> {{/if}}
-	    		</h6>
+	    		<h6><i class="fa fa-user">&nbsp;</i> {{getClientName clientName}} </h6>
+	    		{{#if dob}}<h6><i class="fa fa-calendar">&nbsp;</i> <small> DOB: {{formatDate dob 'DD-MM-YY'}} | Age : {{age}} </small></h6>{{/if}}
 	    		<h6> <small> {{relationship}} </small> {{fatherName}} </h6>
 	    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
 	    		<i class="fa fa-envelope-o">&nbsp;</i><span><a href="mailto:{{email}}?subject= Regarding%20Case:%20{{caseId}}&body=Hi%20{{getClientName clientName}},%0A">{{email}}</a></span>
