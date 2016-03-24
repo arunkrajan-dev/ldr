@@ -18,17 +18,25 @@ Template.Login.events({
 
 		var submit_button = $(t.find(":submit"));
 
-		var login_email = t.find('#login_email').value.trim();
+		var login_email = t.find('#login_email').value;//.trim();
 		var login_password = t.find('#login_password').value;
 
 		// check email
-		if(!isValidEmail(login_email))
-		{
-			pageSession.set("errorMessage", "Please enter your e-mail address.");
-			t.find('#login_email').focus();
-			return false;
-		}
+		// if(!isValidEmail(login_email))
+		// {
+		// 	pageSession.set("errorMessage", "Please enter your e-mail address.");
+		// 	t.find('#login_email').focus();
+		// 	return false;
+		// }
 
+		//check user name
+		// if(!login_email)
+		// {
+		// 	pageSession.set("errorMessage", "Please enter your e-mail/username.");
+		// 	t.find('#login_email').focus();
+		// 	return false;
+		// }
+		
 		// check password
 		if(login_password == "")
 		{
@@ -38,7 +46,8 @@ Template.Login.events({
 		}
 
 		submit_button.button("loading");
-		Meteor.loginWithPassword(login_email, login_password, function(err) {
+		alert(login_email);
+		Meteor.loginWithPassword({"username": login_email}, login_password, function(err) {
 			submit_button.button("reset");
 			if (err)
 			{
@@ -204,4 +213,8 @@ Template.Login.helpers({
 		return pageSession.get("errorMessage");
 	}
 	
+});
+
+Accounts.ui.config({
+	passwordSignupFields: "USERNAME_ONLY"
 });

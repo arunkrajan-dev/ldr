@@ -1,7 +1,7 @@
 this.Hearings = new Mongo.Collection("hearings");
 
 this.Hearings.userCanInsert = function(userId, doc) {
-	return Users.isInRoles(userId, ["admin","user"]);
+	return Users.isInRoles(userId, ["admin","user", "junior"]);
 }
 
 this.Hearings.userCanUpdate = function(userId, doc) {

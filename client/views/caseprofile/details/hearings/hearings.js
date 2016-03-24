@@ -335,6 +335,62 @@ Template.CaseprofileDetailsHearingsViewTableItems.events({
 		console.log("hearing sendmail is clicked " + this._id);
 		$('#sendMailModal').modal('show');
 		return false;
+	},
+	"click #btn-approve": function(e, t) {
+		//updated approved status as yes
+		console.log("[INFO] updated approved status");
+		Hearings.update({ _id: this._id }, { $set: {"approved": "yes"} });
+		Hearings.update({ _id: this._id }, { $unset: {"resendMsg": ""} });
+	},
+	"click #btn-resend": function(e, t) {
+		var me = this;
+		bootbox.dialog({
+			message: '<label class="col-md-4 control-label" for="msg">Reason?</label> ' +
+			'<input id="msg" name="msg" type="text" placeholder="Your Message" class="form-control input-md"> ',
+			title: "Resend",
+			animate: false,
+			buttons: {
+				success: {
+					label: "Send",
+					className: "btn-success",
+					callback: function() {
+						var msg = $('#msg').val();
+						Hearings.update({ _id: me._id }, { $set: {"approved": "resend", "resendMsg": msg} });
+						alert("Resend is clicked", msg);
+						//Hearings.remove({ _id: me._id });
+					}
+				},
+				danger: {
+					label: "Cancel",
+					className: "btn-default"
+				}
+			}			
+		});
+	//	Hearings.update({ _id: this._id }, { $set: {"approved": "resend"} });
+	},
+	"click #btn-remove": function (e, t) {
+		//can be removed
+		e.preventDefault();
+		var me = this;
+		bootbox.dialog({
+			message: "Reject? Are you sure?",
+			title: "Reject",
+			animate: false,
+			buttons: {
+				success: {
+					label: "Yes",
+					className: "btn-success",
+					callback: function() {
+						Hearings.remove({ _id: me._id });
+					}
+				},
+				danger: {
+					label: "No",
+					className: "btn-default"
+				}
+			}
+		});
+		return false;
 	}
 });
 
@@ -354,5 +410,15 @@ Template.CaseprofileDetailsHearingsViewTableItems.helpers({
 		// 	console.log("Not ======== Equal");
 		// 	return "hidden";
 		// }
+	},
+	"approvalStatus": function(val) {
+		console.log("[INFO] approvalStatus ", val);
+		//return false if status is approved
+		if(val == "yes") {
+			console.log("return empty");
+			return "";
+		}
+		console.log("return value");
+		return val;
 	}
 });

@@ -27,6 +27,18 @@
 				{{infoMessage}}
 			</div>
 			{{/if}}
+			<div class="form-group  field-username">
+				<label for="username">
+					User Name
+				</label>
+				<div class="input-div">
+					<input type="text" name="username" value="{{admin_user.username}}" class="form-control" autofocus="autofocus" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
 			<div class="form-group  field-profile-name">
 				<label for="profile.name">
 					Name
@@ -44,7 +56,7 @@
 					E-mail
 				</label>
 				<div class="input-div">
-					<input type="text" name="profile.email" value="{{admin_user.profile.email}}" class="form-control" required="required" data-type="email">
+					<input type="text" name="profile.email" value="{{admin_user.profile.email}}" class="form-control" data-type="email">
 					<span id="help-text" class="help-block">
 					</span>
 					<span id="error-text" class="help-block">
@@ -70,6 +82,12 @@
 					</div>
 					<div class="radio">
 						<label>
+							<input type="radio" value="junior" name="roles" data-type="array" {{itemIsChecked admin_user.roles "junior"}}>
+							Junior
+						</label>
+					</div>
+					<div class="radio">
+						<label>
 							<input type="radio" value="admin" name="roles" data-type="array" {{itemIsChecked admin_user.roles "admin"}}>
 							Admin
 						</label>
@@ -86,6 +104,18 @@
 					</span>
 				</div>
 			</div>
+			<div class="form-group  field-seniorId">
+				<label for="seniorId">
+					Senior Id
+				</label>
+				<div class="input-div">
+					<input name="seniorId"  value="{{admin_user.seniorId}}" class="form-control">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>			
 			<div class="form-group">
 				<div class="submit-div">
 					<button id="form-submit-button" class="btn btn-success" type="submit">

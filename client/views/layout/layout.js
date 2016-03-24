@@ -113,7 +113,10 @@ Template.PrivateLayoutLeftMenu.helpers({
 	archivedCount: function () {
 	  //Meteor.subscribe("caseprofileA_list");
       //return Caseprofile.find({"archived":"archived"}).count();
-    }    
+    },
+    approvalCount: function() {
+    	//return 5;
+    }
 });
 
 Template.PrivateLayoutRightMenu.rendered = function() {

@@ -33,7 +33,8 @@ var privateRoutes = [
 	"logout",
 	"calendar",
 	"backup",
-	"todo"
+	"todo",
+	"approval"
 ];
 
 var freeRoutes = [
@@ -45,7 +46,9 @@ var roleMap = [
 	{ route: "admin.users",	roles: ["admin"] },
 	{ route: "admin.users.details",	roles: ["admin"] },
 	{ route: "admin.users.insert",	roles: ["admin"] },
-	{ route: "admin.users.edit",	roles: ["admin"] }
+	{ route: "admin.users.edit",	roles: ["admin"] },
+	{ route: "backup", roles: ["admin", "user"] },
+	{ route: "todo", roles: ["admin", "user"] }
 ];
 
 this.firstGrantedRoute = function(preferredRoute) {
@@ -194,6 +197,7 @@ Router.map(function () {
 	this.route("home_public", {path: "/", controller: "HomePublicController"});
 	this.route("login", {path: "/login", controller: "LoginController"});
 	this.route("calendar", {path: "/calendar", controller: "CalendarController"});
+	this.route("approval", {path: "/approval", controller: "ApprovalController"});
 	this.route("backup", {path: "/backup", controller: "BackupController"});
 	this.route("todo", {path: "/todo", controller: "TodoController"});
 	this.route("register", {path: "/register", controller: "RegisterController"});

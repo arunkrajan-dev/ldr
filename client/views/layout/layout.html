@@ -129,6 +129,16 @@
 			</a>
 			</div>
 		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'approval'}}">
+			<div class="top-navbar-icon">
+			<a href="{{pathFor 'approval'}}" style="color:#ff9800">
+				<span class="fa fa-thumbs-o-up fa-fw fa-2x item-title">
+				</span>
+				<br/>
+				Approval <span class="badge">{{approvalCount}}</span>
+			</a>
+			</div>
+		</li>		
 		<li id="menu-item-simple" class="{{menuItemClass 'calendar'}}">
 			<div class="top-navbar-icon">
 			<a href="{{pathFor 'calendar'}}" style="color:#4caf50">
@@ -139,6 +149,8 @@
 			</a>
 			</div>
 		</li>
+		{{#if isUserInRole 'junior'}}		
+		{{else}}
 		<li id="menu-item-simple" class="{{menuItemClass 'backup'}}">
 			<div class="top-navbar-icon">
 			<a href="{{pathFor 'backup'}}" style="color:#2196f3">
@@ -149,6 +161,7 @@
 			</a>
 			</div>
 		</li>
+		{{/if}}
 		<li id="menu-item-simple" class="{{menuItemClass 'caseprofileA'}}">
 			<div class="top-navbar-icon">
 			<a href="{{pathFor 'caseprofileA'}}" style="color:#b3b3b3">
@@ -159,6 +172,8 @@
 			</a>
 			</div>
 		</li>
+		{{#if isUserInRole 'junior'}}		
+		{{else}}
 		<li id="menu-item-simple" class="{{menuItemClass 'todo'}}">
 			<div class="top-navbar-icon">
 			<a href="{{pathFor 'todo'}}" style="color:#9c27b0">
@@ -170,20 +185,29 @@
 			</a>
 			</div>
 		</li>
+		{{/if}}
 	</ul>
 </template>
 
 <template name="PrivateLayoutRightMenu">
 	<ul id="menu-items" class="nav navbar-nav navbar-right">
+		{{#if isUserInRole 'junior'}}		
+		{{else}}		
 		<li id="menu-item-simple" class="{{menuItemClass 'appointment'}}">
 			<button type="button" class="btn btn-info" id="appointment-default">
 				Appointment
 			</button>
 		</li>
+		{{/if}}
 		<li id="menu-item-dropdown" class="dropdown ">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<span class="item-title">
-					{{userEmail}}
+					{{#if userEmail}}
+						{{userEmail}}
+					{{else}}
+						{{userFullName}}
+					{{/if}}
+					
 				</span>
 				<b class="caret">
 				</b>

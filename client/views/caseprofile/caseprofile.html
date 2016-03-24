@@ -46,8 +46,8 @@
 				</button>
 			</div>
 			{{/if}}
+		{{#if isNotEmpty}}
 			<div id="dataview-controls-search">
-				{{#if isNotEmpty}}
 				<div id="dataview-controls-search-group" class="form-group">
 					<label class="sr-only" for="search">
 						Search
@@ -58,11 +58,10 @@
 						</span>
 					</button>
 				</div>
-				{{/if}}
+
 			</div>
 			( OR )
 			<div id="dateview-controls-courtfilter-group" class="form-group">
-					{{#if isNotEmpty}}
 					<label class="sr-only" for="court">
 						Filter By Court
 					</label>
@@ -74,8 +73,9 @@
 						<span class="fa fa-search">
 						</span>
 					</button>
-					{{/if}}
 			</div>
+		{{/if}}
+		
 			<div id="dataview-controls-export" class="form-group">
 				{{#if isNotEmpty}}			
 		{{#if isFound}}

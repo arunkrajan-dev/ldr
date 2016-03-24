@@ -132,12 +132,11 @@ Template.CaseprofileDetailsInsertInsertForm.helpers({
 	},
 	
 	"validNextDate": function(value) {
-		console.log("value " + value);
+		//todo check and write proper logic
+		return "";
 		if (typeof value === 'undefined') {
-			console.log("Enabled");
 			return "";
 		} else {
-			console.log("Disabled");
 			return "disabled";
 		}
 	}

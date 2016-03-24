@@ -69,6 +69,15 @@
 				<th class="th-sortable" data-sort="roles">
 					Role
 				</th>
+				<th class="th-sortable" data-sort="username">
+					User Name
+				</th>
+				<th class="th-sortable" data-sort="id">
+					Id
+				</th>
+				<th class="th-sortable" data-sort="seniorId">
+					Senior Id
+				</th>				
 				<th>
 					&nbsp;
 				</th>
@@ -94,6 +103,16 @@
 		<td>
 			{{roles}}
 		</td>
+		<td>
+			{{admin_users.username}}
+		</td>
+		<td>
+			{{_id}}
+		</td>
+		<td>
+			{{admin_users.seniorId}}
+		</td>
+
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
 			</span>

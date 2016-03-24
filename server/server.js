@@ -122,6 +122,7 @@ Meteor.methods({
 
 		var userOptions = {};
 		if(options.username) userOptions.username = options.username;
+		if(options.seniorId) userOptions.seniorId = options.seniorId;
 		if(options.email) userOptions.email = options.email;
 		if(options.password) userOptions.password = options.password;
 		if(options.profile) userOptions.profile = options.profile;
@@ -271,7 +272,7 @@ Meteor.methods({
 });
 
 Accounts.onCreateUser(function (options, user) {
-	console.log("on create user " );	
+	console.log("[INFO] ===== on create user Start ===== " );	
 	if(!user.roles){
 		if(Meteor.users.find().count()) {
 			user.roles = ["user"];	
@@ -281,9 +282,13 @@ Accounts.onCreateUser(function (options, user) {
 			return user;
 		}
 	}
-	console.log("user role: " + user.roles);	
+	console.log("[INFO] User role: " + user.roles);	
+	console.log("[INFO] Options: " + JSON.stringify(options, null, 4));	
 	
-	//Allow admin to create new user
+	user.seniorId = options.seniorId;
+	
+	console.log("[INFO] User: " + JSON.stringify(user, null, 4));	
+	//Allow only admin to create new user
 	if(Users.isInRoles(Meteor.userId(), ["admin"])) return user;
 	
 	//If user is created through service, merge it to already 

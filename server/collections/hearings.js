@@ -17,10 +17,18 @@ Hearings.before.insert(function(userId, doc) {
 	doc.createdBy = userId;
 	doc.modifiedAt = doc.createdAt;
 	doc.modifiedBy = doc.createdBy;
-	doc.calendarId = Random.hexString(25);
 
-	
-	if(!doc.ownerId) doc.ownerId = userId;
+	if(Users.isInRoles(userId, ["junior"])) {
+		var cs = Caseprofile.findOne({_id:doc.caseId}, {});
+		doc.approvalMsg = cs.caseId + " by " + Meteor.user().username + "(" + Meteor.user().profile.name + ")";
+		doc.approved = "no";
+		doc.ownerId = Meteor.user().seniorId;
+	} else {
+		doc.approved = "yes";
+		doc.ownerId = userId;
+	}
+	//if(!doc.ownerId) doc.ownerId = userId;
+	console.log("[INFO] Document owner Id ", doc.ownerId);
 });
 
 Hearings.before.update(function(userId, doc, fieldNames, modifier, options) {
@@ -34,49 +42,71 @@ Hearings.before.remove(function(userId, doc) {
 });
 
 Hearings.after.insert(function(userId, doc) {
-	//Add next Hearing Date
 	Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
-	//	console.log("next hearing date is updated");
-	//} else {
-	//	console.log("Nope, not greater date" + doc.nextDate);
-	//}
+	if(Users.isInRoles(userId, ["junior"])) {
+
+		// No functionality as of now
+	} else {
+		
+		//Add the event to google calendar
+		var cs = Caseprofile.findOne({_id:doc.caseId}, {});
+		doc.calendarId = Random.hexString(25);
+		if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
+	    	console.log("[INFO] Event inserted to Google Calendar");
 	
-	//console.log("After insert Hearing: " + JSON.stringify(doc, null, 4));
-	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
-	
-	console.log("Case Detail: " + JSON.stringify(cs, null, 4));
-	
-	if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
-    	console.log("[INFO] Event inserted to Google Calendar");
+		//update the calendarId to case profile
+		Caseprofile.update({ _id: doc.caseId }, { $set: {"calendarId": doc.calendarId}});
+	}
 });
 
 Hearings.after.update(function(userId, doc, fieldNames, modifier, options) {
-	
-	//if(doc.nextDate.valueOf() >= doc.createdAt.valueOf()) {
-		//Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
-	//	console.log("next hearing date is updated");
-	//} else {
-	//	console.log("Nope, not greater date" + doc.nextDate);
-	//}
-	
-	//console.log("After update Hearing: " + JSON.stringify(doc, null, 4));
-	var cs = Caseprofile.findOne({_id:doc.caseId}, {});
-	if(cs.nextHearingDate) {
-		if(doc.nextDate.valueOf() > cs.nextHearingDate.valueOf()) {
+	if(Users.isInRoles(userId, ["junior"])) {
+		Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
+		// No functionality as of now
+	} else {	
+		
+		//Set next hearing date
+		var cs = Caseprofile.findOne({_id:doc.caseId}, {});
+		if(cs.nextHearingDate) {
+			if(doc.nextDate.valueOf() > cs.nextHearingDate.valueOf()) {
+				Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
+			}
+		} else {
 			Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
 		}
-	} else {
-		Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
+		
+		//google calendar event
+		if(doc.calendarId) {
+			
+			//update google calendar event
+			if(updateCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
+		        console.log("[INFO] Event updated to google calendar");
+		} else {
+			
+			//Create new google calendar event
+			doc.calendarId = Random.hexString(25);
+			if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
+		    	console.log("[INFO] Event inserted to Google Calendar");			
+			
+			//update the calendarId to case profile
+			Caseprofile.update({ _id: doc.caseId }, { $set: {"calendarId": doc.calendarId}});
+		}
 	}
-	console.log("Case Detail: " + JSON.stringify(cs, null, 4));
-	
-	if(updateCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
-        console.log("[INFO] Event updated to google calendar");
 });
 
 Hearings.after.remove(function(userId, doc) {
-	//console.log("After remove Hearing: " + JSON.stringify(doc, null, 4));
-	Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.businessDate}});
-	if(removeCalEvent(doc.calendarId))
-        console.log("[INFO] Event removed from google calendar");
+	
+	//todo get only last hearing date
+	var cs = Caseprofile.findOne({_id:doc.caseId}, {});	
+	
+	//modify only if the delete affects last hearing date
+	if(doc.nextDate.getTime() == cs.nextHearingDate.getTime()) {
+		Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.businessDate}});
+	}
+	
+	//Remove google calendar event
+	if(doc.calendarId) {
+		if(removeCalEvent(doc.calendarId))
+	        console.log("[INFO] Event removed from google calendar");
+	}
 });

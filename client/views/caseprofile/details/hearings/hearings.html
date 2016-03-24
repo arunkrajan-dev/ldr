@@ -121,21 +121,37 @@
 								<p><i class="fa fa-check-square-o">&nbsp;</i>{{description}}</p>
 								<p><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}
 										{{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}} </p>
-								<span class="cd-date">(- On Hearing -) {{formatDate businessDate 'DD-MM-YYYY h:mm a'}}</span>
-						<td class="td-icon">
-							<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
-							</span>
-						</td>
-						<td class="td-icon">
-							<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}}" title="Delete">
-							</span>
-						</td>
-						<td class="td-icon">
-							<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail">
-							</span>
-						</td>
-				
-							</div> <!-- cd-timeline-content -->
+								<span class="cd-date">(- On Hearing -) {{formatDate businessDate 'DD-MM-YYYY h:mm a'}}
+								</span>
+								
+						{{#if isUserInRole 'junior'}}
+							<span>{{approvalMsg}} - </span>
+							Approved? - {{approved}}
+						{{else}}
+							{{#if approvalStatus approved}}
+							Approval requested for {{approvalMsg}}
+							<div class="btn-group btn-group-justified">
+  								  <a href="#" id="btn-approve" class="btn btn-success btn-circle"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
+								  <!--<a href="#" id="btn-resend" class="btn btn-warning">Edit</a>-->
+								  <a href="#" id="btn-remove" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
+							</div>
+							{{else}}
+								<td class="td-icon">
+									<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+									</span>
+								</td>
+								<td class="td-icon">
+									<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}}" title="Delete">
+									</span>
+								</td>
+								<td class="td-icon">
+									<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail">
+									</span>
+								</td>
+							{{/if}}
+						{{/if}}
+						
+						</div> <!-- cd-timeline-content -->
 						</div> <!-- cd-timeline-block -->
 				 
 </template>
