@@ -51,7 +51,7 @@ Hearings.after.insert(function(userId, doc) {
 		//Add the event to google calendar
 		var cs = Caseprofile.findOne({_id:doc.caseId}, {});
 		doc.calendarId = Random.hexString(25);
-		if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
+		if(insertCalEvent(doc.calendarId, cs.caseId + "(" + cs.caseNumber+ ")" + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
 	    	console.log("[INFO] Event inserted to Google Calendar");
 	
 		//update the calendarId to case profile
@@ -79,13 +79,13 @@ Hearings.after.update(function(userId, doc, fieldNames, modifier, options) {
 		if(doc.calendarId) {
 			
 			//update google calendar event
-			if(updateCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
+			if(updateCalEvent(doc.calendarId, cs.caseId + "(" + cs.caseNumber+ ")" + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
 		        console.log("[INFO] Event updated to google calendar");
 		} else {
 			
 			//Create new google calendar event
 			doc.calendarId = Random.hexString(25);
-			if(insertCalEvent(doc.calendarId, cs.caseId + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
+			if(insertCalEvent(doc.calendarId, cs.caseId + "(" + cs.caseNumber+ ")" + " | Hearing", "Client: " + cs.clientName + "Previous Bussiness Notes:" + doc.description + "Purpose: " + doc.purpose, cs.court, doc.nextDate))
 		    	console.log("[INFO] Event inserted to Google Calendar");			
 			
 			//update the calendarId to case profile

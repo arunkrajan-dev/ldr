@@ -50,7 +50,7 @@ Caseprofile.after.insert(function(userId, doc) {
         Relationship.insert({type: doc.relationship});
     }
 	console.log("After insert case profile: " + JSON.stringify(doc, null, 4));
-	if(insertCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))
+	if(insertCalEvent(doc.calendarId, doc.caseId + "(" + doc.caseNumber + ")" +  " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))
         console.log("Event Added to google calendar");
 });
 

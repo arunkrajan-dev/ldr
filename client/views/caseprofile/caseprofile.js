@@ -44,7 +44,7 @@ var CaseprofileViewItems = function(cursor) {
 	} else {
 		searchString = searchString.replace(".", "\\.");
 		var regEx = new RegExp(searchString, "i");
-		var searchFields = ["caseId", "clientName", "phone", "email", "dob", "age", "fatherName", "clientNotes", "representing", "caseType", "court", "filingDate", "notes", "opName", "opAdvocate", "opNotes"];
+		var searchFields = ["caseId", "caseNumber", "clientName", "phone", "email", "dob", "age", "fatherName", "clientNotes", "representing", "caseType", "court", "filingDate", "notes", "opName", "opAdvocate", "opNotes"];
 		filtered = _.filter(raw, function(item) {
 			var match = false;
 			_.each(searchFields, function(field) {
