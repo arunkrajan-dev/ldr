@@ -169,7 +169,10 @@
 <div class="col-xs-12 col-sm-12 col-md-4">
   <div class="panel panel-warning">
     
-    <div class="panel-heading" role="tab" id={{_id}}>
+    <div class="panel-heading" role="tab">
+		<a href="#" class="collapsed showhide text-danger" data-toggle="collapse" data-target="#{{_id}}"> 
+	  		Full View
+	  	</a>
     </div>
     
     
@@ -186,7 +189,7 @@
 		{{/if}}
 		</p>
 		
-		<div class="min-view">
+		<div class="min-view collapse" id="{{_id}}">
 	      <ul class="list-group">
 	  		<li class="list-group-item">
 	    		<span class="badge">{{representing}}</span>

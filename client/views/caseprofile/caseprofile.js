@@ -1,11 +1,11 @@
 var pageSession = new ReactiveDict();
 
 Template.panelView.rendered = function() {
-	var heightTallest = Math.max.apply(null, $(".list-group").map(function ()
-	{
-		return $(this).outerHeight();
-	}).get());
-	$('.list-group').css({ height: heightTallest + 'px' });
+	// var heightTallest = Math.max.apply(null, $(".list-group").map(function ()
+	// {
+	// 	return $(this).outerHeight();
+	// }).get());
+	// $('.list-group').css({ height: heightTallest + 'px' });
 };
 
 Template.Caseprofile.events({
@@ -547,6 +547,11 @@ Template.panelView.helpers({
 	"deleteButtonClass": function() {
 		return Caseprofile.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
 	},
+	
+	"sendMailButtonClass": function() {
+		return Caseprofile.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
+	},
+	
 	"stringSplit": function(str, options) {
     if(str){
       var ret = "";
