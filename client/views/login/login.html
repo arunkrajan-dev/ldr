@@ -1,36 +1,42 @@
 <template name="Login">
 	<div class="container">
-		<form id="login_form" class="account-form" role="form">
-			{{#if errorMessage}}
-			<div class="alert alert-warning">
-				{{errorMessage}}
-			</div>
-			{{/if}}
-			<button id="login-with-google" type="button" class="btn btn-default btn-block" data-loading-text="Please wait...">
-				<span class="fa fa-google-plus-square">
-				</span>
-				&nbsp; Sign in with Google (Senior Only)
-			</button>
-			<div id="login-with-password" style="padding-top: 10px;">
-				<input id="login_email" type="text" class="form-control" placeholder="User Name" required autofocus>
-				<input id="login_password" type="password" class="form-control" placeholder="Password" required>
-				<button class="btn btn-lg btn-primary btn-block" type="submit" data-loading-text="Please wait...">
-					Sign in
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-6">
+		</div>		
+		<div class="col-xs-12 col-sm-12 col-md-6">
+			<form id="login_form" class="account-form" role="form">
+				{{#if errorMessage}}
+				<div class="alert alert-warning">
+					{{errorMessage}}
+				</div>
+				{{/if}}
+				<button id="login-with-google" type="button" class="btn btn-primary btn-block" data-loading-text="Please wait...">
+					<span class="fa fa-google-plus-square">
+					</span>
+					&nbsp; Sign in with Google (Senior Only)
 				</button>
-				<p class="account-form-text-after" id="register-link">
-					Not a member?
-					<a href="mailto:arunsugan08@gmail.com?subject=Request for creating account&body=Please create an account for LDiary">
-						Request for new account
-					</a>
-				</p>
-				<p class="account-form-text-after" id="forgot-password-link">
-					Forgot password?
-					<a href="{{pathFor 'forgot_password'}}">
-						Click here
-					</a>
-				</p>
-			</div>
-		</form>
+				<div id="login-with-password" style="padding-top: 10px;">
+					<input id="login_email" type="text" class="form-control" placeholder="User Name" required autofocus>
+					<input id="login_password" type="password" class="form-control" placeholder="Password" required>
+					<button class="btn btn-lg btn-primary btn-block" type="submit" data-loading-text="Please wait...">
+						Sign in
+					</button>
+					<p class="account-form-text-after" id="register-link">
+						Not a member?
+						<a href="mailto:arunsugan08@gmail.com?subject=Request for creating account&body=Please create an account for LDiary">
+							Request for new account
+						</a>
+					</p>
+					<p class="account-form-text-after hidden" id="forgot-password-link">
+						Forgot password?
+						<a href="{{pathFor 'forgot_password'}}">
+							Click here
+						</a>
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
 	</div>
 </template>
 
