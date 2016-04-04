@@ -254,10 +254,46 @@ Template.CaseprofileView.helpers({
 	"viewAsGallery": function() {
 		return pageSession.get("CaseprofileViewStyle") == "gallery";
 	},
-	nba: function() {
-    	return Courts.find().fetch().map(function(it){ return it.name; });
+	teams: function() {
+	return [
+	      {
+	        name: 'Courts',
+	        valueKey: 'name',
+	        display: 'name',
+	        local: function() { return Courts.find().fetch(); },
+	        header: '<h6 class="league-name">in Courts</h6>',
+	        template: 'searchCourt'
+	      },
+	      {
+	        name: 'CaseTitle',
+	        valueKey: 'caseId',
+	        display: 'caseId',
+	        local: function() { return Caseprofile.find().fetch(); },
+	        header: '<h6 class="disabled">with Case Title</h6>',
+	        template: 'searchCaseTitle'
+	      },
+	      {
+	        name: 'CaseNumber',
+	        valueKey: 'caseNumber',
+	        display: 'caseNumber',
+	        local: function() { return Caseprofile.find().fetch(); },
+	        header: '<h6 class="disabled">with Case Number</h6>',
+	        template: 'searchCaseTitle'
+	      },	      
+	      {
+	        name: 'Representing',
+	        valueKey: 'type',
+	        display: 'type',
+	        local: function() { return Represent.find().fetch(); },
+	        header: '<h6 class="league-name">Representing as </h6>',
+	        template: 'searchRepresent'
+	      }
+	];
+    	//return Courts.find().fetch().map(function(it){ return it.name; });
     },
-
+	nba: function() {
+		return Courts.find().fetch().map(function(it){ return it.name; });
+	}
 	
 });
 
