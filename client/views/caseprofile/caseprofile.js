@@ -224,6 +224,33 @@ Template.CaseprofileView.events({
 	"click #dataview-export-json": function(e, t) {
 		e.preventDefault();
 		CaseprofileViewExport(this.caseprofile_list, "json");
+	},
+	
+	"click #caseprofileView-sort-button": function(e, t) {
+		e.preventDefault();
+	    if ($(e.target).text() == "desc") {
+	      $(e.target).text("asc");
+	      var sortAscending = pageSession.get("CaseprofileViewSortAscending") || false;
+		  pageSession.set("CaseprofileViewSortAscending", !sortAscending);
+	    }
+	    else {
+	      $(e.target).text("desc");
+	      pageSession.set("CaseprofileViewSortAscending", true);
+	    }
+	},
+	
+	"click .th-sortable": function(e, t) {
+		e.preventDefault();
+		// var oldSortBy = pageSession.get("CaseprofileViewSortBy");
+		var newSortBy = $(e.target).attr("data-sort");
+
+		pageSession.set("CaseprofileViewSortBy", newSortBy);
+		// if(oldSortBy == newSortBy) {
+		// 	var sortAscending = pageSession.get("CaseprofileViewSortAscending") || false;
+		// 	pageSession.set("CaseprofileViewSortAscending", !sortAscending);
+		// } else {
+		// 	pageSession.set("CaseprofileViewSortAscending", true);
+		// }
 	}
 });
 
@@ -303,19 +330,7 @@ Template.CaseprofileViewTable.rendered = function() {
 };
 
 Template.CaseprofileViewTable.events({
-	"click .th-sortable": function(e, t) {
-		e.preventDefault();
-		var oldSortBy = pageSession.get("CaseprofileViewSortBy");
-		var newSortBy = $(e.target).attr("data-sort");
 
-		pageSession.set("CaseprofileViewSortBy", newSortBy);
-		if(oldSortBy == newSortBy) {
-			var sortAscending = pageSession.get("CaseprofileViewSortAscending") || false;
-			pageSession.set("CaseprofileViewSortAscending", !sortAscending);
-		} else {
-			pageSession.set("CaseprofileViewSortAscending", true);
-		}
-	}
 });
 
 Template.CaseprofileViewTable.helpers({

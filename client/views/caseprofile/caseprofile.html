@@ -60,6 +60,26 @@
 				<span class="fa fa-search">
 				</span>
 			</button>
+			
+			<div class="btn-group">
+			<div class="btn-group">
+		  		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    		Order by <span class="caret"></span>
+		  		</button>
+				<ul class="dropdown-menu">
+			  		<li class="active th-sortable"><a href="#caseId" data-sort="caseId">Title</a></li>
+			  		<li class="th-sortable"><a href="#caseNumber" data-sort="caseNumber">Case Number</a></li>
+			  		<li class="th-sortable"><a href="#clientName" data-sort="clientName">Client Name</a></li>
+			  		<li class="th-sortable"><a href="#nextHearingDate" data-sort="nextHearingDate">Next Hearing</a></li>
+			  		<li class="th-sortable"><a href="#filingDate" data-sort="filingDate">Filing Date</a></li>
+			  		<li class="th-sortable"><a href="#representing" data-sort="representing">Representing</a></li>
+			  		<li class="th-sortable"><a href="#caseType" data-sort="caseType">Case Type</a></li>
+			  		<li class="th-sortable"><a href="#court" data-sort="court">Court </a></li>
+			  		<li class="th-sortable"><a href="#modifiedAt" data-sort="modifiedAt">Last Updated</a></li>
+			  	</ul>
+		  	</div>
+				<button type="button" class="btn btn-default" id="caseprofileView-sort-button">asc</button>
+		  	</div>
 		{{/if}}
 		
 	<!--		<div id="dataview-controls-export" class="form-group hidden">-->
@@ -123,18 +143,6 @@
 </template>
 
 <template name="CaseprofileViewTable">
-	<ul class="nav nav-tabs nav-justified">
-  		<li class="active th-sortable"><a href="#caseId" data-toggle="tab" aria-expanded="true" data-sort="caseId">Title</a></li>
-  		<li class="th-sortable"><a href="#caseNumber" data-toggle="tab" aria-expanded="false" data-sort="caseNumber">Case Number</a></li>
-  		<li class="th-sortable"><a href="#clientName" data-toggle="tab" aria-expanded="false" data-sort="clientName">Client Name</a></li>
-  		<li class="th-sortable"><a href="#nextHearingDate" data-toggle="tab" aria-expanded="false" data-sort="nextHearingDate">Next Hearing</a></li>
-  		<li class="th-sortable"><a href="#filingDate" data-toggle="tab" aria-expanded="false" data-sort="filingDate">Filing Date</a></li>
-  		<li class="th-sortable"><a href="#representing" data-toggle="tab" aria-expanded="false" data-sort="representing">Representing</a></li>
-  		<li class="th-sortable"><a href="#caseType" data-toggle="tab" aria-expanded="false" data-sort="caseType">Case Type</a></li>
-  		<li class="th-sortable"><a href="#court" data-toggle="tab" aria-expanded="false" data-sort="court">Court</a></li>
-  		<li class="th-sortable"><a href="#modifiedAt" data-toggle="tab" aria-expanded="false" data-sort="modifiedAt">Last Updated</a></li>
-  	</ul>
-  	
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		
 		{{#each tableItems}}
