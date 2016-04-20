@@ -120,6 +120,7 @@ Template.CaseprofileView.events({
 				searchInput.focus();
 				var searchString = searchInput.val();
 				pageSession.set("CaseprofileViewSearchString", searchString);
+				Session.set('selectedCaseId', "");
 			}
 
 		}
@@ -138,10 +139,11 @@ Template.CaseprofileView.events({
 				if(searchInput) {
 					var searchString = searchInput.val();
 					pageSession.set("CaseprofileViewSearchString", searchString);
+					Session.set('selectedCaseId', "");
 				}
 
 			}
-			searchInput.val('');
+			//searchInput.val('');
 			return false;
 		}
 
@@ -157,7 +159,7 @@ Template.CaseprofileView.events({
 				}
 
 			}
-			searchInput.val('');
+			//searchInput.val('');
 			return false;
 		}
 
@@ -625,4 +627,237 @@ Template.panelView.helpers({
 
   }
   
+});
+
+Template.caseprofileDetail.events({
+	"click .panel-footer": function(e, t) {
+		e.preventDefault();
+		Session.set('selectedClientName', this.clientName);
+		Session.set('selectedEmail', this.email);
+		Session.set('selectedCaseId', this.caseId);
+		Session.set('FolderId', this.folderId)
+		Router.go("caseprofile.details", {caseId: this._id});
+		return false;
+	},
+
+	"click .inline-checkbox": function(e, t) {
+		e.preventDefault();
+
+		if(!this || !this._id) return false;
+
+		var fieldName = $(e.currentTarget).attr("data-field");
+		if(!fieldName) return false;
+
+		var values = {};
+		values[fieldName] = !this[fieldName];
+
+		Caseprofile.update({ _id: this._id }, { $set: values });
+
+		return false;
+	},
+
+	"click #delete-button": function(e, t) {
+		e.preventDefault();
+		var me = this;
+		bootbox.dialog({
+			message: "Delete? Are you sure?",
+			title: "Delete",
+			animate: false,
+			buttons: {
+				success: {
+					label: "Yes",
+					className: "btn-success",
+					callback: function() {
+						Caseprofile.remove({ _id: me._id });
+					}
+				},
+				danger: {
+					label: "No",
+					className: "btn-default"
+				}
+			}
+		});
+		return false;
+	},
+	"click #edit-button": function(e, t) {
+		e.preventDefault();
+		Router.go("caseprofile.edit", {caseId: this._id});
+		return false;
+	},
+	"click #sendMail-button": function(e, t) {
+		e.preventDefault();
+		Session.set('selectedClientName', this.clientName);
+		Session.set('selectedEmail', this.email);
+		Session.set('selectedCaseId', this.caseId);
+		Session.set("caseProfile_Id", this._id);
+		$('#sendQuickMailModal').modal('show');
+		return false;
+	},
+	"click .show-log": function(e, t) {
+		e.preventDefault();
+		Session.set('selectedCaseId', this._id);
+		Session.set('selectedcaseTitle', this.caseId);
+		//console.log("selected Case ID session ", this._id);
+		$('#logModal').modal('show');
+		return false;
+	},
+	"click .notes": function(e, t) {
+		// e.preventDefault();
+		// Session.set('selectedCaseId', this._id);
+		// Session.set('selectedcaseTitle', this.caseId);
+		// //$('#caseprofileModal').modal('show');
+		// Modal.show('caseprofileModal', this);
+
+		// return false;
+		// Tring to use bootbox
+		var dob = "";
+		if(this.dob){
+			dob = moment(this.dob).format("DD-MM-YYYY");
+		}
+		var fdate = moment(this.filingDate).format("DD-MM-YYYY");
+		var html = `<div class="panel panel-default">
+  			<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Client Notes: ${this.clientNotes}</div>
+		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Case Notes: ${this.notes}</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">Opposite Party: ${this.opName}</div>
+			  	<div class="panel-body">
+  				<div class="row">
+  					<div class="col-xs-12 col-sm-12 col-md-12">
+						<i class="fa fa-user">&nbsp;</i> Advocate: ${this.opAdvocate}  						
+  					</div>
+  				</div>
+  				</div>
+  				<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Opposite Notes: ${this.opNotes}</div>
+  		</div>`;
+		var me = this;
+		bootbox.dialog({
+			size: 'large',
+			title: me.caseId,
+			message: html,
+			//className: 'bootbox-large'
+		})
+	},	
+	"click .create-gdrive": function(e, t) {
+	  	console.log("[INFO] CreateFolder is called to create folder ", this.caseId, this._id);	
+	  	Meteor.call("createGdriveFolder", "LDR " + this.caseId, this._id, function(error, r) {
+	    	console.log("[Result] ", r);	
+    	});
+		return false;
+	}
+	// "click .notes": function(e, t) {
+	// 	e.preventDefault();
+	// 	var me = this;
+	// 	bootbox.dialog({
+	// 		message: me.notes,
+	// 		//title: "Delete",
+	// 		animate: false
+	// 		// buttons: {
+	// 		// 	success: {
+	// 		// 		label: "Yes",
+	// 		// 		className: "btn-success",
+	// 		// 		callback: function() {
+	// 		// 			Caseprofile.remove({ _id: me._id });
+	// 		// 		}
+	// 		// 	},
+	// 		// 	danger: {
+	// 		// 		label: "No",
+	// 		// 		className: "btn-default"
+	// 		// 	}
+	// 		// }
+	// 	});
+	// 	return false;
+	// }
+});
+
+Template.caseprofileDetail.helpers({
+	"getCaseProfileDetail": function() {
+		var idVal = Session.get("selectedCaseId");
+		return Caseprofile.findOne({_id:idVal}, {});
+	},
+    "getClientName":function(value, rel, name) {
+        //var name2 = value.split(",");
+        return Spacebars.SafeString(value.replace(',', ', <small>' + rel + ' ' + name + '</small><br/><i class="fa fa-map-marker">  </i>'));
+        //return name2[0];
+    }	
+});
+
+Template.caseprofileListView.helpers({
+
+	"insertButtonClass": function() {
+		return Caseprofile.userCanInsert(Meteor.userId(), {}) ? "" : "hidden";
+	},
+
+	"isEmpty": function() {
+		return !this.caseprofile_list || this.caseprofile_list.count() == 0;
+	},
+	"isNotEmpty": function() {
+		return this.caseprofile_list && this.caseprofile_list.count() > 0;
+	},
+	"isNotFound": function() {
+		return this.caseprofile_list && pageSession.get("CaseprofileViewSearchString") && CaseprofileViewItems(this.caseprofile_list).length == 0;
+	},
+	"searchString": function() {
+		return pageSession.get("CaseprofileViewSearchString");
+	},
+	"viewAsTable": function() {
+		return pageSession.get("CaseprofileViewStyle") == "table";
+	},
+	"viewAsList": function() {
+		return pageSession.get("CaseprofileViewStyle") == "list";
+	},
+	"viewAsGallery": function() {
+		return pageSession.get("CaseprofileViewStyle") == "gallery";
+	},
+	teams: function() {
+	return [
+	      {
+	        name: 'Courts',
+	        valueKey: 'name',
+	        display: 'name',
+	        local: function() { return Courts.find().fetch(); },
+	        header: '<h6 class="league-name">in Courts</h6>',
+	        template: 'searchCourt'
+	      },
+	      {
+	        name: 'CaseTitle',
+	        valueKey: 'caseId',
+	        display: 'caseId',
+	        local: function() { return Caseprofile.find().fetch(); },
+	        header: '<h6 class="disabled">with Case Title</h6>',
+	        template: 'searchCaseTitle'
+	      },
+	      {
+	        name: 'CaseNumber',
+	        valueKey: 'caseNumber',
+	        display: 'caseNumber',
+	        local: function() { return Caseprofile.find().fetch(); },
+	        header: '<h6 class="disabled">with Case Number</h6>',
+	        template: 'searchCaseTitle'
+	      },	      
+	      {
+	        name: 'Representing',
+	        valueKey: 'type',
+	        display: 'type',
+	        local: function() { return Represent.find().fetch(); },
+	        header: '<h6 class="league-name">Representing as </h6>',
+	        template: 'searchRepresent'
+	      }
+	];
+    	//return Courts.find().fetch().map(function(it){ return it.name; });
+    },
+	nba: function() {
+		return Courts.find().fetch().map(function(it){ return it.name; });
+	}
+	
+});
+
+Template.caseprofileListView.events({
+'click .caseprofile-list-item'	: function(e, t) {
+	Session.set('selectedCaseId', this._id);
+}
 });

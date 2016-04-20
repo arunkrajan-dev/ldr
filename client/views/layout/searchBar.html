@@ -1,0 +1,28 @@
+<template name="SearchCaseFile">
+	<form class="navbar-form navbar-left" role="search">
+	    <div class="form-group">
+	    <input class="form-control" placeholder="Search" type="text">
+	    </div>
+	</form>	
+					<div id="dateview-controls-courtfilter-group" class="form-group">
+							<label class="sr-only" for="search">
+								what you are looking for here?
+							</label>
+			        		<input class="form-control typeahead" name="search" type="text"
+					       		id="dataview-courtfilter-input" placeholder="(Search) What you are looing for?"
+			       				autocomplete="off" spellcheck="off"
+			       				data-sets="teams"/>
+					</div>
+</template>
+
+<template name="searchCourt">
+	<p class="lead">{{name}}</p>
+</template>
+
+<template name="searchCaseTitle">
+	<p class="lead">{{caseId}} - {{caseNumber}}</p>
+</template>
+
+<template name="searchRepresent">
+	<p class="lead">{{type}}</p>
+</template>

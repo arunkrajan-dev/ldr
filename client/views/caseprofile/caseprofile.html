@@ -9,7 +9,6 @@
 				</div>
 			</div>
 		</div>
-		<hr>
 		{{> CaseprofileView}}
 		<hr>
 	</div>
@@ -35,52 +34,52 @@
 
 <template name="CaseprofileView">
 	<div id="caseprofile-view" class="">
-		<form id="dataview-controls" class="form-inline">
-			{{#if archived}}
-			{{else}}
-			<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
-				<button type="submit" id="dataview-insert-button" class="btn btn-success">
-					<span class="fa fa-plus">
-					</span>
-					Add new
-				</button>
-			</div>
-			{{/if}}
-		{{#if isNotEmpty}}
-			<div id="dateview-controls-courtfilter-group" class="form-group">
-					<label class="sr-only" for="search">
-						what you are looking for here?
-					</label>
-	        		<input class="form-control typeahead" name="search" type="text"
-			       		id="dataview-courtfilter-input" placeholder="(Search) What you are looing for?"
-	       				autocomplete="off" spellcheck="off"
-	       				data-sets="teams"/>
-			</div>
-   			<button type="button" id="dataview-courtfilter-button" class="btn btn-primary">
-				<span class="fa fa-search">
-				</span>
-			</button>
+	<!--	<form id="dataview-controls" class="form-inline">-->
+	<!--		{{#if archived}}-->
+	<!--		{{else}}-->
+	<!--		<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">-->
+	<!--			<button type="submit" id="dataview-insert-button" class="btn btn-success">-->
+	<!--				<span class="fa fa-plus">-->
+	<!--				</span>-->
+	<!--				Add new-->
+	<!--			</button>-->
+	<!--		</div>-->
+	<!--		{{/if}}-->
+	<!--	{{#if isNotEmpty}}-->
+	<!--		<div id="dateview-controls-courtfilter-group" class="form-group">-->
+	<!--				<label class="sr-only" for="search">-->
+	<!--					what you are looking for here?-->
+	<!--				</label>-->
+	<!--        		<input class="form-control typeahead" name="search" type="text"-->
+	<!--		       		id="dataview-courtfilter-input" placeholder="(Search) What you are looing for?"-->
+	<!--       				autocomplete="off" spellcheck="off"-->
+	<!--       				data-sets="teams"/>-->
+	<!--		</div>-->
+ <!--  			<button type="button" id="dataview-courtfilter-button" class="btn btn-primary">-->
+	<!--			<span class="fa fa-search">-->
+	<!--			</span>-->
+	<!--		</button>-->
 			
-			<div class="btn-group">
-			<div class="btn-group">
-		  		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    		Order by <span class="caret"></span>
-		  		</button>
-				<ul class="dropdown-menu">
-			  		<li class="active th-sortable"><a href="#caseId" data-sort="caseId">Title</a></li>
-			  		<li class="th-sortable"><a href="#caseNumber" data-sort="caseNumber">Case Number</a></li>
-			  		<li class="th-sortable"><a href="#clientName" data-sort="clientName">Client Name</a></li>
-			  		<li class="th-sortable"><a href="#nextHearingDate" data-sort="nextHearingDate">Next Hearing</a></li>
-			  		<li class="th-sortable"><a href="#filingDate" data-sort="filingDate">Filing Date</a></li>
-			  		<li class="th-sortable"><a href="#representing" data-sort="representing">Representing</a></li>
-			  		<li class="th-sortable"><a href="#caseType" data-sort="caseType">Case Type</a></li>
-			  		<li class="th-sortable"><a href="#court" data-sort="court">Court </a></li>
-			  		<li class="th-sortable"><a href="#modifiedAt" data-sort="modifiedAt">Last Updated</a></li>
-			  	</ul>
-		  	</div>
-				<button type="button" class="btn btn-default" id="caseprofileView-sort-button">asc</button>
-		  	</div>
-		{{/if}}
+	<!--		<div class="btn-group">-->
+	<!--		<div class="btn-group">-->
+	<!--	  		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+	<!--	    		Order by <span class="caret"></span>-->
+	<!--	  		</button>-->
+	<!--			<ul class="dropdown-menu">-->
+	<!--		  		<li class="active th-sortable"><a href="#caseId" data-sort="caseId">Title</a></li>-->
+	<!--		  		<li class="th-sortable"><a href="#caseNumber" data-sort="caseNumber">Case Number</a></li>-->
+	<!--		  		<li class="th-sortable"><a href="#clientName" data-sort="clientName">Client Name</a></li>-->
+	<!--		  		<li class="th-sortable"><a href="#nextHearingDate" data-sort="nextHearingDate">Next Hearing</a></li>-->
+	<!--		  		<li class="th-sortable"><a href="#filingDate" data-sort="filingDate">Filing Date</a></li>-->
+	<!--		  		<li class="th-sortable"><a href="#representing" data-sort="representing">Representing</a></li>-->
+	<!--		  		<li class="th-sortable"><a href="#caseType" data-sort="caseType">Case Type</a></li>-->
+	<!--		  		<li class="th-sortable"><a href="#court" data-sort="court">Court </a></li>-->
+	<!--		  		<li class="th-sortable"><a href="#modifiedAt" data-sort="modifiedAt">Last Updated</a></li>-->
+	<!--		  	</ul>-->
+	<!--	  	</div>-->
+	<!--			<button type="button" class="btn btn-default" id="caseprofileView-sort-button">asc</button>-->
+	<!--	  	</div>-->
+	<!--	{{/if}}-->
 		
 	<!--		<div id="dataview-controls-export" class="form-group hidden">-->
 	<!--			{{#if isNotEmpty}}			-->
@@ -118,7 +117,7 @@
 	<!--{{/if}}-->
 	<!--		</div>-->
 			<!--<a href="#" class="collapsed showhide text-warning" data-toggle="collapse" data-target=".min-view"> Full View </a>-->
-		</form>
+	<!--	</form>-->
 		{{#if isNotEmpty}}	
 			{{#if isNotFound}}
 		<div class="alert alert-warning">
@@ -143,17 +142,72 @@
 </template>
 
 <template name="CaseprofileViewTable">
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	<div class = "row">
+	<div class="col-xs-12 col-sm-12 col-md-5">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+					<div id="dateview-controls-courtfilter-group" class="form-group">
+							<label class="sr-only" for="search">
+								what you are looking for here?
+							</label>
+			        		<input class="form-control typeahead" name="search" type="text"
+					       		id="dataview-courtfilter-input" placeholder="(Search) What you are looing for?"
+			       				autocomplete="off" spellcheck="off"
+			       				data-sets="teams"/>
+					</div>
+			<div class="btn-group btn-group-justified">
+			  <a href="#" class="btn btn-success btn-xs" id="dataview-insert-button">
+			  	<span class="fa fa-plus">
+				</span>
+				Add new
+			  </a>
+				<div class="btn-group">
+			  		<button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    		Order by <span class="caret"></span>
+			  		</button>
+					<ul class="dropdown-menu">
+				  		<li class="active th-sortable"><a href="#caseId" data-sort="caseId">Title</a></li>
+				  		<li class="th-sortable"><a href="#caseNumber" data-sort="caseNumber">Case Number</a></li>
+				  		<li class="th-sortable"><a href="#clientName" data-sort="clientName">Client Name</a></li>
+				  		<li class="th-sortable"><a href="#nextHearingDate" data-sort="nextHearingDate">Next Hearing</a></li>
+				  		<li class="th-sortable"><a href="#filingDate" data-sort="filingDate">Filing Date</a></li>
+				  		<li class="th-sortable"><a href="#representing" data-sort="representing">Representing</a></li>
+				  		<li class="th-sortable"><a href="#caseType" data-sort="caseType">Case Type</a></li>
+				  		<li class="th-sortable"><a href="#court" data-sort="court">Court </a></li>
+				  		<li class="th-sortable"><a href="#modifiedAt" data-sort="modifiedAt">Last Updated</a></li>
+				  	</ul>
+			  	</div>			  
+			  <a href="#" class="btn btn-default btn-xs">Asc</a>
+			</div>
+			</div>
+			
+			<div class="panel-body panel-body-home">
+				<div class="list-group">	
 		
-		{{#each tableItems}}
-		<div class="row">
-			{{#each row}} 
-				{{> panelView}} 
-			{{/each}}
+				{{#each tableItems}}
+						{{#each row}} 
+							{{> caseprofileListView}}
+						{{/each}}
+				{{/each}}
+				</div>				
+			</div>
 		</div>
-		{{/each}}
-		
 	</div>
+	<div class="col-xs-12 col-sm-12 col-md-7">
+		{{> caseprofileDetail}}
+	</div>
+	</div>
+	
+	<!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">-->
+	<!--	{{#each tableItems}}-->
+	<!--	<div class="row">-->
+	<!--		{{#each row}} -->
+	<!--			{{> panelView}} -->
+	<!--		{{/each}}-->
+	<!--	</div>-->
+	<!--	{{/each}}-->
+		
+	<!--</div>-->
 </template>
 
 <template name="CaseprofileViewTableItems">
@@ -256,14 +310,106 @@
   </div>
 </template>
 
-<template name="searchCourt">
-	<p class="lead">{{name}}</p>
+<!--<template name="searchCourt">-->
+<!--	<p class="lead">{{name}}</p>-->
+<!--</template>-->
+
+<!--<template name="searchCaseTitle">-->
+<!--	<p class="lead">{{caseId}} - {{caseNumber}}</p>-->
+<!--</template>-->
+
+<!--<template name="searchRepresent">-->
+<!--	<p class="lead">{{type}}</p>-->
+<!--</template>-->
+
+<template name="caseprofileListView">
+	  <a href="#" class="list-group-item caseprofile-list-item">
+	    <h6 class="list-group-item-heading">{{caseId}}
+	    <small>
+		    {{#if caseNumber}}
+		    	{{caseNumber}}
+		    {{else}}
+		    	- - 
+		    {{/if}}
+	    </small>
+	    </h6>
+	  </a>
 </template>
 
-<template name="searchCaseTitle">
-	<p class="lead">{{caseId}} - {{caseNumber}}</p>
-</template>
-
-<template name="searchRepresent">
-	<p class="lead">{{type}}</p>
+<template name="caseprofileDetail">
+	<div class="panel panel-default panel-caseprofile-detail">
+		{{#with getCaseProfileDetail}} 
+	    <div class="panel-heading" role="tab">
+				{{caseId}} -
+				
+				{{#if caseNumber}}
+					{{caseNumber}}
+				{{else}}
+					-
+				{{/if}}
+	    </div>
+	      <div class="panel-body panel-body-home">
+		      <ul class="list-group">
+		  		<li class="list-group-item">
+		    		<span class="badge">{{representing}}</span>
+		    		<h6><i class="fa fa-user">&nbsp;</i> {{getClientName clientName relationship fatherName}} </h6>
+		    		{{#if dob}}<h6><i class="fa fa-calendar">&nbsp;</i> <small> DOB: {{formatDate dob 'DD-MM-YY'}} | Age : {{age}} </small></h6>{{/if}}
+		    		<hr/>
+		    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
+		    		<i class="fa fa-envelope-o">&nbsp;</i><span><a href="mailto:{{email}}?subject= Regarding%20Case:%20{{caseId}}&body=Hi%20{{getClientName clientName}},%0A">{{email}}</a></span>
+		  		</li>
+		  		<li class="list-group-item">
+		    		<span class="badge">{{caseType}}</span>
+		    		<i class="fa fa-calendar">&nbsp;</i> <span>File: {{formatDate filingDate 'DD-MM-YYYY'}} </span><br/>
+		    		<i class="fa fa-university">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span><br/>
+		  		</li>
+			  </ul>
+			  <div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6">
+					<a class="show-log" href="#">
+			          <abbr title="Log"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
+			        </a>
+		        </div>
+		        {{#if folderId}}
+		        <div class="col-xs-6 col-sm-6 col-md-6">
+			        <a class="show-gdrive" href="https://drive.google.com/drive/folders/{{folderId}}" target="_blank">
+			          <abbr title="Google drive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Open</p></abbr>
+			        </a>
+		        </div>
+		        {{else}}
+		        	<a class="create-gdrive" href="#">
+			          <abbr title="Google drive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Create</p></abbr>
+			        </a>
+		        {{/if}}
+		       </div>
+			  <blockquote>
+			  	<div class="notes">
+			  	<a href="#">Other Details</a> 
+			  	<!--{{#if notes}}	-->
+			  	<!--	{{notes}}-->
+			  	<!--{{else}}-->
+			  	<!--{{/if}}-->
+			  	</div>
+			  	<small>-Last updated on {{formatCalendarDate modifiedAt}}</small>
+			  </blockquote>
+	    </div>
+	    <div class="panel-footer">
+	    	&nbsp;
+	    	<div class="pull-left">
+		    	{{#if nextHearingDate}}
+		    		<p class="text-muted">Next Hearing {{formatDate nextHearingDate 'll'}}</p>
+		    	{{else}}
+		    		-
+		    	{{/if}}
+	    	</div>
+		   <div class="pull-right">
+		   		<abbr Title="Click to Open Hearings">Hearing</abbr>
+		    	<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span>
+		    	<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
+		    	<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span>
+		    	<span id="print-button" class="fa fa-file-pdf-o {{printButtonClass}}" title="Print"></span>
+			</div>
+	    </div>
+		{{/with}}
+  	</div>
 </template>

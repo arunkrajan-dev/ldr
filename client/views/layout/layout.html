@@ -1,7 +1,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>
-		LDiary
+		Bootstrap - meteor
 	</title>
 </head>
 <template name="layout">
@@ -21,31 +21,6 @@
 
 <template name="PublicLayout">
 	<div id="content" class="sticky-wrapper-public">
-		<!--<div id="navbar" class="navbar navbar-fixed-top navbar-default" role="navigation">-->
-		<!--	<div class="navbar-container container">-->
-		<!--		<div class="navbar-header">-->
-		<!--			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
-		<!--				<span class="sr-only">-->
-		<!--					Toggle navigation-->
-		<!--				</span>-->
-		<!--				<span class="icon-bar">-->
-		<!--				</span>-->
-		<!--				<span class="icon-bar">-->
-		<!--				</span>-->
-		<!--				<span class="icon-bar">-->
-		<!--				</span>-->
-		<!--			</button>-->
-		<!--			<a class="navbar-brand" href="#">-->
-						<!--Ldiary-->
-		<!--			</a>-->
-		<!--		</div>-->
-		<!--		<div id="menu" class="collapse navbar-collapse">-->
-		<!--			{{> PublicLayoutLeftMenu}}{{> PublicLayoutRightMenu}}-->
-		<!--		</div>-->
-		<!--	</div>-->
-		<!--</div>-->
-		<!--<div class="navbar-spacer">-->
-		<!--</div>-->
 		{{> yield}}
 	</div>
 	<div id="footer" class="sticky-footer">
@@ -101,7 +76,18 @@
 					</a>
 				</div>
 				<div id="menu" class="collapse navbar-collapse">
-					{{> PrivateLayoutLeftMenu}}{{> PrivateLayoutRightMenu}}
+				      <ul class="nav navbar-nav">
+				       <li class="dropdown mega-dropdown">
+			    			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>				
+						<div class="dropdown-menu mega-dropdown-menu">
+		                    <ul class="nav" role="tablist">
+		                       {{> PrivateLayoutLeftMenu}}
+		                    </ul>                    
+						</div>				
+					   </li>
+				      </ul>					
+						{{> SearchCaseFile}}
+				      {{> PrivateLayoutRightMenu}}
 				</div>
 			</div>
 		</div>
@@ -116,6 +102,8 @@
 		</div>
 	</div>
 </template>
+
+
 
 <template name="PrivateLayoutLeftMenu">
 	<ul id="menu-items" class="nav navbar-nav">
@@ -185,20 +173,22 @@
 			</a>
 			</div>
 		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'appointment'}}">
+			<div class="top-navbar-icon">
+			<a href="#" style="color:#9cb3b0"  id="appointment-default">
+				<span class="fa fa-clock-o fa-fw fa-2x item-title">
+				</span>
+				<br/>
+				Appointment 
+			</a>
+			</div>
+		</li>		
 		{{/if}}
 	</ul>
 </template>
 
 <template name="PrivateLayoutRightMenu">
 	<ul id="menu-items" class="nav navbar-nav navbar-right">
-		{{#if isUserInRole 'junior'}}		
-		{{else}}		
-		<li id="menu-item-simple" class="{{menuItemClass 'appointment'}}">
-			<button type="button" class="btn btn-info" id="appointment-default">
-				Appointment
-			</button>
-		</li>
-		{{/if}}
 		<li id="menu-item-dropdown" class="dropdown ">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<span class="item-title">

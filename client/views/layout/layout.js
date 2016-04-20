@@ -97,8 +97,12 @@ Template.PrivateLayoutLeftMenu.events({
 	"click .toggle-text": function(e, t) {
 		e.preventDefault();
 		$(e.target).closest("ul").toggleClass("menu-hide-text");
+	},
+	"click #appointment-default": function(e, t) {
+		e.preventDefault();
+		$('#apptModal').modal('show');
+		return false;
 	}
-	
 });
 
 Template.PrivateLayoutLeftMenu.helpers({
