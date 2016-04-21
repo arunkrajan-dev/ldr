@@ -109,8 +109,63 @@ Template.CaseprofileDetailsDetailsForm.events({
 		e.preventDefault();
 		
 		Router.go("caseprofile", {});	
-	}
+	},
+	
+	"click #dataview-archive-button": function(e, t) {
+		e.preventDefault();
+		var me = this;
+		bootbox.dialog({
+			message: 
+			'<div class="form-group  field-archive form-center">' +
+				'<label for="opNotes">Archive Comment</label>' +
+				'<div class="input-div">' + 
+					'<input type="text" name="archiveMsg" id="archiveMsg" value="" class="form-control">' +
+					'<span id="help-text" class="help-block"></span>' +
+					'<span id="error-text" class="help-block">' +
+					'</span></div></div>',
+			title: "Move to Archive",
+			animate: false,
+			buttons: {
+				success: {
+					label: "Move",
+					className: "btn-success",
+					callback: function() {
+						var msg = $('#archiveMsg').val();
+						Caseprofile.update({ _id: t.data.caseprofile_details._id }, { $set: {'archived': 'archived', 'archivedMsg': msg} }, function(e) { if(e) alert(e);});
+					}
+				},
+				danger: {
+					label: "Cancel",
+					className: "btn-default"
+				}
+			}
+		});
+		return false;
+	},
 
+	"click #dataview-restore-button": function(e, t) {
+		e.preventDefault();
+		var me = this;
+		bootbox.dialog({
+			message: 'Are you sure want to Restore?',
+			title: "Restore from Archive",
+			animate: false,
+			buttons: {
+				success: {
+					label: "Yes",
+					className: "btn-success",
+					callback: function() {
+						Caseprofile.update({ _id: t.data.caseprofile_details._id }, { $unset: {'archived': '', 'archivedMsg': ''} }, function(e) { if(e) alert(e);});
+					}
+				},
+				danger: {
+					label: "No",
+					className: "btn-default"
+				}
+			}
+		});
+		return false;
+	}
 	
 });
 

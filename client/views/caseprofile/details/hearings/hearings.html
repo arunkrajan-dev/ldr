@@ -40,7 +40,7 @@
 				<div>
 				</div>
 				{{else}}
-				<div class="btn-group">
+				<div class="btn-group hidden">
 					<button type="button" class="btn btn-default" id="dataview-export-default">
 						Export
 					</button>
@@ -69,23 +69,6 @@
 				{{/if}}			
 	{{/if}}
 			</div>
-	{{#if caseprofile_details.archived}}			
-			<div id="dataview-controls-restore" class="form-group">
-				<button type="button" id="dataview-restore-button" class="btn btn-primary">
-					<span class="fa fa-undo">
-					</span>
-					Restore from Archive
-				</button>
-			</div>
-	{{else}}
-			<div id="dataview-controls-archive" class="form-group">
-				<button type="button" id="dataview-archive-button" class="btn btn-primary">
-					<span class="fa fa-suitcase">
-					</span>
-					Move to Archive
-				</button>
-			</div>
-	{{/if}}
 		</form>
 		{{#if isNotEmpty}}	
 			{{#if isNotFound}}
@@ -106,53 +89,37 @@
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTable">
-			<section id="cd-timeline" class="cd-container">
-			{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}
-			</section>
+			<ul class="list-group event-list">{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}</ul>
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTableItems">
-	{{caseprofile_details.caseId}}
-						<div class="cd-timeline-block">
-							<div class="cd-timeline-img cd-picture">
-							</div> <!-- cd-timeline-img -->
-				
-							<div class="cd-timeline-content">
-								<p><i class="fa fa-check-square-o">&nbsp;</i>{{description}}</p>
-								<p><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}
-										{{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}} </p>
-								<span class="cd-date">(- On Hearing -) {{formatDate businessDate 'DD-MM-YYYY h:mm a'}}
-								</span>
-								
-						{{#if isUserInRole 'junior'}}
-							<span>{{approvalMsg}} - </span>
-							Approved? - {{approved}}
-						{{else}}
-							{{#if approvalStatus approved}}
-							Approval requested for {{approvalMsg}}
-							<div class="btn-group btn-group-justified">
-  								  <a href="#" id="btn-approve" class="btn btn-success btn-circle"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-								  <!--<a href="#" id="btn-resend" class="btn btn-warning">Edit</a>-->
-								  <a href="#" id="btn-remove" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
-							</div>
-							{{else}}
-								<td class="td-icon">
-									<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
-									</span>
-								</td>
-								<td class="td-icon">
-									<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}}" title="Delete">
-									</span>
-								</td>
-								<td class="td-icon">
-									<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail">
-									</span>
-								</td>
-							{{/if}}
-						{{/if}}
-						
-						</div> <!-- cd-timeline-content -->
-						</div> <!-- cd-timeline-block -->
-				 
-</template>
+		<li class="list-group-item">
+			<time datetime="2014-07-20">
+				<span class="day">4</span>
+				<span class="month">Jul</span>
+				<span class="year">2014</span>
+				<span class="time">ALL DAY</span>
+			</time>
+    <h5 class="list-group-item-heading"><i class="fa fa-check-square-o">&nbsp;</i>{{description}}</h5>
+	<p class="list-group-item-text"><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}
+	    {{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}} </p>			
 
+	{{#if isUserInRole 'junior'}}
+		<span>{{approvalMsg}} - </span>
+		Approved? - {{approved}}
+	{{else}}
+		{{#if approvalStatus approved}}
+			Approval requested for {{approvalMsg}}
+			<div class="btn-group btn-group-justified">
+  			  <a href="#" id="btn-approve" class="btn btn-success btn-circle"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
+			  <a href="#" id="btn-remove" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
+			</div>
+		{{else}}
+			<a href="#" id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}} list-group-item-deleteButton" title="Delete"></a>
+			<a href="#" id="edit-button" class="fa fa-pencil {{editButtonClass}} list-group-item-editButton" title="Edit"></a>
+			<a href="#" id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}} list-group-item-mailButton" title="SendMail"></a>
+		{{/if}}
+	{{/if}}
+	</li>
+	
+</template>

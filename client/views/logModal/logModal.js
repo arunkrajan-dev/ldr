@@ -1,17 +1,11 @@
-Template.logModal.helpers({
-    "getCaseDetail":function(){
-        var idVal = Session.get("selectedCaseId");
-        //console.log("Id Val returned from caseId Session: " + idVal);
-        var cs = Logs.find({caseId: idVal}).fetch();
-        //console.log("Get Case Detail in Logs: " + JSON.stringify(cs, null, 4));
-        return cs;
-    },
-    "getCaseTitle":function(){
-    	return Session.get("selectedcaseTitle");
+Template.caseLog.helpers({
+    "caseLogs": function() {
+    	Meteor.subscribe("logs", this.params.caseId);
+    	return Logs.find({}).fetch();
     }
 });
 
-Template.logModal.events({
+Template.caseLog.events({
 	"submit": function(e, t) {
 		e.preventDefault();
 
@@ -30,7 +24,6 @@ Template.logModal.events({
 					}; break;
 				}
 				Session.set('lastUpdated', new Date());
-				//alert("Saved");
 			}
 		}
 
@@ -49,8 +42,8 @@ Template.logModal.events({
 
 			},
 			function(values) {
-			    values.caseId = Session.get("selectedCaseId");
-			    //console.log("Before Insert Id Val returned from caseId Session: " + values.caseId);
+			    values.caseId = self.params.caseId;
+			    console.log("Before Insert Id Val returned from caseId Session: " + values.caseId);
 				newId = Logs.insert(values, function(e) { if(e) errorAction(e); else submitAction(); });
 			}
 		);

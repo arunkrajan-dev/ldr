@@ -8,18 +8,38 @@
 						</div>
 					</div>
 				</div>
-				{{> CaseprofileDetailsDetailsForm}}
+				{{> CaseFileTabs}}
+				
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12" id="menu">
 			</div>
 		</div>
+	</div>
+</template>
+
+<template name="CaseFileTabs">
+	<ul class="nav nav-tabs nav-justified">
+	  <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Profile</a></li>
+	  <li class=""><a href="#h" data-toggle="tab" aria-expanded="false">H</a></li>
+	  <li class=""><a href="#logs" data-toggle="tab" aria-expanded="false">Logs</a></li>
+	  <li class=""><a href="#Folder" data-toggle="tab" aria-expanded="false">Folder</a></li>
+	</ul>	
+	<div id="myTabContent" class="tab-content">
+	  <div class="tab-pane fade active in" id="profile">
+		{{> CaseprofileDetailsDetailsForm}}
+	  </div>
+	  <div class="tab-pane fade" id="h">
 		<div class="row">
 			<div class="col-md-12" id="subcontent">
 				{{> yield region='CaseprofileDetailsSubcontent'}}
 			</div>
 		</div>
+	  </div>
+	  <div class="tab-pane fade" id="logs">
+	    {{> caseLog}}
+	  </div>
 	</div>
 </template>
 
@@ -37,35 +57,25 @@
 				</small>
 			{{/if}}
 		</h2>
-			<ul class="nav nav-pills">
-	  			<li><a href="#" class="collapsed showhide text-info" data-toggle="collapse" data-target="#intro"> 
-	  				Complete case profile
-	  				</a>
-	  			</li>
-			</ul>
-		<div id="intro" class="collapse">
+		{{#if caseprofile_details.archived}}			
+				<div id="dataview-controls-restore" class="form-group">
+					<button type="button" id="dataview-restore-button" class="btn btn-primary">
+						<span class="fa fa-undo">
+						</span>
+						Restore from Archive
+					</button>
+				</div>
+		{{else}}
+				<div id="dataview-controls-archive" class="form-group">
+					<button type="button" id="dataview-archive-button" class="btn btn-primary">
+						<span class="fa fa-suitcase">
+						</span>
+						Move to Archive
+					</button>
+				</div>
+		{{/if}}
 		<br/>
-		<div class="panel panel-default">
-			<div class="panel-heading">{{caseprofile_details.clientName}}</div>
-  			<div class="panel-body">
-  				<div class="row">
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-						<i class="fa fa-phone">&nbsp;</i> {{caseprofile_details.phone}}  						
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  						<i class="fa fa-email">&nbsp;</i> {{caseprofile_details.email}}			
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  						<i class="fa fa-user">&nbsp;</i>{{caseprofile_details.relationship}}: {{caseprofile_details.fatherName}}			
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  					<i class="fa fa-calendar">&nbsp;</i> DOB: {{formatDate caseprofile_details.dob 'DD-MM-YYYY'}} (age:{{caseprofile_details.age}})
-  					</div>
-  				</div>
-    		</div>
-  			<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Notes: {{caseprofile_details.clientNotes}}</div>
-		</div>
-		
+
 		<div class="panel panel-primary">
 		<div class="panel-heading">Case: {{caseprofile_details.caseId}}</div>
 			  	<div class="panel-body">
@@ -89,6 +99,27 @@
 		</div>
 		
 		<div class="panel panel-default">
+			<div class="panel-heading">Client: {{caseprofile_details.clientName}}</div>
+  			<div class="panel-body">
+  				<div class="row">
+  					<div class="col-xs-12 col-sm-12 col-md-3">
+						<i class="fa fa-phone">&nbsp;</i> {{caseprofile_details.phone}}  						
+  					</div>
+  					<div class="col-xs-12 col-sm-12 col-md-3">
+  						<i class="fa fa-email">&nbsp;</i> {{caseprofile_details.email}}			
+  					</div>
+  					<div class="col-xs-12 col-sm-12 col-md-3">
+  						<i class="fa fa-user">&nbsp;</i>{{caseprofile_details.relationship}}: {{caseprofile_details.fatherName}}			
+  					</div>
+  					<div class="col-xs-12 col-sm-12 col-md-3">
+  					<i class="fa fa-calendar">&nbsp;</i> DOB: {{formatDate caseprofile_details.dob 'DD-MM-YYYY'}} (age:{{caseprofile_details.age}})
+  					</div>
+  				</div>
+    		</div>
+  			<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Notes: {{caseprofile_details.clientNotes}}</div>
+		</div>
+		
+		<div class="panel panel-default">
 			<div class="panel-heading">Opposite Party: {{caseprofile_details.opName}}</div>
 			  	<div class="panel-body">
   				<div class="row">
@@ -98,7 +129,6 @@
   				</div>
   				</div>
   				<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Notes: {{caseprofile_details.opNotes}}</div>
-  		</div>
   		</div>
 	</div>
 </template>

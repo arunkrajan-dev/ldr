@@ -19,7 +19,8 @@ this.CaseprofileDetailsController = RouteController.extend({
 		
 
 		var subs = [
-			Meteor.subscribe("caseprofile_details", this.params.caseId)
+			Meteor.subscribe("caseprofile_details", this.params.caseId),
+			Meteor.subscribe("logs", this.params.caseId)
 		];
 		var ready = true;
 		_.each(subs, function(sub) {
@@ -34,7 +35,8 @@ this.CaseprofileDetailsController = RouteController.extend({
 
 		return {
 			params: this.params || {},
-			caseprofile_details: Caseprofile.findOne({_id:this.params.caseId}, {})
+			caseprofile_details: Caseprofile.findOne({_id:this.params.caseId}, {}),
+			caseprofile_logs: Logs.find({caseId:this.params.caseId}, {})
 		};
 		/*DATA_FUNCTION*/
 	},

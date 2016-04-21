@@ -515,7 +515,6 @@ Template.panelView.events({
 		Session.set('selectedCaseId', this._id);
 		Session.set('selectedcaseTitle', this.caseId);
 		//console.log("selected Case ID session ", this._id);
-		$('#logModal').modal('show');
 		return false;
 	},
 	"click .notes": function(e, t) {
@@ -698,7 +697,6 @@ Template.caseprofileDetail.events({
 		Session.set('selectedCaseId', this._id);
 		Session.set('selectedcaseTitle', this.caseId);
 		//console.log("selected Case ID session ", this._id);
-		$('#logModal').modal('show');
 		return false;
 	},
 	"click .notes": function(e, t) {

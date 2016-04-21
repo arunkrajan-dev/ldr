@@ -1,6 +1,10 @@
+Template.SearchCaseFile.rendered = function() {
+	Meteor.typeahead.inject();
+};
 
 Template.SearchCaseFile.helpers({
 	teams: function() {
+	Meteor.subscribe("court_list");
 	return [
 	      {
 	        name: 'Courts',

@@ -21,7 +21,6 @@ this.CaseprofileControllerA = RouteController.extend({
 
 		var subs = [
 			Meteor.subscribe("caseprofileA_list"),
-			Meteor.subscribe("logs_list")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {

@@ -1,23 +1,4 @@
-<template name="logModal">
-<div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="logModalLabel">
-  <div class="modal-dialog log-modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="sendMailModalLabel">{{getCaseTitle}} Log:</h4>
-      </div>
-      <div class="modal-body log-modal-body">
-        {{#each getCaseDetail}}
-          <blockquote>
-		  	    <p>{{notes}}</p>
-		  	    <small>-updated on {{formatDate modifiedAt "DD-MMM-YYYY"}}</small>
-		  	    <div class="pull-right">
-		  	    &nbsp;<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
-		  	    </div>
-    		  </blockquote>
-        {{/each}}
-      </div>
-      <div class="modal-footer">
+<template name="caseLog">
         <form role="form" class="insert-form">
           <div class="form-group">
             <label for="notes">
@@ -33,11 +14,14 @@
             </div>
           </div>
           <button type="submit" class="btn btn-success btn-block" id="form-submit-button" name="save">Add</button>
-        </form>
-        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-        
-      </div>
-    </div>
-  </div>
-</div>
+        </form>			  
+  		
+  		<ul class="list-group">
+        {{#each caseLogs}}
+        <li class="list-group-item">
+          <strong>{{formatDate modifiedAt "DD-MMM-YYYY"}}&nbsp;</strong> - {{notes}}
+          <a href="#" id="delete-button" class="fa fa-trash-o {{deleteButtonClass}} list-group-item-deleteButton" title="Delete"></a>
+        </li>
+        {{/each}}
+      </ul>
 </template>
