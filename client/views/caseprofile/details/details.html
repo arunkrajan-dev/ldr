@@ -1,49 +1,52 @@
 <template name="CaseprofileDetails">
-	<div class="page-container container">
-		<div class="row">
-			<div class="col-md-12" id="content">
-				<div class="row" id="title_row">
-					<div class="col-md-12">
-						<div id="page_menu" class="pull-right">
-						</div>
-					</div>
-				</div>
-				{{> CaseFileTabs}}
-				
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12" id="menu">
-			</div>
-		</div>
-	</div>
+	{{> temptab}}
 </template>
 
 <template name="CaseFileTabs">
-	<ul class="nav nav-tabs nav-justified">
-	  <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Profile</a></li>
-	  <li class=""><a href="#h" data-toggle="tab" aria-expanded="false">H</a></li>
-	  <li class=""><a href="#logs" data-toggle="tab" aria-expanded="false">Logs</a></li>
-	  <li class=""><a href="#Folder" data-toggle="tab" aria-expanded="false">Folder</a></li>
-	</ul>	
-	<div id="myTabContent" class="tab-content">
-	  <div class="tab-pane fade active in" id="profile">
-		{{> CaseprofileDetailsDetailsForm}}
-	  </div>
-	  <div class="tab-pane fade" id="h">
-		<div class="row">
-			<div class="col-md-12" id="subcontent">
-				{{> yield region='CaseprofileDetailsSubcontent'}}
-			</div>
-		</div>
-	  </div>
-	  <div class="tab-pane fade" id="logs">
-	    {{> caseLog}}
-	  </div>
-	</div>
+	<!--{{> caseprofileTitle}}-->
+
+
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li role="presentation" class="active">
+                        <a href="#profile" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation">
+                        <a href="#h" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#logs" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-picture"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#folder" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 </template>
 
-<template name="CaseprofileDetailsDetailsForm">
+<template name="caseprofileTitle">
 	<div class="form">
 		<h2 id="component-title" class="form-title">
 			<a href="#" id="form-back-button" title="back">
@@ -57,79 +60,69 @@
 				</small>
 			{{/if}}
 		</h2>
-		{{#if caseprofile_details.archived}}			
-				<div id="dataview-controls-restore" class="form-group">
-					<button type="button" id="dataview-restore-button" class="btn btn-primary">
-						<span class="fa fa-undo">
-						</span>
-						Restore from Archive
-					</button>
-				</div>
-		{{else}}
-				<div id="dataview-controls-archive" class="form-group">
-					<button type="button" id="dataview-archive-button" class="btn btn-primary">
-						<span class="fa fa-suitcase">
-						</span>
-						Move to Archive
-					</button>
-				</div>
-		{{/if}}
-		<br/>
-
-		<div class="panel panel-primary">
-		<div class="panel-heading">Case: {{caseprofile_details.caseId}}</div>
-			  	<div class="panel-body">
-  				<div class="row">
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-						<i class="fa fa-user">&nbsp;</i> {{caseprofile_details.representing}}  						
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  						<i class="fa fa-mail">&nbsp;</i> {{caseprofile_details.caseType}}			
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  						<i class="fa fa-map-marker">&nbsp;</i>{{caseprofile_details.court}}		
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  					<i class="fa fa-calendar">&nbsp;</i> Filing: {{formatDate caseprofile_details.filingDate 'DD-MM-YYYY'}}
-  					</div>
-  				</div>
-  				</div>
-  				<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i> Notes: {{caseprofile_details.notes}}</div>
-  				
-		</div>
-		
-		<div class="panel panel-default">
-			<div class="panel-heading">Client: {{caseprofile_details.clientName}}</div>
-  			<div class="panel-body">
-  				<div class="row">
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-						<i class="fa fa-phone">&nbsp;</i> {{caseprofile_details.phone}}  						
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  						<i class="fa fa-email">&nbsp;</i> {{caseprofile_details.email}}			
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  						<i class="fa fa-user">&nbsp;</i>{{caseprofile_details.relationship}}: {{caseprofile_details.fatherName}}			
-  					</div>
-  					<div class="col-xs-12 col-sm-12 col-md-3">
-  					<i class="fa fa-calendar">&nbsp;</i> DOB: {{formatDate caseprofile_details.dob 'DD-MM-YYYY'}} (age:{{caseprofile_details.age}})
-  					</div>
-  				</div>
-    		</div>
-  			<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Notes: {{caseprofile_details.clientNotes}}</div>
-		</div>
-		
-		<div class="panel panel-default">
-			<div class="panel-heading">Opposite Party: {{caseprofile_details.opName}}</div>
-			  	<div class="panel-body">
-  				<div class="row">
-  					<div class="col-xs-12 col-sm-12 col-md-12">
-						<i class="fa fa-user">&nbsp;</i> Advocate: {{caseprofile_details.opAdvocate}}  						
-  					</div>
-  				</div>
-  				</div>
-  				<div class="panel-footer"><i class="fa fa-check-square-o">&nbsp;</i>Notes: {{caseprofile_details.opNotes}}</div>
-  		</div>
 	</div>
+</template>
+
+<template name="caseprofileAction">
+
+	<div class="btn-group btn-group-justified">
+	  <a href="#" class="btn btn-default" id="edit-button">
+	  	<span class="fa fa-pencil {{editButtonClass}}" title="Edit"></span> Edit
+	  </a>
+	  <a href="#" class="btn btn-warning" id="delete-button">
+	  	<span class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span> Delete
+	  </a>
+	  <a href="#" class="btn btn-success" id="sendMail-button" >
+	  	<span class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span> Mail
+	  </a>
+	  <a href="#" class="btn btn-default" id="print-button" >
+	  	<span class="fa fa-file-pdf-o {{printButtonClass}}" title="Print"></span> Print
+	  </a>
+		{{#if caseprofile_details.archived}}			
+			<a href="#" id="dataview-restore-button" class="btn btn-primary">
+				<span class="fa fa-undo">
+				</span>
+				Restore
+			</a>
+		{{else}}
+			<a href="#" id="dataview-archive-button" class="btn btn-primary">
+				<span class="fa fa-suitcase">
+				</span>
+				Archive
+			</a>
+		{{/if}}	
+	</div>		
+</template>
+
+<template name="CaseprofileDetailsDetailsForm">
+<div class="row">
+	<div class="col-xs-12 col-md-12">
+				<div class="profile-usertitle">
+					{{#if caseprofile_details.court}}
+					<div class="profile-usertitle-name">
+						<i class="fa fa-map-marker">&nbsp;</i>{{caseprofile_details.court}}
+					</div>
+					{{/if}}
+					<div class="profile-usertitle-job">
+						{{caseprofile_details.caseType}}
+					</div>
+				</div>	
+	</div>
+
+<blockquote>
+	<p><i class="fa fa-user">&nbsp;</i> {{getClientAddress caseprofile_details.clientName caseprofile_details.relationship caseprofile_details.fatherName}} </p>
+	{{#if caseprofile_details.dob}}<h6><i class="fa fa-calendar">&nbsp;</i> DOB: {{formatDate caseprofile_details.dob 'DD-MM-YY'}} <small> Age : {{caseprofile_details.age}} </small></h6>{{/if}}
+	    		<hr/>
+	{{#if caseprofile_details.phone}}<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{caseprofile_details.phone}}">{{caseprofile_details.phone}}</a></span><br/>{{/if}}
+	{{#if caseprofile_details.email}}<i class="fa fa-envelope-o">&nbsp;</i><span><a href="mailto:{{caseprofile_details.email}}?subject= Regarding%20Case:%20{{caseprofile_details.caseId}}&body=Hi%20{{getClientName caseprofile_details.clientName}},%0A">{{caseprofile_details.email}}</a></span>{{/if}}
+  	{{#if caseprofile_details.notes}}<small> <i class="fa fa-check-square-o"></i> <cite title="Source Title">{{caseprofile_details.notes}}</cite></small>{{/if}}
+  	{{#if caseprofile_details.clientNotes}}<small> <i class="fa fa-check-square-o"></i> <cite title="Source Title">{{caseprofile_details.clientNotes}}</cite></small>{{/if}}
+</blockquote>
+<blockquote class="blockquote-reverse">
+  {{#if caseprofile_details.opName}}<p class="text-warning">[Opposite] {{caseprofile_details.opName}}</p>{{/if}}
+  {{#if caseprofile_details.opAdvocate}}<small><i class="fa fa-user">&nbsp;Advocate: </i> <cite title="Source Title">{{caseprofile_details.opAdvocate}}</cite></small>{{/if}}
+  {{#if caseprofile_details.opNotes}}<small> <i class="fa fa-check-square-o"></i> <cite title="Source Title">{{caseprofile_details.opNotes}}</cite></small>{{/if}}
+</blockquote>
+</div>
 </template>
 

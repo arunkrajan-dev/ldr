@@ -14,7 +14,12 @@ Template.CaseprofileDetails.helpers({
 
 Template.CaseprofileDetailsDetailsForm.rendered = function() {
 	
-
+	// var heightTallest = Math.max.apply(null, $(".panel-card").map(function ()
+	// {
+	// 	return $(this).outerHeight();
+	// }).get());
+	// $('.panel-card').css({ height: heightTallest + 'px' });
+	
 	pageSession.set("caseprofileDetailsDetailsFormInfoMessage", "");
 	pageSession.set("caseprofileDetailsDetailsFormErrorMessage", "");
 
@@ -175,6 +180,16 @@ Template.CaseprofileDetailsDetailsForm.helpers({
 	},
 	"errorMessage": function() {
 		return pageSession.get("caseprofileDetailsDetailsFormErrorMessage");
-	}
-	
+	},
+    "getClientAddress":function(value, rel, name) {
+        //var name2 = value.split(",");
+        if(!rel)
+        	rel="";
+        return Spacebars.SafeString(value.replace(',', ', <small>' + rel + ' ' + name + '</small><br/><i class="fa fa-map-marker">  </i>'));
+        //return name2[0];
+    },
+    "getClientName":function(value, rel, name) {
+        var name2 = value.split(",");
+        return name2[0];
+    }	    
 });

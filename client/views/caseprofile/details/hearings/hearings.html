@@ -12,27 +12,35 @@
 
 <template name="CaseprofileDetailsHearingsView">
 	<div id="caseprofile-details-hearings-view" class="">
-		<form id="dataview-controls" class="form-inline">
-			<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
-				<button type="submit" id="dataview-insert-button" class="btn btn-success">
-					<span class="fa fa-plus">
-					</span>
-					Add Hearing
-				</button>
-			</div>
+		<form id="dataview-controls" class="form insert-form">
+			<div class="row">
+			{{#if isNotEmpty}}
+			<div class="col-md-9">
 			<div id="dataview-controls-search">
-				{{#if isNotEmpty}}
+				
 				<div id="dataview-controls-search-group" class="form-group">
 					<label class="sr-only" for="search">
 						Search
 					</label>
 					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
-					<button type="button" id="dataview-search-button" class="btn btn-primary">
+				</div>
+				
+			</div>
+			</div>
+			<div class="col-md-1">
+					<button type="button" id="dataview-search-button" class="btn btn-default">
 						<span class="fa fa-search">
 						</span>
 					</button>
-				</div>
-				{{/if}}
+			</div>
+			{{/if}}
+			<div class="col-md-2">
+			<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
+				<button type="submit" id="dataview-insert-button" class="btn btn-success">
+					Add
+				</button>
+			</div>
+			</div>
 			</div>
 			<div id="dataview-controls-export" class="form-group">
 				{{#if isNotEmpty}}			
@@ -89,7 +97,7 @@
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTable">
-			<ul class="list-group event-list">{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}</ul>
+			<div class="profile-usermenu"><ul class="list-group event-list" style="max-height:300px; overflow-y:scroll;">{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}</ul></div>
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTableItems">
@@ -100,10 +108,11 @@
 				<span class="year">2014</span>
 				<span class="time">ALL DAY</span>
 			</time>
-    <h5 class="list-group-item-heading"><i class="fa fa-check-square-o">&nbsp;</i>{{description}}</h5>
-	<p class="list-group-item-text"><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}
-	    {{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}} </p>			
-
+    <a href="#">
+    <i class="fa fa-check-square-o">&nbsp;</i>{{description}}
+	<br/><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}
+	    {{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}}
+    </a>
 	{{#if isUserInRole 'junior'}}
 		<span>{{approvalMsg}} - </span>
 		Approved? - {{approved}}

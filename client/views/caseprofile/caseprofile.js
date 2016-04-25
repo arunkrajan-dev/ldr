@@ -856,6 +856,12 @@ Template.caseprofileListView.helpers({
 
 Template.caseprofileListView.events({
 'click .caseprofile-list-item'	: function(e, t) {
-	Session.set('selectedCaseId', this._id);
+		e.preventDefault();
+		Session.set('selectedClientName', this.clientName);
+		Session.set('selectedEmail', this.email);
+		Session.set('selectedCaseId', this.caseId);
+		Session.set('FolderId', this.folderId)
+		Router.go("caseprofile.details", {caseId: this._id});
+		return false;
 }
 });

@@ -13,15 +13,21 @@
 					    </span>
             </div>
           </div>
-          <button type="submit" class="btn btn-success btn-block" id="form-submit-button" name="save">Add</button>
+          <p class="text-center">
+            <a href="" class="btn btn-success btn-outline-rounded green" id="form-submit-button"> add new log<span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+          </p>
         </form>			  
   		
-  		<ul class="list-group">
+  		<ul class="list-group" style="max-height:300px; overflow-y:scroll;">
         {{#each caseLogs}}
-        <li class="list-group-item">
+        <p class="narrow text-center">
           <strong>{{formatDate modifiedAt "DD-MMM-YYYY"}}&nbsp;</strong> - {{notes}}
           <a href="#" id="delete-button" class="fa fa-trash-o {{deleteButtonClass}} list-group-item-deleteButton" title="Delete"></a>
-        </li>
+        </p>        
+        <!--<li class="list-group-item">-->
+        <!--  <strong>{{formatDate modifiedAt "DD-MMM-YYYY"}}&nbsp;</strong> - {{notes}}-->
+        <!--  <a href="#" id="delete-button" class="fa fa-trash-o {{deleteButtonClass}} list-group-item-deleteButton" title="Delete"></a>-->
+        <!--</li>-->
         {{/each}}
       </ul>
 </template>
