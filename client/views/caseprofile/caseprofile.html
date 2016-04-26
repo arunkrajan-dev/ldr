@@ -9,7 +9,7 @@
 				</div>
 			</div>
 		</div>
-		{{> CaseprofileView}}
+		{{> presentation}}
 		<hr>
 	</div>
 </template>
@@ -52,277 +52,169 @@
 		</div>
 		{{/if}}
 		<div id="dataview-data">
-			{{#if viewAsTable}}  {{> CaseprofileViewTable}} {{/if}}
+			{{#if viewAsTable}}  
+                <div class="dual-list">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                        </div>
+                    </div>
+                </div>				
+				{{> CaseprofileViewTable}}
+				</div>
+			{{/if}}
 		</div>
 	</div>
 </template>
 
 <template name="CaseprofileViewTable">
-	<div class = "row">
-	<div class="col-xs-12 col-sm-12 col-md-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-					<div id="dateview-controls-courtfilter-group" class="form-group">
-							<label class="sr-only" for="search">
-								what you are looking for here?
-							</label>
-			        		<input class="form-control typeahead" name="search" type="text"
-					       		id="dataview-courtfilter-input" placeholder="(Search) What you are looing for?"
-			       				autocomplete="off" spellcheck="off"
-			       				data-sets="teams"/>
-					</div>
-			<div class="btn-group btn-group-justified">
-			  <a href="#" class="btn btn-success btn-xs" id="dataview-insert-button">
-			  	<span class="fa fa-plus">
-				</span>
-				Add new
-			  </a>
-				<div class="btn-group">
-			  		<button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    		Order by <span class="caret"></span>
-			  		</button>
-					<ul class="dropdown-menu">
-				  		<li class="active th-sortable"><a href="#caseId" data-sort="caseId">Title</a></li>
-				  		<li class="th-sortable"><a href="#caseNumber" data-sort="caseNumber">Case Number</a></li>
-				  		<li class="th-sortable"><a href="#clientName" data-sort="clientName">Client Name</a></li>
-				  		<li class="th-sortable"><a href="#nextHearingDate" data-sort="nextHearingDate">Next Hearing</a></li>
-				  		<li class="th-sortable"><a href="#filingDate" data-sort="filingDate">Filing Date</a></li>
-				  		<li class="th-sortable"><a href="#representing" data-sort="representing">Representing</a></li>
-				  		<li class="th-sortable"><a href="#caseType" data-sort="caseType">Case Type</a></li>
-				  		<li class="th-sortable"><a href="#court" data-sort="court">Court </a></li>
-				  		<li class="th-sortable"><a href="#modifiedAt" data-sort="modifiedAt">Last Updated</a></li>
-				  	</ul>
-			  	</div>			  
-			  <a href="#" class="btn btn-default btn-xs">Asc</a>
-			</div>
-			</div>
-			
-			<div class="panel-body panel-body-home">
-				<div class="list-group">	
-		
-				{{#each tableItems}}
-						{{#each row}} 
-							{{> caseprofileListView}}
-						{{/each}}
-				{{/each}}
-				</div>				
-			</div>
-		</div>
-	</div>
-	</div>
-	
-	<!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">-->
-	<!--	{{#each tableItems}}-->
-	<!--	<div class="row">-->
-	<!--		{{#each row}} -->
-	<!--			{{> panelView}} -->
-	<!--		{{/each}}-->
-	<!--	</div>-->
-	<!--	{{/each}}-->
-		
-	<!--</div>-->
+	<table id="dataview-table" class="table table-striped table-hover">
+		<thead id="dataview-table-header">
+			<tr id="dataview-table-header-row">
+				<th class="th-sortable" data-sort="caseId">
+					Title
+				</th>
+				<th class="th-sortable" data-sort="caseNumber">
+					Number
+				</th>
+				<th class="th-sortable" data-sort="nextHearingDate">
+					Next Hearing On
+				</th>
+				<th class="th-sortable" data-sort="lastUpdated">
+					Last Updated
+				</th>
+				<th>
+					&nbsp;
+				</th>
+				<th>
+					&nbsp;
+				</th>
+			</tr>
+		</thead>
+		<tbody id="dataview-table-items" class="home-tab">
+			{{#each tableItems}} {{> CaseprofileViewTableItems}} {{/each}}
+		</tbody>
+	</table>
 </template>
 
 <template name="CaseprofileViewTableItems">
-</template>
-
-<template name="panelView">
-<div class="col-xs-12 col-sm-12 col-md-4">
-  <div class="panel panel-warning">
-    
-    <div class="panel-heading" role="tab">
-		<a href="#" class="collapsed showhide text-danger" data-toggle="collapse" data-target="#{{_id}}"> 
-	  		Full View
-	  	</a>
-    </div>
-    
-    
-      <div class="panel-body">
-      	<h2 class="panel-body-title">
+	<tr id="dataview-table-items-row" class="table-row">
+		<td>
 			{{caseId}}
-		</h2>
-		<hr>
-		<p class="text-center text-muted">
-		{{#if caseNumber}}
+		</td>
+		<td>
 			{{caseNumber}}
-		{{else}}
-			-
-		{{/if}}
-		</p>
-		
-		<div class="min-view collapse" id="{{_id}}">
-	      <ul class="list-group">
-	  		<li class="list-group-item">
-	    		<span class="badge">{{representing}}</span>
-	    		<h6><i class="fa fa-user">&nbsp;</i> {{getClientName clientName}} </h6>
-	    		{{#if dob}}<h6><i class="fa fa-calendar">&nbsp;</i> <small> DOB: {{formatDate dob 'DD-MM-YY'}} | Age : {{age}} </small></h6>{{/if}}
-	    		<h6> <small> {{relationship}} </small> {{fatherName}} </h6>
-	    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
-	    		<i class="fa fa-envelope-o">&nbsp;</i><span><a href="mailto:{{email}}?subject= Regarding%20Case:%20{{caseId}}&body=Hi%20{{getClientName clientName}},%0A">{{email}}</a></span>
-	  		</li>
-	  		<li class="list-group-item">
-	    		<span class="badge">{{caseType}}</span>
-	    		<i class="fa fa-calendar">&nbsp;</i> <span>File: {{formatDate filingDate 'DD-MM-YYYY'}} </span><br/>
-	    		<i class="fa fa-university">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span><br/>
-	  		</li>
-		  </ul>
-		  <div class="row">
-			<!--<div class="col-xs-6 col-sm-6 col-md-3">-->
-			<!--	<a class="show-caseprofile" href="#">-->
-		 <!--         <abbr title="Case Profile"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>-->
-		 <!--       </a>-->
-	  <!--      </div>-->
-			<div class="col-xs-6 col-sm-6 col-md-6">
-				<a class="show-log" href="#">
-		          <abbr title="Log"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
-		        </a>
-	        </div>
-	        {{#if folderId}}
-	        <div class="col-xs-6 col-sm-6 col-md-6">
-		        <a class="show-gdrive" href="https://drive.google.com/drive/folders/{{folderId}}" target="_blank">
-		          <abbr title="Google drive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Open</p></abbr>
-		        </a>
-	        </div>
-	        {{else}}
-	        	<a class="create-gdrive" href="#">
-		          <abbr title="Google drive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Create</p></abbr>
-		        </a>
-	        {{/if}}
-	       </div>
-		  <blockquote>
-		  	<div class="notes">
-		  	<a href="#">Other Details</a> 
-		  	<!--{{#if notes}}	-->
-		  	<!--	{{notes}}-->
-		  	<!--{{else}}-->
-		  	<!--{{/if}}-->
-		  	</div>
-		  	<small>-Last updated on {{formatCalendarDate modifiedAt}}</small>
-		  </blockquote>
-		 </div> <!-- End Of Collapse -->
-    </div>
-    <div class="panel-footer">
-    	&nbsp;
-    	<div class="pull-left">
-	    	{{#if nextHearingDate}}
-	    		<p class="text-muted">Next Hearing {{formatDate nextHearingDate 'll'}}</p>
-	    	{{else}}
-	    		-
-	    	{{/if}}
-    	</div>
-	   <div class="pull-right">
-	   		<abbr Title="Click to Open Hearings">Hearing</abbr>
-	    	<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span>
-	    	<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
-	    	<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span>
-	    	<span id="print-button" class="fa fa-file-pdf-o {{printButtonClass}}" title="Print"></span>
-		</div>
-    </div>
-    
-  </div>
-  </div>
+		</td>
+		<td>
+			<abbr title="{{nextHearingDate}}">{{formatCalendarDate nextHearingDate}}</abbr> 
+		</td>
+		<td>
+			{{formatCalendarDate modifiedAt}}
+		</td>
+		<td class="td-icon">
+			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+			</span>
+		</td>
+		<td class="td-icon">
+			<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
+			</span>
+		</td>
+	</tr>
 </template>
 
-<!--<template name="searchCourt">-->
-<!--	<p class="lead">{{name}}</p>-->
-<!--</template>-->
+<template name="presentation">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">Add</button>
+					<!--<button type="button" class="btn btn-danger btn-sm">Delete</button>-->
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+                <ul class="nav" role="tablist">
+                    
+                    <li role="presentation" class="active">
+                        <a href="#insight" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                          <i class="fa fa-home" aria-hidden="true"></i>&nbsp;Insigt
+                        </a>
+                    </li>
+                    
+                    <li role="presentation" id="tab-all">
+                        <a href="#all" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                          <i class="fa fa-list" aria-hidden="true"></i>&nbsp;Show All
+                        </a>
+                    </li>
 
-<!--<template name="searchCaseTitle">-->
-<!--	<p class="lead">{{caseId}} - {{caseNumber}}</p>-->
-<!--</template>-->
+                    <li role="presentation">
+                        <a href="#date" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Date wise
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#court" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                        <i class="fa fa-university" aria-hidden="true"></i>&nbsp;Court wise
+                        </a>
+                    </li>
 
-<!--<template name="searchRepresent">-->
-<!--	<p class="lead">{{type}}</p>-->
-<!--</template>-->
-
-<template name="caseprofileListView">
-	  <a href="#" class="list-group-item caseprofile-list-item">
-	    <h6 class="list-group-item-heading">{{caseId}}
-	    <small>
-		    {{#if caseNumber}}
-		    	{{caseNumber}}
-		    {{else}}
-		    	- - 
-		    {{/if}}
-	    </small>
-	    </h6>
-	  </a>
-</template>
-
-<template name="caseprofileDetail">
-	<div class="panel panel-default panel-caseprofile-detail">
-		{{#with getCaseProfileDetail}} 
-	    <div class="panel-heading" role="tab">
-				{{caseId}} -
-				
-				{{#if caseNumber}}
-					{{caseNumber}}
-				{{else}}
-					-
-				{{/if}}
-	    </div>
-	      <div class="panel-body panel-body-home">
-		      <ul class="list-group">
-		  		<li class="list-group-item">
-		    		<span class="badge">{{representing}}</span>
-		    		<h6><i class="fa fa-user">&nbsp;</i> {{getClientName clientName relationship fatherName}} </h6>
-		    		{{#if dob}}<h6><i class="fa fa-calendar">&nbsp;</i> <small> DOB: {{formatDate dob 'DD-MM-YY'}} | Age : {{age}} </small></h6>{{/if}}
-		    		<hr/>
-		    		<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{phone}}">{{phone}}</a></span><br/>
-		    		<i class="fa fa-envelope-o">&nbsp;</i><span><a href="mailto:{{email}}?subject= Regarding%20Case:%20{{caseId}}&body=Hi%20{{getClientName clientName}},%0A">{{email}}</a></span>
-		  		</li>
-		  		<li class="list-group-item">
-		    		<span class="badge">{{caseType}}</span>
-		    		<i class="fa fa-calendar">&nbsp;</i> <span>File: {{formatDate filingDate 'DD-MM-YYYY'}} </span><br/>
-		    		<i class="fa fa-university">&nbsp;</i><span><a href="http://maps.google.com/?q={{court}}">{{court}}</a></span><br/>
-		  		</li>
-			  </ul>
-			  <div class="row">
-				<div class="col-xs-6 col-sm-6 col-md-6">
-					<a class="show-log" href="#">
-			          <abbr title="Log"><p class="text-center text-muted"><i class="fa fa-comment-o"></i></p></abbr>
-			        </a>
-		        </div>
-		        {{#if folderId}}
-		        <div class="col-xs-6 col-sm-6 col-md-6">
-			        <a class="show-gdrive" href="https://drive.google.com/drive/folders/{{folderId}}" target="_blank">
-			          <abbr title="Google drive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Open</p></abbr>
-			        </a>
-		        </div>
-		        {{else}}
-		        	<a class="create-gdrive" href="#">
-			          <abbr title="Google drive"><p class="text-center text-muted"><i class="fa fa-folder-o"></i>Create</p></abbr>
-			        </a>
-		        {{/if}}
-		       </div>
-			  <blockquote>
-			  	<div class="notes">
-			  	<a href="#">Other Details</a> 
-			  	<!--{{#if notes}}	-->
-			  	<!--	{{notes}}-->
-			  	<!--{{else}}-->
-			  	<!--{{/if}}-->
-			  	</div>
-			  	<small>-Last updated on {{formatCalendarDate modifiedAt}}</small>
-			  </blockquote>
-	    </div>
-	    <div class="panel-footer">
-	    	&nbsp;
-	    	<div class="pull-left">
-		    	{{#if nextHearingDate}}
-		    		<p class="text-muted">Next Hearing {{formatDate nextHearingDate 'll'}}</p>
-		    	{{else}}
-		    		-
-		    	{{/if}}
-	    	</div>
-		   <div class="pull-right">
-		   		<abbr Title="Click to Open Hearings">Hearing</abbr>
-		    	<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit"></span>
-		    	<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
-		    	<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="SendMail" hidden></span>
-		    	<span id="print-button" class="fa fa-file-pdf-o {{printButtonClass}}" title="Print"></span>
+                    <li role="presentation">
+                        <a href="#archived" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                        <i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Archived
+                        </a>
+                    </li>
+                </ul>
+				</div>
+				<div class="profile-usertitle">
+				</div>
+				<!-- END MENU -->
 			</div>
-	    </div>
-		{{/with}}
-  	</div>
+		</div>
+		<div class="col-md-9">
+            <div class="profile-content">
+            	<div id="myTabContent" class="tab-content">
+            	  <div class="tab-pane fade active in" id="insight">
+            		Welcome!
+            	  </div>
+            	  <div class="tab-pane fade" id="all">
+            		Case Details
+            		{{> CaseprofileView}}
+            	  </div>
+            	  <div class="tab-pane fade" id="date">
+            		Date Range
+            	  </div>
+            	  <div class="tab-pane fade" id="court">
+            		Courts
+            		{{> courts}}
+            	  </div>            	  
+            	  <div class="tab-pane fade" id="profile">
+            		Archived
+            	  </div>
+            	</div>
+            </div>
+		</div>
+	</div>
+</template>
+
+<template name="courts">
+        <div class="dual-list">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group">
+                  {{#each courts}}
+                  {{#if name}}
+                    <a href="#" class="list-group-item" title="{{name}}"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;{{name}}</a>
+                  {{/if}}
+                  {{/each}}
+                </div>
+        </div>
 </template>

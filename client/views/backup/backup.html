@@ -81,23 +81,3 @@
     <!--	</form>-->
     <!--</div>-->
 </template>
-
-<template name="courts">
-        <div class="dual-list">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
-                            <span class="input-group-addon glyphicon glyphicon-search"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-group">
-                  {{#each courts}}
-                  {{#if name}}
-                    <a href="#" class="list-group-item"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;{{name}}</a>
-                  {{/if}}
-                  {{/each}}
-                </div>
-        </div>
-</template>
