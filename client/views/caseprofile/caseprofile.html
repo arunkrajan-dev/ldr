@@ -149,23 +149,26 @@
                           <i class="fa fa-list" aria-hidden="true"></i>&nbsp;Show All
                         </a>
                     </li>
-
-                    <li role="presentation">
-                        <a href="#date" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
-                          <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Date wise
-                        </a>
-                    </li>
                     <li role="presentation" id="tab-court">
                         <a href="#court" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                         <i class="fa fa-university" aria-hidden="true"></i>&nbsp;Court wise
                         </a>
                     </li>
-
                     <li role="presentation">
-                        <a href="#archived" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                        <i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Archived
+                        <a href="#date" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Date wise
                         </a>
                     </li>
+                    <li role="presentation">
+                        <a href="#todo" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                        <i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Todo <span class="badge pull-right">{{incompleteCount}}</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#approval" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                        <i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Approvals <span class="badge pull-right">{{incompleteApprovalCount}}</span>
+                        </a>
+                    </li>                
                 </ul>
 				</div>
 				<div class="profile-usertitle">
@@ -183,17 +186,22 @@
             		Case Details
             		{{> CaseprofileView}}
             	  </div>
-            	  <div class="tab-pane fade" id="date">
-            		Date Range
-            		{{> calendar}}
-            	  </div>
             	  <div class="tab-pane fade" id="court">
             		Courts
             		{{> courts}}
             	  </div>            	  
-            	  <div class="tab-pane fade" id="profile">
-            		Archived
+            	  <div class="tab-pane fade" id="date">
+            		Date Range
+            		{{> calendar}}
+            	  </div>            	  
+            	  <div class="tab-pane fade" id="todo">
+            		Todo
+            		{{>todo}}
             	  </div>
+            	  <div class="tab-pane fade" id="approval">
+            		Approvals
+            		{{>approval}}
+            	  </div>            	  
             	</div>
             </div>
 		</div>
@@ -215,7 +223,7 @@
                   {{#if name}}
                   {{#if getCount name}}
                     <a href="#" class="list-group-item" title="{{name}}"><i class="fa fa-university" aria-hidden="true"></i>
-                    &nbsp;<small>{{name}} ({{getCount name}})</small></a>
+                    &nbsp;{{name}} <span class="badge pull-right">{{getCount name}}</span></a>
                   {{/if}}
                   {{/if}}
                   {{/each}}

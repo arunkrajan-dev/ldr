@@ -46,10 +46,10 @@
                             left:   'month,basicWeek,basicDay',
                             center: 'title',
                             right: 'today prev,next'
-                        },
-                eventClick: function(calEvent, jsEvent, view) {
-                                alert("Event clicked: "+ calEvent.title);
-                        }                        
+                        }
+                // eventClick: function(calEvent, jsEvent, view) {
+                //                 alert("Event clicked: "+ calEvent.title);
+                //         }                        
             }
         }
     });

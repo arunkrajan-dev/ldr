@@ -356,6 +356,9 @@ Template.courts.events({
             $('#tab-court').addClass('active');
             $('.nav a[href="#all"]').tab('show');
         }
+    },
+    "click #tab-archive": function(e, t) {
+    	
     }
 });
 
@@ -363,4 +366,15 @@ Template.presentation.events({
 	"click #tab-all": function() {
 		pageSession.set("CaseprofileViewSearchString", "");
 	}	
+});
+
+Template.presentation.helpers({
+	incompleteCount: function () {
+      Meteor.subscribe("tasks_list");
+      return Tasks.find({checked: {$ne: true}}).count();
+    },
+    incompleteApprovalCount: function() {
+    	this.hearings = Hearings.find({approved: {$in : ["no", "resend"]}}, {});
+    	return Hearings.find({approved: {$in : ["no", "resend"]}}, {}).count();
+    }
 });

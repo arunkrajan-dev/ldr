@@ -119,10 +119,8 @@
 	{{else}}
 		{{#if approvalStatus approved}}
 			Approval requested for {{approvalMsg}}
-			<div class="btn-group btn-group-justified">
-  			  <a href="#" id="btn-approve" class="btn btn-success btn-circle"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-			  <a href="#" id="btn-remove" class="btn btn-danger btn-circle"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
-			</div>
+  			  <a href="#" id="btn-approve" class="fa fa-thumbs-o-up fa-2x list-group-item-mailButton"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
+			  <a href="#" id="btn-remove" class="fa fa-thumbs-o-down fa-2x list-group-item-deleteButton"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
 		{{else}}
 			<a href="#" id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}} list-group-item-deleteButton" title="Delete"></a>
 			<a href="#" id="edit-button" class="fa fa-pencil {{editButtonClass}} list-group-item-editButton" title="Edit"></a>
