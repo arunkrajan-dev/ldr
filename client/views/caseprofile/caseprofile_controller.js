@@ -22,7 +22,8 @@ this.CaseprofileController = RouteController.extend({
 		var subs = [
 			Meteor.subscribe("caseprofile_list"),
 			Meteor.subscribe("court_list"),
-			Meteor.subscribe("represent_list")
+			Meteor.subscribe("represent_list"),
+			Meteor.subscribe("hearings_list")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {

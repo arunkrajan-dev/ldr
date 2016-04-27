@@ -1,4 +1,3 @@
-
     Template.calendar.helpers({
         options: function() {
             Session.set('prevPage', "calendar");
@@ -15,14 +14,14 @@
                 console.log("case list ", JSON.stringify(it, null, 4));
                 //str = "#" + (Math.floor(Math.random() * 205) + 51).toString(16) + "" + (Math.floor(Math.random() * 205) + 51).toString(16) + "" + (Math.floor(Math.random() * 205) + 51).toString(16);
                 console.log("color: " + str);
-                eventsList.push({title: "(F) " + it.caseId, date: moment(it.filingDate).format(), color: '#00ff00', textColor: '#000', url: "/caseprofile/details/"+it._id+"/hearings"});
+                eventsList.push({title: "(F) " + it.caseId, date: moment(it.filingDate).format(), color: '#00ff00', textColor: '#000'});//, url: "/caseprofile/details/"+it._id+"/hearings"});
                 eventsList = eventsList.concat(Hearings.find({caseId:it._id}).fetch().map(function(h){
                     return {
                         title: "(H) " + h.purpose + "-" + it.caseId, 
                         date: moment(h.nextDate).format(),
                         color: "#ff6600",
                         textColor: '#000',
-                        url: "/caseprofile/details/"+it._id+"/hearings"
+                        //url: "/caseprofile/details/"+it._id+"/hearings"
                     };
                     }));
                 console.log("Hearing list ", JSON.stringify(hearingsList, null, 4));
@@ -37,7 +36,7 @@
                     textColor: '#000',
                 };
             }));
-
+            
             console.log("eventsList ", JSON.stringify(eventsList, null, 4));
             //var eventsList = Caseprofile.find().fetch().map(function(it){return {title:it.caseId, date: it.filingDate};});
             return {
@@ -47,7 +46,10 @@
                             left:   'month,basicWeek,basicDay',
                             center: 'title',
                             right: 'today prev,next'
-                        }
+                        },
+                eventClick: function(calEvent, jsEvent, view) {
+                                alert("Event clicked: "+ calEvent.title);
+                        }                        
             }
         }
     });

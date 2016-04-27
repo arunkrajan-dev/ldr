@@ -323,6 +323,9 @@ Template.courts.rendered = function() {
 Template.courts.helpers({
     "courts": function() {
         return Courts.find().fetch();
+    },
+    "getCount": function(name) {
+    	return Caseprofile.find({"court": new RegExp(name, "i") }).count();
     }
 });
 
@@ -350,6 +353,7 @@ Template.courts.events({
         console.log("Target", e.target.title);
         if(e.target.title) {
             pageSession.set("CaseprofileViewSearchString", e.target.title);
+            $('#tab-court').addClass('active');
             $('.nav a[href="#all"]').tab('show');
         }
     }

@@ -155,7 +155,7 @@
                           <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Date wise
                         </a>
                     </li>
-                    <li role="presentation">
+                    <li role="presentation" id="tab-court">
                         <a href="#court" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                         <i class="fa fa-university" aria-hidden="true"></i>&nbsp;Court wise
                         </a>
@@ -185,6 +185,7 @@
             	  </div>
             	  <div class="tab-pane fade" id="date">
             		Date Range
+            		{{> calendar}}
             	  </div>
             	  <div class="tab-pane fade" id="court">
             		Courts
@@ -212,7 +213,10 @@
                 <div class="list-group">
                   {{#each courts}}
                   {{#if name}}
-                    <a href="#" class="list-group-item" title="{{name}}"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;{{name}}</a>
+                  {{#if getCount name}}
+                    <a href="#" class="list-group-item" title="{{name}}"><i class="fa fa-university" aria-hidden="true"></i>
+                    &nbsp;<small>{{name}} ({{getCount name}})</small></a>
+                  {{/if}}
                   {{/if}}
                   {{/each}}
                 </div>
