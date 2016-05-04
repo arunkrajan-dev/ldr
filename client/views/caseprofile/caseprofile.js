@@ -365,7 +365,11 @@ Template.courts.events({
 Template.presentation.events({
 	"click #tab-all": function() {
 		pageSession.set("CaseprofileViewSearchString", "");
-	}	
+	}, 	
+	"click #dataview-insert-button": function(e, t) {
+		e.preventDefault();
+		Router.go("caseprofile.insert", {});
+	}
 });
 
 Template.presentation.helpers({
@@ -376,5 +380,20 @@ Template.presentation.helpers({
     incompleteApprovalCount: function() {
     	this.hearings = Hearings.find({approved: {$in : ["no", "resend"]}}, {});
     	return Hearings.find({approved: {$in : ["no", "resend"]}}, {}).count();
-    }
+    },
+	appointmentCount: function() {
+		return Appt.find({}).count();
+	}    
 });
+
+Template.insight.helpers({
+	"noCaseNumber": function() {
+		return Caseprofile.find({caseNumber: ""}).count();
+	},
+	"noNextHearing": function() {
+		return Caseprofile.find({nextHearingDate: null}).count();
+	}, 
+	"fyaCount": function() {
+		return this.fya_list.count();	
+	},
+})

@@ -1,11 +1,5 @@
 <template name="apptModal">
-<div class="modal fade" id="apptModal" tabindex="-1" role="dialog" aria-labelledby="apptModalLabel">
-  <div class="modal-dialog appt-modal-dialog" role="document">
-    <div class="modal-content">
-
-      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="sendMailModalLabel">Appointment:</h4>
           <form role="form" class="insert-form">
     			{{#if errorMessage}}
     			<div class="alert alert-warning">
@@ -66,32 +60,31 @@
     			</div>
     			<button type="submit" class="btn btn-success btn-block" id="form-submit-button" name="save">Add</button>
     		</form>
-      </div>
-
-      <div class="modal-body appt-modal-body">
-    		<div>
-          {{#each getApptDetail}}
-            <div class="row">
-      				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-2">
-      				  <i class="fa fa-calendar">&nbsp;</i>{{formatDate apptDate "DD-MMM-YYYY"}}
-      				</div>
-      				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-6">
-      				  <i class="fa  fa-check-square-o">&nbsp;</i>{{description}}
-      				</div>
-      				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-2">
-      				  <i class="fa fa-map-marker">&nbsp;</i>{{location}}
-      				</div>
-      				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-1">
-      				  <span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>
-      				</div>
-    				</div>
-          {{/each}}
-        </div>
-      </div>
-      <div class="modal-footer">
-        Deside Later
-      </div>
-    </div>
-  </div>
-</div>
+    <ul class="list-group">
+      {{#each getApptDetail}}
+        <li class="list-group-item">
+          <span id="delete-button" class="delete fa fa-trash-o" title="Delete"></span>
+          <span class="text"><strong>{{formatDate apptDate "DD-MMM-YYYY"}}</strong> {{description}} 
+            <i class="fa fa-map-marker">&nbsp;</i> {{location}}</span>
+        </li>
+      {{/each}}
+    </ul>
+    		<!--<div>-->
+      <!--    {{#each getApptDetail}}-->
+      <!--      <div class="row">-->
+      <!--				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-2">-->
+      <!--				  <i class="fa fa-calendar">&nbsp;</i>{{formatDate apptDate "DD-MMM-YYYY"}}-->
+      <!--				</div>-->
+      <!--				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-6">-->
+      <!--				  <i class="fa  fa-check-square-o">&nbsp;</i>{{description}}-->
+      <!--				</div>-->
+      <!--				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-2">-->
+      <!--				  <i class="fa fa-map-marker">&nbsp;</i>{{location}}-->
+      <!--				</div>-->
+      <!--				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-1">-->
+      <!--				  <span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete"></span>-->
+      <!--				</div>-->
+    		<!--		</div>-->
+      <!--    {{/each}}-->
+      <!--  </div>-->
 </template>
