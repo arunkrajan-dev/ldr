@@ -18,18 +18,63 @@
 </template>
 
 <template name="searchCaseTitle">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	<h6><mark>{{caseId}}</mark> <small>{{caseNumber}}</small></h6><hr/>
+</template>
+
+<template name="searchCaseNumber">
+	<h6>{{caseId}}<mark><small>{{caseNumber}}</small></mark></h6><hr/>
 </template>
 
 <template name="searchClientName">
 	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- <mark>{{clientName}}</mark>
+	- Client: <mark>{{clientName}}</mark><hr/>
+</template>
+
+<template name="searchClientFatherName">
+	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	- <mark>{{relationship}} - {{fatherName}}</mark>  {{clientName}} <hr/>
+</template>
+
+<template name="searchByCourt">
+	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	- Court: <mark>{{court}}</mark><hr/>
 </template>
 
 <template name="searchPhone">
 	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- <mark>{{phone}}</mark>
+	- Phone: <mark>{{phone}}</mark><hr/>
 </template>
+
+<template name="searchEmail">
+	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	- Email: <mark>{{email}}</mark><hr/>
+</template>
+
+<template name="searchNotes">
+	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	- Notes: <mark>{{notes}}</mark><hr/>
+</template>
+
+<template name="searchClientNotes">
+	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	- Notes: <mark>{{clientNotes}}</mark><hr/>
+</template>
+
+<template name="searchOpNotes">
+	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	- Notes: <mark>{{opNotes}}</mark><hr/>
+</template>
+
+<template name="searchOpName">
+	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	- (Opposite Party) <mark>{{opName}}</mark><hr/>
+</template>
+
+<template name="searchOpAdv">
+	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
+	- (Opposite Advocate)<mark>{{opAdvocate}}</mark><hr/>
+</template>
+
 
 <template name="searchRepresent">
 	<p class="lead">{{type}}</p>

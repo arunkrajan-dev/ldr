@@ -7,20 +7,18 @@ Template.SearchCaseFile.events({
 		if(e.which === 13)
 		{
 			e.preventDefault();
-alert("fine");
-debugger;
 			return false;
 		}
 
 		if(e.which === 27)
 		{
 			e.preventDefault();
-alert("fine");
-debugger;
 			return false;
 		}
 
 		return true;
+	},
+	"click .tt-suggestion": function(e, t) {
 	}
 })
 Template.SearchCaseFile.helpers({
@@ -41,7 +39,7 @@ Template.SearchCaseFile.helpers({
 	        display: 'caseNumber',
 	        local: function() { return Caseprofile.find().fetch(); },
 	        header: '<strong>matching Case Number</strong>',
-	        template: 'searchCaseTitle'
+	        template: 'searchCaseNumber'
 	      },
 	      {
 	        name: 'client',
@@ -57,7 +55,7 @@ Template.SearchCaseFile.helpers({
 	        display: 'fatherName',
 	        local: function() { return Caseprofile.find().fetch(); },
 	        header: '<strong">matching fatherName</strong>',
-	        template: 'searchCaseTitle'
+	        template: 'searchClientFatherName'
 	      },
 	      {
 	        name: 'clientPhone',
@@ -73,7 +71,15 @@ Template.SearchCaseFile.helpers({
 	        display: 'email',
 	        local: function() { return Caseprofile.find().fetch(); },
 	        header: '<strong>matching email</strong>',
-	        template: 'searchCaseTitle'
+	        template: 'searchEmail'
+	      },
+	      {
+	        name: 'court',
+	        valueKey: 'court',
+	        display: 'court',
+	        local: function() { return Caseprofile.find().fetch(); },
+	        header: '<strong>matching court</strong>',
+	        template: 'searchByCourt'
 	      },
 	      {
 	        name: 'notes',
@@ -81,7 +87,7 @@ Template.SearchCaseFile.helpers({
 	        display: 'notes',
 	        local: function() { return Caseprofile.find().fetch(); },
 	        header: '<strong>matching notes</strong>',
-	        template: 'searchCaseTitle'
+	        template: 'searchNotes'
 	      },
 	      {
 	        name: 'clientNotes',
@@ -89,7 +95,7 @@ Template.SearchCaseFile.helpers({
 	        display: 'clientNotes',
 	        local: function() { return Caseprofile.find().fetch(); },
 	        header: '<strong>matching clientNotes</strong>',
-	        template: 'searchCaseTitle'
+	        template: 'searchClientNotes'
 	      },	      
 	      {
 	        name: 'opName',
@@ -97,7 +103,7 @@ Template.SearchCaseFile.helpers({
 	        display: 'opName',
 	        local: function() { return Caseprofile.find().fetch(); },
 	        header: '<strong>matching opName</strong>',
-	        template: 'searchCaseTitle'
+	        template: 'searchOpName'
 	      },
 	      {
 	        name: 'opAdvocate',
@@ -105,7 +111,7 @@ Template.SearchCaseFile.helpers({
 	        display: 'opAdvocate',
 	        local: function() { return Caseprofile.find().fetch(); },
 	        header: '<strong>matching opAdvocate</strong>',
-	        template: 'searchCaseTitle'
+	        template: 'searchOpAdv'
 	      },
 	      {
 	        name: 'opNotes',
@@ -113,7 +119,7 @@ Template.SearchCaseFile.helpers({
 	        display: 'opNotes',
 	        local: function() { return Caseprofile.find().fetch(); },
 	        header: '<strong>matching opNotes</strong>',
-	        template: 'searchCaseTitle'
+	        template: 'searchOpNotes'
 	      }    
 	];
     }

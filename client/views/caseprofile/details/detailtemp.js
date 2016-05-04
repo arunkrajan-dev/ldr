@@ -28,5 +28,11 @@ Template.temptab.events({
 		e.preventDefault();
 		Router.go("caseprofile.edit", {caseId: t.data.caseprofile_details._id});
 		return false;
-	}    
+	},
+	"click .create-gdrive": function(e, t) {
+	  	console.log("[INFO] CreateFolder is called to create folder ", t.data.caseprofile_details.caseId, t.data.caseprofile_details._id);	
+	  	Meteor.call("createGdriveFolder", "LDR " + t.data.caseprofile_details.caseId, t.data.caseprofile_details._id, function(error, r) {
+	    	console.log("[Result] ", r);	
+    	})
+	}
 });

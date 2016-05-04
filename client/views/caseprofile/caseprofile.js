@@ -317,7 +317,7 @@ Template.CaseprofileViewTableItems.helpers({
 });
 
 Template.courts.rendered = function() {
-    meteor.typeahead.inject();
+    Meteor.typeahead.inject();
 };
 
 Template.courts.helpers({

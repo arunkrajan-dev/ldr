@@ -51,9 +51,18 @@
                     </li>
 
                     <li role="presentation">
-                        <a href="#folder" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                                <i class="fa fa-folder-open-o" aria-hidden="true"></i>&nbsp; Files
-                        </a>
+			        {{#if caseprofile_details.folderId}}
+				        <a class="show-gdrive" href="https://drive.google.com/drive/folders/{{caseprofile_details.folderId}}" target="_blank">
+				          <i class="fa fa-folder-o"></i>&nbsp; Open File Folder
+				        </a>
+			        {{else}}
+			        	<a class="create-gdrive" href="#">
+				          <i class="fa fa-folder-o"></i>&nbsp; Create File Folder
+				        </a>
+			        {{/if}}
+                        <!--<a href="#folder" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">-->
+                        <!--        <i class="fa fa-folder-open-o" aria-hidden="true"></i>&nbsp; Files-->
+                        <!--</a>-->
                     </li>
                 </ul>
 				</div>
@@ -88,9 +97,6 @@
 		</div>
 	</div>
 </div>
-<center>
-<strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>
-</center>
 <br>
 <br>
 </template>                   
