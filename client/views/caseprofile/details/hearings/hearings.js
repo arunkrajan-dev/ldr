@@ -346,6 +346,11 @@ Template.CaseprofileDetailsHearingsViewTableItems.helpers({
 		return Hearings.userCanUpdate(Meteor.userId(), this) ? "" : "hidden";
 	},
 
+	"splitDate": function(value) {
+		var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		return {day:  moment(value).get('date'), month: months[moment(value).get('month')], year:"2016", time:"10:20PM"};	
+	},
+	
 	"deleteButtonClass": function(d1, d2) {
 		// var retVal = "";
 		// console.log("Last hearing in delete", d1, d2);	

@@ -97,36 +97,77 @@
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTable">
-			<div class="profile-usermenu"><ul class="list-group event-list" style="max-height:300px; overflow-y:scroll;">{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}</ul></div>
+	<table id="dataview-table" class="table table-hover">
+		<thead id="dataview-table-header">
+			<tr id="dataview-table-header-row">
+				<th class="th-sortable col-md-7" data-sort="businessDate">
+					Business
+				</th>
+				<th class="th-sortable col-md-5" data-sort="nextDate">
+					Next Hearing
+				</th>
+				<th>
+					&nbsp;
+				</th>
+				<th>
+					&nbsp;
+				</th>
+			</tr>
+		</thead>
+		<tbody id="dataview-table-items" class="home-tab">
+			{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}
+		</tbody>
+	</table>	
+			<!--<div class="profile-usermenu"><ul class="list-group event-list" style="max-height:300px; overflow-y:scroll;">{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}</ul></div>-->
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTableItems">
-		<li class="list-group-item">
-			<time datetime="2014-07-20">
-				<span class="day">4</span>
-				<span class="month">Jul</span>
-				<span class="year">2014</span>
-				<span class="time">ALL DAY</span>
-			</time>
-    <a href="#">
-    <i class="fa fa-check-square-o">&nbsp;</i>{{description}}
-	<br/><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}
-	    {{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}}
-    </a>
-	{{#if isUserInRole 'junior'}}
-		<span>{{approvalMsg}} - </span>
-		Approved? - {{approved}}
-	{{else}}
-		{{#if approvalStatus approved}}
-			Approval requested for {{approvalMsg}}
-  			  <a href="#" id="btn-approve" class="fa fa-thumbs-o-up fa-2x list-group-item-mailButton"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-			  <a href="#" id="btn-remove" class="fa fa-thumbs-o-down fa-2x list-group-item-deleteButton"><i class="fa fa-thumbs-o-down fa-2x"></i></a>
-		{{else}}
-			<a href="#" id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}} list-group-item-deleteButton" title="Delete"></a>
-			<a href="#" id="edit-button" class="fa fa-pencil {{editButtonClass}} list-group-item-editButton" title="Edit"></a>
-			<a href="#" id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}} list-group-item-mailButton" title="SendMail"></a>
-		{{/if}}
-	{{/if}}
-	</li>
+	<tr id="dataview-table-items-row" class="table-row">
+		<td >
+			<h6 class="text-primary">{{formatDate businessDate 'DD-MMM-YYYY'}} </h6> - {{description}}
+		</td>
+		<td>
+			<h6 class="text-warning"><abbr title="{{nextDate}}">{{formatCalendarDate nextDate}}</abbr> </h6> - {{purpose}}
+			 
+		</td>
+		<td>
+			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+			</span>
+		</td>
+		<td>
+			<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
+			</span>
+		</td>
+	</tr>	
+	
+	<!--	<li class="list-group-item">-->
+	<!--		<time datetime="{{businessDate}}">-->
+	<!--		{{#with splitDate businessDate}}-->
+	<!--			<span class="day">{{day}}</span>-->
+	<!--			<span class="month">{{month}}</span>-->
+	<!--			<span class="year">{{year}}</span>-->
+	<!--			<span class="time">{{time}}</span>-->
+	<!--		{{/with}}-->
+	<!--		</time>-->
+ <!--   <a href="#">-->
+ <!--   <i class="fa fa-check-square-o">&nbsp;</i>{{description}}-->
+	<!--<br/><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}-->
+	<!--    {{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}}-->
+ <!--   </a>-->
+	<!--{{#if isUserInRole 'junior'}}-->
+	<!--	<span>{{approvalMsg}} - </span>-->
+	<!--	Approved? - {{approved}}-->
+	<!--{{else}}-->
+	<!--	{{#if approvalStatus approved}}-->
+	<!--		Approval requested for {{approvalMsg}}-->
+ <!-- 			  <a href="#" id="btn-approve" class="fa fa-thumbs-o-up fa-2x list-group-item-mailButton"><i class="fa fa-thumbs-o-up fa-2x"></i></a>-->
+	<!--		  <a href="#" id="btn-remove" class="fa fa-thumbs-o-down fa-2x list-group-item-deleteButton"><i class="fa fa-thumbs-o-down fa-2x"></i></a>-->
+	<!--	{{else}}-->
+	<!--		<a href="#" id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}} list-group-item-deleteButton" title="Delete"></a>-->
+	<!--		<a href="#" id="edit-button" class="fa fa-pencil {{editButtonClass}} list-group-item-editButton" title="Edit"></a>-->
+	<!--		<a href="#" id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}} list-group-item-mailButton" title="SendMail"></a>-->
+	<!--	{{/if}}-->
+	<!--{{/if}}-->
+	<!--</li>-->
 	
 </template>
