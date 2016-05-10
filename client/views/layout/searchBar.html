@@ -3,79 +3,21 @@
         <div class="form-group" style="display:inline;">
           <div class="input-group" style="display:table;">
             <span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
-        		
-        		<input id="dateview-controls-courtfilter-group" class="form-control typeahead" name="search" type="text"
-					       		placeholder="Search"
-			       				autocomplete="off" spellcheck="off"
-			       				data-sets="teams"/>          
+
+				<input id="dateview-controls-courtfilter-group" class="form-control typeahead" name="search" type="text" placeholder="Type to query"
+				       autocomplete="off" spellcheck="off"
+				       data-source="search" data-select="selected" data-template="SearchCaseResult"/>
+				       
+        		<!--<input id="dateview-controls-courtfilter-group" class="form-control typeahead" name="search" type="text"-->
+					     <!--  		placeholder="Search"-->
+			       <!--				autocomplete="off" spellcheck="off"-->
+			       <!--				data-sets="teams"/>          -->
           </div>
         </div>
       </form>
 </template>
 
-<template name="searchCourt">
-	<p class="lead">{{name}}</p>
-</template>
-
-<template name="searchCaseTitle">
-	<h6><mark>{{caseId}}</mark> <small>{{caseNumber}}</small></h6><hr/>
-</template>
-
-<template name="searchCaseNumber">
-	<h6>{{caseId}}<mark><small>{{caseNumber}}</small></mark></h6><hr/>
-</template>
-
-<template name="searchClientName">
+<template name="SearchCaseResult">
 	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- Client: <mark>{{clientName}}</mark><hr/>
-</template>
-
-<template name="searchClientFatherName">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- <mark>{{relationship}} - {{fatherName}}</mark>  {{clientName}} <hr/>
-</template>
-
-<template name="searchByCourt">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- Court: <mark>{{court}}</mark><hr/>
-</template>
-
-<template name="searchPhone">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- Phone: <mark>{{phone}}</mark><hr/>
-</template>
-
-<template name="searchEmail">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- Email: <mark>{{email}}</mark><hr/>
-</template>
-
-<template name="searchNotes">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- Notes: <mark>{{notes}}</mark><hr/>
-</template>
-
-<template name="searchClientNotes">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- Notes: <mark>{{clientNotes}}</mark><hr/>
-</template>
-
-<template name="searchOpNotes">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- Notes: <mark>{{opNotes}}</mark><hr/>
-</template>
-
-<template name="searchOpName">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- (Opposite Party) <mark>{{opName}}</mark><hr/>
-</template>
-
-<template name="searchOpAdv">
-	<h6>{{caseId}} <small>{{caseNumber}}</small></h6>
-	- (Opposite Advocate)<mark>{{opAdvocate}}</mark><hr/>
-</template>
-
-
-<template name="searchRepresent">
-	<p class="lead">{{type}}</p>
+	Match: <mark>{{{match}}}</mark><hr/>
 </template>

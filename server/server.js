@@ -219,7 +219,71 @@ Meteor.methods({
 		      return true;  
 		    }
 	}, 
-	
+    
+    // Search result for Client Search Bar    
+        search: function(query, options) {
+            options = options || {};
+            // guard against client-side DOS: hard limit to 50
+            if (options.limit) {
+                options.limit = Math.min(50, Math.abs(options.limit));
+            } else {
+                options.limit = 50;
+            }
+
+            var searchList = [];
+            searchList = searchList.concat(Caseprofile.find({"caseId": new RegExp(query,"i")}).fetch().map(function(it){
+            	return {
+            		value: it.caseId,
+            		match: "<b>Title: </b>" + it.caseId,
+            		id: it._id,
+            		caseId: it.caseId,
+            		caseNumber: it.caseNumber
+            	};
+            }));
+
+            searchList = searchList.concat(Caseprofile.find({"clientName": new RegExp(query,"i")}).fetch().map(function(it){
+            	return {
+            		value: it.clientName,
+            		match: "<b>Client Name & Address: </b>" + it.clientName,
+            		id: it._id,
+            		caseId: it.caseId,
+            		caseNumber: it.caseNumber
+            	};
+            }));
+
+            searchList = searchList.concat(Caseprofile.find({"fatherName": new RegExp(query,"i")}).fetch().map(function(it){
+            	return {
+            		value: it.fatherName,
+            		match: "<b>" + it.relationship + "</b>" + it.fatherName,
+            		id: it._id,
+            		caseId: it.caseId,
+            		caseNumber: it.caseNumber
+            	};
+            }));
+
+            searchList = searchList.concat(Caseprofile.find({"phone": new RegExp(query,"i")}).fetch().map(function(it){
+            	return {
+            		value: it.phone,
+            		match: "<b>Phone: </b>" + it.phone,
+            		id: it._id,
+            		caseId: it.caseId,
+            		caseNumber: it.caseNumber
+            	};
+            }));
+
+            searchList = searchList.concat(Caseprofile.find({"court": new RegExp(query,"i")}).fetch().map(function(it){
+            	return {
+            		value: it.court,
+            		match: "<b>court: </b>" + it.court,
+            		id: it._id,
+            		caseId: it.caseId,
+            		caseNumber: it.caseNumber
+            	};
+            }));
+            
+            return searchList;
+        },
+        
 	exchangeRefreshToken: function() {
     this.unblock();
     console.log("===== START - Exchange Refresh token =====");

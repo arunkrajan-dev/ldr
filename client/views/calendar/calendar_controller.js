@@ -19,7 +19,7 @@ this.CalendarController = RouteController.extend({
 		
 
 		var subs = [
-			Meteor.subscribe("caseprofile_list"),
+		//	Meteor.subscribe("caseprofile_list"),
 			Meteor.subscribe("hearings_list")
 		];
 		var ready = true;

@@ -20,7 +20,7 @@ this.CaseprofileInsertController = RouteController.extend({
 
 		var subs = [
 			Meteor.subscribe("caseprofile_empty"),
-			Meteor.subscribe("caseprofile_list"),
+			//Meteor.subscribe("caseprofile_list"),
 			Meteor.subscribe("court_list"),
 			Meteor.subscribe("represent_list"),
 			Meteor.subscribe("relationship_list")

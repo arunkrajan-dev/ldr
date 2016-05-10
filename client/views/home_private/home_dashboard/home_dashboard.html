@@ -1,0 +1,32 @@
+<template name="HomeDashboard">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    <h2 class="text-warning">{{fyaCount}}</h2> Pending updates
+			  </div>
+			</div>			
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default" id="panel-all">
+			  <div class="panel-body">
+			    <h2 class="text-info">{{total}}</h2> - Total
+			  </div>
+			</div>			
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default" id="panel-noCaseNumber">
+			  <div class="panel-body">
+			    <h2 class="text-info">{{noCaseNumber}}</h2> - with No Case Number
+			  </div>
+			</div>			
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    <h2 class="text-primary">{{noNextHearing}}</h2>- with no next Hearing
+			  </div>
+			</div>			
+		</div>		
+	</div>
+</template>
