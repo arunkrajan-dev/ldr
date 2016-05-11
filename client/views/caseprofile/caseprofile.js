@@ -396,4 +396,7 @@ Template.insight.helpers({
 	"fyaCount": function() {
 		return this.fya_list.count();	
 	},
+	"total": function() {
+		return this.caseprofile_list.count();
+	}
 })
