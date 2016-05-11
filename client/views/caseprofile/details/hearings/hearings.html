@@ -112,6 +112,9 @@
 				<th>
 					&nbsp;
 				</th>
+				<th>
+					&nbsp;
+				</th>
 			</tr>
 		</thead>
 		<tbody id="dataview-table-items" class="home-tab">
@@ -130,6 +133,23 @@
 			<h6 class="text-warning"><abbr title="{{nextDate}}">{{formatCalendarDate nextDate}}</abbr> </h6> - {{purpose}}
 			 
 		</td>
+		{{#if approvalStatus approved}}
+		<td>
+			<span id="btn-approve" class="fa fa-thumbs-o-up fa-2x" title="Approve">
+			</span>
+		</td>
+		<td>
+			<span id="btn-remove" class="fa fa-thumbs-o-down fa-2x" title="Reject">
+			</span>
+		</td>
+		<td>
+			Approval requested for {{approvalMsg}}
+		</td>
+		{{else}}
+		<td>
+			<span id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}}" title="Delete">
+			</span>
+		</td>
 		<td>
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
 			</span>
@@ -138,6 +158,7 @@
 			<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
 			</span>
 		</td>
+		{{/if}}
 	</tr>	
 	
 	<!--	<li class="list-group-item">-->
