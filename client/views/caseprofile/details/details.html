@@ -119,10 +119,13 @@
   	{{#if caseprofile_details.clientNotes}}<small> <i class="fa fa-check-square-o"></i> <cite title="Source Title">{{caseprofile_details.clientNotes}}</cite></small>{{/if}}
 </blockquote>
 <blockquote class="blockquote-reverse">
-  {{#if caseprofile_details.opName}}<p class="text-warning">[Opposite] {{caseprofile_details.opName}}</p>{{/if}}
+  {{#if caseprofile_details.opName}}<p>[Opposite] {{caseprofile_details.opName}}</p>{{/if}}
   {{#if caseprofile_details.opAdvocate}}<small><i class="fa fa-user">&nbsp;Advocate: </i> <cite title="Source Title">{{caseprofile_details.opAdvocate}}</cite></small>{{/if}}
   {{#if caseprofile_details.opNotes}}<small> <i class="fa fa-check-square-o"></i> <cite title="Source Title">{{caseprofile_details.opNotes}}</cite></small>{{/if}}
 </blockquote>
+<blockquote>
+  {{#if caseprofile_details.interimOrder}}<p class="text-warning">[Interim Order] {{caseprofile_details.interimOrder}}</p>{{/if}}
+</blockquote>	
 </div>
 </template>
 

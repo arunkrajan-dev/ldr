@@ -90,21 +90,39 @@
 				          <i class="fa fa-folder-o"></i>&nbsp; Create File Folder
 				        </a>
 			        {{/if}}
-                        <!--<a href="#folder" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">-->
-                        <!--        <i class="fa fa-folder-open-o" aria-hidden="true"></i>&nbsp; Files-->
-                        <!--</a>-->
+                    </li>
+                    
+                    <br/>
+                    {{#if caseprofile_details.filingDate}}
+                    <li role="presentation">
+                        <a href="#" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                <i class="fa fa-calendar">&nbsp;</i>&nbsp; Filing: {{formatDate caseprofile_details.filingDate 'DD-MMM-YYYY'}}
+                        </a>
+                    </li>
+                    {{/if}}
+                    
+                    <li role="presentation">
+                        <a href="#" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                <i class="fa fa-calendar">&nbsp;</i>&nbsp; Admission Date
+                                {{#if caseprofile_details.admissionDate}}
+                                	{{formatDate caseprofile_details.admissionDate 'DD-MMM-YYYY'}}
+                                {{else}}
+                                	- Not Specified
+                                {{/if}}
+                        </a>
+                    </li>
+                    
+                    <li role="presentation">
+                        <a href="#" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                <i class="fa fa-calendar">&nbsp;</i>&nbsp; Next Hearing  
+                                {{#if caseprofile_details.nextHearingDate}}
+                                	{{formatDate caseprofile_details.nextHearingDate 'DD-MMM-YYYY'}}
+                                {{else}}
+                                	- Not Specified
+                                {{/if}}
+                        </a>
                     </li>
                 </ul>
-				</div>
-				<div class="profile-usertitle">
-					{{#if caseprofile_details.filingDate}}
-					<div class="profile-usertitle-job">
-						<i class="fa fa-calendar">&nbsp;</i> Filing: {{formatDate caseprofile_details.filingDate 'DD-MM-YYYY'}}
-					</div>
-					{{/if}}
-				</div>
-				<div class="profile-usertitle">
-					<h6 class="text-warning"><i class="fa fa-calendar">&nbsp;</i> Next Hearing  {{formatDate caseprofile_details.nextHearingDate 'DD-MM-YYYY'}}</h6>
 				</div>
 				<!-- END MENU -->
 			</div>

@@ -246,6 +246,36 @@
 					</span>
 				</div>
 			</div>
+			<div class="form-group  field-admission-date">
+				<label for="filingDate">
+					Admission Date
+				</label>
+				<div class="input-div">
+					<div class="input-group date">
+						<input type="text" name="admissionDate" value="{{formatDate caseprofile_details.admissionDate 'DD-MM-YYYY h:mm a'}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
+						<span class="input-group-addon">
+							<i class="fa fa-calendar">
+							</i>
+						</span>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-interimOrder">
+				<label for="notes">
+					Interim Order
+				</label>
+				<div class="input-div">
+					<input type="text" name="interimOrder" value="{{caseprofile_details.interimOrder}}" class="form-control">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
 			<div class="form-group">
 				<div class="submit-div">
 					<button id="form-submit-button" class="btn btn-success" type="submit">

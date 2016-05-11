@@ -273,6 +273,38 @@
 					</span>
 				</div>
 			</div>
+			<div class="row">
+				<div class="form-group  field-admission-date col-xs-12 col-sm-12 col-md-3">
+					<label for="filingDate">
+						Admission Date
+					</label>
+					<div class="input-div">
+						<div class="input-group date">
+							<input type="text" name="admissionDate" value="{{formatDate 'today' 'DD-MM-YYYY h:mm a'}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar">
+								</i>
+							</span>
+						</div>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+			<div class="form-group  field-interimOrder col-xs-12 col-sm-12 col-md-9">
+				<label for="notes">
+					Interim Order
+				</label>
+				<div class="input-div">
+					<textarea class="form-control" name="interimOrder"></textarea>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>				
+			</div>
 			<div class="form-group">
 				<div class="submit-div">
 					<button id="form-submit-button" class="btn btn-success" type="submit">

@@ -220,7 +220,8 @@
                   {{#if name}}
                   {{#if getCount name}}
                     <a href="#panel-caseprofile-list" class="list-group-item" title="{{name}}"><i class="fa fa-university" aria-hidden="true"></i>
-                    &nbsp;{{name}} <span class="badge pull-right">{{getCount name}}</span></a>
+                    &nbsp;{{name}} <span class="badge pull-right">{{getCount name}}</span>
+                    </a>
                   {{/if}}
                   {{/if}}
                   {{/each}}
@@ -234,6 +235,9 @@
 			<div class="panel panel-default">
 			  <div class="panel-body">
 			    {{fyaCount}} Pending updates
+			  	<div class="progress progress-striped active">
+  					<div class="progress-bar progress-bar-warning" style="width: {{percent fyaCount}}%"></div>
+				</div>
 			  </div>
 			</div>			
 		</div>
@@ -241,6 +245,9 @@
 			<div class="panel panel-default">
 			  <div class="panel-body">
 			    {{total}} Total Case Profile
+			    <div class="progress progress-striped">
+  					<div class="progress-bar progress-bar-success" style="width: {{percent total}}%"></div>
+				</div>
 			  </div>
 			</div>			
 		</div>
@@ -248,6 +255,9 @@
 			<div class="panel panel-default">
 			  <div class="panel-body">
 			    {{noCaseNumber}} No Case Number
+			  	<div class="progress progress-striped">
+  					<div class="progress-bar progress-bar-primary" style="width: {{percent noCaseNumber}}%"></div>
+				</div>			  
 			  </div>
 			</div>			
 		</div>
@@ -255,6 +265,9 @@
 			<div class="panel panel-default">
 			  <div class="panel-body">
 			    {{noNextHearing}} No next Hearing
+			  	<div class="progress progress-striped">
+  					<div class="progress-bar progress-bar-primary" style="width: {{percent noNextHearing}}%"></div>
+				</div>			    
 			  </div>
 			</div>			
 		</div>		

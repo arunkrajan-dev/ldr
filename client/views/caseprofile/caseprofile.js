@@ -326,7 +326,11 @@ Template.courts.helpers({
     },
     "getCount": function(name) {
     	return Caseprofile.find({"court": new RegExp(name, "i") }).count();
-    }
+    },
+    "percent": function(val) {
+		//@todo Register this percentage function to global
+		return (val/this.caseprofile_list.count()) * 100;
+	}
 });
 
 Template.courts.events({
@@ -398,5 +402,8 @@ Template.insight.helpers({
 	},
 	"total": function() {
 		return this.caseprofile_list.count();
+	},
+	"percent": function(val) {
+		return (val/this.caseprofile_list.count()) * 100;
 	}
 })
