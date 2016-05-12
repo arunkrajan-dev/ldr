@@ -79,7 +79,12 @@
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Notes
                         </a>
                     </li>
-
+                    <li role="presentation">
+                        <a href="#fees" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                <i class="fa fa-inr" aria-hidden="true"></i>&nbsp; Charges
+                        </a>
+                    </li>
+                    
                     <li role="presentation">
 			        {{#if caseprofile_details.folderId}}
 				        <a class="show-gdrive" href="https://drive.google.com/drive/folders/{{caseprofile_details.folderId}}" target="_blank">
@@ -143,6 +148,9 @@
             	  <div class="tab-pane fade" id="logs">
             	    {{> caseLog}}
             	  </div>
+            	  <div class="tab-pane fade" id="fees">
+            	    {{> Fees}}
+            	  </div>            	  
             	</div>
             </div>
 		</div>
