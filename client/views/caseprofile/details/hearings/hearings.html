@@ -12,82 +12,25 @@
 
 <template name="CaseprofileDetailsHearingsView">
 	<div id="caseprofile-details-hearings-view" class="">
-		<form id="dataview-controls" class="form insert-form">
-			<div class="row">
-			{{#if isNotEmpty}}
-			<div class="col-md-9">
-			<div id="dataview-controls-search">
-				
-				<div id="dataview-controls-search-group" class="form-group">
-					<label class="sr-only" for="search">
-						Search
-					</label>
-					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
-				</div>
-				
-			</div>
-			</div>
-			<div class="col-md-1">
-					<button type="button" id="dataview-search-button" class="btn btn-default">
-						<span class="fa fa-search">
-						</span>
-					</button>
-			</div>
-			{{/if}}
-			<div class="col-md-2">
-			<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
-				<button type="submit" id="dataview-insert-button" class="btn btn-success">
-					Add
-				</button>
-			</div>
-			</div>
-			</div>
-			<div id="dataview-controls-export" class="form-group">
-				{{#if isNotEmpty}}			
-		{{#if isFound}}
-				<div>
-				</div>
-				{{else}}
-				<div class="btn-group hidden">
-					<button type="button" class="btn btn-default" id="dataview-export-default">
-						Export
-					</button>
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-						<span class="caret">
-						</span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li>
-							<a href="#" id="dataview-export-csv">
-								Export to CSV
-							</a>
-						</li>
-						<li>
-							<a href="#" id="dataview-export-tsv">
-								Export to TSV
-							</a>
-						</li>
-						<li>
-							<a href="#" id="dataview-export-json">
-								Export to JSON
-							</a>
-						</li>
-					</ul>
-				</div>
-				{{/if}}			
-	{{/if}}
-			</div>
-		</form>
 		{{#if isNotEmpty}}	
-			{{#if isNotFound}}
-		<div class="alert alert-warning">
-			"{{searchString}}" not found.
+        <div id="dataview-data" class="dual-list">
+           <div class="row">
+                <div class="col-md-10">
+                    <div class="input-group">
+                            <input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                    </div>
+                </div>
+				<div class="col-md-2">
+	 				<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
+						<button type="submit" id="dataview-insert-button" class="btn btn-success">
+							Add New
+						</button>
+					</div>
+				</div>
+            </div>				
+			{{> CaseprofileDetailsHearingsViewTable}}
 		</div>
-		{{else}}
-		<div id="dataview-data">
-			{{#if viewAsTable}} {{> CaseprofileDetailsHearingsViewTable}} {{/if}}
-		</div>
-		{{/if}}	
 		{{else}}
 		<div class="alert alert-info">
 			No items
@@ -121,17 +64,15 @@
 			{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}
 		</tbody>
 	</table>	
-			<!--<div class="profile-usermenu"><ul class="list-group event-list" style="max-height:300px; overflow-y:scroll;">{{#each tableItems}} {{> CaseprofileDetailsHearingsViewTableItems}} {{/each}}</ul></div>-->
 </template>
 
 <template name="CaseprofileDetailsHearingsViewTableItems">
 	<tr id="dataview-table-items-row" class="table-row">
-		<td >
+		<td>
 			<h6 class="text-primary">{{formatDate businessDate 'DD-MMM-YYYY'}} </h6> - {{description}}
 		</td>
 		<td>
 			<h6 class="text-warning"><abbr title="{{nextDate}}">{{formatCalendarDate nextDate}}</abbr> </h6> - {{purpose}}
-			 
 		</td>
 		{{#if approvalStatus approved}}
 		<td>
@@ -160,35 +101,4 @@
 		</td>
 		{{/if}}
 	</tr>	
-	
-	<!--	<li class="list-group-item">-->
-	<!--		<time datetime="{{businessDate}}">-->
-	<!--		{{#with splitDate businessDate}}-->
-	<!--			<span class="day">{{day}}</span>-->
-	<!--			<span class="month">{{month}}</span>-->
-	<!--			<span class="year">{{year}}</span>-->
-	<!--			<span class="time">{{time}}</span>-->
-	<!--		{{/with}}-->
-	<!--		</time>-->
- <!--   <a href="#">-->
- <!--   <i class="fa fa-check-square-o">&nbsp;</i>{{description}}-->
-	<!--<br/><i class="fa fa-calendar">&nbsp;</i>Next Hearing is {{#if nextDate}} on {{formatDate nextDate 'DD-MM-YYYY h:mm a'}}-->
-	<!--    {{else}} [ Date not specified ] {{/if}} {{#if purpose}} for {{purpose}} {{/if}}-->
- <!--   </a>-->
-	<!--{{#if isUserInRole 'junior'}}-->
-	<!--	<span>{{approvalMsg}} - </span>-->
-	<!--	Approved? - {{approved}}-->
-	<!--{{else}}-->
-	<!--	{{#if approvalStatus approved}}-->
-	<!--		Approval requested for {{approvalMsg}}-->
- <!-- 			  <a href="#" id="btn-approve" class="fa fa-thumbs-o-up fa-2x list-group-item-mailButton"><i class="fa fa-thumbs-o-up fa-2x"></i></a>-->
-	<!--		  <a href="#" id="btn-remove" class="fa fa-thumbs-o-down fa-2x list-group-item-deleteButton"><i class="fa fa-thumbs-o-down fa-2x"></i></a>-->
-	<!--	{{else}}-->
-	<!--		<a href="#" id="delete-button" class="fa fa-trash-o {{deleteButtonClass nextDate ../caseprofile_details.nextHearingDate}} list-group-item-deleteButton" title="Delete"></a>-->
-	<!--		<a href="#" id="edit-button" class="fa fa-pencil {{editButtonClass}} list-group-item-editButton" title="Edit"></a>-->
-	<!--		<a href="#" id="sendMail-button" class="fa fa-envelope-o {{sendMailButtonClass}} list-group-item-mailButton" title="SendMail"></a>-->
-	<!--	{{/if}}-->
-	<!--{{/if}}-->
-	<!--</li>-->
-	
 </template>

@@ -1,17 +1,5 @@
 var pageSession = new ReactiveDict();
 
-Template.CaseprofileDetailsHearings.rendered = function() {
-	
-};
-
-Template.CaseprofileDetailsHearings.events({
-	
-});
-
-Template.CaseprofileDetailsHearings.helpers({
-	
-});
-
 var CaseprofileDetailsHearingsViewItems = function(cursor) {
 	if(!cursor) {
 		return [];
@@ -155,9 +143,25 @@ Template.CaseprofileDetailsHearingsView.events({
 		e.preventDefault();
 		CaseprofileDetailsHearingsViewExport(this.hearings, "json");
 	},
-
-
-
+    "keyup #SearchDualList": function (e, t) {
+                e.preventDefault();
+                console.log("search dual list");
+                var me = $('#SearchDualList');
+                console.log("Search text - ", me.val())
+                var code = e.keyCode || e.which;
+                if (code == '9') return;
+                if (code == '27') me.val(null);
+                var $rows = $(e.target).closest('.dual-list').find('.table-row');
+                console.log('Selected row - ', $rows);
+                var val = $.trim(me.val()).replace(/ +/g, ' ').toLowerCase();
+                console.log("Value ==", val);
+                $rows.show().filter(function () {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    console.log("==text", text);
+                    return !~text.indexOf(val);
+                }).hide();
+                return false;
+    }
 });
 
 Template.CaseprofileDetailsHearingsView.helpers({
@@ -191,11 +195,6 @@ Template.CaseprofileDetailsHearingsView.helpers({
 	
 });
 
-
-Template.CaseprofileDetailsHearingsViewTable.rendered = function() {
-	
-};
-
 Template.CaseprofileDetailsHearingsViewTable.events({
 	"click .th-sortable": function(e, t) {
 		e.preventDefault();
@@ -217,11 +216,6 @@ Template.CaseprofileDetailsHearingsViewTable.helpers({
 		return CaseprofileDetailsHearingsViewItems(this.hearings);
 	}
 });
-
-
-Template.CaseprofileDetailsHearingsViewTableItems.rendered = function() {
-	
-};
 
 Template.CaseprofileDetailsHearingsViewTableItems.events({
 	"click td": function(e, t) {
@@ -352,15 +346,7 @@ Template.CaseprofileDetailsHearingsViewTableItems.helpers({
 	},
 	
 	"deleteButtonClass": function(d1, d2) {
-		// var retVal = "";
-		// console.log("Last hearing in delete", d1, d2);	
-		// if(d1.getTime() == d2.getTime()) {
-		// 	console.log("Equal");
-			return Hearings.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
-		// } else {
-		// 	console.log("Not ======== Equal");
-		// 	return "hidden";
-		// }
+		return Hearings.userCanRemove(Meteor.userId(), this) ? "" : "hidden";
 	},
 	"approvalStatus": function(val) {
 		console.log("[INFO] approvalStatus ", val);

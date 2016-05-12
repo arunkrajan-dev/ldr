@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row profile">
 		<div class="col-md-3">
-			<div class="profile-sidebar">
+			<div class="profile-sidebar panel panel-default">
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
 					<!--<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">-->
@@ -133,7 +133,7 @@
 			</div>
 		</div>
 		<div class="col-md-9">
-            <div class="profile-content">
+            <div class="profile-content panel panel-default">
             	<div id="myTabContent" class="tab-content">
             	  <div class="tab-pane fade active in" id="profile">
             		{{> CaseprofileDetailsDetailsForm}}
@@ -146,7 +146,13 @@
             		</div>
             	  </div>
             	  <div class="tab-pane fade" id="logs">
-            	    {{> caseLog}}
+            		<div class="row">
+            			<div class="col-md-12" id="subcontent">
+            				{{> caseLog}}
+            				<!--{{> yield region='CaseprofileLogsSubcontent'}}-->
+            			</div>
+            		</div>
+            	    <!--{{> caseLog}}-->
             	  </div>
             	  <div class="tab-pane fade" id="fees">
             	    {{> Fees}}

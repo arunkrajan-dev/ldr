@@ -1,16 +1,5 @@
 var pageSession = new ReactiveDict();
 
-Template.CaseprofileDetails.rendered = function() {
-	
-};
-
-Template.CaseprofileDetails.events({
-	
-});
-
-Template.CaseprofileDetails.helpers({
-	
-});
 
 Template.CaseprofileDetailsDetailsForm.rendered = function() {
 	

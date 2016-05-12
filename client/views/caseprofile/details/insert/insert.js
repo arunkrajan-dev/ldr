@@ -112,11 +112,6 @@ Template.CaseprofileDetailsInsertInsertForm.events({
 			$('#nextDate').removeAttr('required');
 			$('#nextDate').val('');
 		}
-  //         $("#next-hearing-div").hide();
-  //       } else {
-  //       	$("#next-hearing-div").unhide();
-  //       	alert("not checked");
-  //       }
  		$("#next-hearing-div").slideToggle("slow");
 	}
 
