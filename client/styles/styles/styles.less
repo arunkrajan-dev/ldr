@@ -37,6 +37,11 @@ h6 a, h6 a:hover {
 }
 
 .sticky-wrapper {
+  background: url(/search-bg.jpg) no-repeat center center fixed;	
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
   min-height: 100%;
   height: auto;
   /* Negative indent footer by its height */
@@ -370,14 +375,6 @@ ul.tree-view ul.tree-view {
 	display: table-cell; vertical-align: top;
 }
 
-body{
- background-color: #e9f0f5;
- ////background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
- //background-image: url('/ldr-bg.jpg');
- 
- //background: url(/bg.jpg) no-repeat center center fixed; 
-}
-
 .bootbox-lg {
 	width: 90%;
 	margin:30px auto;
@@ -580,15 +577,12 @@ a.list-group-item::before {
 	width:100%;
 }
 
-.panel-container {
-	max-height: 350px;
+.table {
+	display: block;
+	max-height: 370px;
 	overflow-y: scroll; 
 }
 
-tbody {
-	max-height: 350px;
-	overflow-y: scroll;
-}
 .mega-dropdown { position: static !important; }
 .mega-dropdown-menu {
   background-color: #e9f0f5;
