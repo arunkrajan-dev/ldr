@@ -50,7 +50,7 @@ Template.caseLog.events({
 
 		return false;
 	}, 
-	"click #delete-button": function(e, t) {
+	"click .delete-button": function(e, t) {
 		e.preventDefault();
 		var me = this;
 		bootbox.dialog({

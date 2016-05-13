@@ -32,18 +32,6 @@
     						</span>
     					</div>
     				</div>
-    				<div class="form-group  field-description col-xs-12 col-sm-12 col-md-6">
-    					<label for="description">
-    						For
-    					</label>
-    					<div class="input-div">
-    						<input type="text" name="for" value="" class="form-control" required="required">
-    						<span id="help-text" class="help-block">
-    						</span>
-    						<span id="error-text" class="help-block">
-    						</span>
-    					</div>
-    				</div>
     				<div class="form-group  field-location col-xs-12 col-sm-12 col-md-2">
     					<label for="location">
     						Amount
@@ -56,32 +44,36 @@
     						</span>
     					</div>
     				</div>
+    				<div class="form-group  field-description col-xs-12 col-sm-12 col-md-6">
+    					<label for="description">
+    						For
+    					</label>
+    					<div class="input-div">
+    						<input type="text" name="for" value="" class="form-control" required="required">
+    						<span id="help-text" class="help-block">
+    						</span>
+    						<span id="error-text" class="help-block">
+    						</span>
+    					</div>
+    				</div>
     			</div>
-    			<button type="submit" class="btn btn-success btn-block" id="form-submit-button" name="save">Add</button>
+    			<button type="submit" class="btn btn-success" id="form-submit-button" name="save">
+					<span class="fa fa-check">
+					</span>
+    				Add
+    			</button>
     		</form>
-	<table id="dataview-table" class="table table-hover">
-		<thead id="dataview-table-header">
-			<tr id="dataview-table-header-row">
-				<th class="th-sortable col-md-3" data-sort="businessDate">
-					Date
-				</th>
-				<th class="th-sortable col-md-6" data-sort="nextDate">
-					Description (For)
-				</th>
-				<th class="col-md-3">
-					Rs.
-				</th>
-			</tr>
-		</thead>
-		<tbody id="dataview-table-items" class="home-tab">
-			{{#each getFees}} 
-				<tr id="dataview-table-items-row" class="table-row">
-  		    <td>{{formatDate receivedOn 'DD-MMM-YYYY'}}</td>
-  		    <td>{{for}}</td>
-  		    <td>{{amount}}</td>
-		    </tr>
-			{{/each}}
-		</tbody>
-	</table>
+  		<ul class="list-group" style="max-height:300px; overflow-y:scroll;">
+        {{#each getFees}}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-xs-3 col-md-3" style="text-align: right;">{{amount}}</div>
+            <div class="col-xs-2 col-md-2">{{formatDate receivedOn "DD-MMM-YYYY"}}</div>
+            <div class="col-xs-7 col-md-7">{{for}}</div>
+          </div>
+          <span class="delete-button delete fa fa-trash-o" title="Delete"></span>
+        </li>        
+        {{/each}}
+      </ul>
 	<h5 class="text-primary">Total: - <small>Pending</small></h5>
 </template>

@@ -21,6 +21,7 @@ Template.Fees.helpers({
 });
 Template.Fees.rendered = function() {
 	pageSession.set("apptInsertFormInfoMessage", "");
+	initDateTimePickers();
 }
 
 Template.Fees.events({
@@ -93,3 +94,11 @@ Template.Fees.events({
 		return false;
 	}	
 });
+
+var initDateTimePickers = function() {
+	$(".input-group.date").each(function() {
+		$(this).find("input[type='text']").datetimepicker({
+			format: 'DD/MM/YYYY h:mm a',
+			});
+	});
+}
