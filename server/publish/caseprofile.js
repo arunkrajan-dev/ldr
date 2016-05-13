@@ -20,6 +20,17 @@
 // 	return Caseprofile.find({ownerId:this.userId, "archived":"archived"}, {sort:[["caseId","desc"]]});
 // });
 
+Meteor.publish("caseprofile_list_date", function() {
+	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
+		return Caseprofile.find({"archived":{"$exists": false}}, {fields: {_id:1, caseId:1, filingDate:1}});
+	}
+	if(Users.isInRoles(this.userId, ["junior"])) {
+		var user = Meteor.users.findOne(this.userId);
+		return Caseprofile.find({ownerId: user.seniorId, "archived":{"$exists": false}}, {_id:1, caseId:1, filingDate:1});
+	}
+	return Caseprofile.find({ownerId:this.userId, "archived":{"$exists": false}}, {_id:1, caseId:1, filingDate:1});
+});
+
 Meteor.publish("caseprofile_empty", function() {
 	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
 		return Caseprofile.find({_id:null}, {});
