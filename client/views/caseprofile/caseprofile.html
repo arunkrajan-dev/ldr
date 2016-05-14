@@ -91,7 +91,7 @@
 				<th class="th-sortable col-md-2" data-sort="nextHearingDate">
 					Next Hearing On
 				</th>
-				<th class="th-sortable col-md-2" data-sort="lastUpdated">
+				<th class="th-sortable col-md-2" data-sort="modifiedAt">
 					Last Updated
 				</th>
 				<th>
@@ -120,7 +120,7 @@
 			<abbr title="{{nextHearingDate}}">{{formatCalendarDate nextHearingDate}}</abbr> 
 		</td>
 		<td>
-			{{formatCalendarDate modifiedAt}}
+			<abbr title="{{modifiedAt}}">{{formatCalendarDate modifiedAt}}</abbr> 
 		</td>
 		<td class="td-icon">
 			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
@@ -131,147 +131,4 @@
 			</span>
 		</td>
 	</tr>
-</template>
-
-<template name="presentation">
-		{{> insight}}
-    <div class="row profile">
-		<div class="col-md-3">
-			<div class="profile-sidebar panel panel-default">
-				<!-- SIDEBAR MENU -->
-				<div class="profile-usermenu">
-                <ul class="nav" role="tablist">
-                    
-                    <li role="presentation" id="tab-all">
-                        <a href="#all" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
-                          <i class="fa fa-list" aria-hidden="true"></i>&nbsp;Show All
-                        </a>
-                    </li>
-                    <li role="presentation" id="tab-court">
-                        <a href="#div-court-list">
-                        <i class="fa fa-university" aria-hidden="true"></i>&nbsp;Court wise
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#todo" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                        <i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Todo <span class="badge pull-right">{{incompleteCount}}</span>
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#approval" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                        <i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Approvals <span class="badge pull-right">{{incompleteApprovalCount}}</span>
-                        </a>
-                    </li>                
-                    <li role="presentation">
-                        <a href="#appointment" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                        <i class="fa fa-archive" aria-hidden="true"></i>&nbsp;appointment <span class="badge pull-right">{{appointmentCount}}</span>
-                        </a>
-                    </li>    
-                </ul>
-				</div>
-				<div class="profile-usertitle">
-				</div>
-				<!-- END MENU -->
-			</div>
-		</div>
-		<div class="col-md-9" id="panel-caseprofile-list">
-            <div class="profile-content panel panel-default">
-            	<div id="myTabContent" class="tab-content">
-            	  <div class="tab-pane fade active in" id="all">
-            		{{> CaseprofileView}}
-            	  </div>
-            	  <div class="tab-pane fade" id="todo">
-            		Todo
-            		{{>todo}}
-            	  </div>
-            	  <div class="tab-pane fade" id="approval">
-            		Approvals
-            		{{>approval}}
-            	  </div>            	  
-            	  <div class="tab-pane fade" id="appointment">
-            		Appointment
-            		{{>apptModal}}
-            	  </div>               	  
-            	</div>
-            </div>
-		</div>
-	</div>
-    <div class="row profile">
-		<div class="col-md-9 panel panel-default" id="div-court-list">
-			<h4 class="text-primary">Courts</h4>
-			{{> courts}}
-		</div>
-		
-		<div class="col-md-3">
-		</div>
-	</div>
-</template>
-
-<template name="courts">
-        <div class="dual-list">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
-                            <span class="input-group-addon glyphicon glyphicon-search"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-group">
-                  {{#each courts}}
-                  {{#if name}}
-                  {{#if getCount name}}
-                    <a href="#panel-caseprofile-list" class="list-group-item" title="{{name}}"><i class="fa fa-university" aria-hidden="true"></i>
-                    &nbsp;{{name}} <span class="badge pull-right">{{getCount name}}</span>
-                    </a>
-                  {{/if}}
-                  {{/if}}
-                  {{/each}}
-                </div>
-        </div>
-</template>
-
-<template name="insight">
-	<div class="row">
-		<div class="col-md-3">
-			<div class="panel panel-default">
-			  <div class="panel-body">
-			    {{fyaCount}} Pending updates
-			  	<div class="progress progress-striped active">
-  					<div class="progress-bar progress-bar-warning" style="width: {{percent fyaCount}}%"></div>
-				</div>
-			  </div>
-			</div>			
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-			  <div class="panel-body">
-			    {{total}} Total Case Profile
-			    <div class="progress progress-striped">
-  					<div class="progress-bar progress-bar-success" style="width: {{percent total}}%"></div>
-				</div>
-			  </div>
-			</div>			
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-			  <div class="panel-body">
-			    {{noCaseNumber}} No Case Number
-			  	<div class="progress progress-striped">
-  					<div class="progress-bar progress-bar-primary" style="width: {{percent noCaseNumber}}%"></div>
-				</div>			  
-			  </div>
-			</div>			
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-			  <div class="panel-body">
-			    {{noNextHearing}} No next Hearing
-			  	<div class="progress progress-striped">
-  					<div class="progress-bar progress-bar-primary" style="width: {{percent noNextHearing}}%"></div>
-				</div>			    
-			  </div>
-			</div>			
-		</div>		
-	</div>
 </template>
