@@ -100,7 +100,17 @@ Template.CaseprofileInsertInsertForm.events({
 	"keyup #dob": function(e, t) {
 		//console.log("Input even triggered");
 		t.find("#age").value = "test";
-	}
+	},
+	"change #limitation": function(e, t) {
+		debugger;
+		$('#limitationDate').val(moment($('#judgementDate').val(), "DD/MM/YYYY").add($('#limitation').val(), 'days').format("(ddd) DD/MM/YYYY"));
+		//$('#limitationDiff').text(moment($('#limitationDate').val(), "DD/MM/YYYY").fromNow());
+	},
+	"keyup #limitation": function(e, t) {
+		debugger;
+		$('#limitationDate').val(moment($('#judgementDate').val(), "DD/MM/YYYY").add($('#limitation').val(), 'days').format("(ddd) DD/MM/YYYY"));
+		//$('#limitationDiff').text(moment($('#limitationDate').val(), "DD/MM/YYYY").fromNow());
+	}	
 });
 
 Template.CaseprofileInsertInsertForm.helpers({
@@ -130,7 +140,20 @@ var initDateTimePickers = function() {
 	});
 	
 	//this.$('#picker-1, #picker-2').datetimepicker();
-    
+
+	$('#judgementDate').on("dp.change", function(e) {
+		debugger;
+		$('#limitationDate').val(moment(e.date).add($('#limitation').val(), 'days').format("(ddd) DD/MM/YYYY"));
+		
+		//$('#limitationDiff').text(moment($('#limitationDate').val(), "DD/MM/YYYY").fromNow());
+		var date1 = moment();
+		var date2 = moment($('#limitationDate').val(), "DD/MM/YYYY");
+		//var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+		//var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+		//$('#limitationDiff').text(date1.diff(date2, 'days'));
+		
+	}); 
+	
     $("#dob").on("dp.change", function (e) {
         //console.log(e.date);
         var years = moment().diff(e.date, 'years');

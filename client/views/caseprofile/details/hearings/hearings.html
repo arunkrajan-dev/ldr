@@ -12,14 +12,20 @@
 
 <template name="CaseprofileDetailsHearingsView">
 	<div id="caseprofile-details-hearings-view" class="">
-		{{#if isNotEmpty}}	
+			
         <div id="dataview-data" class="dual-list">
            <div class="row">
                 <div class="col-md-10">
-                    <div class="input-group">
-                            <input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
-                            <span class="input-group-addon glyphicon glyphicon-search"></span>
-                    </div>
+                    {{#if isNotEmpty}}
+	                    <div class="input-group">
+	                            <input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
+	                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+	                    </div>
+                	{{else}}
+						<div class="alert alert-info">
+							No items
+						</div>
+					{{/if}}
                 </div>
 				<div class="col-md-2">
 	 				<div id="dataview-controls-insert" class="form-group {{insertButtonClass}}">
@@ -29,13 +35,10 @@
 					</div>
 				</div>
             </div>				
-			{{> CaseprofileDetailsHearingsViewTable}}
+			{{#if isNotEmpty}}
+				{{> CaseprofileDetailsHearingsViewTable}}
+			{{/if}}
 		</div>
-		{{else}}
-		<div class="alert alert-info">
-			No items
-		</div>
-		{{/if}}
 	</div>
 </template>
 
