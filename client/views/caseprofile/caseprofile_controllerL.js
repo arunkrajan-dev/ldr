@@ -1,5 +1,5 @@
-this.CaseprofileControllerA = RouteController.extend({
-	template: "CaseprofileA",
+this.CaseprofileControllerL = RouteController.extend({
+	template: "CaseprofileL",
 	
 
 	yieldTemplates: {
@@ -20,7 +20,7 @@ this.CaseprofileControllerA = RouteController.extend({
 		
 
 		var subs = [
-			Meteor.subscribe("caseprofile_mini_listA")
+			Meteor.subscribe("caseprofile_limitation")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {
@@ -36,7 +36,7 @@ this.CaseprofileControllerA = RouteController.extend({
 		return {
 			params: this.params || {},
 			caseprofile_list: Caseprofile.find({}, {sort:[["caseId","desc"]]}),
-			archived: 'yes'
+			limitaion: 'yes'
 		};
 		/*DATA_FUNCTION*/
 	},

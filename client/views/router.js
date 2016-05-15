@@ -205,6 +205,7 @@ Router.map(function () {
 	this.route("reset_password", {path: "/reset_password/:resetPasswordToken", controller: "ResetPasswordController"});
 	this.route("caseprofile", {path: "/caseprofile", controller: "CaseprofileController"});
 	this.route("caseprofileA", {path: "/caseprofileA", controller: "CaseprofileControllerA"});
+	this.route("caseprofileL", {path: "/caseprofileL", controller: "CaseprofileControllerL"});
 	this.route("caseprofile.insert", {path: "/caseprofile/insert", controller: "CaseprofileInsertController"});
 	this.route("caseprofile.details", {path: "/caseprofile/details/:caseId", controller: "CaseprofileDetailsController"});
 	this.route("caseprofile.details.hearings", {path: "/caseprofile/details/:caseId/hearings", controller: "CaseprofileDetailsHearingsController"});

@@ -132,6 +132,25 @@ Helpers.formatCalendarDate = function(date) {
 	return moment(date).fromNow();
 };
 
+Helpers.DaysFromNow = function(date) {
+	var date1 = new Date();
+	//var date2 = new Date(moment($('#limitationDate').val(), "(ddd) DD/MM/YYYY"));
+	var timeDiff = date.getTime() - date1.getTime();
+	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+	if(diffDays == 0) {
+		return "Today";
+	} else if(diffDays == 1) {
+		return "tomorrow";
+	} else if(diffDays == -1) {
+		return "YesterDay";
+	} else if(diffDays < 0) {
+		return (diffDays * -1) + " Days Exceeded";
+	} else {
+		return diffDays + " Days More";
+	}
+	return diffDays;	
+};
+
 Helpers.booleanToYesNo = function(b) {
 	return b ? "Yes" : "No";
 };
