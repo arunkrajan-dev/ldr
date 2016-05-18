@@ -180,5 +180,10 @@ Template.CaseprofileDetailsDetailsForm.helpers({
     "getClientName":function(value, rel, name) {
         var name2 = value.split(",");
         return name2[0];
-    }	    
+    },
+    "getPhoneNbr": function(text) {
+		var regex = /((\d){2,} ?-?)+/g;
+		text = text.replace(regex, "<a href=\"tel:$&\">$&</a>");
+		return text;    	
+    }
 });

@@ -21,7 +21,7 @@
 	<p><i class="fa fa-user">&nbsp;</i> {{getClientAddress caseprofile_details.clientName caseprofile_details.relationship caseprofile_details.fatherName}} </p>
 	{{#if caseprofile_details.dob}}<h6><i class="fa fa-calendar">&nbsp;</i> DOB: {{formatDate caseprofile_details.dob 'DD-MM-YY'}} <small> Age : {{caseprofile_details.age}} </small></h6>{{/if}}
 	    		<hr/>
-	{{#if caseprofile_details.phone}}<i class="fa fa-phone">&nbsp;</i> <span><a href="tel:{{caseprofile_details.phone}}">{{caseprofile_details.phone}}</a></span><br/>{{/if}}
+	{{#if caseprofile_details.phone}}<i class="fa fa-phone">&nbsp;</i> <span>{{{getPhoneNbr caseprofile_details.phone}}}</span><br/>{{/if}}
 	{{#if caseprofile_details.email}}<i class="fa fa-envelope-o">&nbsp;</i><span><a href="mailto:{{caseprofile_details.email}}?subject= Regarding%20Case:%20{{caseprofile_details.caseId}}&body=Hi%20{{getClientName caseprofile_details.clientName}},%0A">{{caseprofile_details.email}}</a></span>{{/if}}
   	{{#if caseprofile_details.notes}}<small> <i class="fa fa-check-square-o"></i> <cite title="Source Title">{{caseprofile_details.notes}}</cite></small>{{/if}}
   	{{#if caseprofile_details.clientNotes}}<small> <i class="fa fa-check-square-o"></i> <cite title="Source Title">{{caseprofile_details.clientNotes}}</cite></small>{{/if}}
