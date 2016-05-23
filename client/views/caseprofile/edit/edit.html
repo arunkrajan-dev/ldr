@@ -81,7 +81,7 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="dob" value="{{formatDate caseprofile_details.dob 'DD-MM-YYYY h:mm a'}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
+						<input type="text" name="dob" value="{{#if caseprofile_details.dob}}{{formatDate caseprofile_details.dob 'DD-MM-YYYY h:mm a'}}{{/if}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
@@ -186,7 +186,7 @@
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="filingDate" value="{{formatDate caseprofile_details.filingDate 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
+						<input type="text" name="filingDate" value="{{#if caseprofile_details.filingDate}}{{formatDate caseprofile_details.filingDate 'DD-MM-YYYY'}}{{/if}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
@@ -246,13 +246,68 @@
 					</span>
 				</div>
 			</div>
+			<div class="row">
+				<div class="form-group  field-judgement-date col-xs-12 col-sm-12 col-md-3">
+					<label for="judgementDate">
+						Judgement Date (Lower Court)
+					</label>
+					<div class="input-div">
+						<div class="input-group date">
+							<input type="text" name="judgementDate" id="judgementDate" value="{{#if caseprofile_details.judgementDate}}{{formatDate caseprofile_details.judgementDate 'DD-MM-YYYY'}}{{/if}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar">
+								</i>
+							</span>
+						</div>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>				
+				<div class="form-group  field-limitation col-xs-12 col-sm-12 col-md-3">
+					<label for="limitation">
+						Limitation Days
+					</label>
+					<div class="input-div">
+						<div class="input-group date">
+							<input type="number" name="limitation" id="limitation" value="{{caseprofile_details.limitation}}" class="form-control">
+						</div>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>				
+				<div class="form-group  field-limitation-date col-xs-12 col-sm-12 col-md-3">
+					<label for="judgementDate">
+						Limitation Date
+					</label>
+					<div class="input-div">
+						<div class="input-group date">
+							<input type="text" name="limitationDate" id="limitationDate" value="{{#if caseprofile_details.limitationDate}}{{formatDate caseprofile_details.limitationDate 'DD-MM-YYYY'}}{{/if}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar">
+								</i>
+							</span>
+						</div>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-3">
+					<p class="text-success" id="limitationDiff"></p>
+				</div>
+			</div>	
 			<div class="form-group  field-admission-date">
 				<label for="filingDate">
 					Admission Date
 				</label>
 				<div class="input-div">
 					<div class="input-group date">
-						<input type="text" name="admissionDate" value="{{formatDate caseprofile_details.admissionDate 'DD-MM-YYYY h:mm a'}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
+						<input type="text" name="admissionDate" value="{{#if caseprofile_details.admissionDate}}{{formatDate caseprofile_details.admissionDate 'DD-MM-YYYY h:mm a'}}{{/if}}" class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a">
 						<span class="input-group-addon">
 							<i class="fa fa-calendar">
 							</i>
