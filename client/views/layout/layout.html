@@ -5,15 +5,10 @@
 	</title>
 </head>
 <template name="layout">
-	{{#if currentUser}}
-		{{> PrivateLayout}}
-	{{else}}
-		{{> PublicLayout}}
-	{{/if}}
-	{{> sendMailModalT}}
-	{{> sendQuickMail}}
+	{{#if currentUser}} {{> PrivateLayout}} {{else}} {{> PublicLayout}} {{/if}} {{> sendMailModalT}} {{> sendQuickMail}}
 	<a href="#" class="scrollToTop" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
-		<i class="fa fa-hand-o-up fa-2x"></i> <br/>Top
+		<i class="fa fa-hand-o-up fa-2x"></i>
+		<br/>Top
 	</a>
 </template>
 
@@ -72,36 +67,9 @@
 					<a class="navbar-brand" href="#">
 					</a>
 				</div>
-				
-    <div class="navbar-collapse collapse" id="searchbar">
-     
-      {{> PrivateLayoutRightMenu}}
-      <ul class="nav navbar-nav ">
-		<li id="menu-item-simple" class="{{menuItemClass 'caseprofile'}}">
-			<div class="top-navbar-icon">
-			<a href="{{pathFor 'caseprofile'}}" style="color:#2196f3">
-				<span class="fa fa-home fa-fw fa-2x item-title">
-				</span>
-				<br/>
-				Home
-			</a>
-			</div>
-		</li>      	
-		<li id="menu-item-simple" class="{{menuItemClass 'calendar'}}">
-			<div class="top-navbar-icon">
-			<a href="{{pathFor 'calendar'}}" style="color:#4caf50">
-				<span class="fa fa-calendar fa-fw fa-2x item-title">
-				</span>
-				<br/>
-				Calendar
-			</a>
-			</div>
-		</li>
-      </ul>
-     
-	{{> SearchCaseFile}}
-
-    </div><!--/.nav-collapse -->				
+				<div class="navbar-collapse collapse" id="searchbar">
+					{{> PrivateLayoutRightMenu}} {{> PrivateLayoutLeftMenu}} {{> SearchCaseFile}}
+				</div>
 			</div>
 		</div>
 		{{> yield}}
@@ -115,93 +83,26 @@
 </template>
 
 
-
 <template name="PrivateLayoutLeftMenu">
-	<ul id="menu-items" class="nav navbar-nav">
-		<li id="menu-item-simple" class="{{menuItemClass 'home_private'}}">
-			<a href="{{pathFor 'home_private'}}">
-				<span class="item-title">
-					Home
-				</span>
-			</a>
-		</li>
+	<ul class="nav navbar-nav ">
 		<li id="menu-item-simple" class="{{menuItemClass 'caseprofile'}}">
 			<div class="top-navbar-icon">
-			<a href="{{pathFor 'caseprofile'}}" style="color:#ff9800">
-				<span class="fa fa-list fa-fw fa-2x item-title">
+				<a href="{{pathFor 'caseprofile'}}" style="color:#2196f3">
+					<span class="fa fa-home fa-fw fa-2x item-title">
 				</span>
-				<br/>
-				Case Profile <span class="badge">{{caseprofileCount}}</span>
-			</a>
+					<br/> Home
+				</a>
 			</div>
 		</li>
-		<li id="menu-item-simple" class="{{menuItemClass 'approval'}}">
-			<div class="top-navbar-icon">
-			<a href="{{pathFor 'approval'}}" style="color:#ff9800">
-				<span class="fa fa-thumbs-o-up fa-fw fa-2x item-title">
-				</span>
-				<br/>
-				Approval <span class="badge">{{approvalCount}}</span>
-			</a>
-			</div>
-		</li>		
 		<li id="menu-item-simple" class="{{menuItemClass 'calendar'}}">
 			<div class="top-navbar-icon">
-			<a href="{{pathFor 'calendar'}}" style="color:#4caf50">
-				<span class="fa fa-calendar fa-fw fa-2x item-title">
+				<a href="{{pathFor 'calendar'}}" style="color:#4caf50">
+					<span class="fa fa-calendar fa-fw fa-2x item-title">
 				</span>
-				<br/>
-				Calendar
-			</a>
+					<br/> Calendar
+				</a>
 			</div>
 		</li>
-		{{#if isUserInRole 'junior'}}		
-		{{else}}
-		<li id="menu-item-simple" class="{{menuItemClass 'backup'}}">
-			<div class="top-navbar-icon">
-			<a href="{{pathFor 'backup'}}" style="color:#2196f3">
-				<span class="fa fa-hdd-o fa-fw fa-2x item-title">
-				</span>
-				<br/>
-				Backup
-			</a>
-			</div>
-		</li>
-		{{/if}}
-		<li id="menu-item-simple" class="{{menuItemClass 'caseprofileA'}}">
-			<div class="top-navbar-icon">
-			<a href="{{pathFor 'caseprofileA'}}" style="color:#b3b3b3">
-				<span class="fa fa-archive fa-fw fa-2x item-title">
-				</span>
-				<br/>
-				Archived <span class="badge">{{archivedCount}}</span>
-			</a>
-			</div>
-		</li>
-		{{#if isUserInRole 'junior'}}		
-		{{else}}
-		<li id="menu-item-simple" class="{{menuItemClass 'todo'}}">
-			<div class="top-navbar-icon">
-			<a href="{{pathFor 'todo'}}" style="color:#9c27b0">
-				<span class="fa fa-check-square-o fa-fw fa-2x item-title">
-				</span>
-				<br/>
-				Tasks ({{incompleteCount}}) 
-				<!--<span class="badge">{{incompleteCount}}</span>-->
-			</a>
-			</div>
-		</li>
-		<li id="menu-item-simple" class="{{menuItemClass 'appointment'}}">
-			<div class="top-navbar-icon">
-			<a href="#" style="color:#9cb3b0"  id="appointment-default">
-				<span class="fa fa-clock-o fa-fw fa-2x item-title">
-				</span>
-				<br/>
-				Appointment 
-			</a>
-			</div>
-		</li>		
-		{{/if}}
 	</ul>
 </template>
 
@@ -212,10 +113,10 @@
 				<span class="item-title">
 					{{#if userEmail}}
 						{{userEmail}}
-					{{else}}
-						{{userFullName}}
 					{{/if}}
-					
+					{{#if userFullName}}
+						- {{userFullName}}
+					{{/if}}
 				</span>
 				<b class="caret">
 				</b>
@@ -239,4 +140,3 @@
 		</li>
 	</ul>
 </template>
-

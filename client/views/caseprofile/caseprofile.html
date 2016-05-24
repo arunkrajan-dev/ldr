@@ -17,75 +17,93 @@
 <template name="caseProfileFya">
 	{{#if fyaCount}}
 	<ul class="nav nav-pills">
-	  <li><a href="#" class="collapsed showhide text-warning" data-toggle="collapse" data-target="#intro"> 
+		<li><a href="#" class="collapsed showhide text-warning" data-toggle="collapse" data-target="#intro"> 
 	  		Pending case update <span class="badge">{{fyaCount}}</span>
 	  	</a>
-	  </li>
+		</li>
 	</ul>
-	
-	<div id="intro" class="collapse"> 
-		{{#each fyaItems}}
-		{{>fyaDetailsInsert}}
-		{{/each}}
-		{{lastUpdated}}
+
+	<div id="intro" class="collapse">
+		{{#each fyaItems}} {{>fyaDetailsInsert}} {{/each}} {{lastUpdated}}
 	</div>
 	{{/if}}
 </template>
 
 <template name="CaseprofileView">
 	<div id="caseprofile-view" class="">
-		{{#if isNotEmpty}}	
+		{{#if isNotEmpty}} 
 			{{#if isNotFound}}
-		<div class="alert alert-warning">
-			"{{searchString}}" not found.
-		</div>
-		{{else}}
-		{{#if searchString}}
-			<span class="help-block">
-				<h4 class="text-primary">Result for "{{searchString}}"</h4>
-			</span>
-		{{else}}
-				{{#if archived}}
-					<h4 class="text-primary">Archived Case Profile - List</h4>
-				{{else}}
-					{{#if limitaion}}
-						<h4 class="text-primary">Limitation Case Profile - List</h4>
-					{{else}}
-						<h4 class="text-primary">Case Profile - List</h4>
-					{{/if}}
-				{{/if}}
-		{{/if}}
-		{{/if}}	
-		{{else}}
-		<div class="alert alert-info">
-			No Case Profile :(
-		</div>
-		{{/if}}
-		<div id="dataview-data">
-			{{#if viewAsTable}}  
-                <div class="dual-list">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
-                            <span class="input-group-addon glyphicon glyphicon-search"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                    	{{#if archived}}
-                    	 {{else}}
-                    	<button type="button" class="btn btn-success btn-sm" id="dataview-insert-button">Add New</button>
-                    	{{/if}}
-                    </div>
-                </div>				
-                <div class="row">
-                    <div class="col-md-12">				
-						{{> CaseprofileViewTable}}
+				<div class="alert alert-warning">
+					"{{searchString}}" not found.
+				</div>
+			{{else}} 
+				{{#if searchString}}
+					<span class="help-block">
+						<h4 class="text-primary">Result for "{{searchString}}"</h4>
+					</span> 
+				{{else}} 
+					{{#if archived}} 
+						<h4 class="text-primary">Archived Case Profile - List</h4> 
+					{{else}} 
+						{{#if limitaion}} 
+							<h4 class="text-primary">Limitation Case Profile - List</h4> 
+						{{else}} 
+							<h4 class="text-primary">Case Profile - List</h4> 
+						{{/if}} 
+					{{/if}} 
+				{{/if}} 
+			{{/if}}
+			
+			<div id="dataview-data">
+				{{#if viewAsTable}}
+				<div class="dual-list">
+					<div class="row">
+						<div class="col-md-10">
+							<div class="input-group">
+								<input type="text" name="SearchDualList" id="SearchDualList" class="form-control" placeholder="search" />
+								<span class="input-group-addon glyphicon glyphicon-search"></span>
+							</div>
+						</div>
+						<div class="col-md-2">
+							{{#if archived}} 
+								<!--Nothing to Show as of Now-->
+							{{else}} 
+								{{#if limitaion}} 
+									<!--Nothing to Show as of Now-->
+								{{else}}
+									<button type="button" class="btn btn-success btn-sm" id="dataview-insert-button">Add New</button>
+								{{/if}}
+							{{/if}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							{{> CaseprofileViewTable}}
+						</div>
 					</div>
 				</div>
+				{{/if}}
+			</div>
+			
+		{{else}} 
+			{{#if limitaion}}
+				<div class="jumbotron">
+					<h1>No Limitaion Pending!</h1>
+					<p>Case profiles with limitation date will be shown here, till it gets filing date.</p>
+					<p><a class="btn btn-primary btn-lg" href="{{pathFor 'caseprofile'}}" role="button">Return Home</a></p>
 				</div>
-			{{/if}}
-		</div>
+			{{else}} 
+				{{#if archived}}
+					<h1>No Archives!</h1>
+					<p>Archived Case Profiles will be shown Here!</p>
+					<p><a class="btn btn-primary btn-lg" href="{{pathFor 'caseprofile'}}" role="button">Return Home</a></p>
+				{{else}}
+					<h1>Welcome {{userFullName}}!</h1>
+					<p>Click continue to add your first case profile..,</p>
+					<p><a class="btn btn-primary btn-lg" href="{{pathFor 'caseprofile.insert'}}" role="button">Continue</a></p>
+				{{/if}} 
+			{{/if}} 
+		{{/if}}
 	</div>
 </template>
 
@@ -105,11 +123,11 @@
 				</th>
 				<th class="th-sortable col-md-2">
 					Days Left
-				</th>				
+				</th>
 				{{else}}
 				<th class="th-sortable col-md-2" data-sort="caseNumber">
 					Number
-				</th>				
+				</th>
 				<th class="th-sortable col-md-2" data-sort="nextHearingDate">
 					Next Hearing On
 				</th>
@@ -137,25 +155,25 @@
 			<h6 class="text-warning">{{caseId}}<small>{{caseNumber}}</small></h6>
 		</td>
 		{{#if limitationDate}}
-			<td>
-				{{formatDate judgementDate "DD/MMM/YYYY"}} &nbsp; [{{limitation}}]
-			</td>
-			<td>
-				{{formatDate limitationDate "DD/MMM/YYYY"}}
-			</td>
-			<td>
-				{{DaysFromNow limitationDate}} 
-			</td>
+		<td>
+			{{formatDate judgementDate "DD/MMM/YYYY"}} &nbsp; [{{limitation}}]
+		</td>
+		<td>
+			{{formatDate limitationDate "DD/MMM/YYYY"}}
+		</td>
+		<td>
+			{{DaysFromNow limitationDate}}
+		</td>
 		{{else}}
-		
+
 		<td>
-			
+
 		</td>
 		<td>
-			<abbr title="{{nextHearingDate}}">{{formatCalendarDate nextHearingDate}}</abbr> 
+			<abbr title="{{nextHearingDate}}">{{formatCalendarDate nextHearingDate}}</abbr>
 		</td>
 		<td>
-			<abbr title="{{modifiedAt}}">{{formatCalendarDate modifiedAt}}</abbr> 
+			<abbr title="{{modifiedAt}}">{{formatCalendarDate modifiedAt}}</abbr>
 		</td>
 		{{/if}}
 		<td class="td-icon">

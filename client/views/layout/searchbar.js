@@ -9,16 +9,10 @@ Template.SearchCaseFile.helpers({
           console.log(err);
           return;
         }
-        console.log("Response", res);
         callback(res);
       });
     },
 	selected: function(event, suggestion, datasetName) {
-	    // event - the jQuery event object
-	    // suggestion - the suggestion object
-	    // datasetName - the name of the dataset the suggestion belongs to
-	    // TODO your event handler here
-	    console.log("Selected", suggestion.id);
 	    Router.go("caseprofile.details", {caseId: suggestion.id});
 	},
 });
