@@ -54,7 +54,8 @@ Template.CaseprofileInsertInsertForm.events({
 				}
 			}
 
-			Router.go("caseprofile.details", {caseId: newId});
+			//window.open(Router.url("caseprofile.details", { caseId: newId}), 'GoogleWindow', 'resizable=0, menubar=0, locationbar=0, width=1200, height=900');
+			Router.go("caseprofile");
 		}
 
 		function errorAction(msg) {

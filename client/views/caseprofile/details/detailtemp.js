@@ -100,4 +100,10 @@ Template.temptab.events({
 		return false;
 	},
 	
+	"click #close-button": function(e, t) {
+		e.preventDefault();
+		var goBack = window.open('', 'parent');
+		goBack.focus();
+	}
+	
 });

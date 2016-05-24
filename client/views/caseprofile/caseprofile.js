@@ -248,9 +248,11 @@ Template.CaseprofileViewTableItems.rendered = function() {
 Template.CaseprofileViewTableItems.events({
 	"click td": function(e, t) {
 		e.preventDefault();
-		Router.go("caseprofile.details", {
-			caseId: this._id
-		});
+		window.name = "parent";
+		window.open(Router.url("caseprofile.details", { caseId: this._id}), 'GoogleWindow', 'resizable=0, menubar=0, locationbar=0, width=1200, height=900');
+		// Router.go("caseprofile.details", {
+		// 	caseId: this._id
+		// });
 		return false;
 	},
 

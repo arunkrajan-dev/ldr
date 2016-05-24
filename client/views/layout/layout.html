@@ -48,8 +48,7 @@
 	</ul>
 </template>
 
-<template name="PrivateLayout">
-	<div id="content" class="sticky-wrapper">
+<template name="private_nav_menu">
 		<div id="navbar" class="navbar navbar-default" role="navigation">
 			<div class="navbar-container container">
 				<div class="navbar-header">
@@ -71,7 +70,11 @@
 					{{> PrivateLayoutRightMenu}} {{> PrivateLayoutLeftMenu}} {{> SearchCaseFile}}
 				</div>
 			</div>
-		</div>
+		</div>	
+</template>
+
+<template name="PrivateLayout">
+	<div id="content" class="sticky-wrapper">
 		{{> yield}}
 	</div>
 	<div id="footer" class="sticky-footer">
