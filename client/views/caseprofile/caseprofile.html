@@ -16,13 +16,6 @@
 
 <template name="caseProfileFya">
 	{{#if fyaCount}}
-	<ul class="nav nav-pills">
-		<li><a href="#" class="collapsed showhide text-warning" data-toggle="collapse" data-target="#intro"> 
-	  		Pending case update <span class="badge">{{fyaCount}}</span>
-	  	</a>
-		</li>
-	</ul>
-
 	<div id="intro" class="collapse">
 		{{#each fyaItems}} {{>fyaDetailsInsert}} {{/each}} {{lastUpdated}}
 	</div>

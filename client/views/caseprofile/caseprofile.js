@@ -2,46 +2,47 @@ var pageSession = new ReactiveDict();
 
 Template.caseProfileFya.helpers({
 	"fyaItems": function() {
-		return this.fya_list;//(Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {}));
+		return this.fya_list; //(Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {}));
 	},
 	"fyaCount": function() {
-		return this.fya_list.count();	
+		return this.fya_list.count();
 	},
 	"lastUpdated": function() {
-		if(Session.get('lastUpdated') > "")
+		if (Session.get('lastUpdated') > "")
 			return "Last Updated : " + Session.get('lastUpdated');
 	}
 });
 
 Template.Caseprofile.rendered = function() {
-	
+
 };
 
 Template.Caseprofile.events({
-	
+
 });
 
 Template.Caseprofile.helpers({
-	
+
 });
 
 var CaseprofileViewItems = function(cursor) {
-	if(!cursor) {
+	if (!cursor) {
 		return [];
 	}
 
 	var searchString = pageSession.get("CaseprofileViewSearchString");
 	var sortBy = pageSession.get("CaseprofileViewSortBy");
 	var sortAscending = pageSession.get("CaseprofileViewSortAscending");
-	if(typeof(sortAscending) == "undefined") sortAscending = true;
+	if (typeof(sortAscending) == "undefined") sortAscending = true;
 
 	var raw = cursor.fetch();
 
 	// filter
 	var filtered = [];
-	if(!searchString || searchString == "") {
+	if (!searchString || searchString == "") {
 		filtered = raw;
-	} else {
+	}
+	else {
 		searchString = searchString.replace(".", "\\.");
 		var regEx = new RegExp(searchString, "i");
 		var searchFields = ["court"];
@@ -51,7 +52,7 @@ var CaseprofileViewItems = function(cursor) {
 				var value = (getPropertyValue(field, item) || "") + "";
 
 				match = match || (value && value.match(regEx));
-				if(match) {
+				if (match) {
 					return false;
 				}
 			})
@@ -60,11 +61,11 @@ var CaseprofileViewItems = function(cursor) {
 	}
 
 	// sort
-	if(sortBy) {
+	if (sortBy) {
 		filtered = _.sortBy(filtered, sortBy);
 
 		// descending?
-		if(!sortAscending) {
+		if (!sortAscending) {
 			filtered = filtered.reverse();
 		}
 	}
@@ -86,7 +87,7 @@ var CaseprofileViewExport = function(cursor, fileType) {
 
 Template.CaseprofileView.rendered = function() {
 	pageSession.set("CaseprofileViewStyle", "table");
-	
+
 };
 
 Template.CaseprofileView.events({
@@ -97,9 +98,9 @@ Template.CaseprofileView.events({
 	"click #dataview-search-button": function(e, t) {
 		e.preventDefault();
 		var form = $(e.currentTarget).parent();
-		if(form) {
+		if (form) {
 			var searchInput = form.find("#dataview-search-input");
-			if(searchInput) {
+			if (searchInput) {
 				searchInput.focus();
 				var searchString = searchInput.val();
 				pageSession.set("CaseprofileViewSearchString", searchString);
@@ -110,13 +111,12 @@ Template.CaseprofileView.events({
 	},
 
 	"keydown #dataview-search-input": function(e, t) {
-		if(e.which === 13)
-		{
+		if (e.which === 13) {
 			e.preventDefault();
 			var form = $(e.currentTarget).parent();
-			if(form) {
+			if (form) {
 				var searchInput = form.find("#dataview-search-input");
-				if(searchInput) {
+				if (searchInput) {
 					var searchString = searchInput.val();
 					pageSession.set("CaseprofileViewSearchString", searchString);
 				}
@@ -125,13 +125,12 @@ Template.CaseprofileView.events({
 			return false;
 		}
 
-		if(e.which === 27)
-		{
+		if (e.which === 27) {
 			e.preventDefault();
 			var form = $(e.currentTarget).parent();
-			if(form) {
+			if (form) {
 				var searchInput = form.find("#dataview-search-input");
-				if(searchInput) {
+				if (searchInput) {
 					searchInput.val("");
 					pageSession.set("CaseprofileViewSearchString", "");
 				}
@@ -167,26 +166,26 @@ Template.CaseprofileView.events({
 		e.preventDefault();
 		CaseprofileViewExport(this.caseprofile_list, "json");
 	},
-    "keyup #SearchDualList": function (e, t) {
-                e.preventDefault();
-                console.log("search dual list");
-                var me = $('#SearchDualList');
-                console.log("Search text - ", me.val())
-                var code = e.keyCode || e.which;
-                if (code == '9') return;
-                if (code == '27') me.val(null);
-                var $rows = $(e.target).closest('.dual-list').find('.table-row');
-                console.log('Selected row - ', $rows);
-                var val = $.trim(me.val()).replace(/ +/g, ' ').toLowerCase();
-                console.log("Value ==", val);
-                $rows.show().filter(function () {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    console.log("==text", text);
-                    return !~text.indexOf(val);
-                }).hide();
-                return false;
-    }
-	
+	"keyup #SearchDualList": function(e, t) {
+		e.preventDefault();
+		console.log("search dual list");
+		var me = $('#SearchDualList');
+		console.log("Search text - ", me.val())
+		var code = e.keyCode || e.which;
+		if (code == '9') return;
+		if (code == '27') me.val(null);
+		var $rows = $(e.target).closest('.dual-list').find('.table-row');
+		console.log('Selected row - ', $rows);
+		var val = $.trim(me.val()).replace(/ +/g, ' ').toLowerCase();
+		console.log("Value ==", val);
+		$rows.show().filter(function() {
+			var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+			console.log("==text", text);
+			return !~text.indexOf(val);
+		}).hide();
+		return false;
+	}
+
 });
 
 Template.CaseprofileView.helpers({
@@ -209,20 +208,13 @@ Template.CaseprofileView.helpers({
 	},
 	"viewAsTable": function() {
 		return pageSession.get("CaseprofileViewStyle") == "table";
-	},
-	"viewAsList": function() {
-		return pageSession.get("CaseprofileViewStyle") == "list";
-	},
-	"viewAsGallery": function() {
-		return pageSession.get("CaseprofileViewStyle") == "gallery";
 	}
 
-	
 });
 
 
 Template.CaseprofileViewTable.rendered = function() {
-	
+
 };
 
 Template.CaseprofileViewTable.events({
@@ -232,10 +224,11 @@ Template.CaseprofileViewTable.events({
 		var newSortBy = $(e.target).attr("data-sort");
 
 		pageSession.set("CaseprofileViewSortBy", newSortBy);
-		if(oldSortBy == newSortBy) {
+		if (oldSortBy == newSortBy) {
 			var sortAscending = pageSession.get("CaseprofileViewSortAscending") || false;
 			pageSession.set("CaseprofileViewSortAscending", !sortAscending);
-		} else {
+		}
+		else {
 			pageSession.set("CaseprofileViewSortAscending", true);
 		}
 	}
@@ -249,28 +242,34 @@ Template.CaseprofileViewTable.helpers({
 
 
 Template.CaseprofileViewTableItems.rendered = function() {
-	
+
 };
 
 Template.CaseprofileViewTableItems.events({
 	"click td": function(e, t) {
 		e.preventDefault();
-		Router.go("caseprofile.details", {caseId: this._id});
+		Router.go("caseprofile.details", {
+			caseId: this._id
+		});
 		return false;
 	},
 
 	"click .inline-checkbox": function(e, t) {
 		e.preventDefault();
 
-		if(!this || !this._id) return false;
+		if (!this || !this._id) return false;
 
 		var fieldName = $(e.currentTarget).attr("data-field");
-		if(!fieldName) return false;
+		if (!fieldName) return false;
 
 		var values = {};
 		values[fieldName] = !this[fieldName];
 
-		Caseprofile.update({ _id: this._id }, { $set: values });
+		Caseprofile.update({
+			_id: this._id
+		}, {
+			$set: values
+		});
 
 		return false;
 	},
@@ -287,7 +286,9 @@ Template.CaseprofileViewTableItems.events({
 					label: "Yes",
 					className: "btn-success",
 					callback: function() {
-						Caseprofile.remove({ _id: me._id });
+						Caseprofile.remove({
+							_id: me._id
+						});
 					}
 				},
 				danger: {
@@ -300,13 +301,17 @@ Template.CaseprofileViewTableItems.events({
 	},
 	"click #edit-button": function(e, t) {
 		e.preventDefault();
-		Router.go("caseprofile.edit", {caseId: this._id});
+		Router.go("caseprofile.edit", {
+			caseId: this._id
+		});
 		return false;
 	}
 });
 
 Template.CaseprofileViewTableItems.helpers({
-	"checked": function(value) { return value ? "checked" : "" }, 
+	"checked": function(value) {
+		return value ? "checked" : ""
+	},
 	"editButtonClass": function() {
 		return Caseprofile.userCanUpdate(Meteor.userId(), this) ? "" : "hidden";
 	},
@@ -317,59 +322,61 @@ Template.CaseprofileViewTableItems.helpers({
 });
 
 Template.courts.rendered = function() {
-    Meteor.typeahead.inject();
+	Meteor.typeahead.inject();
 };
 
 Template.courts.helpers({
-    "courts": function() {
-        return Courts.find().fetch();
-    },
-    "getCount": function(name) {
-    	return Caseprofile.find({"court": new RegExp(name, "i") }).count();
-    },
-    "percent": function(val) {
+	"courts": function() {
+		return Courts.find().fetch();
+	},
+	"getCount": function(name) {
+		return Caseprofile.find({
+			"court": new RegExp(name, "i")
+		}).count();
+	},
+	"percent": function(val) {
 		//@todo Register this percentage function to global
-		return (val/this.caseprofile_list.count()) * 100;
+		return (val / this.caseprofile_list.count()) * 100;
 	}
 });
 
 Template.courts.events({
-        "keyup #SearchDualList": function (e, t) {
-                e.preventDefault();
-                console.log("search dual list");
-                var me = $('#SearchDualList');
-                console.log("text ", me.val())
-                var code = e.keyCode || e.which;
-                if (code == '9') return;
-                if (code == '27') me.val(null);
-                var $rows = $(e.target).closest('.dual-list').find('.table-row');
-                console.log('row', $rows);
-                var val = $.trim(me.val()).replace(/ +/g, ' ').toLowerCase();
-                console.log("==", val);
-                $rows.show().filter(function () {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    console.log("==text", text);
-                    return !~text.indexOf(val);
-                }).hide();
-                return false;
-            },
-    "click .list-group": function(e, t) {
-        console.log("Target", e.target.title);
-        if(e.target.title) {
-            pageSession.set("CaseprofileViewSearchString", e.target.title);
-            $('#tab-court').addClass('active');
-            $('.nav a[href="#all"]').tab('show');
-        }
-    },
-    "click #tab-archive": function(e, t) {
-    	
-    }
+	"keyup #SearchDualList": function(e, t) {
+		e.preventDefault();
+		console.log("search dual list");
+		var me = $('#SearchDualList');
+		console.log("text ", me.val())
+		var code = e.keyCode || e.which;
+		if (code == '9') return;
+		if (code == '27') me.val(null);
+		var $rows = $(e.target).closest('.dual-list').find('.table-row');
+		console.log('row', $rows);
+		var val = $.trim(me.val()).replace(/ +/g, ' ').toLowerCase();
+		console.log("==", val);
+		$rows.show().filter(function() {
+			var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+			console.log("==text", text);
+			return !~text.indexOf(val);
+		}).hide();
+		return false;
+	},
+	"click .list-group": function(e, t) {
+		console.log("Target", e.target.title);
+		if (e.target.title) {
+			pageSession.set("CaseprofileViewSearchString", e.target.title);
+			$('#tab-court').addClass('active');
+			$('.nav a[href="#all"]').tab('show');
+		}
+	},
+	"click #tab-archive": function(e, t) {
+
+	}
 });
 
 Template.presentation.events({
 	"click #tab-all": function() {
 		pageSession.set("CaseprofileViewSearchString", "");
-	}, 	
+	},
 	"click #dataview-insert-button": function(e, t) {
 		e.preventDefault();
 		Router.go("caseprofile.insert", {});
@@ -377,33 +384,49 @@ Template.presentation.events({
 });
 
 Template.presentation.helpers({
-	incompleteCount: function () {
-      Meteor.subscribe("tasks_list");
-      return Tasks.find({checked: {$ne: true}}).count();
-    },
-    incompleteApprovalCount: function() {
-    	this.hearings = Hearings.find({approved: {$in : ["no", "resend"]}}, {});
-    	return Hearings.find({approved: {$in : ["no", "resend"]}}, {}).count();
-    },
+	incompleteCount: function() {
+		Meteor.subscribe("tasks_list");
+		return Tasks.find({
+			checked: {
+				$ne: true
+			}
+		}).count();
+	},
+	incompleteApprovalCount: function() {
+		this.hearings = Hearings.find({
+			approved: {
+				$in: ["no", "resend"]
+			}
+		}, {});
+		return Hearings.find({
+			approved: {
+				$in: ["no", "resend"]
+			}
+		}, {}).count();
+	},
 	appointmentCount: function() {
 		return Appt.find({}).count();
-	}    
+	}
 });
 
 Template.insight.helpers({
 	"noCaseNumber": function() {
-		return Caseprofile.find({caseNumber: ""}).count();
+		return Caseprofile.find({
+			caseNumber: ""
+		}).count();
 	},
 	"noNextHearing": function() {
-		return Caseprofile.find({nextHearingDate: null}).count();
-	}, 
+		return Caseprofile.find({
+			nextHearingDate: null
+		}).count();
+	},
 	"fyaCount": function() {
-		return this.fya_list.count();	
+		return this.fya_list.count();
 	},
 	"total": function() {
 		return this.caseprofile_list.count();
 	},
 	"percent": function(val) {
-		return (val/this.caseprofile_list.count()) * 100;
+		return (val / this.caseprofile_list.count()) * 100;
 	}
 })
