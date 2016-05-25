@@ -2,7 +2,7 @@ var pageSession = new ReactiveDict();
 
 Template.apptModal.helpers({
     "getApptDetail":function(){
-        return Appt.find({}, {sort:[["apptDate","desc"]]}).fetch();
+        return Appt.find({}, {sort:[["apptDate","asc"]]}).fetch();
     },
     "infoMessage": function() {
 		return pageSession.get("apptInsertFormInfoMessage");
@@ -14,56 +14,26 @@ Template.apptModal.rendered = function() {
 }
 
 Template.apptModal.events({
-	"submit": function(e, t) {
+	"click #appt-insert-button": function(e, t) {
 		e.preventDefault();
-		pageSession.set("apptInsertFormInfoMessage", "");
-		var self = this;
-
-		function submitAction(msg) {
-			var fyaHearingInsertFormMode = "insert";
-			if(!t.find("#form-cancel-button")) {
-				switch(fyaHearingInsertFormMode) {
-					case "insert": {
-						$(e.target)[0].reset();
-					}; break;
-
-					case "update": {
-						var message = msg || "Saved.";
-						pageSession.set("apptInsertFormInfoMessage", "");
-					}; break;
-				}
-				Session.set('lastUpdated', new Date());
-			}
-		}
-
-		function errorAction(msg) {
-			msg = msg || "";
-			var message = msg.message || msg || "Error.";
-			alert (msg);
-		}
-
-		validateForm(
-			$(e.target),
-			function(fieldName, fieldValue) {
-
-			},
-			function(msg) {
-
-			},
-			function(values) {
-				newId = Appt.insert(values, function(e) { if(e) errorAction(e); else submitAction(); });
-			}
-		);
-
-		return false;
-	}, 
+		//Router.go("appt.insert", {});
+		//e.preventDefault();
+		var me = this;
+		bootbox.dialog({
+			message:  "<div id='dialogAnchor'></div>",
+			title: "Add New Appointment",
+			animate: false
+		});
+		Blaze.render(Template.ApptInsert, $("#dialogAnchor")[0])
+		return false;		
+	},
 	"click #delete-button": function(e, t) {
 		e.preventDefault();
 		var me = this;
 		bootbox.dialog({
 			message: "Delete? Are you sure?",
 			title: "Delete",
-			animate: false,
+			animate: true,
 			buttons: {
 				success: {
 					label: "Yes",
@@ -79,5 +49,25 @@ Template.apptModal.events({
 			}
 		});
 		return false;
-	}	
+	},
+	"keyup #SearchApptInput": function(e, t) {
+		e.preventDefault();
+		console.log("search dual list");
+		var me = $('#SearchApptInput');
+		console.log("text ", me.val())
+		var code = e.keyCode || e.which;
+		if (code == '9') return;
+		if (code == '27') me.val(null);
+		var $rows = $(e.target).closest('.dual-list').find('.table-row');
+		console.log('row', $rows);
+		var val = $.trim(me.val()).replace(/ +/g, ' ').toLowerCase();
+		console.log("==", val);
+		$rows.show().filter(function() {
+			var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+			console.log("==text", text);
+			return !~text.indexOf(val);
+		}).hide();
+		return false;
+	}
+	
 });

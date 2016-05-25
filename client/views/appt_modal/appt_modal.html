@@ -1,72 +1,55 @@
 <template name="apptModal">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <form role="form" class="insert-form">
-    			{{#if errorMessage}}
-    			<div class="alert alert-warning">
-    				{{errorMessage}}
-    			</div>
-    			{{/if}}		
-    		
-    			{{#if infoMessage}}
-    			<div class="alert alert-success">
-    				{{infoMessage}}
-    			</div>
-    			{{/if}}
-    			
-    			<div class="row">
-    				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-3">
-    					<label for="apptDate">
-    						Date
-    					</label>
-    					<div class="input-div">
-    						<div class="input-group date">
-    							<input id="apptDate" type="text"  autofocus="autofocus" name="apptDate" value="" 
-    							  class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a" required="required">
-    							<span class="input-group-addon">
-    								<i class="fa fa-calendar">
-    								</i>
-    							</span>
-    						</div>
-    						<span id="help-text" class="help-block">
-    						</span>
-    						<span id="error-text" class="help-block">
-    						</span>
-    					</div>
-    				</div>
-    				<div class="form-group  field-description col-xs-12 col-sm-12 col-md-6">
-    					<label for="description">
-    						Description
-    					</label>
-    					<div class="input-div">
-    						<input type="text" name="description" value="" class="form-control" required="required">
-    						<span id="help-text" class="help-block">
-    						</span>
-    						<span id="error-text" class="help-block">
-    						</span>
-    					</div>
-    				</div>
-    				<div class="form-group  field-location col-xs-12 col-sm-12 col-md-2">
-    					<label for="location">
-    						Location
-    					</label>
-    					<div class="input-div">
-    						<input type="text" name="location" value="" class="form-control" required="required">
-    						<span id="help-text" class="help-block">
-    						</span>
-    						<span id="error-text" class="help-block">
-    						</span>
-    					</div>
-    				</div>
-    			</div>
-    			<button type="submit" class="btn btn-success btn-block" id="form-submit-button" name="save">Add</button>
-    		</form>
-    <ul class="list-group">
-      {{#each getApptDetail}}
-        <li class="list-group-item">
-          <span id="delete-button" class="delete fa fa-trash-o" title="Delete"></span>
-          <span class="text"><strong>{{formatDate apptDate "DD-MMM-YYYY"}}</strong> {{description}} 
-            <i class="fa fa-map-marker">&nbsp;</i> {{location}}</span>
-        </li>
-      {{/each}}
-    </ul>
+        <div class="dual-list">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <input type="text" name="SearchDualList" id="SearchApptInput" class="form-control" placeholder="search" />
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                      <button type="button" class="btn btn-success btn-sm" id="appt-insert-button">Add New</button>
+                    </div>
+                </div>
+				<div class="row">
+				<div class="col-md-12">
+        	<table id="dataview-table" class="table table-hover panel-container">
+        		<thead id="dataview-table-header">
+        			<tr id="dataview-table-header-row">
+        				<th class="th-sortable col-md-2">
+        				  Date
+        				</th>
+        				<th class="th-sortable col-md-10">
+        				  Event
+        				</th>        				
+        				<th>
+        					&nbsp;
+        				</th>
+        				<th>
+        					&nbsp;
+        				</th>
+        			</tr>
+        		</thead>
+          {{#each getApptDetail}}
+          	<tr id="dataview-table-items-row" class="table-row">
+          		<td>
+          		  <h6 class="text-info">{{formatDate apptDate "DD-MMM-YYYY"}}</h6>
+          		</td>
+          		<td>
+          		    {{description}}
+          		</td>
+          		<td class="td-icon">
+          			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+          			</span>
+          		</td>
+          		<td class="td-icon">
+          			<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
+          			</span>
+          		</td>	
+          	</tr>
+          {{/each}}
+        	</table>
+        </div>
+      </div>
+    </div>  
 </template>

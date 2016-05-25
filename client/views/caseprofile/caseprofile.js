@@ -382,6 +382,8 @@ Template.presentation.events({
 	"click #dataview-insert-button": function(e, t) {
 		e.preventDefault();
 		Router.go("caseprofile.insert", {});
+	},
+	"click #appointment-tab": function() {
 	}
 });
 

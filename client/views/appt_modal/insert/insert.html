@@ -1,0 +1,92 @@
+<template name="ApptInsert">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> ApptInsertForm}}
+	</div>
+</template>
+
+<template name="ApptInsertForm">
+	<div id="caseprofile-insert-insert-form" class="">
+
+		<form role="form" class="insert-form">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}		
+		
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+
+ 			<div class="row">
+    				<div class="form-group  field-target-date col-xs-12 col-sm-12 col-md-6">
+    					<label for="apptDate">
+    						Date
+    					</label>
+    					<div class="input-div">
+    						<div class="input-group date">
+    							<input id="apptDate" type="text" name="apptDate" value="" 
+    							  class="form-control" data-type="date" data-format="DD-MM-YYYY h:mm a" required="required">
+    							<span class="input-group-addon">
+    								<i class="fa fa-calendar">
+    								</i>
+    							</span>
+    						</div>
+    						<span id="help-text" class="help-block">
+    						</span>
+    						<span id="error-text" class="help-block">
+    						</span>
+    					</div>
+    				</div>
+    				<div class="form-group  field-location col-xs-12 col-sm-12 col-md-6">
+    					<label for="location">
+    						Location
+    					</label>
+    					<div class="input-div">
+    						<input type="text" name="location" value="" class="form-control" required="required">
+    						<span id="help-text" class="help-block">
+    						</span>
+    						<span id="error-text" class="help-block">
+    						</span>
+    					</div>
+    				</div>
+    			</div>
+			<div class="row">
+    			<div class="form-group  field-description col-xs-12 col-sm-12 col-md-12">
+    				<label for="description">
+    					Description
+    				</label>
+    				<div class="input-div">
+    					<input type="text" name="description" value="" class="form-control" required="required">
+    					<span id="help-text" class="help-block">
+    					</span>
+    					<span id="error-text" class="help-block">
+    					</span>
+    				</div>
+    			</div>				
+			</div>
+
+			<div class="form-group">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit">
+						<span class="fa fa-check">
+						</span>
+						Save
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+
+<template name="court">
+    <h4><i>{{court}}</i></h4>
+</template>
