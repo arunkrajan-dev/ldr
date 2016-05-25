@@ -2,7 +2,7 @@ var pageSession = new ReactiveDict();
 
 Template.apptModal.helpers({
     "getApptDetail":function(){
-        return Appt.find({}, {sort:[["apptDate","asc"]]}).fetch();
+        return Appt.find({}, {sort: {"apptDate": 1}}).fetch();
     },
     "infoMessage": function() {
 		return pageSession.get("apptInsertFormInfoMessage");
