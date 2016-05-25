@@ -67,10 +67,6 @@ Template.ApptInsertForm.events({
 	},
 	"click #form-cancel-button": function(e, t) {
 		e.preventDefault();
-
-		
-
-		Router.go("/caseprofile#appoitment", {});
 	},
 	"click #form-close-button": function(e, t) {
 		e.preventDefault();
