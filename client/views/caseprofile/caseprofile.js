@@ -307,7 +307,7 @@ Template.CaseprofileViewTableItems.events({
 			caseId: this._id
 		});
 		return false;
-	}
+	}	
 });
 
 Template.CaseprofileViewTableItems.helpers({
@@ -384,6 +384,7 @@ Template.presentation.events({
 		Router.go("caseprofile.insert", {});
 	},
 	"click #appointment-tab": function() {
+		Router.go("appt",{});
 	}
 });
 

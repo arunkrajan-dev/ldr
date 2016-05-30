@@ -38,9 +38,9 @@ Appt.after.insert(function(userId, doc) {
 });
 
 Appt.after.update(function(userId, doc, fieldNames, modifier, options) {
-    // console.log("After update case profile: " + JSON.stringify(doc, null, 4));
-    // if(updateCalEvent(doc.calendarId, doc.caseId + " | Filing", "Client: " + doc.clientName, doc.court, doc.filingDate))
-    //     console.log("Event updated in google calendar");
+	console.log("[INFO] After Update Appointment: " + JSON.stringify(doc, null, 4));
+	if(updateCalEvent(doc.calendarId, doc.description + " | appt", " ", doc.location, doc.apptDate))
+        console.log("[INFO] Appointment Updated to google calendar");
 });
 
 Appt.after.remove(function(userId, doc) {

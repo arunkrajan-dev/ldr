@@ -221,4 +221,7 @@ Router.map(function () {
 	this.route("admin.users.insert", {path: "/admin/users/insert", controller: "AdminUsersInsertController"});
 	this.route("admin.users.edit", {path: "/admin/users/edit/:userId", controller: "AdminUsersEditController"});
 	this.route("logout", {path: "/logout", controller: "LogoutController"});
+	this.route("appt", {path: "/appt", controller: "ApptController"});
+	this.route("appt.insert", {path: "/appt/insert", controller: "ApptInsertController"});
+	this.route("appt.edit", {path: "/appt/edit/:apptId", controller: "ApptEditController"});
 });

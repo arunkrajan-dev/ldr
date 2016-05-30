@@ -11,3 +11,10 @@ Meteor.publish("appt_empty", function() {
 	}
 	return Appt.find({_id:null,ownerId:this.userId}, {});
 });
+
+Meteor.publish("appt", function(apptId) {
+	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
+		return Appt.find({_id:apptId}, {});
+	}
+	return Appt.find({_id:apptId,ownerId:this.userId}, {});
+});

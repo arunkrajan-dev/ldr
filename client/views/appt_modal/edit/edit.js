@@ -1,51 +1,54 @@
 var pageSession = new ReactiveDict();
 
-Template.ApptInsertForm.rendered = function() {
+
+Template.ApptEditForm.rendered = function() {
 	
-	Meteor.typeahead.inject();
-	pageSession.set("apptInsertInsertFormInfoMessage", "");
-	pageSession.set("apptInsertInsertFormErrorMessage", "");
+	debugger;
+	pageSession.set("apptEditFormInfoMessage", "");
+	pageSession.set("apptEditFormErrorMessage", "");
 	
 	initDateTimePickers();
-
+	// $(".input-group.date").each(function() {
+	// 	$(this).find("input[type='text']").datetimepicker({
+	// 		format: 'DD/MM/YYYY',
+	// 		});
+	// });
 	$("input[type='file']").fileinput();
 	$("select[data-role='tagsinput']").tagsinput();
 	$(".bootstrap-tagsinput").addClass("form-control");
 	$("input[autofocus]").focus();
 };
 
-Template.ApptInsertForm.events({
+Template.ApptEditForm.events({
 	"submit": function(e, t) {
 		e.preventDefault();
-		pageSession.set("apptInsertInsertFormInfoMessage", "");
-		pageSession.set("apptInsertInsertFormErrorMessage", "");
+		pageSession.set("apptEditFormInfoMessage", "");
+		pageSession.set("apptEditFormErrorMessage", "");
 
 		var self = this;
 
 		function submitAction(msg) {
-			var apptInsertInsertFormMode = "insert";
+			var apptEditFormMode = "update";
 			if(!t.find("#form-cancel-button")) {
-				switch(apptInsertInsertFormMode) {
+				switch(apptEditFormMode) {
 					case "insert": {
 						$(e.target)[0].reset();
 					}; break;
 
 					case "update": {
 						var message = msg || "Saved.";
-						pageSession.set("apptInsertInsertFormInfoMessage", message);
+						pageSession.set("apptEditFormInfoMessage", message);
 					}; break;
 				}
 			}
 
-			//window.open(Router.url("caseprofile.details", { caseId: newId}), 'GoogleWindow', 'resizable=0, menubar=0, locationbar=0, width=1200, height=900');
 			Router.go("appt", {});
-			bootbox.hideAll();
 		}
 
 		function errorAction(msg) {
 			msg = msg || "";
 			var message = msg.message || msg || "Error.";
-			pageSession.set("apptInsertInsertFormErrorMessage", message);
+			pageSession.set("apptEditFormErrorMessage", message);
 		}
 
 		validateForm(
@@ -59,7 +62,7 @@ Template.ApptInsertForm.events({
 			function(values) {
 				
 
-				newId = Appt.insert(values, function(e) { if(e) errorAction(e); else submitAction(); });
+				Appt.update({ _id: t.data.appointment._id }, { $set: values }, function(e) { if(e) errorAction(e); else submitAction(); });
 			}
 		);
 
@@ -67,6 +70,9 @@ Template.ApptInsertForm.events({
 	},
 	"click #form-cancel-button": function(e, t) {
 		e.preventDefault();
+
+		
+
 		Router.go("appt", {});
 	},
 	"click #form-close-button": function(e, t) {
@@ -81,13 +87,14 @@ Template.ApptInsertForm.events({
 	}
 });
 
-Template.ApptInsertForm.helpers({
+Template.ApptEditForm.helpers({
 	"infoMessage": function() {
-		return pageSession.get("apptInsertInsertFormInfoMessage");
+		return pageSession.get("apptEditFormInfoMessage");
 	},
 	"errorMessage": function() {
-		return pageSession.get("apptInsertInsertFormErrorMessage");
+		return pageSession.get("apptEditFormErrorMessage");
 	}
+	
 });
 
 var initDateTimePickers = function() {

@@ -93,17 +93,16 @@ Template.temptab.events({
 	
 	"click #sendMail-button": function(e, t) {
 		e.preventDefault();
-		Session.set("caseProfileId", t.data.caseprofile_details._id);
-		Session.set("hearingId", "");
-		//console.log("hearing sendmail is clicked " + this._id);
-		$('#sendMailModal').modal('show');
+		Session.set("caseProfile_Id", t.data.caseprofile_details._id);
+		$('#sendQuickMailModal').modal('show');
 		return false;
 	},
 	
 	"click #close-button": function(e, t) {
 		e.preventDefault();
-		var goBack = window.open('', 'parent');
-		goBack.focus();
+		window.close();
+		//var goBack = window.open('', 'parent');
+		//goBack.focus();
 	}
 	
 });

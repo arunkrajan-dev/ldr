@@ -1,8 +1,10 @@
-this.CaseprofileController = RouteController.extend({
+this.ApptController = RouteController.extend({
 	template: "Caseprofile",
 	
 
 	yieldTemplates: {
+		'apptModal': { to: 'Appointment'}
+		
 	},
 
 	onBeforeAction: function() {
@@ -10,8 +12,8 @@ this.CaseprofileController = RouteController.extend({
 	},
 
 	action: function() {
-		if(this.isReady()) { this.render();} else { this.render("loading"); }
-		//this.redirect('fya.detailsInsert');
+		//if(this.isReady()) {this.render("apptModal", { to: "Appointment" }); } else { this.render("loading"); }
+		if(this.isReady()) { this.render(); } else { this.render("Caseprofile"); this.render("loading", { to: "Appointment" });}
 		/*ACTION_FUNCTION*/
 	},
 
@@ -20,7 +22,7 @@ this.CaseprofileController = RouteController.extend({
 
 		var subs = [
 			Meteor.subscribe("caseprofile_mini_list"),
-			Meteor.subscribe("court_list"),
+			Meteor.subscribe("court_list"),			
 			Meteor.subscribe("appt_list")
 		];
 		var ready = true;
@@ -37,7 +39,7 @@ this.CaseprofileController = RouteController.extend({
 		return {
 			params: this.params || {},
 			caseprofile_list: Caseprofile.find({}, {sort:[["caseId","desc"]]}),
-			fya_list: Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {})
+			fya_list: Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {})			
 		};
 		/*DATA_FUNCTION*/
 	},

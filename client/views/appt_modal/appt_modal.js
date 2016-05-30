@@ -9,22 +9,13 @@ Template.apptModal.helpers({
 	}
 });
 Template.apptModal.rendered = function() {
-	Meteor.subscribe("appt_list");
 	pageSession.set("apptInsertFormInfoMessage", "");
 }
 
 Template.apptModal.events({
 	"click #appt-insert-button": function(e, t) {
 		e.preventDefault();
-		//Router.go("appt.insert", {});
-		//e.preventDefault();
-		var me = this;
-		bootbox.dialog({
-			message:  "<div id='dialogAnchor'></div>",
-			title: "Add New Appointment",
-			animate: false
-		});
-		Blaze.render(Template.ApptInsert, $("#dialogAnchor")[0])
+		Router.go("appt.insert", {});
 		return false;		
 	},
 	"click #delete-button": function(e, t) {
@@ -49,6 +40,11 @@ Template.apptModal.events({
 			}
 		});
 		return false;
+	},
+	"click #edit-button": function(e, t) {
+		e.preventDefault();
+		Router.go("appt.edit", {apptId: this._id});
+		return false;		
 	},
 	"keyup #SearchApptInput": function(e, t) {
 		e.preventDefault();
