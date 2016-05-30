@@ -13,7 +13,7 @@ Template.temptab.events({
 					className: "btn-success",
 					callback: function() {
 						Caseprofile.remove({ _id: t.data.caseprofile_details._id });
-						Router.go("caseprofile", {});
+						window.close();
 					}
 				},
 				danger: {

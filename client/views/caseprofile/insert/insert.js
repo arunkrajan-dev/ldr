@@ -38,9 +38,11 @@ Template.CaseprofileInsertInsertForm.events({
 		pageSession.set("caseprofileInsertInsertFormErrorMessage", "");
 
 		var self = this;
-
+		var newId = "";
+		
 		function submitAction(msg) {
 			var caseprofileInsertInsertFormMode = "insert";
+			
 			if(!t.find("#form-cancel-button")) {
 				switch(caseprofileInsertInsertFormMode) {
 					case "insert": {
@@ -53,8 +55,8 @@ Template.CaseprofileInsertInsertForm.events({
 					}; break;
 				}
 			}
-
-			//window.open(Router.url("caseprofile.details", { caseId: newId}), 'GoogleWindow', 'resizable=0, menubar=0, locationbar=0, width=1200, height=900');
+			debugger;
+			window.open(Router.url("caseprofile.details", { caseId: newId}), 'GoogleWindow', 'resizable=0, menubar=0, locationbar=0, width=1200, height=900');
 			Router.go("caseprofile");
 		}
 

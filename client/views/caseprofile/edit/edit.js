@@ -54,7 +54,8 @@ Template.CaseprofileEditEditForm.events({
 				}
 			}
 
-			Router.go("caseprofile", {});
+			Router.go("caseprofile.details", { caseId: t.data.caseprofile_details._id});
+			// Router.go("caseprofile", {});
 		}
 
 		function errorAction(msg) {
