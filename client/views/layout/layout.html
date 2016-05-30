@@ -111,35 +111,31 @@
 
 <template name="PrivateLayoutRightMenu">
 	<ul id="menu-items" class="nav navbar-nav navbar-right">
-		<li id="menu-item-dropdown" class="dropdown ">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		<li id="menu-item-dropdown" class="hidden">
+			<a href="#" style="color:#fff">
 				<span class="item-title">
 					{{#if userEmail}}
 						{{userEmail}}
 					{{/if}}
-					{{#if userFullName}}
-						- {{userFullName}}
-					{{/if}}
 				</span>
-				<b class="caret">
-				</b>
 			</a>
-			<ul id="menu-items" class="dropdown-menu">
-				<li class="{{menuItemClass 'user_settings'}}">
-					<a href="{{pathFor 'user_settings'}}">
-						<span class="item-title">
-							Settings
-						</span>
-					</a>
-				</li>
-				<li class="{{menuItemClass 'logout'}}">
-					<a href="{{pathFor 'logout'}}">
-						<span class="item-title">
-							Logout
-						</span>
-					</a>
-				</li>
-			</ul>
 		</li>
+				<li class="{{menuItemClass 'user_settings'}} hidden">
+					<div class="top-navbar-icon">
+					<a href="{{pathFor 'user_settings'}}" style="color:#fff">
+						<span class="item-title fa fa-cog fa-2x">
+						</span> <br/> Settings
+					</a>
+					</div>
+				</li>		
+			<li class="{{menuItemClass 'logout'}}">
+				<div class="top-navbar-icon">
+				<a href="{{pathFor 'logout'}}" style="color:#fff">
+					<span class="item-title fa fa-sign-out fa-2x">
+					</span>
+					<br/> Logout
+				</a>
+				</div>
+			</li>			
 	</ul>
 </template>
