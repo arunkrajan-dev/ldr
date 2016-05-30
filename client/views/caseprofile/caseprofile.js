@@ -184,7 +184,12 @@ Template.CaseprofileView.events({
 			return !~text.indexOf(val);
 		}).hide();
 		return false;
-	}
+	},
+	"click #close-button": function(e, t) {
+		e.preventDefault();
+		Router.go("caseprofile", {});
+		return false;
+	}	
 
 });
 

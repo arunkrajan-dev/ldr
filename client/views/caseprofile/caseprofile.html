@@ -37,10 +37,12 @@
 					</span> 
 				{{else}} 
 					{{#if archived}} 
+						<button type="button" class="close" id="close-button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h4 class="text-primary">Archived Case Profile - List</h4> 
 					{{else}} 
 						{{#if limitaion}} 
-							<h4 class="text-primary">Limitation Case Profile - List</h4> 
+							<button type="button" class="close" id="close-button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="text-primary">Limitation Case Profile - List</h4>
 						{{else}} 
 							<h4 class="text-primary">Case Profile - List</h4> 
 						{{/if}} 
