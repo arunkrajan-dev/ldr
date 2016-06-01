@@ -220,6 +220,11 @@ Meteor.methods({
 		    }
 	}, 
     
+    todayList: function() {
+    	console.log("Today List is called!!");
+    	return Caseprofile.find({ nextHearingDate:{ $gte:new Date()} }, {});	
+    },
+    
     // Search result for Client Search Bar    
         search: function(query, options) {
             options = options || {};

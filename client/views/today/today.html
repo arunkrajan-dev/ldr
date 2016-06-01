@@ -1,0 +1,37 @@
+<template name="Print_Today_List">
+    {{#each today_list}}
+    <fieldset class="page-break">
+        <legend>{{caseId}}</legend>
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>[{{formatDate nextHearingDate "DD/MMM/YYYY h:mm a"}} ] @ {{court}}</h6></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>Client:</u></div>
+            <div class="col-xs-10">{{clientName}}</div>
+        </div>
+        {{#each hearingsDetail _id}}
+        <div class="row">
+            <div class="col-xs-2"><u>Purpose:</u></div>
+            <div class="col-xs-10">{{purpose}}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>Last Hearing: </u></div>
+            <div class="col-xs-10">{{formatDate businessDate "DD/MMM/YYYY"}} - {{description}}</div>
+        </div>        
+        {{/each}}
+        <div class="row">
+            <div class="col-xs-2"><u>Next On:</u></div>
+            <div class="col-xs-10">__/__/____</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>For:</u></div>
+            <div class="col-xs-10">________________________________________________________________</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>Today's Notes:</u></div>
+        </div>
+    </fieldset>
+    {{/each}}
+
+</template>

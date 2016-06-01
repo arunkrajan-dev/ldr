@@ -42,7 +42,7 @@ Hearings.before.remove(function(userId, doc) {
 });
 
 Hearings.after.insert(function(userId, doc) {
-	if(doc.nextDate.valueOf() > moment().valueOf()) {
+	if(doc.nextDate.valueOf() >= moment().valueOf()) {
 		Caseprofile.update({ _id: doc.caseId }, { $set: {"nextHearingDate": doc.nextDate}});
 	}
 	if(Users.isInRoles(userId, ["junior"])) {

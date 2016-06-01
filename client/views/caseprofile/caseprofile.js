@@ -390,7 +390,10 @@ Template.presentation.events({
 	},
 	"click #appointment-tab": function() {
 		Router.go("appt",{});
-	}
+	},
+	"click #print-tab": function() {
+		window.open(Router.url("print_today"), 'Today Schedule', 'resizable=0, menubar=0, locationbar=0, width=1200, height=900');
+	}	
 });
 
 Template.presentation.helpers({

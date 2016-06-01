@@ -224,4 +224,5 @@ Router.map(function () {
 	this.route("appt", {path: "/appt", controller: "ApptController"});
 	this.route("appt.insert", {path: "/appt/insert", controller: "ApptInsertController"});
 	this.route("appt.edit", {path: "/appt/edit/:apptId", controller: "ApptEditController"});
+	this.route("print_today", {path: "/print_today", controller: "PrintTodayController"});
 });
