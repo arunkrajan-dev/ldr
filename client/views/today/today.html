@@ -3,7 +3,7 @@
     <br/>
     <br/>
     <fieldset class="page-break">
-        <legend>{{caseId}}</legend>
+        <legend>[{{caseNumber}}] {{caseId}}</legend>
         <div class="row">
             <div class="col-xs-12">
                 <h6>[{{formatDate nextHearingDate "DD/MMM/YYYY h:mm a"}} ] @ {{court}}</h6></div>
@@ -11,6 +11,10 @@
         <div class="row">
             <div class="col-xs-2"><u>Client:</u></div>
             <div class="col-xs-10">{{clientName}}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>Contact:</u></div>
+            <div class="col-xs-10">{{phone}}</div>
         </div>
         {{#each hearingsDetail _id}}
         <div class="row">
