@@ -312,6 +312,11 @@ Template.CaseprofileViewTableItems.events({
 			caseId: this._id
 		});
 		return false;
+	},
+	"click #print-button": function(e, t) {
+		e.preventDefault();
+		window.open(Router.url("print_casedetail", {caseId: this._id}), 'Today Schedule', 'resizable=0, menubar=0, locationbar=0, width=1200, height=900');
+		return false;
 	}	
 });
 

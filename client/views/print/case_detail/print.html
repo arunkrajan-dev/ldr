@@ -1,0 +1,39 @@
+<template name="CaseprofileDetailsPrint">
+    <fieldset class="page-break">
+        <legend>[{{caseprofile_details.caseNumber}}] {{caseprofile_details.caseId}}</legend>
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>[{{formatDate caseprofile_details.nextHearingDate "DD/MMM/YYYY h:mm a"}} ] @ {{caseprofile_details.court}}</h6></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>Client:</u></div>
+            <div class="col-xs-10">{{caseprofile_details.clientName}}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>Contact:</u></div>
+            <div class="col-xs-10">{{caseprofile_details.phone}}</div>
+        </div>
+        {{#each hearings_details}}
+        <div class="row">
+            <div class="col-xs-2"><u>Purpose:</u></div>
+            <div class="col-xs-10">{{purpose}}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>Last Hearing: </u></div>
+            <div class="col-xs-10">{{formatDate businessDate "DD/MMM/YYYY"}} - {{description}}</div>
+        </div>        
+        {{/each}}
+        <div class="row">
+            <div class="col-xs-2"><u>Next On:</u></div>
+            <div class="col-xs-10">__/__/____</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>For:</u></div>
+            <div class="col-xs-10">________________________________________________________________</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2"><u>Today's Notes:</u></div>
+        </div>
+    </fieldset>
+</template>
+
