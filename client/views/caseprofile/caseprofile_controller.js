@@ -36,7 +36,7 @@ this.CaseprofileController = RouteController.extend({
 
 		return {
 			params: this.params || {},
-			caseprofile_list: Caseprofile.find({}, {sort:[["caseId","desc"]]}),
+			caseprofile_list: Caseprofile.find({}, {sort:[["modifiedAt","desc"]]}),
 			fya_list: Caseprofile.find({ nextHearingDate:{ $lte:new Date()} }, {}),
 			today_list: Caseprofile.find({ nextHearingDate:{ $gte:new Date()} }, {})
 		};
