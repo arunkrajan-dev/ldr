@@ -1,10 +1,31 @@
 <template name="CaseprofileDetailsPrint">
     <fieldset class="page-break">
-        <legend>[{{caseprofile_details.caseNumber}}] {{caseprofile_details.caseId}}</legend>
+        <legend><h5>{{caseprofile_details.caseId}} <small>{{caseprofile_details.caseNumber}}</small></h5></legend>
         <div class="row">
             <div class="col-xs-12">
-                <h6>[{{formatDate caseprofile_details.nextHearingDate "DD/MMM/YYYY h:mm a"}} ] @ {{caseprofile_details.court}}</h6></div>
+                <h6><small>[ {{formatDate caseprofile_details.nextHearingDate "DD/MMM/YYYY h:mm a"}} ]</small> @ {{caseprofile_details.court}}</h6></div>
         </div>
+
+<!--<div class="list-group">-->
+<!--  <a href="#" class="list-group-item">-->
+<!--    <h6 class="list-group-item-heading">Client</h6>-->
+<!--    <p class="list-group-item-text">{{caseprofile_details.clientName}}</p>-->
+<!--    <p class="list-group-item-text">{{caseprofile_details.phone}}</p>-->
+<!--  </a>-->
+<!--  {{#each hearings_details}}-->
+<!--  <a href="#" class="list-group-item">-->
+<!--    <h6 class="list-group-item-heading">Last Hearing</h6>-->
+<!--    <p class="list-group-item-text">{{formatDate businessDate "DD/MMM/YYYY"}} - {{description}}</p>-->
+<!--    <p class="list-group-item-text">{{description}}</p>-->
+<!--  </a>-->
+<!--  {{/each}}-->
+<!--  <a href="#" class="list-group-item">-->
+<!--    <h6 class="list-group-item-heading">Next Hearing</h6>-->
+<!--    <p class="list-group-item-text">On __/__/_____</p>-->
+<!--    <p class="list-group-item-text">For:</p><br/><br/>-->
+<!--  </a>-->
+<!--</div>-->
+<h6>Today's Notes:</h6>
         <div class="row">
             <div class="col-xs-2"><u>Client:</u></div>
             <div class="col-xs-10">{{caseprofile_details.clientName}}</div>

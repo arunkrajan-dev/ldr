@@ -218,8 +218,10 @@ Template.CaseprofileView.helpers({
 });
 
 
-Template.CaseprofileViewTable.rendered = function() {
-
+Template.insight.rendered = function() {
+	Tracker.autorun(function () {
+		drawChart();
+	});
 };
 
 Template.CaseprofileViewTable.events({
@@ -448,3 +450,31 @@ Template.insight.helpers({
 		return (val / this.caseprofile_list.count()) * 100;
 	}
 })
+
+function drawChart() {
+    //clear the contents of the div, in the event this function is called more than once.
+    $('#myfirstchart').empty();
+
+    var data = [
+	    {label: "Initial", value: Caseprofile.find({$and:[{caseNumber: ""}, {filingDate: null}]}).count()},
+	    {label: "Filed", value: Caseprofile.find({$and:[{caseNumber: ""}, {filingDate: {$ne: null}}]}).count()},
+	    {label: "Numbered", value: Caseprofile.find({caseNumber: {$ne: ""}}).count()},
+	    //{label: "Admission", value: Caseprofile.find({$and:[{caseNumber: {$ne: ""}},{"admissionDate":{$ne:null}}, {nextHearingDate: {$exists: false}}]}).count()},
+	    //{label: "NextHearing", value: Caseprofile.find({$and:[{caseNumber: {$ne: ""}}, {nextHearingDate: {$exists: true}}]}).count()}
+    ];
+
+    //example of how to load data from a collection that already contains data in the appropriate format
+    //var data = MyCollection.find({}, {fields: { year: 1, value: 1}, {sort: year: 1}}).fetch();
+
+    if (data) {
+        new Morris.Donut({
+            // ID of the element in which to draw the chart.
+            element: 'myfirstchart',
+            // Chart data records -- each entry in this array corresponds to a point on
+            // the chart.
+            data:    data,
+            // The name of the data record attribute that contains x-values.
+            resize:  true
+        });
+    }
+}

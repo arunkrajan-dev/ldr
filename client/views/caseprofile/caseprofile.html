@@ -148,7 +148,17 @@
 <template name="CaseprofileViewTableItems">
 	<tr id="dataview-table-items-row" class="table-row">
 		<td>
-			<h6 class="text-warning">{{caseId}}<small>{{caseNumber}}</small></h6>
+			<h6 class="
+			{{#if caseNumber}}
+					text-primary
+			{{else}}
+				{{#if filingDate}}
+					text-success
+				{{else}}
+					text-warning
+				{{/if}}
+			{{/if}}			
+			">{{caseId}}<small>{{caseNumber}}</small></h6>
 		</td>
 		{{#if limitationDate}}
 		<td>
@@ -173,13 +183,27 @@
 		</td>
 		{{/if}}
 		<td class="td-icon">
+			{{#if caseNumber}}
+				<i class="fa fa-star" aria-hidden="true"></i>
+				<!--<a href="#" class="btn btn-default btn-xs" id="hearing-button">Update Hearing</a>-->
+				<!--{{#if nextHearingDate}}-->
+				<!--{{else}}-->
+				<!--	<a href="#" class="btn btn-primary btn-xs" id="admission-button">Update Admission</a>-->
+				<!--{{/if}}-->
+			{{else}}
+				{{#if filingDate}}
+					<i class="fa fa-star-half-o" aria-hidden="true"></i>
+					<!--<a href="#" class="btn btn-primary btn-xs" id="caseNumber-button">Update CaseNumber</a>-->
+				{{else}}
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+					<!--<a href="#" class="btn btn-primary btn-xs" id="filing-button">Update Filing</a>-->
+				{{/if}}
+			{{/if}}
+		</td>
+		<td class="td-icon">
 			<span id="print-button" class="fa fa-print" title="Print Schedule">
 			</span>
 			<!--<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">-->
-			<!--</span>-->
-		</td>
-		<td class="td-icon">
-			<!--<span id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">-->
 			<!--</span>-->
 		</td>
 	</tr>

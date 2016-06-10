@@ -9,6 +9,7 @@ Meteor.publish("caseprofile_list_date", function() {
 	return Caseprofile.find({ownerId:this.userId, "archived":{"$exists": false}}, {_id:1, caseId:1, filingDate:1});
 });
 
+7
 Meteor.publish("caseprofile_empty", function() {
 	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
 		return Caseprofile.find({_id:null}, {});
@@ -23,29 +24,29 @@ Meteor.publish("caseprofile_details", function(caseId) {
 	if(Users.isInRoles(this.userId, ["junior"])) {
 		return Caseprofile.find({_id:caseId,ownerId:this.seniorId}, {});
 	}
-	return Caseprofile.find({_id:caseId,ownerId:this.userId}, {});
+	return Caseprofile.find({_id:caseId,ownerId:this.userId}, {});'[/o'
 });
 
 Meteor.publish("caseprofile_home_list", function() {
 	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
-		return Caseprofile.find({"archived":{"$exists": false}}, {fields: {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, modifiedAt:1, court:1}});
+		return Caseprofile.find({"archived":{"$exists": false}}, {fields: {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, filingDate:1, modifiedAt:1, court:1}});
 	}
 	if(Users.isInRoles(this.userId, ["junior"])) {
 		var user = Meteor.users.findOne(this.userId);
-		return Caseprofile.find({ownerId: user.seniorId, "archived":{"$exists": false}}, {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, modifiedAt:1, court:1});
+		return Caseprofile.find({ownerId: user.seniorId, "archived":{"$exists": false}}, {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, filingDate:1, modifiedAt:1, court:1});
 	}
-	return Caseprofile.find({ownerId:this.userId, "archived":{"$exists": false}}, {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, modifiedAt:1, court:1});
+	return Caseprofile.find({ownerId:this.userId, "archived":{"$exists": false}}, {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, filingDate:1, modifiedAt:1, court:1});
 });
 
 Meteor.publish("caseprofile_mini_list", function() {
 	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
-		return Caseprofile.find({"archived":{"$exists": false}}, {fields: {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, modifiedAt:1, court:1}});
+		return Caseprofile.find({"archived":{"$exists": false}}, {fields: {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, filingDate:1, modifiedAt:1, court:1}});
 	}
 	if(Users.isInRoles(this.userId, ["junior"])) {
 		var user = Meteor.users.findOne(this.userId);
-		return Caseprofile.find({ownerId: user.seniorId, "archived":{"$exists": false}}, {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, modifiedAt:1, court:1});
+		return Caseprofile.find({ownerId: user.seniorId, "archived":{"$exists": false}}, {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, filingDate:1, modifiedAt:1, court:1});
 	}
-	return Caseprofile.find({ownerId:this.userId, "archived":{"$exists": false}}, {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, modifiedAt:1, court:1});
+	return Caseprofile.find({ownerId:this.userId, "archived":{"$exists": false}}, {_id:1, caseId:1, caseNumber:1, nextHearingDate:1, filingDate:1, modifiedAt:1, court:1});
 });
 
 Meteor.publish("caseprofile_mini_listA", function() {

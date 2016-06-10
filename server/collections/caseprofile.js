@@ -21,15 +21,14 @@ Caseprofile.before.insert(function(userId, doc) {
 
 	
 	if(!doc.ownerId) doc.ownerId = userId;
+	
 if(!doc.totalAmount) doc.totalAmount = 0;
 });
-
 Caseprofile.before.update(function(userId, doc, fieldNames, modifier, options) {
 	modifier.$set = modifier.$set || {};
 	modifier.$set.modifiedAt = new Date();
 	modifier.$set.modifiedBy = userId;
 
-	
 });
 
 Caseprofile.before.remove(function(userId, doc) {

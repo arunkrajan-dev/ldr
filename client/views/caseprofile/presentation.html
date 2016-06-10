@@ -1,5 +1,7 @@
 <template name="presentation">
 		{{> insight}}
+		
+		
     <div class="row profile">
 		<div class="col-md-3">
 			<div class="profile-sidebar panel panel-default">
@@ -102,6 +104,77 @@
 </template>
 
 <template name="insight">
+	<div class="row">
+		<div class="col-md-2">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    <a href="#" class="collapsed showhide text-warning" data-toggle="collapse" data-target="#intro">{{fyaCount}} Pending updates</a>
+			  	<div class="progress progress-striped active">
+  					<div class="progress-bar progress-bar-warning" style="width: {{percent fyaCount}}%"></div>
+				</div>
+			  </div>
+			</div>			
+		</div>
+		<div class="col-md-2">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    {{total}} Total Case Profile
+			    <div class="progress progress-striped">
+  					<div class="progress-bar progress-bar-success" style="width: {{percent total}}%"></div>
+				</div>
+			  </div>
+			</div>			
+		</div>
+		<div class="col-md-4">
+			<div id="myfirstchart" style="height: 200px;"></div>
+			<!--<div class="panel panel-default">-->
+			<!--  <div class="panel-body">-->
+			    
+			    <!--{{noCaseNumber}} No Case Number-->
+			 <!-- 	<div class="progress progress-striped">-->
+  		<!--			<div class="progress-bar progress-bar-primary" style="width: {{percent noCaseNumber}}%"></div>-->
+				<!--</div>			  -->
+			<!--  </div>-->
+			<!--</div>			-->
+		</div>
+		<!--<div class="col-md-2">-->
+		<!--	<div class="panel panel-default">-->
+		<!--	  <div class="panel-body">-->
+		<!--	    {{noNextHearing}} No next Hearing-->
+		<!--	  	<div class="progress progress-striped">-->
+  <!--					<div class="progress-bar progress-bar-primary" style="width: {{percent noNextHearing}}%"></div>-->
+		<!--		</div>			    -->
+		<!--	  </div>-->
+		<!--	</div>			-->
+		<!--</div>		-->
+		<div class="col-md-2">
+			<div class="panel panel-default" style="background-color: transparent;">
+			  <div class="panel-body" style="text-align: center;">
+				<a href="{{pathFor 'caseprofileL'}}" style="color:#ff9800">
+					<span class="fa fa-clock-o fa-fw fa-2x item-title">
+					</span>
+					<br/>
+					Limitations
+				</a>			    
+			  </div>
+			</div>			
+		</div>
+		<div class="col-md-2">
+			<div class="panel panel-default" style="background-color: transparent;">
+			  <div class="panel-body" style="text-align: center;">
+				<a href="{{pathFor 'caseprofileA'}}" style="color:#b3b3b3">
+					<span class="fa fa-archive fa-fw fa-2x item-title">
+					</span>
+					<br/>
+					Archived <span class="badge">{{archivedCount}}</span>
+				</a>							    
+			  </div>
+			</div>			
+		</div>
+	</div>
+</template>
+
+<template name="insight2">
 	<div class="row">
 		<div class="col-md-2">
 			<div class="panel panel-default">
