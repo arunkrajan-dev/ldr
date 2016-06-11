@@ -13,6 +13,6 @@ Template.SearchCaseFile.helpers({
       });
     },
 	selected: function(event, suggestion, datasetName) {
-	    Router.go("caseprofile.details", {caseId: suggestion.id});
+	    window.open(Router.url("caseprofile.details", { caseId: suggestion.id}), 'GoogleWindow', 'resizable=0, menubar=0, locationbar=0, width=1200, height=900');
 	},
 });

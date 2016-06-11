@@ -474,7 +474,9 @@ function drawChart() {
             // the chart.
             data:    data,
             // The name of the data record attribute that contains x-values.
-            resize:  true
+            resize:  true,
+            
+            colors:['#ff9800',"#4caf50","#2196f3"]
         });
     }
 }
