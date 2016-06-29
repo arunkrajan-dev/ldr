@@ -2,7 +2,7 @@
 	<div class="page-container container">
 		<form role="form" class="insert-form">
 			<div class="alert alert-warning">
-				<span>Update pending for <span style="font-size: 18px">{{caseId}}</span> hearing on <span style="font-size: 18px">{{formatDate nextHearingDate 'll'}}</span>
+				<span>Update pending for <span style="font-size: 18px">{{caseId}} [{{caseNumber}}]</span> hearing on <span style="font-size: 18px">{{formatDate nextHearingDate 'll'}}</span>
 				{{setMaxDate nextHearingDate}}</span>
 			</div>
 			{{#if errorMessage}}
