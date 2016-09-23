@@ -68,7 +68,22 @@ Template.fyaDetailsInsert.events({
 		);
 
 		return false;
-	}	
+	},
+	"change #next-hearing-check": function(e, t) {
+		e.preventDefault();
+		if ($("#next-hearing-check").is(":checked")){
+			$("#nextDate").prop("required", "required");
+			$("#purpose").prop("required", "required");
+			$('#purpose').removeAttr('placeholder');
+			$('#nextDate').val($('#lastDate').val());
+		} else {
+			$('#purpose').removeAttr('required');
+			$('#purpose').prop("placeholder", "Update purpose if known - Optional")
+			$('#nextDate').removeAttr('required');
+			$('#nextDate').val('');
+		}
+ 		$("#next-hearing-div").slideToggle("slow");
+	}
 });
 
 Template.fyaDetailsInsert.helpers({

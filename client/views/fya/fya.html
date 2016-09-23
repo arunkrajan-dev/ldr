@@ -16,29 +16,38 @@
 				{{infoMessage}}
 			</div>
 			{{/if}}
-			<input type="hidden" id="lastDate" name="businessDate" value="{{formatDate nextHearingDate 'DD-MM-YYYY h:mm a'}}" 
+			<input  type="hidden" id="lastDate" name="businessDate" value="{{formatDate nextHearingDate 'DD-MM-YYYY h:mm a'}}" 
 							class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a" hidden="hidden">
 			<input type="hidden" name="caseId" value="{{_id}}" class="form-control" autofocus="autofocus" required="required" hidden="hidden">
-			
-				<div class="form-group  field-description col-xs-12 col-sm-12 col-md-7">
+			<div class="row">
+				<div class="form-group  field-description col-xs-12 col-sm-12 col-md-12">
+					<label for="description">
+						Last Hearing Summary
+					</label>
 					<div class="input-div">
-						<label for="description">
-						Description
-						</label>
-						<input type="text" autofocus="autofocus" name="description" value="" class="form-control" required="required">
+						<input type="text" name="description" value="" class="form-control" required="required">
 						<span id="help-text" class="help-block">
 						</span>
 						<span id="error-text" class="help-block">
 						</span>
 					</div>
 				</div>
+			</div>
+			<div class="row">
 				<div class="form-group  field-next-date col-xs-12 col-sm-12 col-md-3">
-					<div class="input-div">
-						<label for="nextDate">
+					<input type="checkbox" id="next-hearing-check" name="knowNextHearing" value="Next Hearing" checked="checked">
+						Next Hearing Date Given
+				</div>
+			</div>
+			<div class="row" >
+				<div id="next-hearing-div">
+				<div class="form-group  field-next-date col-xs-12 col-sm-12 col-md-3">
+					<label for="nextDate">
 						Next Hearing Date
-						</label>
+					</label>
+					<div class="input-div">
 						<div class="input-group date">
-							<input type="text" id="nextDate" name="nextDate" value="{{formatDate nextHearingDate 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
+							<input id="nextDate" type="text" name="nextDate" value="{{formatDate nextHearingDate 'DD-MM-YYYY h:mm a'}}" class="form-control" required="required" data-type="date" data-format="DD-MM-YYYY h:mm a">
 							<span class="input-group-addon">
 								<i class="fa fa-calendar">
 								</i>
@@ -50,18 +59,20 @@
 						</span>
 					</div>
 				</div>
-				<div class="form-group  field-next-purpose col-xs-12 col-sm-12 col-md-2">
+				</div>
+				<div class="form-group  field-next-purpose col-xs-12 col-sm-12 col-md-9">
+					<label for="description">
+						Next Hearing Purpose
+					</label>
 					<div class="input-div">
-						<label for="description">
-						For
-						</label>
-						<input type="text" name="purpose" value="" class="form-control" required="required">
+						<input id="purpose" type="text" name="purpose" value="" class="form-control" required="required">
 						<span id="help-text" class="help-block">
 						</span>
 						<span id="error-text" class="help-block">
 						</span>
 					</div>
 				</div>
+			</div>
 			<div class="form-group">
 				<div class="submit-div">
 					<button id="form-submit-button" class="btn btn-success" type="submit">
@@ -69,8 +80,11 @@
 						</span>
 						Save
 					</button>
+					<a href="#" id="form-cancel-button" class="btn btn-default">
+						Cancel
+					</a>
 				</div>
-			</div>
+			</div>				
 		</form>
 	</div>
 </template>
