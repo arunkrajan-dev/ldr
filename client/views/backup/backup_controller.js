@@ -19,7 +19,7 @@ this.BackupController = RouteController.extend({
 		
 
 		var subs = [
-			//Meteor.subscribe("caseprofile_list"),
+			Meteor.subscribe("caseprofile_list"),
 			Meteor.subscribe("hearings_list"),
 			Meteor.subscribe("court_list"),
             Meteor.subscribe("relationship_list"),

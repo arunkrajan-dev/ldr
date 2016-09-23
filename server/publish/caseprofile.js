@@ -9,12 +9,19 @@ Meteor.publish("caseprofile_list_date", function() {
 	return Caseprofile.find({ownerId:this.userId, "archived":{"$exists": false}}, {_id:1, caseId:1, filingDate:1});
 });
 
-7
+
 Meteor.publish("caseprofile_empty", function() {
 	if(Users.isInRoles(this.userId, ["admin","viewer"])) {
 		return Caseprofile.find({_id:null}, {});
 	}
 	return Caseprofile.find({_id:null,ownerId:this.userId}, {});
+});
+
+Meteor.publish("caseprofile_list", function() {
+	if(Users.isInRoles(this.userId, ["admin"])) {
+		return Caseprofile.find({}, {});
+	}
+	return Caseprofile.find({ownerId:this.userId}, {});
 });
 
 Meteor.publish("caseprofile_details", function(caseId) {
